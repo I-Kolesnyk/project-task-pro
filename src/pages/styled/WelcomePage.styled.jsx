@@ -12,7 +12,7 @@ const dynamicStyle = ({ theme }) =>
     width: 335px;
     padding: 14px 0;
 
-    border-radius: 8px;
+    border-radius: ${theme.radii.md};
 
     color: ${theme.authColors.darkText};
     font-size: ${theme.fontSizes[3]};

@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 const dynamicStylesBtn = ({ theme }) => css`
   width: 287px;
   padding: 14px 0;
-  border-radius: 8px;
+  border-radius: ${theme.radii.md};
   margin: 0 auto;
 
   display: flex;
