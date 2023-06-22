@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-
-import {
-  AuthTabsContainer,
-  TabButton,
-  TabPanelContainer,
-} from './AuthTabs.styled';
-
+import { NavLink } from 'react-router-dom';
+import { AuthTabsWrapper, AuthTabsContainer } from './AuthTabs.styled';
 import LoginForm from 'components/LoginForm/LoginForm';
 import RegisterForm from 'components/RegisterForm/RegisterForm';
 
@@ -18,24 +13,28 @@ const AuthTabs = () => {
   };
 
   return (
-    <AuthTabsContainer>
-      <Tabs selectedIndex={activeTab} onSelect={handleTabChange}>
-        <TabList>
-          <div>
-            <Tab css={TabButton}>Registration</Tab>
-            <Tab css={TabButton}>Log In</Tab>
-          </div>
-        </TabList>
+    <AuthTabsWrapper>
+      <AuthTabsContainer>
+        <Tabs selectedIndex={activeTab} onSelect={handleTabChange}>
+          <TabList>
+            <Tab>
+              <NavLink to="/auth/register">Registration</NavLink>
+            </Tab>
+            <Tab>
+              <NavLink to="/auth/login">Log In</NavLink>
+            </Tab>
+          </TabList>
 
-        <TabPanel css={TabPanelContainer}>
-          <RegisterForm />
-        </TabPanel>
+          <TabPanel>
+            <RegisterForm />
+          </TabPanel>
 
-        <TabPanel css={TabPanelContainer}>
-          <LoginForm />
-        </TabPanel>
-      </Tabs>
-    </AuthTabsContainer>
+          <TabPanel>
+            <LoginForm />
+          </TabPanel>
+        </Tabs>
+      </AuthTabsContainer>
+    </AuthTabsWrapper>
   );
 };
 

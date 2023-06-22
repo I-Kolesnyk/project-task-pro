@@ -1,3 +1,4 @@
+
 import { StyledLink } from './styled/WelcomePage.styled';
 
 const WelcomePage = () => {
