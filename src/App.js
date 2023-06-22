@@ -11,7 +11,8 @@ const WelcomePage = lazy(() => import('pages/WelcomePage'));
 const AuthPage = lazy(() => import('pages/AuthPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
-function App() {
+function App()
+{
   const themeMode = useTheme();
 
   return (
@@ -20,10 +21,12 @@ function App() {
         <Routes>
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/auth/:id" element={<AuthPage />} />
+          {/* <PrivateRoute path="/home"> */}
           <Route path="/home" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="/home/:boardName" element={<ScreenPage />} />
           </Route>
+          {/* </PrivateRoute> */}
           <Route path="/" element={<Navigate to="/welcome" />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
