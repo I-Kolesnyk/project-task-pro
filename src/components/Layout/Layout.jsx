@@ -1,5 +1,5 @@
 import Header from 'components/Header';
-import Sidebar from 'components/SideBar/Sidebar';
+import Sidebar from 'components/Sidebar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
