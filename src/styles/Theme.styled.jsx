@@ -52,6 +52,7 @@ const dark = {
     mainAddButton: '#FFFFFF',
     iconFill: '#121212',
     pseudo: 'rgba(255, 255, 255, 0.1)',
+    burger: '#FFFFFF',
   },
 
   labelColors: {
@@ -122,6 +123,7 @@ const light = {
     mainAddButton: '#161616',
     iconFill: '#121212',
     pseudo: 'rgba(22, 22, 22, 0.1)',
+    burger: '#161616',
   },
 
   labelColors: {
@@ -192,6 +194,7 @@ const violet = {
     mainAddButton: '#5255BC',
     iconFill: '#FFFFFF',
     pseudo: 'rgba(255, 255, 255, 0.1)',
+    burger: '#161616',
   },
 
   labelColors: {
