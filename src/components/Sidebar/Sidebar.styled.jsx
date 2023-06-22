@@ -3,8 +3,9 @@ import { css } from '@emotion/react';
 
 const sidebarDynamicStyles = ({ theme }) => css`
   position: absolute;
+  top: 0;
   width: 225px;
-  flex-grow: 1;
+  min-height: 100vh;
   margin: 0;
   background-color: ${theme.backgroundColors.asideMain};
 
@@ -20,19 +21,6 @@ const sidebarDynamicStyles = ({ theme }) => css`
   }
 `;
 
-const sidebarContainerDynamicStyles = ({ theme }) => css`
-  width: 225px;
-
-  background-color: ${theme.backgroundColors.asideMain} @media screen and
-    (min-width: ${theme.breakpoints[1]}) {
-
-  }
-`;
-
 export const StyledSidebar = styled.aside`
   ${sidebarDynamicStyles}
-`;
-
-export const SidebarContainer = styled.div`
-  ${sidebarContainerDynamicStyles}
 `;
