@@ -1,5 +1,5 @@
 const LoginForm = () => {
-  return <div>Login Form</div>;
+  return <div style={{ color: 'red', fontSize: '50px' }}>Login Form</div>;
 };
 
 export default LoginForm;

@@ -1,5 +1,5 @@
 const RegisterForm = () => {
-  return <div>Register Form</div>;
+  return <div style={{ color: 'red', fontSize: '80px' }}>Register Form</div>;
 };
 
 export default RegisterForm;
