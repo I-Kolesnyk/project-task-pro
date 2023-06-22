@@ -22,7 +22,7 @@ function App()
         <Routes>
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/auth/:id" element={<AuthPage />} />
-          <Route path="/home" element={<HomePage />}>
+          <Route path="/home" element={<Layout />}>
             <Route path="/home/:boardName" element={<ScreenPage />} />
           </Route>
           <Route path="/" element={<Navigate to="/welcome" />} />
