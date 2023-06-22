@@ -1,11 +1,9 @@
-import LoginForm from 'components/LoginForm/LoginForm';
-import RegisterForm from 'components/RegisterForm/RegisterForm';
+import AuthTabs from 'components/AuthTabs/AuthTabs';
 
 const AuthPage = () => {
   return (
     <>
-      <RegisterForm />
-      <LoginForm />
+      <AuthTabs />
     </>
   );
 };
