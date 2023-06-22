@@ -1,9 +1,4 @@
-import { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
-
-import Loader from 'components/Loader';
-
-function BoardScreen() {
+function ScreenPage() {
   return (
     <>
       <header>
@@ -16,13 +11,9 @@ function BoardScreen() {
         serves as a powerful tool to organize the workflow and ensure effective
         collaboration among team members.
       </p>
-      <section>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </section>
+      <section></section>
     </>
   );
 }
 
-export default BoardScreen;
+export default ScreenPage;
