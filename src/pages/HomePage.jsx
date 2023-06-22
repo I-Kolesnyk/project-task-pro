@@ -1,7 +1,7 @@
-import Header from 'components/Header';
+import Layout from 'components/Layout/Layout';
 
 function HomePage() {
-  return <Header />;
+  return <Layout></Layout>;
 }
 
 export default HomePage;
