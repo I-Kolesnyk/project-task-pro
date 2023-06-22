@@ -17,7 +17,7 @@ export const GlobalStyles = css`
     width: 100vw;
     scroll-behavior: smooth;
   }
-  *,
+  
   *::before,
   *::after {
     box-sizing: inherit;
@@ -37,8 +37,9 @@ export const GlobalStyles = css`
   h4,
   h5,
   h6,
-  p {
-    margin-top: 0;
+  p,
+  div {
+    margin: 0;
   }
   ul,
   ol {
