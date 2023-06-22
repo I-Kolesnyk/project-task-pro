@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { ThemeProvider } from '@emotion/react';
-import { Navigate, Route, Routes } from "react-router-dom"
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { theme } from 'styles/Theme.styled';
 import { useTheme } from 'hooks';
 import ScreenPage from 'components/ScreenPage/ScreenPage';
@@ -11,9 +11,7 @@ const WelcomePage = lazy(() => import('pages/WelcomePage'));
 const AuthPage = lazy(() => import('pages/AuthPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
-
-function App()
-{
+function App() {
   const themeMode = useTheme();
 
   return (
@@ -23,6 +21,7 @@ function App()
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/auth/:id" element={<AuthPage />} />
           <Route path="/home" element={<Layout />}>
+            <Route index element={<HomePage />} />
             <Route path="/home/:boardName" element={<ScreenPage />} />
           </Route>
           <Route path="/" element={<Navigate to="/welcome" />} />
