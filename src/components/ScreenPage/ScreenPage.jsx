@@ -1,8 +1,11 @@
+import { useParams } from 'react-router-dom';
+
 function ScreenPage() {
+  const { boardName } = useParams();
   return (
     <>
       <header>
-        <h2>Board name</h2>
+        <h2>{boardName}</h2>
         <p>Filters</p>
       </header>
       <p>

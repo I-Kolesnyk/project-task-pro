@@ -5,7 +5,7 @@ function Sidebar() {
   return (
     <StyledSidebar>
       {/* <SidebarContainer> */}
-        <BoardList />
+      <BoardList />
       {/* </SidebarContainer> */}
     </StyledSidebar>
   );

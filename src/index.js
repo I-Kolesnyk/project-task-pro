@@ -15,9 +15,9 @@ root.render(
     <Global styles={GlobalStyles} />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {/* <BrowserRouter basename="/"> */}
+        <BrowserRouter >
           <App />
-        {/* </BrowserRouter> */}
+        </BrowserRouter>
       </PersistGate>
     </Provider>
   </React.StrictMode>
