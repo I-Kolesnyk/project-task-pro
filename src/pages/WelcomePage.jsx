@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { StyledLink } from './styled/WelcomePage.styled';
 
 const WelcomePage = () => {
   return (
     <div>
-      <NavLink to="/auth/register">Registration</NavLink>
-      <NavLink to="/auth/login">Log In</NavLink>
+      <StyledLink to="/auth/register">Registration</StyledLink>
+
+      <StyledLink to="/auth/login">Log In</StyledLink>
     </div>
   );
 };
