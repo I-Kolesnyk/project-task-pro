@@ -1,17 +1,21 @@
 import Header from 'components/Header';
-import Sidebar from 'components/Sidebar/Sidebar';
-
+import Sidebar from 'components/SideBar/Sidebar';
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
+
+import Loader from 'components/Loader';
+import { StyledMain } from './Layout.styled';
 
 function Layout() {
   return (
     <>
       <Header />
       <Sidebar />
-      <Suspense fallback={<div>Loaging...</div>}>
-        <Outlet />
-      </Suspense>
+      <StyledMain>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </StyledMain>
     </>
   );
 }
