@@ -1,7 +1,9 @@
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar';
-import BoardScreen from 'components/BoardScreen';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
 
+import Loader from 'components/Loader';
 import { StyledMain } from './Layout.styled';
 
 function Layout() {
@@ -10,7 +12,9 @@ function Layout() {
       <Header />
       <Sidebar />
       <StyledMain>
-        <BoardScreen />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </StyledMain>
     </>
   );
