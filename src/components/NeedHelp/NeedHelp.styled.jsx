@@ -18,16 +18,16 @@ const ContainerDynamicStyles = ({ theme }) => css`
   }
 `;
 const textDynamicStyles = ({ theme }) => css`
-  width: 159px;
+  width: 150px;
   margin-bottom: 19px;
   color: ${theme.textColors.addButton};
   font-size: ${theme.fontSizes[2]};
   line-height: 16px;
-  letter-spacing: -0.015;
+  letter-spacing: -0.24px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     font-size: ${theme.fontSizes[3]};
     line-height: 20px;
-    letter-spacing: -0.014;
+    letter-spacing: -0.28px;
   }
 `;
 const spanDynamicStyles = ({ theme }) => css`
