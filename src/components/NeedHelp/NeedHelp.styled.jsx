@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const ContainerDynamicStyles = ({ theme }) => css`
   background-color: ${theme.backgroundColors.asideSecondary};
-  border-radius: 8px;
+  border-radius: ${theme.radii.md};
   margin-left: 14px;
   width: 197px;
   height: 238px;
@@ -22,11 +22,11 @@ const textDynamicStyles = ({ theme }) => css`
   margin-bottom: 19px;
   color: ${theme.textColors.addButton};
   font-size: ${theme.fontSizes[2]};
-  line-height: 16px;
+  line-height: 1.34;
   letter-spacing: -0.24px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     font-size: ${theme.fontSizes[3]};
-    line-height: 20px;
+    line-height: 1.4;
     letter-spacing: -0.28px;
   }
 `;
