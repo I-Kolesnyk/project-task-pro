@@ -18,8 +18,8 @@
 <path fill="none" stroke="#bedbb0" style="stroke: var(--color2, #bedbb0)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.5" d="M16.867 11.533l4.466 4.467-4.466 4.467"></path>
 </symbol>
 <symbol id="help-circle" viewBox="0 0 32 32">
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M16 29.333c7.364 0 13.333-5.969 13.333-13.333s-5.969-13.333-13.333-13.333v0c-7.364 0-13.333 5.969-13.333 13.333s5.969 13.333 13.333 13.333v0z"></path>
-<path fill="none" stroke="#fff" style="stroke: var(--color1, #fff)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M12.12 12c0.564-1.569 2.040-2.671 3.773-2.671 2.209 0 4 1.791 4 4 0 0.001 0 0.003 0 0.004v-0c0 2.667-4 4-4 4M16 22.667h0.019"></path>
+<path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M16 29.333c7.364 0 13.333-5.969 13.333-13.333s-5.969-13.333-13.333-13.333v0c-7.364 0-13.333 5.969-13.333 13.333s5.969 13.333 13.333 13.333v0z"></path>
+<path fill="none"  stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.88" d="M12.12 12c0.564-1.569 2.040-2.671 3.773-2.671 2.209 0 4 1.791 4 4 0 0.001 0 0.003 0 0.004v-0c0 2.667-4 4-4 4M16 22.667h0.019"></path>
 </symbol>
 <symbol id="trash" viewBox="0 0 32 32">
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6" d="M12 4h8M4 8h24M6.666 8l0.8 12.018c0.15 2.23 0.224 3.346 0.59 4.242 0.673 1.625 1.992 2.868 3.628 3.424l0.042 0.012c0.92 0.304 2.038 0.304 4.274 0.304v0c2.236 0 3.354 0 4.272-0.304 1.679-0.568 2.999-1.81 3.657-3.396l0.015-0.040c0.364-0.896 0.44-2.012 0.588-4.242l0.8-12.018"></path>
