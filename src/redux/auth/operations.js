@@ -9,7 +9,7 @@ export const userRegister = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
     try {
-      const { data } = await axiosPublic.post(``, user);
+      const { data } = await axiosPublic.post(`path`, user);
 
       return data;
     } catch (error) {
@@ -22,7 +22,7 @@ export const userLogin = createAsyncThunk(
   'auth/login',
   async (user, thunkAPI) => {
     try {
-      const { data } = await axiosPublic.post(``, user);
+      const { data } = await axiosPublic.post(`path`, user);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -34,7 +34,7 @@ export const userLogOut = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      await axiosPrivateJson.post('');
+      await axiosPrivateJson.post('path');
       return;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
