@@ -20,10 +20,18 @@ const wrapperDynamicStyles = ({ theme }) => css`
   align-items: center;
 `;
 
+const listDynamicStyles = ({ theme }) => css`
+  width: 100%;
+`;
+
 export const Title = styled.h2`
   ${titleDynamicStyles}
 `;
 
 export const Wrapper = styled.div`
   ${wrapperDynamicStyles}
+`;
+
+export const List = styled.ul`
+  ${listDynamicStyles}
 `;

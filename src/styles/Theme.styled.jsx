@@ -53,6 +53,7 @@ const dark = {
     iconFill: '#121212',
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#FFFFFF',
+    borderIcon: '#FFFFFF',
   },
 
   labelColors: {
@@ -124,6 +125,7 @@ const light = {
     iconFill: '#121212',
     pseudo: 'rgba(22, 22, 22, 0.1)',
     burger: '#161616',
+    borderIcon: '#161616',
   },
 
   labelColors: {
@@ -195,6 +197,7 @@ const violet = {
     iconFill: '#FFFFFF',
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#161616',
+    borderIcon: '#FFFFFF',
   },
 
   labelColors: {
