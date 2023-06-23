@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 const titleDynamicStyles = ({ theme }) => css`
   margin-bottom: 8px;
