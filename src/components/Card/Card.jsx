@@ -1,12 +1,28 @@
+import { Draggable } from 'react-beautiful-dnd';
 import { Wrapper } from './Card.styled';
 
-function Card({ id, title }) {
+function Card({ id, title, index }) {
   return (
-    <Wrapper>
-      <p>{title}</p>
-      <br />
-      <button type="button">Drag-and-drop</button>
-    </Wrapper>
+    <Draggable draggableId={id} index={index}>
+      {(provided, snapshot) => {
+        return (
+          <Wrapper
+            ref={provided.innerRef}
+            snapshot={snapshot}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <p>{title}</p>
+            <span>Content</span>
+          </Wrapper>
+        );
+      }}
+    </Draggable>
+    // <Wrapper>
+    //   <p>{title}</p>
+    //   <br />
+    //   <button type="button">Drag-and-drop</button>
+    // </Wrapper>
   );
 }
 
