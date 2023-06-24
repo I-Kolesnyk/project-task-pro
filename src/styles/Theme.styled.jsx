@@ -55,6 +55,8 @@ const dark = {
     burger: '#FFFFFF',
     borderIcon: '#FFFFFF',
     popUpForm: '#1F1F1F',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -128,6 +130,8 @@ const light = {
     burger: '#161616',
     borderIcon: '#161616',
     popUpForm: '#FCFCFC',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -201,6 +205,8 @@ const violet = {
     burger: '#161616',
     borderIcon: '#FFFFFF',
     popUpForm: '#FCFCFC',
+    formButtonSvg: '#161616',
+    formButtonSvgBg: '#FFFFFF',
   },
 
   labelColors: {
