@@ -71,7 +71,7 @@ const LoginForm = () => {
 
           <p>{errors.password?.message}</p>
         </label>
-        <AuthBtn textBtn="Register Now" />
+        <AuthBtn textBtn="Log In Now" />
       </Form>
     </>
   );

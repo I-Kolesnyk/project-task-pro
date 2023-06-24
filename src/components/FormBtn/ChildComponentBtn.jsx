@@ -2,7 +2,7 @@ import sprite from '../../assets/sprite.svg';
 import PropTypes from 'prop-types';
 import { ContainerSvg, Svg } from './ChildComponentBtn.styled';
 
-export function ChildComponent(textContent) {
+export function ChildComponent({ textContent }) {
   return (
     <>
       <ContainerSvg>
