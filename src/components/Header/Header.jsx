@@ -1,6 +1,7 @@
 import ThemeDropdown from 'components/ThemeDrpdown/ThemeDropdown';
 import sprite from '../../assets/sprite.svg';
 import { StyledHeader, Svg, Button } from './Header.styled';
+import UserInfo from 'components/UserInfo/UserInfo';
 
 function Header({ openSidebar }) {
   return (
@@ -11,6 +12,7 @@ function Header({ openSidebar }) {
         </Svg>
       </Button>
       <ThemeDropdown />
+      <UserInfo />
     </StyledHeader>
   );
 }
