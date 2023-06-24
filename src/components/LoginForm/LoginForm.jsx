@@ -25,17 +25,16 @@ const schema = yup
 const LoginForm = () => {
   const {
     register,
-
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
       email: '',
       password: '',
     },
     resolver: yupResolver(schema),
+    mode: 'onChange',
   });
 
   const [passwordShown, setPasswordShown] = useState(false);
