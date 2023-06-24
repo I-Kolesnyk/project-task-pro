@@ -54,6 +54,8 @@ const dark = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#FFFFFF',
     borderIcon: '#FFFFFF',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -126,6 +128,8 @@ const light = {
     pseudo: 'rgba(22, 22, 22, 0.1)',
     burger: '#161616',
     borderIcon: '#161616',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -198,6 +202,8 @@ const violet = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#161616',
     borderIcon: '#FFFFFF',
+    formButtonSvg: '#161616',
+    formButtonSvgBg: '#FFFFFF',
   },
 
   labelColors: {
