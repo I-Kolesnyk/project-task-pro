@@ -49,6 +49,8 @@ const boardSlice = createSlice({
       state.board = action.payload;
     }),
 });
+
+
 export const { setBoard } = boardSlice.actions;
 export const boardReducer = boardSlice.reducer;
 
