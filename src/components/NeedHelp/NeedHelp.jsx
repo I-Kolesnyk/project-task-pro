@@ -9,6 +9,8 @@ import {
   Svg,
   Text,
 } from './NeedHelp.styled';
+import Modal from 'components/ModalWindow/ModalWindow';
+import HelpForm from 'components/HelpForm/HelpForm';
 
 const NeedHelp = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +18,11 @@ const NeedHelp = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       <Container>
@@ -38,8 +45,10 @@ const NeedHelp = () => {
           </Svg>
           <ButtonText>Need help?</ButtonText>
         </Button>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <HelpForm />
+        </Modal>
       </Container>
-      {isModalOpen && <p>Модалка need help</p>}
     </>
   );
 };
