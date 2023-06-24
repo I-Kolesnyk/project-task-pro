@@ -1,31 +1,31 @@
-import { useUserName } from 'hooks';
+import { useUserAvatar, useUserName } from 'hooks';
 import { useState } from 'react';
 import { Img, Text, Wrapper } from './UserInfo.styled';
+import Modal from 'components/ModalWindow/ModalWindow';
 
 const UserInfo = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const userName = useUserName();
+  const userAvatar = useUserAvatar();
 
   const openModal = () => {
     setIsModalOpen(true);
   };
 
-  const userFirstAvatar = (
-    <picture>
-      <source srcSet="https://i.ibb.co/jLbPt1s/user-min.png 1x, https://i.ibb.co/7VFWmkN/user2x-min.png 2x" />
-      <Img
-        src="https://i.ibb.co/jLbPt1s/user-min.png"
-        alt="user-avatar"
-        border="0"
-      />
-    </picture>
-  );
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Wrapper>
       <Text>{userName} User Name Example</Text>
-      <button onClick={openModal}>{userFirstAvatar}</button>
-      {isModalOpen && <p>Модалка user info</p>}
+      <button onClick={openModal}>
+        <Img src={userAvatar} alt="user-avatar" />
+      </button>
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <h2>Модальное окно</h2>
+      </Modal>
     </Wrapper>
   );
 };
