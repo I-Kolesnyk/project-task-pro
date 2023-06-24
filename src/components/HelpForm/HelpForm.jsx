@@ -2,14 +2,7 @@ import FormBtn from 'components/FormBtn/FormBtn';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  Form,
-  Input,
-  LabelInput,
-  LabelTextaria,
-  Textaria,
-  Title,
-} from './HelpForm.styled';
+import { ErrorMessage, Form, Input, Textarea, Title } from './HelpForm.styled';
 
 const schema = yup
   .object({
@@ -49,14 +42,13 @@ const HelpForm = () => {
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Title>Need help</Title>
-        <LabelInput>
-          <Input placeholder="Email address " {...register('email')} />
-          <p>{errors.email?.message}</p>
-        </LabelInput>
-        <label>
-          <textarea placeholder="Comment" {...register('comment')} />
-          <p>{errors.comment?.message}</p>
-        </label>
+
+        <Input placeholder="Email address " {...register('email')} />
+        <ErrorMessage>{errors.email?.message}</ErrorMessage>
+
+        <Textarea placeholder="Comment" {...register('comment')}></Textarea>
+        <ErrorMessage>{errors.comment?.message}</ErrorMessage>
+
         <FormBtn textBtn={textBtn} />
       </Form>
     </>

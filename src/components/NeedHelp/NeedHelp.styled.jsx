@@ -48,13 +48,6 @@ const svgDynamicStyles = ({ theme }) => css`
   stroke: ${theme.textColors.addButton};
 `;
 
-const modalWrapperDynamicStyles = ({ theme }) => css`
-  width: 335px;
-  @media screen and (min-width: ${theme.breakpoints[1]}) {
-    width: 400px;
-  }
-`;
-
 export const Container = styled.div`
   ${ContainerDynamicStyles}
 `;

@@ -18,6 +18,7 @@ const titleDynamicStyles = ({ theme }) => css`
 `;
 
 const inputDynamicStyles = ({ theme }) => css`
+  font-size: ${theme.fontSizes[3]};
   width: 100%;
   height: 49px;
   padding: 14px 18px;
@@ -25,8 +26,10 @@ const inputDynamicStyles = ({ theme }) => css`
   border: 1px solid ${theme.authColors.lightButtonBackground};
   border-radius: ${theme.radii.md};
   color: ${theme.authColors.lightText};
+  margin-bottom: 4px;
 `;
 const textariaDynamicStyles = ({ theme }) => css`
+  font-size: ${theme.fontSizes[3]};
   width: 100%;
   padding: 14px 18px;
   background-color: ${theme.authColors.inputBackground};
@@ -34,6 +37,7 @@ const textariaDynamicStyles = ({ theme }) => css`
   border-radius: ${theme.radii.md};
   color: ${theme.authColors.lightText};
   min-height: 120px;
+  margin-bottom: 15px;
 `;
 
 export const Form = styled.form`
@@ -51,9 +55,7 @@ export const Input = styled.input`
 export const Textarea = styled.textarea`
   ${textariaDynamicStyles}
 `;
-export const LabelInput = styled.label`
-  margin-bottom: 14px;
-`;
-export const LabelTextarea = styled.label`
-  margin-bottom: 24px;
+export const ErrorMessage = styled.p`
+  margin-bottom: 10px;
+  text-align: center;
 `;
