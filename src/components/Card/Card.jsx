@@ -1,4 +1,4 @@
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 import { Wrapper } from './Card.styled';
 
 function Card({ id, title, index }) {
@@ -18,11 +18,6 @@ function Card({ id, title, index }) {
         );
       }}
     </Draggable>
-    // <Wrapper>
-    //   <p>{title}</p>
-    //   <br />
-    //   <button type="button">Drag-and-drop</button>
-    // </Wrapper>
   );
 }
 

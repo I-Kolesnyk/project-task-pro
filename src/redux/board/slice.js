@@ -39,14 +39,17 @@ const initialState = {
 const boardSlice = createSlice({
   name: 'board',
   initialState,
-  //   reducers: {
-  //     setFilter(state, actions) {
-  //       state.value = actions.payload;
-  //     },
+  reducers: {
+    setBoard(state, actions) {
+      state.board = actions.payload;
+    },
+  },
   extraReducers: builder =>
     builder.addCase(getBoardById.fulfilled, (state, action) => {
       state.board = action.payload;
     }),
 });
-
+export const { setBoard } = boardSlice.actions;
 export const boardReducer = boardSlice.reducer;
+
+
