@@ -1,0 +1,93 @@
+import styled from '@emotion/styled';
+import { css } from '@emotion/react';
+
+const dynamicStylesForm = ({ theme }) => css`
+  display: flex;
+  flex-direction: column;
+  color: ${theme.authColors.lightText};
+`;
+
+const dynamicStylesInput = ({ theme }) => css`
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 14px 18px;
+  background-color: ${theme.backgroundColors.popUpForm};
+  border: 1px solid ${theme.authColors.lightButtonBackground};
+  border-radius: ${theme.radii.md};
+  color: ${theme.textColors.main};
+`;
+
+const dynamicStylesTextArea = ({ theme }) => css`
+  width: 100%;
+  min-height: 154px;
+  margin-bottom: 24px;
+  padding: 14px 18px;
+  background-color: ${theme.backgroundColors.popUpForm};
+  border: 1px solid ${theme.authColors.lightButtonBackground};
+  border-radius: ${theme.radii.md};
+  color: ${theme.textColors.main};
+  resize: none;
+`;
+
+const dynamicStylesLabelColorText = ({ theme }) => css`
+  color: ${theme.textColors.secondary};
+  font-size: ${theme.fontSizes[2]};
+  margin-bottom: 4px;
+`;
+const dynamicStylesRadio = ({ theme, clr }) => css`
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  & + label {
+    /* для элемента label связанного с .custom-radio */
+    display: flex;
+    align-items: center;
+    user-select: none;
+    &::before {
+      content: '';
+      /* создание в label псевдоэлемента  before со следующими стилями */
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background-color: ${theme.labelColors[clr]};
+      border: 1px solid #adb5bd;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 50% 50%;
+    }
+  }
+  &:not(:disabled):not(:checked) + label:hover::before {
+    /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
+    border-color: red;
+  }
+  &:checked + label::before {
+    /* стили для радиокнопки, находящейся в состоянии checked */
+    border-color: #0b76ef;
+    background-color: purple;
+  }
+`;
+
+export const Form = styled.form`
+  ${dynamicStylesForm}
+`;
+export const Input = styled.input`
+  ${dynamicStylesInput}
+`;
+export const TextArea = styled.textarea`
+  ${dynamicStylesTextArea}
+`;
+
+export const LabelColorBox = styled.div`
+  margin-bottom: 14px;
+`;
+export const LabelColorText = styled.p`
+  ${dynamicStylesLabelColorText}
+`;
+export const CustomRadio = styled.input`
+  ${dynamicStylesRadio}
+`;
+export const CustomRadioContainer = styled.div`
+  display: flex;
+  gap: 8px;
+`;

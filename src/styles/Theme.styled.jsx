@@ -54,6 +54,7 @@ const dark = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#FFFFFF',
     borderIcon: '#FFFFFF',
+    popUpForm: '#1F1F1F',
   },
 
   labelColors: {
@@ -126,6 +127,7 @@ const light = {
     pseudo: 'rgba(22, 22, 22, 0.1)',
     burger: '#161616',
     borderIcon: '#161616',
+    popUpForm: '#FCFCFC',
   },
 
   labelColors: {
@@ -198,6 +200,7 @@ const violet = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#161616',
     borderIcon: '#FFFFFF',
+    popUpForm: '#FCFCFC',
   },
 
   labelColors: {
