@@ -11,7 +11,7 @@ const styledDateDeadline = ({ theme }) => css`
   letter-spacing: -0.28px;
 `;
 
-export const StyledInput = styled.button`
+export const StyledInput = styled.div`
   position: relative;
   opacity: 0;
   z-index: 20;
