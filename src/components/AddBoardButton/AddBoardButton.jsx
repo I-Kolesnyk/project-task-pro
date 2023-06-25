@@ -30,7 +30,7 @@ function AddBoardButton() {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <CreateNewBoard />
+          <CreateNewBoard onClose={closeModal} />
         </Modal>
       )}
     </>
