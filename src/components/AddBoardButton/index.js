@@ -1,1 +1,1 @@
-export {default} from './AddBoardButton'
+export { default } from './AddBoardButton';
