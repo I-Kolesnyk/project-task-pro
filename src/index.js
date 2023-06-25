@@ -15,7 +15,7 @@ root.render(
     <Global styles={GlobalStyles} />
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter>
+        <BrowserRouter basename="/project-task-pro">
           <App />
         </BrowserRouter>
       </PersistGate>
