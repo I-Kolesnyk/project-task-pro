@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router';
 import { getAllBoards } from 'redux/allBoards/operations';
 import { useAllBoards } from 'hooks';
 import { getBoardById } from 'redux/board/operations';
-import { selectActiveBoard } from 'redux/allBoards/selectors';
-import { useSelector } from 'react-redux';
 
 function HomePage() {
   const dispatch = useDispatch();

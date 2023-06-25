@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { userLogin } from 'redux/auth/operations';
-import { getAllBoards } from 'redux/allBoards/operations';
 import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
@@ -27,7 +26,7 @@ const schema = yup
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  
+
   const {
     register,
     handleSubmit,

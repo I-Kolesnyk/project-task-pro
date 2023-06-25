@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
@@ -7,9 +7,9 @@ import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 
 import { Wrapper, Text, Button, Svg } from './AddBoardButton.styled';
 
-function AddBoardButton({ setIsSidebarOpen }) {
+function AddBoardButton() {
   const [isModalOpen, setModalOpen] = useState(false);
-  const dispatch = useDispatch();
+  
 
   const openModal = () => {
     setModalOpen(true);
