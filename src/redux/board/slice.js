@@ -47,7 +47,7 @@ export const boardSlice = createSlice({
   },
   extraReducers: builder =>
     builder.addCase(getBoardById.fulfilled, (state, action) => {
-      state.board = action.payload;
+      state.board = action.payload.data;
     }),
 });
 
