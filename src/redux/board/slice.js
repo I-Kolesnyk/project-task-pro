@@ -36,7 +36,8 @@ const initialState = {
     ],
   },
 };
-const boardSlice = createSlice({
+
+export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
@@ -46,12 +47,9 @@ const boardSlice = createSlice({
   },
   extraReducers: builder =>
     builder.addCase(getBoardById.fulfilled, (state, action) => {
-      state.board = action.payload;
+      state.board = action.payload.data;
     }),
 });
 
-
 export const { setBoard } = boardSlice.actions;
 export const boardReducer = boardSlice.reducer;
-
-

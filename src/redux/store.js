@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
+
 import {
   persistStore,
   persistReducer,
@@ -14,7 +15,7 @@ import storage from 'redux-persist/lib/storage';
 
 import { themeReducer } from './theme/slice';
 import { authReducer } from './auth/slice';
-import { allBoardsReducer } from './allBoards/slice';
+import { boardsReducer } from './allBoards/slice';
 import { boardReducer } from './board/slice';
 
 const themePersistConfig = {
@@ -42,9 +43,10 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     theme: persistReducer(themePersistConfig, themeReducer),
-    boards: persistReducer(allBoardsPersistConfig, allBoardsReducer),
-    board: persistReducer(boardPersistConfig, boardReducer)
+    boards: persistReducer(allBoardsPersistConfig, boardsReducer),
+    board: persistReducer(boardPersistConfig, boardReducer),
   },
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

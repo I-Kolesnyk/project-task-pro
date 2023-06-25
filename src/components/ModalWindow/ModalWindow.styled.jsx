@@ -41,6 +41,7 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   ${ModalContentDynamicStyles}
+
 `;
 
 export const CloseButton = styled.svg`
