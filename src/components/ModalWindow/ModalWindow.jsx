@@ -20,22 +20,34 @@ const Modal = ({ isOpen, onClose, children }) => {
     }
   };
 
-  const handleEscapeKey = event => {
-    if (event.key === 'Escape') {
-      onClose();
-    }
-  };
+  // const handleEscapeKey = event => {
+  //   if (event.key === 'Escape') {
+  //     onClose();
+  //   }
+  // };
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('keydown', handleEscapeKey);
+      document.addEventListener('keydown',event => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      });
     } else {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('keydown',event => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      });
     }
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('keydown',event => {
+        if (event.key === 'Escape') {
+          onClose();
+        }
+      });
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
