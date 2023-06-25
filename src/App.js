@@ -5,38 +5,63 @@ import { theme } from 'styles/Theme.styled';
 import { useTheme } from 'hooks';
 import ScreenPage from 'components/ScreenPage/ScreenPage';
 import Layout from 'components/Layout/Layout';
-// import PrivateRoute from 'components/PrivateRoute';
-// import RestrictedRoute from 'components/RestrictedRoute';
-
+import PrivateRoute from 'components/PrivateRoute';
+import RestrictedRoute from 'components/RestrictedRoute';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
 const AuthPage = lazy(() => import('pages/AuthPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
-function App()
-{
+function App() {
   const themeMode = useTheme();
 
   return (
     <ThemeProvider theme={theme[themeMode]}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          <Route
+            path="/welcome"
+            element={
+              <RestrictedRoute>
+                <WelcomePage />
+              </RestrictedRoute>
+            }
+          />
 
-          {/* <RestrictedRoute path="/welcome" > */}
-          <Route path="/welcome" element={<WelcomePage />} />
-          {/* </RestrictedRoute> */}
-
-          {/* <RestrictedRoute path="/auth/:id" > */}
-          <Route path="/auth/:id" element={<AuthPage />} />
-          {/* </RestrictedRoute> */}
-
-          {/* <PrivateRoute path="/home"> */}
-          <Route path="/home" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/home/:boardName" element={<ScreenPage />} />
+          <Route
+            path="/auth/:id"
+            element={
+              <RestrictedRoute redirectTo="/home" restricted>
+                <AuthPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute redirectTo="/auth/login">
+                <Layout />
+              </PrivateRoute>
+            }
+          >
+            <Route
+              index
+              element={
+                <PrivateRoute redirectTo="/auth/login">
+                  <HomePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/home/:boardName"
+              element={
+                <PrivateRoute redirectTo="/auth/login">
+                  <ScreenPage />
+                </PrivateRoute>
+              }
+            />
           </Route>
-          {/* </PrivateRoute> */}
           <Route path="/" element={<Navigate to="/welcome" />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

@@ -1,12 +1,8 @@
-// import { Navigate, Route } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
+import { useIsLoggedIn } from 'hooks';
 
-// const  PrivateRoute = ({ children, ...routeProps }) =>
-// {
-//     const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-//     return (
-//       <Route {...routeProps}>
-//         {isLoggedIn ? children : <Navigate to="/welcome" />}
-//       </Route>
-//     );
-// }
-// export default PrivateRoute
+const PrivateRoute = ({ children, redirectTo = '/welcome' }) => {
+  const isLoggedIn = useIsLoggedIn();
+  return isLoggedIn ? children : <Navigate to={redirectTo} replace={true} />;
+};
+export default PrivateRoute;

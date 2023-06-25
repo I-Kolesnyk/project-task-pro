@@ -9,7 +9,7 @@ export const userRegister = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
     try {
-      const { data } = await axiosPublic.post(`api/users/register`, user);
+      const { data } = await axiosPublic.post(`/api/users/register`, user);
 
       return data;
     } catch (error) {
@@ -22,7 +22,8 @@ export const userLogin = createAsyncThunk(
   'auth/login',
   async (user, thunkAPI) => {
     try {
-      const { data } = await axiosPublic.post(`api/users/login`, user);
+      const { data } = await axiosPublic.post(`/api/users/login`, user);
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -34,7 +35,7 @@ export const userLogOut = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      await axiosPrivateJson.post('api/users/logout');
+      await axiosPrivateJson.post('/api/users/logout');
       return;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -46,7 +47,7 @@ export const currentUser = createAsyncThunk(
   'auth/current',
   async (_, thunkAPI) => {
     try {
-      const { data } = await axiosPrivateJson.get(`api/users/current`);
+      const { data } = await axiosPrivateJson.get(`/api/users/current`);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -59,7 +60,7 @@ export const editProfile = createAsyncThunk(
   async (userId, userData, thunkAPI) => {
     try {
       const { data } = await axiosPrivateFormData.put(
-        `api/users/current/${userId}`,
+        `/api/users/current/${userId}`,
         userData
       );
       return data;
@@ -74,7 +75,7 @@ export const editTheme = createAsyncThunk(
   async (userId, userData, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.patch(
-        `api/users/current/${userId}/theme`,
+        `/api/users/current/${userId}/theme`,
         userData
       );
       return data;
