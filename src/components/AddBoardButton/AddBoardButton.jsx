@@ -1,30 +1,37 @@
 import { useState } from 'react';
 
 import sprite from '../../assets/sprite.svg';
+import Modal from 'components/ModalWindow/ModalWindow';
+import CreateNewBoard from 'components/NewBoard/NewBoard';
+
 import { Wrapper, Text, Button, Svg } from './AddBoardButton.styled';
 
 function AddBoardButton() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
     <>
-    <Wrapper>
-      <Text>Create a new board</Text>
-      <Button type="button" onClick={openModal}>
-        <Svg width="20px" height="20px">
-          <use href={sprite + '#plus'}></use>
-        </Svg>
-      </Button>
-    </Wrapper>
-    {isModalOpen && (
-        <p>модалка для створення дошки</p>
-        // <Modal setIsModalOpen={setIsModalOpen}>
-        //   {/* <AddBoardModal /> */}
-        // </Modal>
+      <Wrapper>
+        <Text>Create a new board</Text>
+        <Button type="button" onClick={openModal}>
+          <Svg width="20px" height="20px">
+            <use href={sprite + '#plus'}></use>
+          </Svg>
+        </Button>
+      </Wrapper>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <CreateNewBoard />
+        </Modal>
       )}
     </>
   );
