@@ -21,7 +21,7 @@ function BoardButton({ name, boardName, setIsSidebarOpen }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (name == boardName) {
+    if (name.toString() === boardName) {
       setIsActive(true);
     } else {
       setIsActive(false);

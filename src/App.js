@@ -1,6 +1,5 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { ThemeProvider } from '@emotion/react';
-import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { theme } from 'styles/Theme.styled';
 import { useTheme } from 'hooks';
@@ -8,7 +7,6 @@ import ScreenPage from 'components/ScreenPage/ScreenPage';
 import Layout from 'components/Layout/Layout';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';
-import { useIsFetching } from 'hooks';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
@@ -16,9 +14,7 @@ const AuthPage = lazy(() => import('pages/AuthPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 function App() {
-  const dispatch = useDispatch();
   const themeMode = useTheme();
-  const isUser = useIsFetching();
 
   return (
     <ThemeProvider theme={theme[themeMode]}>

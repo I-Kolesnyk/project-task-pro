@@ -1,6 +1,6 @@
 import { DragDropContext } from '@hello-pangea/dnd';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 
 import { useBoard } from 'hooks';
 import Column from 'components/Column';
@@ -8,16 +8,16 @@ import { Section } from './ScreenPage.styled';
 // import { setBoard } from 'redux/board/slice';
 
 function ScreenPage() {
-  const dispatch = useDispatch();
+  
   const { board, columns } = useBoard();
 
   const [elements, setElements] = useState(columns);
 
-  const updatedBoard = {
-    title: board.title,
-    id: board.id,
-    columns: elements,
-  };
+  // const updatedBoard = {
+  //   title: board.title,
+  //   id: board.id,
+  //   columns: elements,
+  // };
 
   // useEffect(() => {
   //   console.log('updBoard', updatedBoard);
