@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+
 // import * as yup from 'yup';
 // import { yupResolver } from '@hookform/resolvers/yup';
 import {
@@ -18,6 +17,7 @@ import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import { date } from 'yup';
+import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 
 // const schema = yup
 //   .object({
@@ -138,17 +138,13 @@ const AddCardForm = () => {
             </label>
           </CustomRadioContainer>
         </LabelColorBox>
-
-        <DatePicker
-          selected={startDate}
-          onChange={date => {
-            setStartDate(date);
-          }}
-          onSelect={weekDayClassName => console.log(weekDayClassName)}
-          customInput={<CustomInput />}
-          dateFormat="dd/MM/yyyy"
-          minDate={new Date()}
-        />
+        <div>
+          <LabelColorText>Deadline</LabelColorText>
+          <CustomDatePicker
+            startDeadline={startDate}
+            setStartDeadline={setStartDate}
+          />
+        </div>
 
         <FormBtn textBtn={() => <ChildComponent textContent="Add" />} />
       </Form>

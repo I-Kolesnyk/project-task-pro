@@ -37,7 +37,7 @@ const dynamicStylesLabelColorText = ({ theme }) => css`
 const dynamicStylesRadio = ({ theme, clr }) => css`
   position: absolute;
   z-index: -1;
-  opacity: 1;
+  opacity: 0;
   & + label {
     /* для элемента label связанного с .custom-radio */
     display: flex;
