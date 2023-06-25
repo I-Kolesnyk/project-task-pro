@@ -4,10 +4,10 @@ import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
-import OnClickBtn from 'components/FormBtn/OnClickBtn';
+import FormBtn from 'components/FormBtn/FormBtn';
 
 import {
-  ModalTitle,
+  NewBoardTitle,
   IconTitle,
   IconWrap,
   Icon,
@@ -16,9 +16,9 @@ import {
   BackgroundItem,
   BackgroundImage,
   Input,
-} from './NewBoard.styled';
+} from './NewBoardForm.styled';
 
-const CreateNewBoard = ({ onClose }) => {
+const NewBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
@@ -84,9 +84,9 @@ const CreateNewBoard = ({ onClose }) => {
 
   return (
     <div>
-      <ModalTitle>New Board</ModalTitle>
+      <NewBoardTitle>New Board</NewBoardTitle>
       <form onSubmit={handleSubmit(handleCreateBoard)}>
-        <label htmlFor="newBoardInput">Title</label>
+        {/* <label htmlFor="newBoardInput">Title</label> */}
         <Input
           id="newBoardInput"
           type="text"
@@ -101,7 +101,7 @@ const CreateNewBoard = ({ onClose }) => {
         <BackgroundTitle>Background</BackgroundTitle>
         <BgIcon>{renderBackgrounds()}</BgIcon>
 
-        <OnClickBtn
+        <FormBtn
           textBtn={() => <ChildComponent textContent="Create" />}
           type="submit"
         />
@@ -110,4 +110,4 @@ const CreateNewBoard = ({ onClose }) => {
   );
 };
 
-export default CreateNewBoard;
+export default NewBoardForm;

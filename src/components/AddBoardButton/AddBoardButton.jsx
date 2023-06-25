@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
-import CreateNewBoard from 'components/NewBoard/NewBoard';
+import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 
 import { Wrapper, Text, Button, Svg } from './AddBoardButton.styled';
 
