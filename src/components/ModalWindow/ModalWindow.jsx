@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 
-import sprite from '../../sprite/sprite.svg';
+import sprite from '../../assets/sprite.svg';
 
 import {
   ModalOverlay,

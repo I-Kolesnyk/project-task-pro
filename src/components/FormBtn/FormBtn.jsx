@@ -10,4 +10,4 @@ function FormBtn({ textBtn }) {
 
 export default FormBtn;
 
-// example <FormBtn textBtn={() => <ChildComponent textContent="Add" />}
+//example for FormBtn <FormBtn textBtn={() => <ChildComponent textContent="Add" />} />
