@@ -3,7 +3,7 @@ import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
-import FormBtn from 'components/FormBtn/FormBtn';
+import OnClickBtn from 'components/FormBtn/OnClickBtn';
 
 import {
   ModalTitle,
@@ -96,7 +96,7 @@ const CreateNewBoard = () => {
       <BackgroundTitle>Background</BackgroundTitle>
       <BgIcon>{renderBackgrounds()}</BgIcon>
 
-      <FormBtn
+      <OnClickBtn
         textBtn={() => <ChildComponent textContent="Create" />}
         onClick={handleCreateBoard}
       />
