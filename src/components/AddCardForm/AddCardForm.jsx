@@ -1,4 +1,3 @@
-import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -15,6 +14,10 @@ import {
 } from './AddCardForm.styled';
 import { useState } from 'react';
 import CustomInput from 'components/CustomDatePicker/CustomInput';
+import FormBtn from 'components/FormBtn/FormBtn';
+import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
+import sprite from '../../assets/sprite.svg';
+import { date } from 'yup';
 
 // const schema = yup
 //   .object({
@@ -46,10 +49,18 @@ const AddCardForm = () => {
     },
   });
   const [startDate, setStartDate] = useState(new Date());
+
+  const [radioChoose, setRadioChoose] = useState('without');
+
   const onSubmit = data => {
     const newDate = { ...data, startDate };
-    console.log(startDate);
+    console.log('🚀 ~ file: AddCardForm.jsx:57 ~ onSubmit ~ newDate:', newDate);
+
     reset();
+  };
+
+  const chooseBtn = e => {
+    setRadioChoose(e.target.value);
   };
 
   return (
@@ -68,51 +79,78 @@ const AddCardForm = () => {
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="withoutPriority"
+              value="without"
               id="withoutPriority"
               clr="lilac"
+              onClick={chooseBtn}
+              checked={radioChoose === 'without' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="withoutPriority"></label>
+            <label htmlFor="withoutPriority">
+              <svg width="14px" height="14px">
+                <use href={sprite + '#radioButtonLilac'}></use>
+              </svg>
+            </label>
 
             <CustomRadio
               type="radio"
               value="low"
               id="low"
               clr="pink"
+              onClick={chooseBtn}
+              checked={radioChoose === 'low' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="low"></label>
+            <label htmlFor="low">
+              <svg width="14px" height="14px">
+                <use href={sprite + '#radioButtonPink'}></use>
+              </svg>
+            </label>
 
             <CustomRadio
               type="radio"
               value="medium"
               id="medium"
               clr="green"
+              onClick={chooseBtn}
+              checked={radioChoose === 'medium' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="medium"></label>
+            <label htmlFor="medium">
+              <svg width="14px" height="14px">
+                <use href={sprite + '#radioButtonGreen'}></use>
+              </svg>
+            </label>
 
             <CustomRadio
               type="radio"
               value="high"
               id="high"
               clr="gray"
+              onClick={chooseBtn}
+              checked={radioChoose === 'high' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="high"></label>
+            <label htmlFor="high">
+              <svg width="14px" height="14px">
+                <use href={sprite + '#radioButtonGray'}></use>
+              </svg>
+            </label>
           </CustomRadioContainer>
         </LabelColorBox>
 
         <DatePicker
           selected={startDate}
-          onChange={date => setStartDate(date)}
+          onChange={date => {
+            setStartDate(date);
+          }}
+          onSelect={weekDayClassName => console.log(weekDayClassName)}
           customInput={<CustomInput />}
           dateFormat="dd/MM/yyyy"
           minDate={new Date()}
         />
 
-        <AuthBtn textBtn="add" />
+        <FormBtn textBtn={() => <ChildComponent textContent="Add" />} />
       </Form>
     </>
   );

@@ -37,7 +37,7 @@ const dynamicStylesLabelColorText = ({ theme }) => css`
 const dynamicStylesRadio = ({ theme, clr }) => css`
   position: absolute;
   z-index: -1;
-  opacity: 0;
+  opacity: 1;
   & + label {
     /* для элемента label связанного с .custom-radio */
     display: flex;
@@ -50,21 +50,23 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
       width: 14px;
       height: 14px;
       background-color: ${theme.labelColors[clr]};
-      border: 1px solid #adb5bd;
+
       border-radius: 50%;
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 50% 50%;
     }
   }
-  &:not(:disabled):not(:checked) + label:hover::before {
-    /* стили для радиокнопки, находящейся в фокусе и не находящейся в состоянии checked */
-    border-color: red;
-  }
+
   &:checked + label::before {
-    /* стили для радиокнопки, находящейся в состоянии checked */
-    border-color: #0b76ef;
-    background-color: purple;
+    background-color: #fffffe00;
+  }
+  &:checked + label > svg {
+    opacity: 1;
+  }
+  & + label > svg {
+    opacity: 0;
+    margin-left: -14px;
   }
 `;
 
