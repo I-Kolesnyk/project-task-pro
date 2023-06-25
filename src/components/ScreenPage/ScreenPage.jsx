@@ -9,13 +9,13 @@ import { Section } from './ScreenPage.styled';
 
 function ScreenPage() {
   const dispatch = useDispatch();
-  const { title, id, columns } = useBoard();
+  const { board, columns } = useBoard();
 
   const [elements, setElements] = useState(columns);
 
   const updatedBoard = {
-    title: title,
-    id: id,
+    title: board.title,
+    id: board.id,
     columns: elements,
   };
 
@@ -62,14 +62,20 @@ function ScreenPage() {
   return (
     <>
       <header>
-        <h2>{title}</h2>
+        <h2>{board.title}</h2>
         <p>Filters</p>
       </header>
       <Section>
         <DragDropContext onDragEnd={onDragEnd}>
-          {columns.map(({ title, id, cards }, columnIndex) => (
-            <Column cards={cards} title={title} key={id} prefix={columnIndex} />
-          ))}
+          {columns.length !== 0 &&
+            columns.map(({ title, id, cards }, columnIndex) => (
+              <Column
+                cards={cards}
+                title={title}
+                key={id}
+                prefix={columnIndex}
+              />
+            ))}
         </DragDropContext>
       </Section>
     </>

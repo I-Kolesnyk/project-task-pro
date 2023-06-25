@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { userRegister, userLogin, userLogOut } from './operations';
+import { userRegister, userLogin, userLogOut, currentUser } from './operations';
 
 const initialState = {
   user: { name: '', email: '', avatar: '' },
@@ -7,10 +7,16 @@ const initialState = {
   theme: 'dark',
   isLoggedIn: false,
   isLoading: false,
+  isFetchingCurrentUser: false,
 };
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    setUser(state, actions) {
+      state.isLoading = actions.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(userRegister.fulfilled, (state, action) => {})
@@ -28,6 +34,17 @@ const authSlice = createSlice({
         state.theme = 'dark';
         state.isLoggedIn = false;
       })
+      // .addCase(currentUser.fulfilled, (state, action) => {
+      //   state.token = action.payload.data.token;
+      //   state.isLoggedIn = true;
+      //   state.isFetchingCurrentUser = false;
+      // })
+      // .addCase(currentUser.pending, state => {
+      //   state.isFetchingCurrentUser = true;
+      // })
+      // .addCase(currentUser.rejected, state => {
+      //   state.isFetchingCurrentUser = false;
+      // })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
@@ -48,5 +65,7 @@ const handleRejected = state => {
 const extraActions = [userRegister, userLogin, userLogOut];
 
 const getActions = type => extraActions.map(action => action[type]);
+
+export const {setUser} = authSlice.actions;
 
 export const authReducer = authSlice.reducer;

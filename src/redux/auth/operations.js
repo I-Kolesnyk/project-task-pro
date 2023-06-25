@@ -23,7 +23,6 @@ export const userLogin = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const { data } = await axiosPublic.post(`/api/users/login`, user);
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
