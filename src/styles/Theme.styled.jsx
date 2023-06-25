@@ -37,6 +37,7 @@ const dark = {
     accent: '#BEDBB0',
     button: '#161616',
     logo: '#FFFFFF',
+    addButton: '#FFFFFF',
   },
 
   backgroundColors: {
@@ -49,6 +50,12 @@ const dark = {
     formButton: '#BEDBB0',
     asideAddButton: '#BEDBB0',
     mainAddButton: '#FFFFFF',
+    iconFill: '#121212',
+    pseudo: 'rgba(255, 255, 255, 0.1)',
+    burger: '#FFFFFF',
+    borderIcon: '#FFFFFF',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -104,6 +111,7 @@ const light = {
     accent: '#BEDBB0',
     button: '#161616',
     logo: '#161616',
+    addButton: '#161616',
   },
 
   backgroundColors: {
@@ -116,6 +124,12 @@ const light = {
     formButton: '#BEDBB0',
     asideAddButton: '#BEDBB0',
     mainAddButton: '#161616',
+    iconFill: '#121212',
+    pseudo: 'rgba(22, 22, 22, 0.1)',
+    burger: '#161616',
+    borderIcon: '#161616',
+    formButtonSvg: '#FFFFFF',
+    formButtonSvgBg: '#161616',
   },
 
   labelColors: {
@@ -171,6 +185,7 @@ const violet = {
     accent: '#5255BC',
     button: '#FFFFFF',
     logo: '#FFFFFF',
+    addButton: '#FFFFFF',
   },
 
   backgroundColors: {
@@ -183,6 +198,12 @@ const violet = {
     formButton: '#5255BC',
     asideAddButton: '#B8BCFD',
     mainAddButton: '#5255BC',
+    iconFill: '#FFFFFF',
+    pseudo: 'rgba(255, 255, 255, 0.1)',
+    burger: '#161616',
+    borderIcon: '#FFFFFF',
+    formButtonSvg: '#161616',
+    formButtonSvgBg: '#FFFFFF',
   },
 
   labelColors: {
