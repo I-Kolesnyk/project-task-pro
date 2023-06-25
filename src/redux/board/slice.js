@@ -50,8 +50,5 @@ const boardSlice = createSlice({
     }),
 });
 
-
 export const { setBoard } = boardSlice.actions;
 export const boardReducer = boardSlice.reducer;
-
-
