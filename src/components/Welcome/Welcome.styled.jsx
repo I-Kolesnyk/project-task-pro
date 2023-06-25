@@ -1,59 +1,94 @@
 import styled from '@emotion/styled';
-export const WelcomeContainer = styled.div`
+import { css } from '@emotion/react';
+
+const dynamicWelcomeContainerStyles = ({ theme }) => css`
+  margin-top: 211px;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
   padding-right: 20px;
   padding-left: 20px;
-  @media only screen and(min-width:768px) {
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    margin-top: 293px;
     width: 473px;
-    height: 438px;
-  }
-  @media only screen and(min-width:1440px) {
-    width: 473px;
-    height: 438px;
+    padding-right: 0;
+    padding-left: 0;
   }
 `;
 
-export const Thumb = styled.div`
-  margin-top: 211px;
+const dynamicThumbStyles = ({ theme }) => css`
   margin-right: auto;
   margin-left: auto;
   margin-bottom: 24px;
   width: 166px;
-  height: 180px;
 
-  @media only screen and (min-width: 768px) {
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
     width: 222px;
-    height: 246px;
   }
-  @media only screen and (min-width: 1440px) {
-    width: 222px;
-    height: 246px;
+`;
+
+const dynamicTitleStyles = ({ theme }) => css`
+  color: ${theme.authColors.darkText};
+  font-size: ${theme.fontSizes[6]};
+  font-weight: ${theme.fontWeights.semibold};
+  letter-spacing: -1.12px;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    font-size: ${theme.fontSizes[7]};
+    letter-spacing: -1.6px;
   }
+`;
+
+const dynamicSvgStyles = ({ theme }) => css`
+  width: 40px;
+  height: 40px;
+  margin-right: 14px;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    width: 48px;
+    height: 48px;
+  }
+`;
+
+const dynamicTextStyles = ({ theme }) => css`
+  margin-bottom: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 335px;
+
+  color: ${theme.authColors.darkText};
+  text-align: center;
+  line-height: 18px;
+  letter-spacing: -0.28px;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    width: 473px;
+    margin-bottom: 48px;
+  }
+`;
+
+export const WelcomeContainer = styled.div`
+  ${dynamicWelcomeContainerStyles}
+`;
+
+export const Thumb = styled.div`
+  ${dynamicThumbStyles}
 `;
 
 export const LogoThumb = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 export const Title = styled.h2`
-  width: 112px;
-  color: #161616;
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: -1.12px;
+  ${dynamicTitleStyles}
 `;
 
 export const Svg = styled.svg`
-  margin-right: 14px;
-  fill: black;
+  ${dynamicSvgStyles}
 `;
 
 export const Text = styled.p`
-  margin-bottom: 28px;
-  color: #161616;
-  text-align: center;
-  line-height: 18px;
-  letter-spacing: -0.28px;
+  ${dynamicTextStyles}
 `;

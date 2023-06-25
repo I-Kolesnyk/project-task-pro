@@ -15,7 +15,7 @@ const Welcome = () => {
       <Thumb>
         <WelcomeImg />
         <LogoThumb>
-          <Svg width="40px" height="40px">
+          <Svg>
             <use href={sprite + '#logo'}></use>
           </Svg>
           <Title>Task Pro</Title>
