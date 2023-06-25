@@ -19,7 +19,7 @@ function HomePage() {
     dispatch(getAllBoards());
   }, [dispatch]);
 
-  if (allBoards !== 0) {
+  if (allBoards.length !== 0) {
     dispatch(getBoardById(`${allBoards[0]._id}`));
     navigate(`${allBoards[0].title}`);
   }
