@@ -27,6 +27,7 @@ const schema = yup
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  
   const {
     register,
     handleSubmit,
@@ -48,8 +49,7 @@ const LoginForm = () => {
   };
 
   const onSubmit = data => {
-    dispatch(userLogin(data));
-    dispatch(getAllBoards);
+    dispatch(userLogin(data));    
     reset();
   };
 

@@ -18,13 +18,12 @@ function Layout() {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
     } else {
-      console.log('fff');
-      document.addEventListener('mousedown', handleClickOutside);
-      document.body.classList.toggle('no-scroll');
+      // document.addEventListener('mousedown', handleClickOutside);
+      // document.body.classList.toggle('no-scroll');
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.body.classList.remove('no-scroll');
+      // document.removeEventListener('mousedown', handleClickOutside);
+      // document.body.classList.remove('no-scroll');
     };
   }, [isDesktop]);
 
@@ -32,16 +31,16 @@ function Layout() {
     setIsSidebarOpen(true);
   };
 
-  const handleClickOutside = e => {
-    if (!myRef.current.contains(e.target)) {
-      setIsSidebarOpen(false);
-    }
-  };
+  // const handleClickOutside = e => {
+  //   if (!myRef.current.contains(e.target)) {
+  //     setIsSidebarOpen(false);
+  //   }
+  // };
 
   return (
     <>
       <Header openSidebar={openSidebar} />
-      <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
+      <div ref={myRef}>{isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen}/>}</div>
       <StyledMain>
         <Suspense fallback={<Loader />}>
           <Outlet />

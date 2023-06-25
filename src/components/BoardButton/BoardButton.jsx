@@ -10,11 +10,12 @@ import {
   IconsWrapper,
 } from './BoardButton.styled';
 
-function BoardButton({ name, boardName }) {
+function BoardButton({ name, boardName, setIsSidebarOpen }) {
   const [isActive, setIsActive] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
+    setIsSidebarOpen(false);
     setIsModalOpen(true);
   };
   const navigate = useNavigate();

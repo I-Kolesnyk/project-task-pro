@@ -13,7 +13,7 @@ function BoardList() {
       <AddBoardButton />
       <List>
         <li>
-          <BoardButton name={"test"} boardName={boardName} />
+          <BoardButton name={'test'} boardName={boardName} />
         </li>
         <li>
           <BoardButton name={14} boardName={boardName} />

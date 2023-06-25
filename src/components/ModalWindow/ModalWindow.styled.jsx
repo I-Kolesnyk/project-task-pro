@@ -10,6 +10,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 `;
 
 export const ModalContent = styled.div`
@@ -17,6 +18,7 @@ export const ModalContent = styled.div`
   padding: 40px;
   border-radius: 8px;
   background-color: #151515;
+  z-index: 20;
 `;
 
 export const CloseButton = styled.svg`
