@@ -35,7 +35,7 @@ const boardPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),   
+    auth: persistReducer(authPersistConfig, authReducer),
     boards: persistReducer(allBoardsPersistConfig, boardsReducer),
     board: persistReducer(boardPersistConfig, boardReducer),
   },

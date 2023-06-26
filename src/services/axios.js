@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { store } from 'redux/store';
+// import { store } from 'redux/store';
 
 // const BASE_URL = process.env.API_URL;
 const BASE_URL = 'https://task-pro-api.onrender.com';
@@ -27,15 +27,15 @@ export const axiosPrivateFormData = axios.create({
 
 axiosPrivateJson.interceptors.request.use(
   async config => {
-    const token = store?.getState()?.auth?.token;
+    const user = localStorage.getItem('persist:auth');
+    const parsedUser = JSON.parse(user);
+    const token = parsedUser.token.slice(1, -1);
     if (token) {
       if (config?.headers) {
-        config.headers['Authorization'] = `Bearer ${
-          store?.getState()?.auth?.token
-        }`;
+        config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/auth/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },
@@ -46,15 +46,15 @@ axiosPrivateJson.interceptors.request.use(
 
 axiosPrivateFormData.interceptors.request.use(
   async config => {
-    const token = store?.getState()?.auth?.token;
+    const user = localStorage.getItem('persist:auth');
+    const parsedUser = JSON.parse(user);
+    const token = parsedUser.token.slice(1, -1);
     if (token) {
       if (config?.headers) {
-        config.headers['Authorization'] = `Bearer ${
-          store?.getState()?.userData?.token
-        }`;
+        config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/auth/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },
