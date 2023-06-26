@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useTheme, useUserId } from 'hooks';
-import { editTheme } from 'redux/auth/operations';
+// import { editTheme } from 'redux/auth/operations';
 import { SelectWrapper } from './ThemeDropdown.styled';
 
 function ThemeDropdown() {
@@ -18,7 +18,7 @@ function ThemeDropdown() {
   const onChange = data => {
     const userData = { id: userId, theme: data.target.value };
     console.log(userData)
-    dispatch(editTheme(userData));
+    // dispatch(editTheme(userData));
   };
 
   return (
