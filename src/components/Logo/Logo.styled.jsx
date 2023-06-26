@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import { Link } from 'react-router-dom';
 
 export const StyledLogo = styled.svg(`
     background-color: #1F1F1F;
@@ -7,15 +8,15 @@ export const StyledLogo = styled.svg(`
     fill: transparent;
 `);
 
-export const StyledWrapper = styled.a(`
-    display:flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap:8px;
-    margin-top: 24px;
-    margin-left: 24px;
-    margin-bottom: 60px;
-`);
+export const StyledWrapper = styled(Link)`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  margin-left: 24px;
+  margin-bottom: 60px;
+`;
 
 const dynamicTextColor = ({ theme }) => css`
   color: ${theme.textColors.addButton};
