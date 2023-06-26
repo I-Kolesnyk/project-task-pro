@@ -9,7 +9,7 @@ import { Section } from './ScreenPage.styled';
 
 function ScreenPage() {
   
-  const { board, columns } = useBoard();
+  const {  columns } = useBoard();
 
   const [elements, setElements] = useState(columns);
 
