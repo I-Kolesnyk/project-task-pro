@@ -10,12 +10,14 @@ import {
   TextArea,
   LabelColorBox,
   LabelColorText,
+  StyledHeader,
 } from './AddCardForm.styled';
 import { useState } from 'react';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
+import { useDispatch } from 'react-redux';
 
 const schema = yup
   .object({
@@ -26,6 +28,10 @@ const schema = yup
   .required();
 
 const AddCardForm = () => {
+  const [deadline, setDeadline] = useState(new Date());
+  const [radioChoose, setRadioChoose] = useState('without');
+  // const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -39,13 +45,9 @@ const AddCardForm = () => {
     },
     resolver: yupResolver(schema),
   });
-  const [deadline, setDeadline] = useState(new Date());
-
-  const [radioChoose, setRadioChoose] = useState('without');
 
   const onSubmit = data => {
     const newTask = { ...data, deadline };
-    console.log(deadline.toString(), '-', 'typeof', typeof deadline.toString());
     console.log('🚀 ~ file: AddCardForm.jsx:57 ~ onSubmit ~ newDate:', newTask);
 
     reset();
@@ -57,6 +59,7 @@ const AddCardForm = () => {
 
   return (
     <>
+      <StyledHeader>Add card</StyledHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Title" {...register('title')} />

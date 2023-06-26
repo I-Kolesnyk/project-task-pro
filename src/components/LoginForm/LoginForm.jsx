@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
-import AddCardForm from 'components/AddCardForm/AddCardForm';
 
 const schema = yup
   .object({
@@ -49,13 +48,13 @@ const LoginForm = () => {
   };
 
   const onSubmit = data => {
-    dispatch(userLogin(data));    
+    dispatch(userLogin(data));
     reset();
   };
 
   return (
     <>
-      {/* <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Enter your email" {...register('email')} />
           <p>{errors.email?.message}</p>
@@ -63,7 +62,7 @@ const LoginForm = () => {
         <label>
           <div>
             <Input
-              type="password"
+              type={passwordShown ? 'text' : 'password'}
               placeholder="Confirm a password"
               {...register('password')}
             />
@@ -77,8 +76,7 @@ const LoginForm = () => {
           <p>{errors.password?.message}</p>
         </label>
         <AuthBtn textBtn="Log In Now" />
-      </Form> */}
-      <AddCardForm />
+      </Form>
     </>
   );
 };

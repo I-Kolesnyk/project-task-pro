@@ -1,15 +1,25 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+const dynamicStyledHeader = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  font-weight: ${theme.fontWeights.medium};
+  font-size: ${theme.fontSizes[5]};
+  letter-spacing: -0.36px;
+  margin-bottom: 24px;
+`;
 
 const dynamicStylesForm = ({ theme }) => css`
   display: flex;
   flex-direction: column;
   color: ${theme.authColors.lightText};
+  & > label {
+    margin-bottom: 14px;
+  }
 `;
 
 const dynamicStylesInput = ({ theme }) => css`
   width: 100%;
-  margin-bottom: 14px;
+
   padding: 14px 18px;
   background-color: ${theme.backgroundColors.popUpForm};
   border: 1px solid ${theme.authColors.lightButtonBackground};
@@ -69,7 +79,9 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
     margin-left: -14px;
   }
 `;
-
+export const StyledHeader = styled.form`
+  ${dynamicStyledHeader}
+`;
 export const Form = styled.form`
   ${dynamicStylesForm}
 `;

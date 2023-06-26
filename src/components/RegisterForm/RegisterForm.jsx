@@ -74,7 +74,7 @@ const RegisterForm = () => {
         <label>
           <div>
             <Input
-              type="password"
+              type={passwordShown ? 'text' : 'password'}
               placeholder="Confirm a password"
               {...register('password')}
             />
