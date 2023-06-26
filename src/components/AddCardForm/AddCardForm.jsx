@@ -28,7 +28,7 @@ const schema = yup
   .required();
 
 const AddCardForm = () => {
-  const [deadline, setDeadline] = useState(new Date());
+  const [deadlineDate, setDeadlineDate] = useState(new Date());
   const [radioChoose, setRadioChoose] = useState('without');
   // const dispatch = useDispatch();
 
@@ -47,8 +47,9 @@ const AddCardForm = () => {
   });
 
   const onSubmit = data => {
+    const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
     const newTask = { ...data, deadline };
-    console.log('🚀 ~ file: AddCardForm.jsx:57 ~ onSubmit ~ newDate:', newTask);
+    console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
 
     reset();
   };
@@ -136,8 +137,8 @@ const AddCardForm = () => {
         <div>
           <LabelColorText>Deadline</LabelColorText>
           <CustomDatePicker
-            startDeadline={deadline}
-            setStartDeadline={setDeadline}
+            startDeadline={deadlineDate}
+            setStartDeadline={setDeadlineDate}
           />
         </div>
 

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
+import AddCardForm from 'components/AddCardForm/AddCardForm';
 
 const schema = yup
   .object({
@@ -20,7 +21,12 @@ const schema = yup
     password: yup
       .string()
       .required('Password is required')
-      .matches('^[A-Za-z0-9]{8,64}$', 'Invalid password format'),
+      .min(8)
+      .max(64)
+      .matches(
+        /^[A-Za-z0-9!@#$%^&*()_+=\-[\]{}|\\:;"'<>,.?/~`]+$/,
+        'Invalid password format'
+      ),
   })
   .required();
 
@@ -54,7 +60,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+      {/* <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Enter your email" {...register('email')} />
           <p>{errors.email?.message}</p>
@@ -76,7 +82,8 @@ const LoginForm = () => {
           <p>{errors.password?.message}</p>
         </label>
         <AuthBtn textBtn="Log In Now" />
-      </Form>
+      </Form> */}
+      <AddCardForm />
     </>
   );
 };
