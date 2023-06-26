@@ -1,13 +1,13 @@
 import sprite from '../../assets/sprite.svg';
 import { StyledLogOutBtn, StyledSpan } from './LogoutBtn.styled';
 import { useDispatch } from 'react-redux';
-import { userLogOut } from 'redux/auth/operations';
+// import { userLogOut } from 'redux/auth/operations';
 
 const LogoutBtn = () => {
   const dispatch = useDispatch();
   function onClick() {
     console.log('log out req');
-    dispatch(userLogOut());
+    // dispatch(userLogOut());
   }
 
   return (

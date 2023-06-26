@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { userRegister, userLogin, userLogOut, editTheme } from './operations';
+import { userRegister, userLogin, userLogOut } from './operations';
 
 const initialState = {
   user: { name: '', email: '', avatar: '', id: '' },
@@ -33,9 +33,9 @@ const authSlice = createSlice({
         state.theme = 'dark';
         state.isLoggedIn = false;
       })
-      .addCase(editTheme.fulfilled, (state, action) => {
-        state.theme = action.payload.data.theme;
-      })
+      // .addCase(editTheme.fulfilled, (state, action) => {
+      //   state.theme = action.payload.data.theme;
+      // })
       // .addCase(currentUser.fulfilled, (state, action) => {
       //   state.token = action.payload.data.token;
       //   state.isLoggedIn = true;
