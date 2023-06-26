@@ -2,7 +2,7 @@ import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { userLogin } from 'redux/auth/operations';
+import userLogin from 'redux/auth/operations/userLogin';
 import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';

@@ -62,7 +62,7 @@ function ScreenPage() {
   return (
     <>
       <header>
-        <h2>{board.title}</h2>
+        {/* <h2>{board.title}</h2> */}
         <p>Filters</p>
       </header>
       <Section>
