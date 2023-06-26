@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { store } from 'redux/store';
 
-const BASE_URL = process.env.API_URL;
+// const BASE_URL = process.env.API_URL;
+const BASE_URL = 'https://task-pro-api.onrender.com';
 
 export const axiosPublic = axios.create({
   baseURL: BASE_URL,
@@ -44,20 +45,20 @@ axiosPrivateJson.interceptors.request.use(
 );
 
 axiosPrivateFormData.interceptors.request.use(
-    async config => {
-      const token = store?.getState()?.auth?.token;
-      if (token) {
-        if (config?.headers) {
-          config.headers['Authorization'] = `Bearer ${
-            store?.getState()?.userData?.token
-          }`;
-        }
-      } else {
-        return (window.location.href = '/auth/login');
+  async config => {
+    const token = store?.getState()?.auth?.token;
+    if (token) {
+      if (config?.headers) {
+        config.headers['Authorization'] = `Bearer ${
+          store?.getState()?.userData?.token
+        }`;
       }
-      return config;
-    },
-    error => {
-      return Promise.reject(error);
+    } else {
+      return (window.location.href = '/auth/login');
     }
-  );
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);

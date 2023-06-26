@@ -1,6 +1,6 @@
 import { DragDropContext } from '@hello-pangea/dnd';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
 
 import { useBoard } from 'hooks';
 import Column from 'components/Column';
@@ -8,16 +8,16 @@ import { Section } from './ScreenPage.styled';
 // import { setBoard } from 'redux/board/slice';
 
 function ScreenPage() {
-  const dispatch = useDispatch();
-  const { title, id, columns } = useBoard();
+  
+  const { board, columns } = useBoard();
 
   const [elements, setElements] = useState(columns);
 
-  const updatedBoard = {
-    title: title,
-    id: id,
-    columns: elements,
-  };
+  // const updatedBoard = {
+  //   title: board.title,
+  //   id: board.id,
+  //   columns: elements,
+  // };
 
   // useEffect(() => {
   //   console.log('updBoard', updatedBoard);
@@ -62,14 +62,20 @@ function ScreenPage() {
   return (
     <>
       <header>
-        <h2>{title}</h2>
+        <h2>{board.title}</h2>
         <p>Filters</p>
       </header>
       <Section>
         <DragDropContext onDragEnd={onDragEnd}>
-          {columns.map(({ title, id, cards }, columnIndex) => (
-            <Column cards={cards} title={title} key={id} prefix={columnIndex} />
-          ))}
+          {columns.length !== 0 &&
+            columns.map(({ title, id, cards }, columnIndex) => (
+              <Column
+                cards={cards}
+                title={title}
+                key={id}
+                prefix={columnIndex}
+              />
+            ))}
         </DragDropContext>
       </Section>
     </>

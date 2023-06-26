@@ -16,10 +16,7 @@ function Column({ title, id, cards, prefix }) {
           {provided.placeholder}
         </div>
       )}
-    </Droppable>
-      {/* {cards.map(({ id, title }) => {
-        return <Card title={title} key={id} />;
-      })} */}
+    </Droppable>  
     </Wrapper>
   );
 }

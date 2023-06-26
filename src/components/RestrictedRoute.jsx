@@ -1,12 +1,18 @@
-// import { Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useIsLoggedIn } from 'hooks';
 
-// const RestrictedRoute = ({ children, ...routeProps }) => {
-//   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-//   return (
-//     <Route {...routeProps}>
-//       {isLoggedIn ? <Navigate to="/home" />  :children }
-//     </Route>
-//   );
-// };
+const RestrictedRoute = ({
+  children,
+  redirectTo = '/home',
+  restricted = false,
+}) => {
+  const isLoggedIn = useIsLoggedIn();
+  const shouldRedirect = isLoggedIn && restricted;
+  return shouldRedirect ? (
+    <Navigate to={redirectTo} replace={true} />
+  ) : (
+    children
+  );
+};
 
-// export default RestrictedRoute;
+export default RestrictedRoute;

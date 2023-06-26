@@ -2,6 +2,7 @@
   "name": "project-task-pro",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://I-Kolesnyk.github.io/project-task-pro/",
   "dependencies": {
     "@emotion/css": "^11.11.2",
     "@emotion/react": "^11.11.1",
@@ -33,7 +34,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "eslint src/**/*.{js,jsx}"
   },
   "eslintConfig": {
     "extends": [

@@ -71,6 +71,7 @@ export const Text = styled.p`
 export const Span = styled.span`
   ${spanDynamicStyles}
 `;
+
 export const Svg = styled.svg`
   ${svgDynamicStyles}
 `;
