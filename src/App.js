@@ -1,8 +1,10 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
+import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { theme } from 'styles/Theme.styled';
-import { useTheme } from 'hooks';
+import { useTheme, useIsFetching } from 'hooks';
+import { currentUser } from 'redux/auth/operations';
 import ScreenPage from 'components/ScreenPage/ScreenPage';
 import Layout from 'components/Layout/Layout';
 import PrivateRoute from 'components/PrivateRoute';
@@ -15,58 +17,66 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 function App() {
   const themeMode = useTheme();
+  const isFetching = useIsFetching();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme[themeMode]}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route
-            path="/welcome"
-            element={
-              <RestrictedRoute>
-                <WelcomePage />
-              </RestrictedRoute>
-            }
-          />
+    !isFetching && (
+      <ThemeProvider theme={theme[themeMode]}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route
+              path="/welcome"
+              element={
+                <RestrictedRoute>
+                  <WelcomePage />
+                </RestrictedRoute>
+              }
+            />
 
-          <Route
-            path="/auth/:id"
-            element={
-              <RestrictedRoute redirectTo="/home" restricted>
-                <AuthPage />
-              </RestrictedRoute>
-            }
-          />
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute redirectTo="/auth/login">
-                <Layout />
-              </PrivateRoute>
-            }
-          >
             <Route
-              index
+              path="/auth/:id"
               element={
-                <PrivateRoute redirectTo="/auth/login">
-                  <HomePage />
-                </PrivateRoute>
+                <RestrictedRoute redirectTo="/home" restricted>
+                  <AuthPage />
+                </RestrictedRoute>
               }
             />
             <Route
-              path="/home/:boardName"
+              path="/home"
               element={
                 <PrivateRoute redirectTo="/auth/login">
-                  <ScreenPage />
+                  <Layout />
                 </PrivateRoute>
               }
-            />
-          </Route>
-          <Route path="/" element={<Navigate to="/welcome" />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
-    </ThemeProvider>
+            >
+              <Route
+                index
+                element={
+                  <PrivateRoute redirectTo="/auth/login">
+                    <HomePage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/home/:boardName"
+                element={
+                  <PrivateRoute redirectTo="/auth/login">
+                    <ScreenPage />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+            <Route path="/" element={<Navigate to="/welcome" />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </ThemeProvider>
+    )
   );
 }
 

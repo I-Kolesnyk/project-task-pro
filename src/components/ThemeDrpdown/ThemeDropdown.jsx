@@ -7,7 +7,6 @@ import { SelectWrapper } from './ThemeDropdown.styled';
 function ThemeDropdown() {
   const dispatch = useDispatch();
   const userId = useUserId();
-  console.log(userId)
 
   const defaultValues = {
     theme: useTheme(),
@@ -17,7 +16,7 @@ function ThemeDropdown() {
 
   const onChange = data => {
     const userData = { id: userId, theme: data.target.value };
-    console.log(userData)
+    console.log(userData);
     dispatch(editTheme(userData));
   };
 
