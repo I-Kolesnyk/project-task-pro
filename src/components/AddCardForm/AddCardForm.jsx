@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 
-// import * as yup from 'yup';
-// import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   CustomRadio,
   CustomRadioContainer,
@@ -12,28 +12,18 @@ import {
   LabelColorText,
 } from './AddCardForm.styled';
 import { useState } from 'react';
-import CustomInput from 'components/CustomDatePicker/CustomInput';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
-import { date } from 'yup';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 
-// const schema = yup
-//   .object({
-//     email: yup
-//       .string()
-//       .required('Email is required')
-//       .matches(
-//         '^([A-Za-z0-9_-]+.)*[A-Za-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-//         'Invalid email format'
-//       ),
-//     password: yup
-//       .string()
-//       .required('Password is required')
-//       .matches('^[A-Za-z0-9]{8,64}$', 'Invalid password format'),
-//   })
-//   .required();
+const schema = yup
+  .object({
+    title: yup.string().required('Title is required'),
+    description: yup.string(),
+    lableColor: yup.string().required(''),
+  })
+  .required();
 
 const AddCardForm = () => {
   const {
@@ -47,14 +37,16 @@ const AddCardForm = () => {
       description: '',
       lableColor: '',
     },
+    resolver: yupResolver(schema),
   });
-  const [startDate, setStartDate] = useState(new Date());
+  const [deadline, setDeadline] = useState(new Date());
 
   const [radioChoose, setRadioChoose] = useState('without');
 
   const onSubmit = data => {
-    const newDate = { ...data, startDate };
-    console.log('🚀 ~ file: AddCardForm.jsx:57 ~ onSubmit ~ newDate:', newDate);
+    const newTask = { ...data, deadline };
+    console.log(deadline.toString(), '-', 'typeof', typeof deadline.toString());
+    console.log('🚀 ~ file: AddCardForm.jsx:57 ~ onSubmit ~ newDate:', newTask);
 
     reset();
   };
@@ -141,8 +133,8 @@ const AddCardForm = () => {
         <div>
           <LabelColorText>Deadline</LabelColorText>
           <CustomDatePicker
-            startDeadline={startDate}
-            setStartDeadline={setStartDate}
+            startDeadline={deadline}
+            setStartDeadline={setDeadline}
           />
         </div>
 
