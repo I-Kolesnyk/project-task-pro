@@ -6,3 +6,4 @@ export { useUserAvatar } from './useUserAvatar';
 export { useAllBoards } from './useAllBoards';
 export { useBoard } from './useBoard';
 export { useIsFetching } from './useIsFetching';
+export { useUserId } from './useUserId';
