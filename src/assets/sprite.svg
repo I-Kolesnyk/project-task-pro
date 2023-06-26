@@ -78,5 +78,23 @@
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M4 8h24"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.5" d="M4 24h24"></path>
 </symbol>
+
+<symbol id="radioButtonLilac" viewBox="0 0 14 14" fill="none">
+<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#8FA1D0"/>
+<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#8FA1D0"/>
+</symbol>
+<symbol id="radioButtonPink" viewBox="0 0 14 14" fill="none">
+<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#E09CB5"/>
+<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#E09CB5"/>
+</symbol>
+<symbol id="radioButtonGreen" viewBox="0 0 14 14" fill="none">
+<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#BEDBB0"/>
+<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#BEDBB0"/>
+</symbol>
+<symbol id="radioButtonGray" viewBox="0 0 14 14" fill="none">
+<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#FFFFFF4D"/>
+<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#FFFFFF4D"/>
+</symbol>
 </defs>
 </svg>
+
