@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
-import AddCardForm from 'components/AddCardForm/AddCardForm';
 
 const schema = yup
   .object({
@@ -60,7 +59,7 @@ const LoginForm = () => {
 
   return (
     <>
-      {/* <Form onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Enter your email" {...register('email')} />
           <p>{errors.email?.message}</p>
@@ -82,8 +81,7 @@ const LoginForm = () => {
           <p>{errors.password?.message}</p>
         </label>
         <AuthBtn textBtn="Log In Now" />
-      </Form> */}
-      <AddCardForm />
+      </Form>
     </>
   );
 };
