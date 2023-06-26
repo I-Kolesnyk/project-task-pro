@@ -11,16 +11,14 @@ function HomePage() {
   const allBoards = useAllBoards();
   // const activeBoard = useSelector(selectActiveBoard);
   // console.log(activeBoard);
-  
 
   useEffect(() => {
     dispatch(getAllBoards());
-  }, [dispatch]);
-
-  if (allBoards.length !== 0) {
-    dispatch(getBoardById(`${allBoards[0]._id}`));
-    navigate(`${allBoards[0].title}`);
-  }
+    if (allBoards.length !== 0) {
+      dispatch(getBoardById(`${allBoards[0]._id}`));
+      navigate(`${allBoards[0].title}`);
+    }
+  }, [allBoards, dispatch, navigate]);
 
   return <p>Homepage</p>;
 }
