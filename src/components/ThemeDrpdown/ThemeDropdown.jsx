@@ -1,12 +1,13 @@
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-
-import { useTheme } from 'hooks';
-import { setTheme } from 'redux/theme/slice';
+import { useTheme, useUserId } from 'hooks';
+// import { editTheme } from 'redux/auth/operations';
 import { SelectWrapper } from './ThemeDropdown.styled';
 
 function ThemeDropdown() {
   const dispatch = useDispatch();
+  const userId = useUserId();
+  console.log(userId)
 
   const defaultValues = {
     theme: useTheme(),
@@ -15,7 +16,9 @@ function ThemeDropdown() {
   const { register } = useForm({ defaultValues: defaultValues });
 
   const onChange = data => {
-    dispatch(setTheme(data.target.value));
+    const userData = { id: userId, theme: data.target.value };
+    console.log(userData)
+    // dispatch(editTheme(userData));
   };
 
   return (

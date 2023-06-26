@@ -1,13 +1,15 @@
 import { useState } from 'react';
 
+
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
-import CreateNewBoard from 'components/NewBoard/NewBoard';
+import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 
 import { Wrapper, Text, Button, Svg } from './AddBoardButton.styled';
 
 function AddBoardButton() {
   const [isModalOpen, setModalOpen] = useState(false);
+  
 
   const openModal = () => {
     setModalOpen(true);
@@ -30,7 +32,7 @@ function AddBoardButton() {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <CreateNewBoard />
+          <CreateNewBoard onClose={closeModal} />
         </Modal>
       )}
     </>

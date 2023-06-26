@@ -8,7 +8,6 @@ import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 
-
 const schema = yup
   .object({
     email: yup
@@ -27,6 +26,7 @@ const schema = yup
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -48,8 +48,7 @@ const LoginForm = () => {
   };
 
   const onSubmit = data => {
-    dispatch(userLogin(data));
-    console.log(data);
+    dispatch(userLogin(data));    
     reset();
   };
 

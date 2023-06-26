@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
+import { useForm } from 'react-hook-form';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
-import OnClickBtn from 'components/FormBtn/OnClickBtn';
+import FormBtn from 'components/FormBtn/FormBtn';
 
 import {
-  ModalTitle,
+  NewBoardTitle,
   IconTitle,
   IconWrap,
   Icon,
@@ -15,32 +16,35 @@ import {
   BackgroundItem,
   BackgroundImage,
   Input,
-} from './NewBoard.styled';
+} from './NewBoardForm.styled';
 
-const CreateNewBoard = () => {
-  const [title, setTitle] = useState('');
+const NewBoardForm = ({ onClose }) => {
+  const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
 
   const handleTitleChange = event => {
-    setTitle(event.target.value);
+    setValue('title', event.target.value);
   };
 
   const handleIconSelect = icon => {
     setSelectedIcon(icon);
+    setValue('selectedIcon', icon);
   };
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
+    setValue('selectedBackgroundId', backgroundId);
   };
 
-  const handleCreateBoard = () => {
-    console.log('Title:', title);
-    console.log('Selected Icon:', selectedIcon);
-    console.log('Selected Background Id:', selectedBackgroundId);
-    setTitle('');
-    setSelectedIcon('');
-    setSelectedBackgroundId('');
+  const handleCreateBoard = data => {
+    console.log('Title:', data.title);
+    console.log('Selected Icon:', data.selectedIcon);
+    console.log('Selected Background Id:', data.selectedBackgroundId);
+    setValue('title', '');
+    setValue('selectedIcon', '');
+    setValue('selectedBackgroundId', '');
+    onClose();
   };
 
   const renderIcons = () => {
@@ -80,30 +84,30 @@ const CreateNewBoard = () => {
 
   return (
     <div>
-      <ModalTitle>New Board</ModalTitle>
-      <label htmlFor="newBoardInput"></label>
-      <Input
-        id="newBoardInput"
-        type="text"
-        placeholder="Title"
-        value={title}
-        onChange={handleTitleChange}
-      />
+      <NewBoardTitle>New Board</NewBoardTitle>
+      <form onSubmit={handleSubmit(handleCreateBoard)}>
+        {/* <label htmlFor="newBoardInput">Title</label> */}
+        <Input
+          id="newBoardInput"
+          type="text"
+          placeholder="Title"
+          {...register('title')}
+          onChange={handleTitleChange}
+        />
 
-      <IconTitle>Icons</IconTitle>
-      <IconWrap>{renderIcons()}</IconWrap>
+        <IconTitle>Icons</IconTitle>
+        <IconWrap>{renderIcons()}</IconWrap>
 
-      <BackgroundTitle>Background</BackgroundTitle>
-      <BgIcon>{renderBackgrounds()}</BgIcon>
+        <BackgroundTitle>Background</BackgroundTitle>
+        <BgIcon>{renderBackgrounds()}</BgIcon>
 
-      <OnClickBtn
-        textBtn={() => <ChildComponent textContent="Create" />}
-        onClick={handleCreateBoard}
-      />
-
-      {/* <button onClick={handleCreateBoard}>Create</button> */}
+        <FormBtn
+          textBtn={() => <ChildComponent textContent="Create" />}
+          type="submit"
+        />
+      </form>
     </div>
   );
 };
 
-export default CreateNewBoard;
+export default NewBoardForm;
