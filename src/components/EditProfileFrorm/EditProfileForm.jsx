@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -11,6 +10,7 @@ import {
   AvatarInput,
   Button,
   DataForm,
+  ErrorMessage,
   Form,
   Image,
   Input,
@@ -21,26 +21,7 @@ import {
   SvgEye,
   Title,
 } from './EditProfileForm.styled';
-
-const schema = yup
-  .object({
-    name: yup
-      .string()
-      .matches('^[A-Za-z0-9]{2,32}$', 'Invalid name format')
-      .trim(),
-    email: yup
-      .string()
-      .matches(
-        '^([A-Za-z0-9_-]+.)*[A-Za-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-        'Invalid email format'
-      )
-      .trim(),
-    password: yup
-      .string()
-      .matches('^[A-Za-z0-9!@#№$%&]{8,64}$', 'Invalid password format')
-      .trim(),
-  })
-  .required();
+import { EditProfileSchema } from 'schemas';
 
 const EditProfileForm = () => {
   const dispatch = useDispatch();
@@ -59,7 +40,7 @@ const EditProfileForm = () => {
       email: '',
       password: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(EditProfileSchema),
     mode: 'onChange',
   });
 
@@ -102,11 +83,11 @@ const EditProfileForm = () => {
               placeholder={userName}
               {...register('name')}
             />
-            <p>{errors.name?.message}</p>
+            <ErrorMessage>{errors.name?.message}</ErrorMessage>
           </Label>
           <Label>
             <Input placeholder="new email" {...register('email')} />
-            <p>{errors.email?.message}</p>
+            <ErrorMessage>{errors.email?.message}</ErrorMessage>
           </Label>
 
           <LabelPassword>
@@ -122,7 +103,7 @@ const EditProfileForm = () => {
                 <use href={sprite + '#eye'}></use>
               </SvgEye>
             </Button>
-            <p>{errors.password?.message}</p>
+            <ErrorMessage>{errors.password?.message}</ErrorMessage>
           </LabelPassword>
         </DataForm>
         <FormBtn textBtn={() => 'Send'} />

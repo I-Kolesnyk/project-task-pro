@@ -22,7 +22,7 @@ const inputDynamicStyles = ({ theme }) => css`
   width: 100%;
   height: 49px;
   padding: 14px 18px;
-  background-color: ${theme.backgroundColors.popUpForm};
+  background-color: transparent;
   border: 1px solid ${theme.backgroundColors.formButton};
   border-radius: ${theme.radii.md};
   color: ${theme.textColors.main};
@@ -83,6 +83,11 @@ export const AvatarInput = styled.input`
     cursor: pointer;
   }
 `;
+const errorMessageDynamicStyles = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  margin-bottom: 10px;
+  text-align: center;
+`;
 
 export const Input = styled.input`
   ${inputDynamicStyles}
@@ -125,4 +130,8 @@ export const Button = styled.button`
   height: 20px;
   background-color: transparent;
   position: absolute;
+`;
+
+export const ErrorMessage = styled.p`
+  ${errorMessageDynamicStyles};
 `;

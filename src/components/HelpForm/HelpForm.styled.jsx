@@ -21,7 +21,7 @@ const inputDynamicStyles = ({ theme }) => css`
   width: 100%;
   height: 49px;
   padding: 14px 18px;
-  background-color: ${theme.backgroundColors.popUpForm};
+  background-color: transparent;
   border: 1px solid ${theme.backgroundColors.formButton};
   color: ${theme.textColors.main};
   border-radius: ${theme.radii.md};
@@ -36,7 +36,7 @@ const textariaDynamicStyles = ({ theme }) => css`
   font-size: ${theme.fontSizes[3]};
   width: 100%;
   padding: 14px 18px;
-  background-color: ${theme.backgroundColors.popUpForm};
+  background-color: transparent;
   border: 1px solid ${theme.backgroundColors.formButton};
   border-radius: ${theme.radii.md};
   color: ${theme.textColors.main};
@@ -48,6 +48,11 @@ const textariaDynamicStyles = ({ theme }) => css`
     outline: none;
     opacity: 1;
   }
+`;
+const errorMessageDynamicStyles = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  margin-bottom: 10px;
+  text-align: center;
 `;
 
 export const Form = styled.form`
@@ -66,6 +71,5 @@ export const Textarea = styled.textarea`
   ${textariaDynamicStyles}
 `;
 export const ErrorMessage = styled.p`
-  margin-bottom: 10px;
-  text-align: center;
+  ${errorMessageDynamicStyles};
 `;

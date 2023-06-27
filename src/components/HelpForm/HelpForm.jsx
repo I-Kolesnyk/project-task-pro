@@ -4,19 +4,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage, Form, Input, Textarea, Title } from './HelpForm.styled';
 import { useDispatch } from 'react-redux';
-
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .required('Email is required')
-      .matches(
-        '^([A-Za-z0-9_-]+.)*[A-Za-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-        'Invalid email format'
-      ),
-    comment: yup.string().required('Comment is required'),
-  })
-  .required();
+import { HelpSchema } from 'schemas';
 
 const HelpForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +19,7 @@ const HelpForm = () => {
       email: '',
       comment: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(HelpSchema),
     mode: 'onChange',
   });
 
@@ -39,7 +27,6 @@ const HelpForm = () => {
     //  dispatch(HelpLetter(data));
     reset();
   };
-  const textBtn = 'Send';
 
   return (
     <>
