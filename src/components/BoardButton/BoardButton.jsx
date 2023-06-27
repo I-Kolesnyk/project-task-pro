@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
 
+import { updateBoardStatus } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import {
   Svg,
@@ -10,23 +12,22 @@ import {
   IconsWrapper,
 } from './BoardButton.styled';
 
-function BoardButton({ name, boardName, setIsSidebarOpen }) {
-  const [isActive, setIsActive] = useState(false);
+function BoardButton({ name, boardName, id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const dispatch = useDispatch();
+  console.log(boardName, name);
   const openModal = () => {
-    setIsSidebarOpen(false);
     setIsModalOpen(true);
   };
   const navigate = useNavigate();
 
   useEffect(() => {
     if (name.toString() === boardName) {
-      setIsActive(true);
+      dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
     } else {
-      setIsActive(false);
+      dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
     }
-  }, [boardName, name]);
+  }, [boardName, dispatch, id, name]);
 
   const handleActive = () => {
     navigate(`${name}`);
