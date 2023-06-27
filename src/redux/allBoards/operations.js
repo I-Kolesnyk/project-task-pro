@@ -26,3 +26,19 @@ export const addNewBoard = createAsyncThunk(
     }
   }
 );
+
+export const updateBoardStatus = createAsyncThunk(
+  'boards/active',
+  async (boardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.patch(
+        `api/boards/${boardData.boardId}/active`,
+        boardData.body
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);
