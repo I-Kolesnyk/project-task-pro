@@ -1,5 +1,6 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState } from 'react';
+import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
 // import { useDispatch } from 'react-redux';
 
 import { useBoard } from 'hooks';
@@ -8,11 +9,11 @@ import { Section } from './ScreenPage.styled';
 // import { setBoard } from 'redux/board/slice';
 
 function ScreenPage() {
-  
-  const {  columns } = useBoard();
-
+  const { columns } = useBoard();
+  console.log('columns --> ', columns);
+  console.log('tasks --> ', columns.tasks);
   const [elements, setElements] = useState(columns);
-
+  console.log('elements --> ', elements);
   // const updatedBoard = {
   //   title: board.title,
   //   id: board.id,
@@ -68,15 +69,16 @@ function ScreenPage() {
       <Section>
         <DragDropContext onDragEnd={onDragEnd}>
           {columns.length !== 0 &&
-            columns.map(({ title, id, cards }, columnIndex) => (
+            columns.map(({ title, id, tasks }, columnIndex) => (
               <Column
-                cards={cards}
+                cards={tasks}
                 title={title}
                 key={id}
                 prefix={columnIndex}
               />
             ))}
         </DragDropContext>
+        <AddColumnButton />
       </Section>
     </>
   );
