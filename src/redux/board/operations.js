@@ -13,3 +13,27 @@ export const getBoardById = createAsyncThunk(
     }
   }
 );
+
+export const addColumn = createAsyncThunk(
+  'board/addColumn',
+  async (columnData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.post(`/api/columns`, columnData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);
+
+export const addCard = createAsyncThunk(
+  'board/addColumn',
+  async (cardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.post(`/api/tasks`, cardData);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);

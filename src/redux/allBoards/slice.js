@@ -19,10 +19,13 @@ export const allBoardsSlice = createSlice({
         state.boards = state.boards.push(action.payload);
       })
       .addCase(updateBoardStatus.fulfilled, (state, action) => {
-        const changedBoard = state.boards.filter(
-          board => board.id === action.payload._id
+        const boardIdToUpdate = action.payload.data.board._id;
+        const changedBoard = state.boards.boards.find(
+          board => board._id === boardIdToUpdate
         );
-        changedBoard.active = action.payload.active;
+        if (changedBoard) {
+          changedBoard.active = action.payload.data.board.active;
+        }
       })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)

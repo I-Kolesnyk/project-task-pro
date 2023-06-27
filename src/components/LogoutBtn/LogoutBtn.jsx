@@ -6,7 +6,6 @@ import { userLogOut } from 'redux/auth/operations';
 const LogoutBtn = () => {
   const dispatch = useDispatch();
   function onClick() {
-    console.log('log out req');
     dispatch(userLogOut());
   }
 
