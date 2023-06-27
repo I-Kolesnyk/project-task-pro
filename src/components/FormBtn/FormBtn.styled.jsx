@@ -13,7 +13,7 @@ const dynamicStylesBtn = ({ theme }) => css`
 
   background-color: ${theme.backgroundColors.formButton};
 
-  color: ${theme.authColors.darkText};
+  color: ${theme.textColors.button};
   font-size: ${theme.fontSizes[3]};
   font-weight: ${theme.fontWeights.medium};
 `;

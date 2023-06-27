@@ -57,6 +57,7 @@ const dark = {
     popUpForm: '#1F1F1F',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
+    formButtonBg: '#BEDBB0',
   },
 
   labelColors: {
@@ -132,6 +133,7 @@ const light = {
     popUpForm: '#FCFCFC',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
+    formButtonBg: '#BEDBB0',
   },
 
   labelColors: {
@@ -207,6 +209,7 @@ const violet = {
     popUpForm: '#FCFCFC',
     formButtonSvg: '#161616',
     formButtonSvgBg: '#FFFFFF',
+    formButtonBg: '#ECEDFD',
   },
 
   labelColors: {

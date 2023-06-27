@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage, Form, Input, Textarea, Title } from './HelpForm.styled';
+import { useDispatch } from 'react-redux';
 
 const schema = yup
   .object({
@@ -18,6 +19,8 @@ const schema = yup
   .required();
 
 const HelpForm = () => {
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -33,7 +36,7 @@ const HelpForm = () => {
   });
 
   const onSubmit = data => {
-    console.log(data);
+    //  dispatch(HelpLetter(data));
     reset();
   };
   const textBtn = 'Send';
@@ -49,7 +52,7 @@ const HelpForm = () => {
         <Textarea placeholder="Comment" {...register('comment')}></Textarea>
         <ErrorMessage>{errors.comment?.message}</ErrorMessage>
 
-        <FormBtn textBtn={textBtn} />
+        <FormBtn textBtn={() => 'Send'} />
       </Form>
     </>
   );

@@ -2,11 +2,10 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const formDynamikStyles = ({ theme }) => css`
-  width: 335px;
-  padding: 24px;
+  width: 287px;
   color: ${theme.authColors.lightText};
   @media screen and (min-width: ${theme.breakpoints[1]}) {
-    width: 400px;
+    width: 352px;
   }
 `;
 
@@ -22,22 +21,33 @@ const inputDynamicStyles = ({ theme }) => css`
   width: 100%;
   height: 49px;
   padding: 14px 18px;
-  background-color: ${theme.authColors.inputBackground};
-  border: 1px solid ${theme.authColors.lightButtonBackground};
+  background-color: ${theme.backgroundColors.popUpForm};
+  border: 1px solid ${theme.backgroundColors.formButton};
+  color: ${theme.textColors.main};
   border-radius: ${theme.radii.md};
-  color: ${theme.authColors.lightText};
+  opacity: 0.4;
   margin-bottom: 4px;
+  &:focus {
+    outline: none;
+    opacity: 1;
+  }
 `;
 const textariaDynamicStyles = ({ theme }) => css`
   font-size: ${theme.fontSizes[3]};
   width: 100%;
   padding: 14px 18px;
-  background-color: ${theme.authColors.inputBackground};
-  border: 1px solid ${theme.authColors.lightButtonBackground};
+  background-color: ${theme.backgroundColors.popUpForm};
+  border: 1px solid ${theme.backgroundColors.formButton};
   border-radius: ${theme.radii.md};
-  color: ${theme.authColors.lightText};
+  color: ${theme.textColors.main};
+  opacity: 0.4;
   min-height: 120px;
   margin-bottom: 15px;
+
+  &:focus {
+    outline: none;
+    opacity: 1;
+  }
 `;
 
 export const Form = styled.form`
