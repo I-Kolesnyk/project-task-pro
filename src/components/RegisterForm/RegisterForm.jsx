@@ -1,12 +1,39 @@
 import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { userRegister } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './RegisterForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
-import { RegisterFormSchema } from 'schemas';
+
+const schema = yup
+  .object({
+    name: yup
+      .string()
+      .required('Name is required')
+      .matches('^[A-Za-z0-9]{2,32}$', 'Invalid name format')
+      .trim(),
+    email: yup
+      .string()
+      .required('Email is required')
+      .matches(
+        '^([A-Za-z0-9_-]+.)*[A-Za-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
+        'Invalid email format'
+      )
+      .trim(),
+    password: yup
+      .string()
+      .min(8)
+      .max(64)
+      .matches(
+        /^[A-Za-z0-9!@#$%^&*()_+=\-[\]{}|\\:;"'<>,.?/~`]+$/,
+        'Invalid password format'
+      )
+      .required('Password is required'),
+  })
+  .required();
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -21,7 +48,7 @@ const RegisterForm = () => {
       email: '',
       password: '',
     },
-    resolver: yupResolver(RegisterFormSchema),
+    resolver: yupResolver(schema),
     mode: 'onChange',
   });
 

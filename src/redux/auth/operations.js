@@ -9,21 +9,11 @@ export const userRegister = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
     try {
-      const data = await axiosPublic.post('/api/users/register', user);
-      console.log(data);
-      const { email, password } = user;
+      const { data } = await axiosPublic.post(`/api/users/register`, user);
 
-      if (data.status === 'success') {
-        const loginData = await axiosPublic.post('/api/users/login', {
-          email,
-          password,
-        });
-
-        return loginData;
-      }
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.code);
     }
   }
 );
