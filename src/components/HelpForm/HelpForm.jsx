@@ -1,13 +1,12 @@
 import FormBtn from 'components/FormBtn/FormBtn';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ErrorMessage, Form, Input, Textarea, Title } from './HelpForm.styled';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { HelpSchema } from 'schemas';
 
 const HelpForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const {
     register,
