@@ -17,15 +17,8 @@ import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
-import { useDispatch } from 'react-redux';
-
-const schema = yup
-  .object({
-    title: yup.string().required('Title is required'),
-    description: yup.string(),
-    lableColor: yup.string().required(''),
-  })
-  .required();
+import { AddCardFormSchema } from 'schemas';
+// import { useDispatch } from 'react-redux';
 
 const AddCardForm = () => {
   const [deadlineDate, setDeadlineDate] = useState(new Date());
@@ -43,7 +36,7 @@ const AddCardForm = () => {
       description: '',
       lableColor: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(AddCardFormSchema),
   });
 
   const onSubmit = data => {
