@@ -38,6 +38,7 @@ const dark = {
     button: '#161616',
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
+    addColumnButton: '#ffffff',
   },
 
   backgroundColors: {
@@ -54,10 +55,17 @@ const dark = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#FFFFFF',
     borderIcon: '#FFFFFF',
-    popUpForm: '#1F1F1F',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
     formButtonBg: '#BEDBB0',
+    scrollBar: 'rgba(255, 255, 255, 0.07999999821186066)',
+    scrollBarThumb: '#121212',
+    addCardIconStroke: '#FFFFFF',
+    addCardIconFill: '#161616',
+    addColumnIconStroke: '#161616',
+    addColumnIconFill: '#FFFFFF',
+    columnTitleIcon: 'rgba(255, 255, 255, 0.5)',
+    columnTitleIconHover: '#BEDBB0',
   },
 
   labelColors: {
@@ -114,6 +122,7 @@ const light = {
     button: '#161616',
     logo: '#161616',
     addButton: '#161616',
+    addColumnButton: '#161616',
   },
 
   backgroundColors: {
@@ -130,10 +139,17 @@ const light = {
     pseudo: 'rgba(22, 22, 22, 0.1)',
     burger: '#161616',
     borderIcon: '#161616',
-    popUpForm: '#FCFCFC',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
     formButtonBg: '#BEDBB0',
+    scrollBar: '#E8E8E8',
+    scrollBarThumb: 'rgba(22, 22, 22, 0.1)',
+    addCardIconStroke: '#FFFFFF',
+    addCardIconFill: '#161616',
+    addColumnIconStroke: '#FFFFFF',
+    addColumnIconFill: ' #161616',
+    columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
+    columnTitleIconHover: '#121212',
   },
 
   labelColors: {
@@ -190,6 +206,7 @@ const violet = {
     button: '#FFFFFF',
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
+    addColumnButton: '#161616',
   },
 
   backgroundColors: {
@@ -206,10 +223,17 @@ const violet = {
     pseudo: 'rgba(255, 255, 255, 0.1)',
     burger: '#161616',
     borderIcon: '#FFFFFF',
-    popUpForm: '#FCFCFC',
     formButtonSvg: '#161616',
     formButtonSvgBg: '#FFFFFF',
     formButtonBg: '#ECEDFD',
+    scrollBar: '#FFFFFF',
+    scrollBarThumb: '#B8BCFD',
+    addCardIconStroke: '#161616',
+    addCardIconFill: '#FFFFFF',
+    addColumnIconStroke: '#FFFFFF',
+    addColumnIconFill: 'rgba(82, 85, 188, 1)',
+    columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
+    columnTitleIconHover: '#5255BC',
   },
 
   labelColors: {
