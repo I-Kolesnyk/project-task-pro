@@ -6,6 +6,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   justify-content: space-between;
   width: 87.6%;
   height: 70px;
+  margin-bottom: 40px;
   padding: 14px 4px 14px 0;
   border-top: 1px solid ${theme.backgroundColors.pseudo};
   border-bottom: 1px solid ${theme.backgroundColors.pseudo};

@@ -25,9 +25,13 @@ const schema = yup
       .trim(),
     password: yup
       .string()
-      .required('Password is required')
-      .matches('^[A-Za-z0-9!@#№$%&]{8,64}$', 'Invalid password format')
-      .trim(),
+      .min(8)
+      .max(64)
+      .matches(
+        /^[A-Za-z0-9!@#$%^&*()_+=\-[\]{}|\\:;"'<>,.?/~`]+$/,
+        'Invalid password format'
+      )
+      .required('Password is required'),
   })
   .required();
 
@@ -74,7 +78,7 @@ const RegisterForm = () => {
         <label>
           <div>
             <Input
-              type="password"
+              type={passwordShown ? 'text' : 'password'}
               placeholder="Confirm a password"
               {...register('password')}
             />

@@ -15,7 +15,7 @@ function ThemeDropdown() {
   const { register } = useForm({ defaultValues: defaultValues });
 
   const onChange = data => {
-    const userData = { id: userId, theme: data.target.value };
+    const userData = { id: userId, body: { theme: data.target.value } };
     console.log(userData);
     dispatch(editTheme(userData));
   };

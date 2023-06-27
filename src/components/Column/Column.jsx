@@ -1,22 +1,53 @@
-import { Droppable } from "@hello-pangea/dnd";
-
+import { Droppable } from '@hello-pangea/dnd';
 import Card from 'components/Card';
-import { Wrapper } from './Column.styled';
+import AddCardButton from 'components/AddCardButton/AddCardButton';
+import {
+  Wrapper,
+  TaskList,
+  TaskTitle,
+  IconList,
+  Svg,
+  IconButton,
+} from './Column.styled';
+import sprite from '../../assets/sprite.svg';
 
 function Column({ title, id, cards, prefix }) {
+  console.log(cards);
   return (
     <Wrapper>
-      <p>{title}</p>
+      <TaskTitle>
+        <span>{title}</span>
+        <IconList>
+          <li>
+            <IconButton>
+              <Svg>
+                <use href={sprite + '#pencil'}></use>
+              </Svg>
+            </IconButton>
+          </li>
+          <li>
+            <IconButton>
+              <Svg>
+                <use href={sprite + '#trash'}></use>
+              </Svg>
+            </IconButton>
+          </li>
+        </IconList>
+      </TaskTitle>
+
       <Droppable droppableId={`${prefix}`}>
-      {(provided) => (
-        <div {...provided.droppableProps} ref={provided.innerRef}>
-          {cards.map(({ id, title }, index) => (
-            <Card key={id}  index={index} title={title} id={id}/>
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>  
+        {provided => (
+          <TaskList {...provided.droppableProps} ref={provided.innerRef}>
+            {cards &&
+              cards.length > 0 &&
+              cards.map(({ id, title }, index) => (
+                <Card key={id} index={index} title={title} id={id} />
+              ))}
+            {provided.placeholder}
+          </TaskList>
+        )}
+      </Droppable>
+      <AddCardButton />
     </Wrapper>
   );
 }

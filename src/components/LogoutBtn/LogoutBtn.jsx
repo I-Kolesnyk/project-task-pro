@@ -12,7 +12,7 @@ const LogoutBtn = () => {
 
   return (
     <StyledLogOutBtn onClick={onClick}>
-      <svg width="32px" height="32px" className="logout-icon">
+      <svg width="32px" height="32px">
         <use href={`${sprite}#logout`} />
       </svg>
       <StyledSpan>Log out</StyledSpan>

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getAllBoards, addNewBoard } from './operations';
+import { getAllBoards, addNewBoard, updateBoardStatus } from './operations';
 
 const initialState = {
   boards: [],
@@ -18,6 +18,12 @@ export const allBoardsSlice = createSlice({
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.boards = state.boards.push(action.payload);
       })
+      .addCase(updateBoardStatus.fulfilled, (state, action) => {
+        const changedBoard = state.boards.filter(
+          board => board.id === action.payload._id
+        );
+        changedBoard.active = action.payload.active;
+      })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
@@ -35,7 +41,7 @@ const handleRejected = state => {
   state.isLoading = false;
 };
 
-const extraActions = [getAllBoards, addNewBoard];
+const extraActions = [getAllBoards, addNewBoard, updateBoardStatus];
 
 const getActions = type => extraActions.map(action => action[type]);
 

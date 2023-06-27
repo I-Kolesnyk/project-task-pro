@@ -23,7 +23,7 @@ export const userLogin = createAsyncThunk(
   async (user, thunkAPI) => {
     try {
       const { data } = await axiosPublic.post(`/api/users/login`, user);
-      console.log(data)
+      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -72,13 +72,13 @@ export const editProfile = createAsyncThunk(
 
 export const editTheme = createAsyncThunk(
   'auth/theme',
-  async ( userData, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.patch(
         `/api/users/current/${userData.id}/theme`,
-        userData[0]
+        userData.body
       );
-      console.log(data)
+      console.log(data);
       return data;
     } catch (error) {
       console.log(error);
