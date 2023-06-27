@@ -1,33 +1,14 @@
 import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { userLogin } from 'redux/auth/operations';
-import { useDispatch } from 'react-redux';
-import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
-import sprite from '../../assets/sprite.svg';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .required('Email is required')
-      .matches(
-        '^([A-Za-z0-9_-]+.)*[A-Za-z0-9_-]+@[a-z0-9_-]+(.[a-z0-9_-]+)*.[a-z]{2,6}$',
-        'Invalid email format'
-      ),
-    password: yup
-      .string()
-      .required('Password is required')
-      .min(8)
-      .max(64)
-      .matches(
-        /^[A-Za-z0-9!@#$%^&*()_+=\-[\]{}|\\:;"'<>,.?/~`]+$/,
-        'Invalid password format'
-      ),
-  })
-  .required();
+import { userLogin } from 'redux/auth/operations';
+import { LoginFormSchema } from 'schemas';
+import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
+
+import sprite from '../../assets/sprite.svg';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -42,7 +23,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LoginFormSchema),
     mode: 'onChange',
   });
 
