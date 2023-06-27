@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 
 import { updateBoardStatus } from 'redux/allBoards/operations';
+import { getBoardById } from 'redux/board/operations';
 import sprite from '../../assets/sprite.svg';
 import {
   Svg,
@@ -14,8 +15,7 @@ import {
 
 function BoardButton({ name, boardName, id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();
-  console.log(boardName, name);
+  const dispatch = useDispatch();  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -30,6 +30,7 @@ function BoardButton({ name, boardName, id, icon, isActive }) {
   }, [boardName, dispatch, id, name]);
 
   const handleActive = () => {
+    dispatch(getBoardById(id));
     navigate(`${name}`);
   };
   return (

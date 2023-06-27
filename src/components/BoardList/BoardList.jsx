@@ -8,15 +8,14 @@ import { Title, Wrapper, List } from './BoardList.styled';
 function BoardList() {
   const { boardName } = useParams();
   const allBoards = useAllBoards();
-  console.log(allBoards);
 
   return (
     <Wrapper>
       <Title>My boards</Title>
       <AddBoardButton />
       <List>
-        {allBoards.map(({ _id, title, icon, active }) => (
-          <li>
+        {allBoards.length!== 0 && allBoards.boards.map(({ _id, title, icon, active }) => (
+          <li key={_id}>
             <BoardButton
               name={title}
               boardName={boardName}

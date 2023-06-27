@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getBoardById } from './operations';
+import { addColumn, addCard } from './operations';
 
 const initialState = {
   board: {
@@ -42,13 +43,23 @@ export const boardSlice = createSlice({
   initialState,
   reducers: {
     setBoard(state, actions) {
-      state.board = actions.payload;
+      state.board.columns = actions.payload;
     },
   },
   extraReducers: builder =>
-    builder.addCase(getBoardById.fulfilled, (state, action) => {
-      state.board = action.payload.data;
-    }),
+    builder
+      .addCase(getBoardById.fulfilled, (state, action) => {
+        state.board = action.payload.data;
+      })
+      .addCase(addColumn.fulfilled, (state, action) => {
+        state.board.columns.push(action.payload.data);
+      }),
+  // .addCase(addCard.fulfilled, (state, action) => {
+  //   const columnIdToUpdate = action.payload.data.column;
+  //   const changedColumn = state.board.columns.find(
+  //     board => board._id === columnIdToUpdate
+  //   );
+  // })
 });
 
 export const { setBoard } = boardSlice.actions;

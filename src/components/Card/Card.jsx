@@ -13,7 +13,7 @@ function Card({ id, title, index }) {
             {...provided.dragHandleProps}
           >
             <p>{title}</p>
-            <span>Content</span>
+            <span>{id}</span>
           </Wrapper>
         );
       }}

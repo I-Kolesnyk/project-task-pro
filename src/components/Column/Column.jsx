@@ -12,7 +12,6 @@ import {
 import sprite from '../../assets/sprite.svg';
 
 function Column({ title, id, cards, prefix }) {
-  console.log(cards);
   return (
     <Wrapper>
       <TaskTitle>
@@ -40,8 +39,8 @@ function Column({ title, id, cards, prefix }) {
           <TaskList {...provided.droppableProps} ref={provided.innerRef}>
             {cards &&
               cards.length > 0 &&
-              cards.map(({ id, title }, index) => (
-                <Card key={id} index={index} title={title} id={id} />
+              cards.map(({ _id, title }, index) => (
+                <Card key={_id} index={index} title={title} id={_id} />
               ))}
             {provided.placeholder}
           </TaskList>
