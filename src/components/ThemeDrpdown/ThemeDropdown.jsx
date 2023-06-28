@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useTheme, useUserId } from 'hooks';
 import { editTheme } from 'redux/auth/operations';
-import { SelectWrapper, selectStyles } from './ThemeDropdown.styled';
+import { selectStyles } from './ThemeDropdown.styled';
 import Select from 'react-select';
 
 function ThemeDropdown() {
@@ -32,7 +32,7 @@ function ThemeDropdown() {
   };
 
   return (
-    <SelectWrapper>
+    <div>
       <Select
         name="theme"
         {...register('theme')}
@@ -43,7 +43,7 @@ function ThemeDropdown() {
         isSearchable={false}
         value={selectedOption}
       />
-    </SelectWrapper>
+    </div>
   );
 }
 
