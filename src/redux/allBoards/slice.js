@@ -20,7 +20,7 @@ export const allBoardsSlice = createSlice({
       })
       .addCase(updateBoardStatus.fulfilled, (state, action) => {
         const boardIdToUpdate = action.payload.data.board._id;
-        const changedBoard = state.boards.find(
+        const changedBoard = state.boards.boards.find(
           board => board._id === boardIdToUpdate
         );
         if (changedBoard) {

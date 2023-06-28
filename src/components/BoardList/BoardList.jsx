@@ -15,7 +15,7 @@ function BoardList() {
       <AddBoardButton />
       <List>
         {allBoards.length !== 0 &&
-          allBoards.map(({ _id, title, icon, active }) => (
+          allBoards.boards.map(({ _id, title, icon, active }) => (
             <li key={_id}>
               <BoardButton
                 name={title}
