@@ -39,10 +39,19 @@ function Column({ title, id, cards, prefix }) {
           <TaskList {...provided.droppableProps} ref={provided.innerRef}>
             {cards &&
               cards.length > 0 &&
-              cards.map(({ _id, title }, index) => (
-                <Card key={_id} index={index} title={title} id={_id} />
-              ))}
-            {provided.placeholder}
+              cards.map(
+                ({ _id, title, priority, deadline, description }, index) => (
+                  <Card
+                    key={_id}
+                    index={index}
+                    title={title}
+                    id={_id}
+                    priority={priority}
+                    deadline={deadline}
+                    description={description}
+                  />
+                )
+              )}
           </TaskList>
         )}
       </Droppable>

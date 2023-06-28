@@ -16,11 +16,9 @@ function HomePage() {
       dispatch(getAllBoards());
     }
     if (allBoards.length !== 0) {
-      const activeBoard = allBoards.boards.filter(
-        board => board.active === true
-      );
-      if (allBoards.boards.length !== 0 && activeBoard.length !== 0) {
-        if (allBoards.boards.length !== 0 && activeBoard.length !== 0) {
+      const activeBoard = allBoards.filter(board => board.active === true);
+      if (allBoards.length !== 0 && activeBoard.length !== 0) {
+        if (allBoards.length !== 0 && activeBoard.length !== 0) {
           dispatch(getBoardById(`${activeBoard[0]._id}`));
           navigate(`${activeBoard[0].title}`);
         }
