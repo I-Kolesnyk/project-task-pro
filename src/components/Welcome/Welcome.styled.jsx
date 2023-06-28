@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const dynamicWelcomeContainerStyles = ({ theme }) => css`
-  margin-top: 211px;
+  /* margin-top: 211px; */
   width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -10,7 +10,7 @@ const dynamicWelcomeContainerStyles = ({ theme }) => css`
   padding-left: 20px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
-    margin-top: 293px;
+    /* margin-top: 293px; */
     width: 473px;
     padding-right: 0;
     padding-left: 0;
