@@ -9,18 +9,22 @@ function HomePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allBoards = useAllBoards();
-  const activeBoard = allBoards.filter(board => board.active === true);
-  console.log(activeBoard);
+  console.log(allBoards);
 
   useEffect(() => {
-    if (activeBoard.length !== 0 && allBoards.length !== 0) {
+    if (allBoards.length === 0) {
       dispatch(getAllBoards());
-      if (allBoards.length !== 0) {
-        dispatch(getBoardById(`${activeBoard[0]._id}`));
-        navigate(`${activeBoard[0].title}`);
+    }
+    if (allBoards.length !== 0) {
+      const activeBoard = allBoards.boards.filter(board => board.active === true);
+      if (allBoards.length !== 0 && activeBoard.length !== 0) {
+        if (allBoards.length !== 0 && activeBoard.length !== 0) {
+          dispatch(getBoardById(`${activeBoard[0]._id}`));
+          navigate(`${activeBoard[0].title}`);
+        }
       }
     }
-  }, [activeBoard, allBoards, dispatch, navigate]);
+  }, [allBoards, dispatch, navigate]);
 
   return <p>Homepage</p>;
 }

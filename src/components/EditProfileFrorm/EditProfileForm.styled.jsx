@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { theme } from 'styles/Theme.styled';
+// import { theme } from 'styles/Theme.styled';
 
 const formDynamikStyles = ({ theme }) => css`
   width: 287px;

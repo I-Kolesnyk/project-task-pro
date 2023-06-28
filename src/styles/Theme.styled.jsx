@@ -33,6 +33,7 @@ const dark = {
   textColors: {
     main: '#FFFFFF',
     secondary: 'rgba(255, 255, 255, 0.5)',
+    cardSecondary: 'rgba(255, 255, 255, 0.5)',
     theme: 'rgba(255, 255, 255, 0.8)',
     accent: '#BEDBB0',
     button: '#161616',
@@ -59,9 +60,10 @@ const dark = {
     borderIcon: '#FFFFFF',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
-    formButtonBg: '#BEDBB0',
     scrollBar: 'rgba(255, 255, 255, 0.07999999821186066)',
     scrollBarThumb: '#121212',
+    cardBgColor: '#121212',
+    cardSeparator: 'rgba(255, 255, 255, 0.1)',
     addCardIconStroke: '#FFFFFF',
     addCardIconFill: '#161616',
     addColumnIconStroke: '#161616',
@@ -69,6 +71,11 @@ const dark = {
     columnTitleIcon: 'rgba(255, 255, 255, 0.5)',
     columnTitleIconHover: '#BEDBB0',
     selectedDateHover: '#BEDBB050',
+    formButtonBg: '#BEDBB0',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
   },
 
   labelColors: {
@@ -120,6 +127,7 @@ const light = {
   textColors: {
     main: '#161616',
     secondary: 'rgba(22, 22, 22, 0.5)',
+    cardSecondary: 'rgba(22, 22, 22, 0.5)',
     theme: 'rgba(22, 22, 22, 0.8)',
     accent: '#BEDBB0',
     button: '#161616',
@@ -146,9 +154,10 @@ const light = {
     borderIcon: '#161616',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
-    formButtonBg: '#BEDBB0',
     scrollBar: '#E8E8E8',
     scrollBarThumb: 'rgba(22, 22, 22, 0.1)',
+    cardBgColor: '#FFFFFF',
+    cardSeparator: 'rgba(22, 22, 22, 0.1)',
     addCardIconStroke: '#FFFFFF',
     addCardIconFill: '#161616',
     addColumnIconStroke: '#FFFFFF',
@@ -156,6 +165,11 @@ const light = {
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#121212',
     selectedDateHover: '#BEDBB050',
+    formButtonBg: '#BEDBB0',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
   },
 
   labelColors: {
@@ -207,6 +221,7 @@ const violet = {
   textColors: {
     main: '#161616',
     secondary: 'rgba(255, 255, 255, 0.5)',
+    cardSecondary: 'rgba(22, 22, 22, 0.5)',
     theme: 'rgba(22, 22, 22, 0.8)',
     accent: '#5255BC',
     button: '#FFFFFF',
@@ -233,9 +248,10 @@ const violet = {
     borderIcon: '#FFFFFF',
     formButtonSvg: '#161616',
     formButtonSvgBg: '#FFFFFF',
-    formButtonBg: '#ECEDFD',
     scrollBar: '#FFFFFF',
     scrollBarThumb: '#B8BCFD',
+    cardBgColor: '#FFFFFF',
+    cardSeparator: 'rgba(22, 22, 22, 0.1)',
     addCardIconStroke: '#161616',
     addCardIconFill: '#FFFFFF',
     addColumnIconStroke: '#FFFFFF',
@@ -243,6 +259,7 @@ const violet = {
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#5255BC',
     selectedDateHover: '#5255BC50',
+    formButtonBg: '#ECEDFD',
   },
 
   labelColors: {
@@ -250,6 +267,10 @@ const violet = {
     pink: '#E09CB5',
     green: '#BEDBB0',
     gray: 'rgba(22, 22, 22, 0.30)',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#FFFFFF',
   },
 
   radii: {
