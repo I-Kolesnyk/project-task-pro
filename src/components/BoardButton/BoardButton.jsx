@@ -15,7 +15,7 @@ import {
 
 function BoardButton({ name, boardName, id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -30,8 +30,8 @@ function BoardButton({ name, boardName, id, icon, isActive }) {
   }, [boardName, dispatch, id, name]);
 
   const handleActive = () => {
-    dispatch(getBoardById(id));
-    navigate(`${name}`);
+    // dispatch(getBoardById(id));
+    setTimeout(navigate(`${name}`), 2000);
   };
   return (
     <>

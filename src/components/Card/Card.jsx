@@ -5,7 +5,7 @@ import SvgComponent from './SvgComponent';
 
 const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
-function Card({ _id, title, index, priority, deadline, description }) {
+function Card({ id, title, index, priority, deadline, description }) {
   const toDeadLine = date => {
     const deadline = Date.parse(
       new Date(date.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'))
@@ -17,12 +17,12 @@ function Card({ _id, title, index, priority, deadline, description }) {
   };
 
   return (
-    <Draggable draggableId={_id} index={index}>
+    <Draggable draggableId={id} index={index}>
       {(provided, snapshot) => {
         return (
           <s.Wrapper
             priority={priority}
-            key={_id}
+            key={id}
             ref={provided.innerRef}
             snapshot={snapshot}
             {...provided.draggableProps}
