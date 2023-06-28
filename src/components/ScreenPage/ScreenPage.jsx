@@ -3,20 +3,28 @@ import { useState, useEffect } from 'react';
 import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
 import { useDispatch } from 'react-redux';
 
-import { useBoard } from 'hooks';
+import { useBoard, useOneBoardLoading, useAllBoards } from 'hooks';
 import Column from 'components/Column';
 import { Section } from './ScreenPage.styled';
 import { setBoard } from 'redux/board/slice';
+import { getBoardById } from 'redux/board/operations';
+import { useParams } from 'react-router';
 
 function ScreenPage() {
+  const allBoards = useAllBoards();
   const { columns, board } = useBoard();
   const [elements, setElements] = useState(columns);
   const dispatch = useDispatch();
-  console.log('elements1', elements);
+  const isOneBoardLoading = useOneBoardLoading();
+  const { boardName } = useParams();
 
-  // useEffect(() => {
-  //   dispatch(setBoard(elements));
-  // }, [dispatch, elements]);
+  const aciveBoardId = allBoards.boards.find(
+    board => board.title === boardName
+  )._id;
+
+  useEffect(() => {
+    dispatch(getBoardById(aciveBoardId));
+  }, [aciveBoardId, dispatch]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -58,27 +66,29 @@ function ScreenPage() {
   };
   console.log('elements2', elements);
   return (
-    <>
-      <header>
-        <h2>{board.title}</h2>
-        <p>Filters</p>
-      </header>
-      <Section>
-        <DragDropContext onDragEnd={onDragEnd}>
-          {elements.length !== 0 &&
-            elements.map(({ title, _id, tasks }, columnIndex) => (
-              <Column
-                cards={tasks}
-                title={title}
-                id={_id}
-                key={_id}
-                prefix={columnIndex}
-              />
-            ))}
-        </DragDropContext>
-        <AddColumnButton />
-      </Section>
-    </>
+    !isOneBoardLoading && (
+      <>
+        <header>
+          <h2>{board.title}</h2>
+          <p>Filters</p>
+        </header>
+        <Section>
+          <DragDropContext onDragEnd={onDragEnd}>
+            {elements.length !== 0 &&
+              elements.map(({ title, _id, tasks }, columnIndex) => (
+                <Column
+                  cards={tasks}
+                  title={title}
+                  id={_id}
+                  key={_id}
+                  prefix={columnIndex}
+                />
+              ))}
+          </DragDropContext>
+          <AddColumnButton />
+        </Section>
+      </>
+    )
   );
 }
 
