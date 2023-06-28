@@ -68,6 +68,7 @@ const dark = {
     addColumnIconFill: '#FFFFFF',
     columnTitleIcon: 'rgba(255, 255, 255, 0.5)',
     columnTitleIconHover: '#BEDBB0',
+    formButtonBg: '#BEDBB0',
   },
 
   logOutIcon: {
@@ -158,6 +159,7 @@ const light = {
     addColumnIconFill: ' #161616',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#121212',
+    formButtonBg: '#BEDBB0',
   },
 
   logOutIcon: {
@@ -248,6 +250,7 @@ const violet = {
     addColumnIconFill: 'rgba(82, 85, 188, 1)',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#5255BC',
+    formButtonBg: '#ECEDFD',
   },
 
   labelColors: {
