@@ -24,3 +24,23 @@ export const StyledSpan = styled.span`
   font-family: Poppins;
   font-weight: 500;
 `;
+
+const IconDynamicStyles = ({ theme, selected }) => css`
+  width: 32px;
+  height: 32px;
+
+  stroke: ${theme.logOutIcon.logOutIconStroke};
+
+  cursor: pointer;
+
+  @media screen and (min-width: ${theme.breakpoints[3]}) {
+    margin-left: 24px;
+    width: 212px;
+    height: 272px;
+    padding: 20px;
+  }
+`;
+
+export const Icon = styled.svg`
+  ${IconDynamicStyles}
+`;

@@ -68,6 +68,10 @@ const dark = {
     columnTitleIconHover: '#BEDBB0',
   },
 
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
+  },
+
   labelColors: {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
@@ -150,6 +154,10 @@ const light = {
     addColumnIconFill: ' #161616',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#121212',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
   },
 
   labelColors: {
@@ -241,6 +249,10 @@ const violet = {
     pink: '#E09CB5',
     green: '#BEDBB0',
     gray: 'rgba(255, 255, 255, 0.3)',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#FFFFFF',
   },
 
   radii: {
