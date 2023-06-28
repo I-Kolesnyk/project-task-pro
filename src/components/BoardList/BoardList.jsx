@@ -14,17 +14,18 @@ function BoardList() {
       <Title>My boards</Title>
       <AddBoardButton />
       <List>
-        {allBoards.length!== 0 && allBoards.boards.map(({ _id, title, icon, active }) => (
-          <li key={_id}>
-            <BoardButton
-              name={title}
-              boardName={boardName}
-              id={_id}
-              icon={icon}
-              isActive={active}
-            />
-          </li>
-        ))}
+        {allBoards.length !== 0 &&
+          allBoards.map(({ _id, title, icon, active }) => (
+            <li key={_id}>
+              <BoardButton
+                name={title}
+                boardName={boardName}
+                id={_id}
+                icon={icon}
+                isActive={active}
+              />
+            </li>
+          ))}
       </List>
     </Wrapper>
   );
