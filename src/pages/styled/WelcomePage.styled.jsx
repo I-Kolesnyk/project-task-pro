@@ -35,7 +35,7 @@ const WelcomePageContainerDynamicStyle = ({ theme }) =>
     justify-content: center;
     margin: 0 auto;
 
-    max-width: 1440px;
+    /* max-width: 1440px; */
     height: 100vh;
 
     background: linear-gradient(

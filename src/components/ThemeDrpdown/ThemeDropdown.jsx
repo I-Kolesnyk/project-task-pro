@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useTheme, useUserId } from 'hooks';
 import { editTheme } from 'redux/auth/operations';
-import { SelectWrapper } from './ThemeDropdown.styled';
+import { SelectWrapper, selectStyles } from './ThemeDropdown.styled';
+import Select from 'react-select';
 
 function ThemeDropdown() {
   const dispatch = useDispatch();
@@ -13,24 +15,34 @@ function ThemeDropdown() {
   };
 
   const { register } = useForm({ defaultValues: defaultValues });
+  const [selectedOption, setSelectedOption] = useState(null);
 
-  const onChange = data => {
-    const userData = { id: userId, body: { theme: data.target.value } };
-    console.log(userData);
-    dispatch(editTheme(userData));
+  const options = [
+    { value: 'light', label: 'Light' },
+    { value: 'dark', label: 'Dark' },
+    { value: 'violet', label: 'Violet' },
+  ];
+
+  const onChange = option => {
+    setSelectedOption(null);
+    if (option && option.value !== '') {
+      const userData = { id: userId, body: { theme: option.value } };
+      dispatch(editTheme(userData));
+    }
   };
 
   return (
     <SelectWrapper>
-      <select
+      <Select
         name="theme"
         {...register('theme')}
-        onChange={data => onChange(data)}
-      >
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="violet">Violet</option>
-      </select>
+        onChange={onChange}
+        options={options}
+        styles={selectStyles}
+        placeholder="Theme"
+        isSearchable={false}
+        value={selectedOption}
+      />
     </SelectWrapper>
   );
 }

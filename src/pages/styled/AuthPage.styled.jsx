@@ -8,7 +8,7 @@ const dynamicStyle = ({ theme }) =>
     justify-content: center;
     margin: 0 auto;
 
-    max-width: 1440px;
+    /* max-width: 1440px; */
     height: 100vh;
 
     background: linear-gradient(
@@ -17,16 +17,6 @@ const dynamicStyle = ({ theme }) =>
       #bedbb0 92.19%
     );
 
-    /* border-radius: ${theme.radii.md};
-
-    color: ${theme.authColors.darkText};
-    font-size: ${theme.fontSizes[3]};
-    font-weight: ${theme.fontWeights.medium};
-    letter-spacing: -0.28px;
-    &:hover {
-      background-color: ${theme.authColors.darkButtonBackground};
-      color: ${theme.authColors.lightText};
-    } */
     @media screen and (min-width: ${theme.breakpoints[4]}) {
       width: 344px;
     }
