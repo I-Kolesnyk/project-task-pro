@@ -16,7 +16,9 @@ function HomePage() {
       dispatch(getAllBoards());
     }
     if (allBoards.length !== 0) {
-      const activeBoard = allBoards.boards.filter(board => board.active === true);
+      const activeBoard = allBoards.boards.filter(
+        board => board.active === true
+      );
       if (allBoards.length !== 0 && activeBoard.length !== 0) {
         if (allBoards.length !== 0 && activeBoard.length !== 0) {
           dispatch(getBoardById(`${activeBoard[0]._id}`));
