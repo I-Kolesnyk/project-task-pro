@@ -40,7 +40,7 @@ const dynamicStylesTextArea = ({ theme }) => css`
 `;
 
 const dynamicStylesLabelColorText = ({ theme }) => css`
-  color: ${theme.textColors.secondary};
+  color: ${theme.textColors.dayColor};
   font-size: ${theme.fontSizes[2]};
   margin-bottom: 4px;
 `;

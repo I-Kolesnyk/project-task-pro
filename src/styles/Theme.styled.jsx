@@ -72,6 +72,7 @@ const dark = {
     columnTitleIconHover: '#BEDBB0',
     selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#FFFFFF33',
   },
 
   logOutIcon: {
@@ -166,6 +167,7 @@ const light = {
     columnTitleIconHover: '#121212',
     selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#16161633',
   },
 
   logOutIcon: {
@@ -260,6 +262,7 @@ const violet = {
     columnTitleIconHover: '#5255BC',
     selectedDateHover: '#5255BC50',
     formButtonBg: '#ECEDFD',
+    datePickerCurMonth: '#16161633',
   },
 
   labelColors: {
