@@ -22,13 +22,20 @@ function ScreenPage() {
     board => board.title === boardName
   )._id;
 
+
+
   useEffect(() => {
     dispatch(getBoardById(aciveBoardId));
   }, [aciveBoardId, dispatch]);
 
+  // useEffect(() => {
+  //   console.log(columns)
+  //   setElements(columns);
+  // }, [columns]);
+
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', index);
+    console.log('index', list);
     console.log('removed', result.tasks);
     const [removed] = result.tasks.splice(index, 1);
 
@@ -60,11 +67,11 @@ function ScreenPage() {
       result.destination.index,
       removedElement
     );
-    console.log('listCopy', listCopy);
+    // console.log('listCopy', listCopy);
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  console.log('elements2', elements);
+  // console.log('elements2', elements);
   return (
     !isOneBoardLoading && (
       <>
@@ -78,8 +85,8 @@ function ScreenPage() {
               elements.map(({ title, _id, tasks }, columnIndex) => (
                 <Column
                   cards={tasks}
-                  title={title}
-                  id={_id}
+                  columnTitle={title}
+                  columnId={_id}
                   key={_id}
                   prefix={columnIndex}
                 />
