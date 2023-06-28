@@ -5,33 +5,33 @@ import SvgComponent from './SvgComponent';
 
 const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
-function Card({ id, title, index, priority, deadline, description }) {
+function Card({item, index}) {
   const toDeadLine = date => {
     const deadline = Date.parse(
       new Date(date.replace(/(\d+).(\d+).(\d+)/, '$3/$2/$1'))
     );
     const daysLeft = Math.ceil((deadline - Date.now()) / (1000 * 3600 * 24));
 
-    console.log('days left--> ', daysLeft);
+    // console.log('days left--> ', daysLeft);
     return daysLeft;
   };
 
   return (
-    <Draggable draggableId={id} index={index}>
+    <Draggable draggableId={item._id} index={index} >
       {(provided, snapshot) => {
         return (
           <s.Wrapper
-            priority={priority}
-            key={id}
+            priority={item.priority}
+            key={item._id}
             ref={provided.innerRef}
             snapshot={snapshot}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <s.TaskTitle>{title}</s.TaskTitle>
+            <s.TaskTitle>{item.title}</s.TaskTitle>
             <s.TaskDescription>
-              {description
-                ? description
+              {item.description
+                ? item.description
                 : `
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos sint  itaque tempore ducimus cum eius. Exercitationem quaerat magnam
               pariatur molestiae!`}
@@ -42,21 +42,21 @@ function Card({ id, title, index, priority, deadline, description }) {
                 <s.PriorityBox>
                   <s.DetailsSuptitle>Priority</s.DetailsSuptitle>
 
-                  <s.Priority priority={priority}>
-                    {priority === 'without priority'
+                  <s.Priority priority={item.priority}>
+                    {item.priority === 'without priority'
                       ? 'Without'
-                      : priority[0].toUpperCase() + priority.slice(1)}
+                      : item.priority[0].toUpperCase() + item.priority.slice(1)}
                   </s.Priority>
                 </s.PriorityBox>
                 <s.DeadlineBox>
                   <s.DetailsSuptitle>Deadline</s.DetailsSuptitle>
 
-                  <span>{deadline.replace(/[-]/gi, '/')}</span>
+                  <span>{item.deadline.replace(/[-]/gi, '/')}</span>
                 </s.DeadlineBox>
               </s.Box>
               <s.Box>
                 <div>
-                  {toDeadLine(deadline) <= 1 && (
+                  {toDeadLine(item.deadline) <= 1 && (
                     <s.BellWrapper>
                       <SvgComponent
                         w={'16px'}
@@ -69,7 +69,7 @@ function Card({ id, title, index, priority, deadline, description }) {
                 </div>
                 <s.IconList>
                   {icons.map(icon => (
-                    <s.IconListItem>
+                    <s.IconListItem key={icon}>
                       <s.IconBtn>
                         <SvgComponent
                           w={'16px'}
