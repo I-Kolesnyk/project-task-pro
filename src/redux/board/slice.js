@@ -1,40 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getBoardById } from './operations';
 import { addColumn, addCard } from './operations';
 
 const initialState = {
+  isLoading: false,
   board: {
-    title: 'test',
-    id: '111',
-    columns: [
-      {
-        title: 'first',
-        id: 'first',
-        cards: [
-          { title: 'card-1-1', id: 'c11' },
-          { title: 'card-1-2', id: 'c12' },
-          { title: 'card-1-3', id: 'c13' },
-        ],
-      },
-      {
-        title: 'second',
-        id: 'second',
-        cards: [
-          { title: 'card-2-1', id: 'c21' },
-          { title: 'card-2-2', id: 'c22' },
-          { title: 'card-2-3', id: 'c23' },
-        ],
-      },
-      {
-        title: 'third',
-        id: 'third',
-        cards: [
-          { title: 'card-3-1', id: 'c31' },
-          { title: 'card-3-2', id: 'c32' },
-          { title: 'card-3-3', id: 'c33' },
-        ],
-      },
-    ],
+    board: {
+      _id: '',
+      title: '',
+      icon: '',
+      active: false,
+      owner: '',
+    },
+    columns: [],
   },
 };
 
@@ -53,7 +31,11 @@ export const boardSlice = createSlice({
       })
       .addCase(addColumn.fulfilled, (state, action) => {
         state.board.columns.push(action.payload.data);
-      }),
+      })
+      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
+      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
+      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
+
   // .addCase(addCard.fulfilled, (state, action) => {
   //   const columnIdToUpdate = action.payload.data.column;
   //   const changedColumn = state.board.columns.find(
@@ -61,6 +43,22 @@ export const boardSlice = createSlice({
   //   );
   // })
 });
+
+const handleFulfilled = state => {
+  state.isLoading = false;
+};
+
+const handlePending = state => {
+  state.isLoading = true;
+};
+
+const handleRejected = state => {
+  state.isLoading = false;
+};
+
+const extraActions = [addColumn, addCard];
+
+const getActions = type => extraActions.map(action => action[type]);
 
 export const { setBoard } = boardSlice.actions;
 

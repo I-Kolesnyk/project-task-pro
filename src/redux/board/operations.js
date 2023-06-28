@@ -27,7 +27,7 @@ export const addColumn = createAsyncThunk(
 );
 
 export const addCard = createAsyncThunk(
-  'board/addColumn',
+  'board/addCard',
   async (cardData, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.post(`/api/tasks`, cardData);
