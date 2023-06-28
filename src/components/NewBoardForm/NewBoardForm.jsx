@@ -50,13 +50,13 @@ const NewBoardForm = ({ onClose }) => {
   const renderIcons = () => {
     const icons = [
       'Project',
-      'star-04',
-      'loading-03',
-      'puzzle-piece-02',
+      'star',
+      'loading',
+      'puzzle-piece',
       'container',
-      'lightning-02',
+      'lightning',
       'colors',
-      'hexagon-01',
+      'hexagon',
     ];
 
     return icons.map(icon => (
