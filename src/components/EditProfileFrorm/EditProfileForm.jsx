@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from '../../assets/sprite.svg';
-import { useUserName } from 'hooks';
+import { useUserId, useUserName } from 'hooks';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { editProfile } from 'redux/auth/operations';
 import {
@@ -27,6 +27,7 @@ const EditProfileForm = ({ userAvatar }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState('password');
   const userName = useUserName();
+  const userId = useUserId();
 
   const {
     register,
@@ -60,7 +61,7 @@ const EditProfileForm = ({ userAvatar }) => {
     for (const pair of formData.entries()) {
       console.log(`${pair[0]}, ${pair[1]}`);
     }
-    dispatch(editProfile(formData));
+    dispatch(editProfile(userId, formData));
     reset();
   };
 
