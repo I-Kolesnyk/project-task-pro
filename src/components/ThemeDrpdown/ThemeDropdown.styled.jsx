@@ -21,6 +21,10 @@ export const selectStyles = (selectedOption, optionValue) => ({
   placeholder: provided => ({
     ...provided,
     margin: '0',
+    color:
+      optionValue === 'dark'
+        ? 'rgba(255, 255, 255, 0.5)'
+        : 'rgba(22, 22, 22, 0.8)',
   }),
 
   indicatorSeparator: () => ({
@@ -29,15 +33,25 @@ export const selectStyles = (selectedOption, optionValue) => ({
 
   dropdownIndicator: provided => ({
     ...provided,
-    padding: '20px',
-    color: 'rgba(255, 255, 255, 0.5)',
+    padding: '4px',
+    color:
+      optionValue === 'dark'
+        ? 'rgba(255, 255, 255, 0.5)'
+        : 'rgba(22, 22, 22, 0.8)',
     '&:hover': {
-      color: 'rgba(255, 255, 255, 0.8)',
+      color:
+        optionValue === 'dark'
+          ? 'rgba(255, 255, 255, 0.7)'
+          : 'rgba(22, 22, 22, 0.5)',
+    },
+    '& > svg': {
+      padding: '0',
     },
   }),
 
   menu: (provided, state) => ({
     ...provided,
+    width: '102px',
     padding: '18px 40px 18px 18px',
     fontSize: '14px',
     letterSspacing: '-0.28px',
@@ -78,11 +92,5 @@ export const selectStyles = (selectedOption, optionValue) => ({
           : '#5255BC',
       cursor: 'pointer',
     },
-  }),
-
-  menuPortal: provided => ({
-    ...provided,
-    padding: '18px',
-    backgroundColor: 'blue',
   }),
 });

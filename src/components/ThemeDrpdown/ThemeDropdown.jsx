@@ -50,7 +50,7 @@ function ThemeDropdown() {
         placeholder="Theme"
         isSearchable={false}
         value={selectedOption}
-        menuIsOpen={true}
+        // menuIsOpen={true}
       />
     </div>
   );
