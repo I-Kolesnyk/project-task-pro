@@ -4,7 +4,10 @@ import { addColumn, addCard } from './operations';
 
 const initialState = {
   isLoading: false,
-  board: [],
+  board: {
+    board: [],
+    columns: [],
+  },
 };
 
 export const boardSlice = createSlice({
@@ -15,7 +18,8 @@ export const boardSlice = createSlice({
       state.board.columns = actions.payload;
     },
     removeBoard(state) {
-      state.board = [];
+      state.board.board = [];
+      state.board.columns = [];
     },
   },
   extraReducers: builder =>

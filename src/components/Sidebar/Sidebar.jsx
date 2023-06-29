@@ -6,19 +6,29 @@ import Logo from 'components/Logo/Logo';
 import { useDispatch } from 'react-redux';
 import { getAllBoards } from 'redux/allBoards/operations';
 import { useEffect } from 'react';
-import { useAllBoards } from 'hooks';
+import { useAllBoards, useUserId } from 'hooks';
 import { getBoardById } from 'redux/board/operations';
+import { useState } from 'react';
 
 function Sidebar({ setIsSidebarOpen }) {
   const dispatch = useDispatch();
   const isDesktop = window.screen.width;
- 
+  const user = useUserId();
+  const [isUser, setIsUser] = useState(false);
 
   useEffect(() => {
-    dispatch(getAllBoards());
-  });
+    if (user) {
+      setIsUser(true);
+    }
+  }, [user]);
 
- 
+  useEffect(() => {
+    console.log(isUser);
+    if (isUser) {
+      console.log("i get all boards")
+      dispatch(getAllBoards());
+    }
+  }, [dispatch, isUser]);
 
   const handleClose = () => {
     setIsSidebarOpen(false);
