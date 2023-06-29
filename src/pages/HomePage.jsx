@@ -27,16 +27,7 @@ function HomePage() {
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    if (activeBoard.length !== 0 && allBoards.length !== 0) {
-      dispatch(getAllBoards());
-      if (allBoards.length !== 0) {
-        dispatch(getBoardById(`${activeBoard[0]._id}`));
-        navigate(`${activeBoard[0].title}`);
-      }
-    }
-  }, [activeBoard, allBoards, dispatch, navigate]);
+ 
 
   return (
     <>
@@ -59,6 +50,8 @@ function HomePage() {
       )}
     </>
   );
+
+
 }
 
 export default HomePage;

@@ -11,12 +11,11 @@ import {
 } from './Column.styled';
 import sprite from '../../assets/sprite.svg';
 
-function Column({ title, id, cards, prefix }) {
-  console.log(cards);
+function Column({ columnTitle, columnId, cards, prefix }) {
   return (
     <Wrapper>
       <TaskTitle>
-        <span>{title}</span>
+        <span>{columnTitle}</span>
         <IconList>
           <li>
             <IconButton>
@@ -40,8 +39,8 @@ function Column({ title, id, cards, prefix }) {
           <TaskList {...provided.droppableProps} ref={provided.innerRef}>
             {cards &&
               cards.length > 0 &&
-              cards.map(({ id, title }, index) => (
-                <Card key={id} index={index} title={title} id={id} />
+              cards.map((card, index) => (
+                <Card index={index} item={card} key={card._id}/>
               ))}
             {provided.placeholder}
           </TaskList>
