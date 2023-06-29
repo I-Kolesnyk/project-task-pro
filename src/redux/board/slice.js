@@ -13,15 +13,7 @@ const initialState = {
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {
-    setBoard(state, actions) {
-      state.board.columns = actions.payload;
-    },
-    removeBoard(state) {
-      state.board.board = [];
-      state.board.columns = [];
-    },
-  },
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(getBoardById.fulfilled, (state, action) => {
@@ -57,7 +49,5 @@ const handleRejected = state => {
 const extraActions = [addColumn, addCard];
 
 const getActions = type => extraActions.map(action => action[type]);
-
-export const { setBoard, removeBoard } = boardSlice.actions;
 
 export const boardReducer = boardSlice.reducer;
