@@ -27,8 +27,8 @@ export const axiosPrivateFormData = axios.create({
 
 axiosPrivateJson.interceptors.request.use(
   async config => {
-    const user = localStorage.getItem('persist:auth');
-    const parsedUser = JSON.parse(user);
+    const user = localStorage.getItem('persist:auth'); 
+    const parsedUser = JSON.parse(user);      
     const token = parsedUser.token.slice(1, -1);
     if (token) {
       if (config?.headers) {

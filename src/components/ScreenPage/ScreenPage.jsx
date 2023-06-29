@@ -12,23 +12,40 @@ import { useParams } from 'react-router';
 
 function ScreenPage() {
   const allBoards = useAllBoards();
-  const { columns, board } = useBoard();
-  const [elements, setElements] = useState(columns);
+  const oneBoard = useBoard();
+  console.log('board', oneBoard);
+  // const { columns, board } = useBoard();
+  const [elements, setElements] = useState([]);
   const dispatch = useDispatch();
   const isOneBoardLoading = useOneBoardLoading();
   const { boardName } = useParams();
-
-  const aciveBoardId = allBoards.boards.find(
-    board => board.title === boardName
-  )._id;
+  const [isBoard, setIsBoard] = useState(false);
+  console.log(oneBoard.board.columns);
 
   useEffect(() => {
-    dispatch(getBoardById(aciveBoardId));
-  }, [aciveBoardId, dispatch]);
+    if (oneBoard.board.length !== 0) {
+      setIsBoard(true);
+    }
+  }, [oneBoard.board, setIsBoard]);
+
+  // const aciveBoardId = allBoards.boards.find(
+  //   board => board.title === boardName
+  // )._id;
+
+  // useEffect(() => {
+  //   dispatch(getBoardById(aciveBoardId));
+  // }, [aciveBoardId, dispatch]);
+
+  useEffect(() => {
+if(isBoard) {
+  console.log(oneBoard.board.columns)
+  setElements(oneBoard.board.columns);
+}
+  }, [isBoard, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', index);
+    console.log('index', list);
     console.log('removed', result.tasks);
     const [removed] = result.tasks.splice(index, 1);
 
@@ -60,16 +77,16 @@ function ScreenPage() {
       result.destination.index,
       removedElement
     );
-    console.log('listCopy', listCopy);
+    // console.log('listCopy', listCopy);
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  console.log('elements2', elements);
+  // console.log('elements2', elements);
   return (
-    !isOneBoardLoading && (
+    isBoard && (
       <>
         <header>
-          <h2>{board.title}</h2>
+          <h2>{oneBoard.title}</h2>
           <p>Filters</p>
         </header>
         <Section>
@@ -78,8 +95,8 @@ function ScreenPage() {
               elements.map(({ title, _id, tasks }, columnIndex) => (
                 <Column
                   cards={tasks}
-                  title={title}
-                  id={_id}
+                  columnTitle={title}
+                  columnId={_id}
                   key={_id}
                   prefix={columnIndex}
                 />

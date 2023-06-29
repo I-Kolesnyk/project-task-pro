@@ -2,14 +2,18 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getAllBoards, addNewBoard, updateBoardStatus } from './operations';
 
 const initialState = {
-  boards: [],
+  boards: { boards: [] },
   isLoading: false,
 };
 
 export const allBoardsSlice = createSlice({
   name: 'boards',
   initialState,
-  reducers: {},
+  reducers: {
+    removeBoards(state) {
+      state.boards.boards = [];
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getAllBoards.fulfilled, (state, action) => {
@@ -47,5 +51,7 @@ const handleRejected = state => {
 const extraActions = [getAllBoards, addNewBoard, updateBoardStatus];
 
 const getActions = type => extraActions.map(action => action[type]);
+
+export const { removeBoards } = allBoardsSlice.actions;
 
 export const boardsReducer = allBoardsSlice.reducer;
