@@ -20,7 +20,7 @@ export const boardSlice = createSlice({
         state.board = action.payload.data;
       })
       .addCase(addColumn.fulfilled, (state, action) => {
-        state.board.columns.push(action.payload.data);
+        state.board.board[0].columns.push(action.payload.data);
       })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)

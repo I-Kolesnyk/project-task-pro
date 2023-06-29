@@ -1,16 +1,26 @@
-import { Button, Svg, Box } from './AddColumnButton.styled';
+import { useState } from 'react';
+
 import sprite from '../../assets/sprite.svg';
-import { addColumn } from 'redux/board/operations';
-import { useDispatch } from 'react-redux';
+import Modal from 'components/ModalWindow';
+import AddColumnForm from 'components/AddColumnForm';
+import { Button, Svg, Box } from './AddColumnButton.styled';
 
 const AddColumnButton = () => {
-  const dispatch = useDispatch();
-  const onClick = () => {
-    dispatch(addColumn({ title: 'one', board: '64983c63227de21e95999c01' }));
+    const [isModalOpen, setModalOpen] = useState(false);
+  
+
+  const openModal = () => {
+    setModalOpen(true);
   };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+ 
   return (
+    <>
     <div>
-      <Button onClick={onClick}>
+      <Button onClick={openModal}>
         <Box>
           <Svg>
             <use href={sprite + '#plus'}></use>
@@ -19,6 +29,12 @@ const AddColumnButton = () => {
         Add another column
       </Button>
     </div>
+    {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AddColumnForm onClose={closeModal} />
+        </Modal>
+      )}
+    </>
   );
 };
 
