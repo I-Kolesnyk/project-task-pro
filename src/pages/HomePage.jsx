@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { getAllBoards } from 'redux/allBoards/operations';
-import { useAllBoards } from 'hooks';
-import { getBoardById } from 'redux/board/operations';
+import { useState } from 'react';
+
 import {
   HomePageContainer,
   HomePageText,
@@ -13,11 +9,6 @@ import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 
 function HomePage() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const allBoards = useAllBoards();
-  const activeBoard = allBoards.filter(board => board.active === true);
-
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -27,7 +18,6 @@ function HomePage() {
   const closeModal = () => {
     setModalOpen(false);
   };
- 
 
   return (
     <>
@@ -50,8 +40,6 @@ function HomePage() {
       )}
     </>
   );
-
-
 }
 
 export default HomePage;

@@ -1,47 +1,28 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
-import { useDispatch } from 'react-redux';
 
-import { useBoard, useOneBoardLoading, useAllBoards } from 'hooks';
+import AddColumnButton from 'components/AddColumnButton';
+import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
 import { Section } from './ScreenPage.styled';
-import { setBoard } from 'redux/board/slice';
-import { getBoardById } from 'redux/board/operations';
-import { useParams } from 'react-router';
 
-function ScreenPage() {
-  const allBoards = useAllBoards();
+function ScreenPage() { 
   const oneBoard = useBoard();
-  console.log('board', oneBoard);
-  // const { columns, board } = useBoard();
-  const [elements, setElements] = useState([]);
-  const dispatch = useDispatch();
+  const [elements, setElements] = useState(oneBoard.board.board[0].columns);
   const isOneBoardLoading = useOneBoardLoading();
-  const { boardName } = useParams();
   const [isBoard, setIsBoard] = useState(false);
-  console.log(oneBoard.board.columns);
 
   useEffect(() => {
     if (oneBoard.board.length !== 0) {
       setIsBoard(true);
     }
-  }, [oneBoard.board, setIsBoard]);
-
-  // const aciveBoardId = allBoards.boards.find(
-  //   board => board.title === boardName
-  // )._id;
-
-  // useEffect(() => {
-  //   dispatch(getBoardById(aciveBoardId));
-  // }, [aciveBoardId, dispatch]);
+  }, [oneBoard.board, setIsBoard, oneBoard]);
 
   useEffect(() => {
-if(isBoard) {
-  console.log(oneBoard.board.columns)
-  setElements(oneBoard.board.columns);
-}
-  }, [isBoard, oneBoard.board.columns]);
+    if (isBoard) {    
+      setElements(oneBoard.board.board[0].columns);
+    }
+  }, [isBoard, oneBoard.board.board, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -83,10 +64,11 @@ if(isBoard) {
   };
   // console.log('elements2', elements);
   return (
-    isBoard && (
+    isBoard &&
+    !isOneBoardLoading && (
       <>
         <header>
-          <h2>{oneBoard.title}</h2>
+          <h2>{oneBoard.board.board[0].title}</h2>
           <p>Filters</p>
         </header>
         <Section>
