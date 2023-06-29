@@ -17,6 +17,7 @@ function CustomDatePicker({ startDeadline, setStartDeadline }) {
         onChange={date => {
           setStartDeadline(date);
         }}
+        disabledKeyboardNavigation
         customInput={<CustomInput />}
         dateFormat={'dd/MM/yyyy'}
         minDate={new Date()}
