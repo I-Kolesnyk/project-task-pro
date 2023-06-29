@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { getAllBoards, addNewBoard, updateBoardStatus } from './operations';
 
 const initialState = {
-  boards: [],
+  boards: { boards: [] },
   isLoading: false,
 };
 
@@ -11,7 +11,7 @@ export const allBoardsSlice = createSlice({
   initialState,
   reducers: {
     removeBoards(state) {
-      state.boards = [];
+      state.boards.boards = [];
     },
   },
   extraReducers: builder =>

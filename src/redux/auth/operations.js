@@ -5,6 +5,7 @@ import {
 } from 'services/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+
 export const userRegister = createAsyncThunk(
   'auth/register',
   async (user, thunkAPI) => {
@@ -24,6 +25,7 @@ export const userLogin = createAsyncThunk(
     try {
       const { data } = await axiosPublic.post(`/api/users/login`, user);
       console.log(data);
+ 
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -36,6 +38,7 @@ export const userLogOut = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       await axiosPrivateJson.post('/api/users/logout');
+    
       return;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);

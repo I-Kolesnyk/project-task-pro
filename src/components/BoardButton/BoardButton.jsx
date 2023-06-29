@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-
+import { useParams } from 'react-router';
 import { updateBoardStatus } from 'redux/allBoards/operations';
 import { getBoardById } from 'redux/board/operations';
 import sprite from '../../assets/sprite.svg';
@@ -13,21 +13,22 @@ import {
   IconsWrapper,
 } from './BoardButton.styled';
 
-function BoardButton({ name, boardName, id, icon, isActive }) {
+function BoardButton({ name,  id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const { boardName } = useParams();
   const openModal = () => {
     setIsModalOpen(true);
   };
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (name.toString() === boardName) {
-      dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
-    } else {
-      dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-    }
-  }, [boardName, dispatch, id, name]);
+  // useEffect(() => {
+  //   if (name.toString() === boardName) {
+  //     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+  //   } else {
+  //     dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+  //   }
+  // }, [boardName, dispatch, id, name]);
 
   const handleActive = () => {
     // dispatch(getBoardById(id));
