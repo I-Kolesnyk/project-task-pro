@@ -4,16 +4,7 @@ import { addColumn, addCard } from './operations';
 
 const initialState = {
   isLoading: false,
-  board: {
-    board: {
-      _id: '',
-      title: '',
-      icon: '',
-      active: false,
-      owner: '',
-    },
-    columns: [],
-  },
+  board: [],
 };
 
 export const boardSlice = createSlice({
@@ -22,6 +13,9 @@ export const boardSlice = createSlice({
   reducers: {
     setBoard(state, actions) {
       state.board.columns = actions.payload;
+    },
+    removeBoard(state) {
+      state.board = [];
     },
   },
   extraReducers: builder =>
@@ -60,6 +54,6 @@ const extraActions = [addColumn, addCard];
 
 const getActions = type => extraActions.map(action => action[type]);
 
-export const { setBoard } = boardSlice.actions;
+export const { setBoard, removeBoard } = boardSlice.actions;
 
 export const boardReducer = boardSlice.reducer;

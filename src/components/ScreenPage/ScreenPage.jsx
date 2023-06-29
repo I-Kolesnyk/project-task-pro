@@ -12,21 +12,21 @@ import { useParams } from 'react-router';
 
 function ScreenPage() {
   const allBoards = useAllBoards();
-  const { columns, board } = useBoard();
-  const [elements, setElements] = useState(columns);
+  const { board } = useBoard();
+  console.log('active', board);
+  // const { columns, board } = useBoard();
+  const [elements, setElements] = useState(board.columns);
   const dispatch = useDispatch();
   const isOneBoardLoading = useOneBoardLoading();
   const { boardName } = useParams();
+  console.log(board.columns);
+  // const aciveBoardId = allBoards.boards.find(
+  //   board => board.title === boardName
+  // )._id;
 
-  const aciveBoardId = allBoards.boards.find(
-    board => board.title === boardName
-  )._id;
-
-
-
-  useEffect(() => {
-    dispatch(getBoardById(aciveBoardId));
-  }, [aciveBoardId, dispatch]);
+  // useEffect(() => {
+  //   dispatch(getBoardById(aciveBoardId));
+  // }, [aciveBoardId, dispatch]);
 
   // useEffect(() => {
   //   console.log(columns)

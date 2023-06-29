@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
+import { getAllBoards } from 'redux/allBoards/operations';
 
 const schema = yup
   .object({
@@ -53,7 +54,7 @@ const LoginForm = () => {
   };
 
   const onSubmit = data => {
-    dispatch(userLogin(data));
+    dispatch(userLogin(data));   
     reset();
   };
 
