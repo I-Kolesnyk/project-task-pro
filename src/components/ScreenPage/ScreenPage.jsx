@@ -12,14 +12,22 @@ import { useParams } from 'react-router';
 
 function ScreenPage() {
   const allBoards = useAllBoards();
-  const { board } = useBoard();
-  console.log('active', board);
+  const oneBoard = useBoard();
+  console.log('board', oneBoard);
   // const { columns, board } = useBoard();
-  const [elements, setElements] = useState(board.columns);
+  const [elements, setElements] = useState([]);
   const dispatch = useDispatch();
   const isOneBoardLoading = useOneBoardLoading();
   const { boardName } = useParams();
-  console.log(board.columns);
+  const [isBoard, setIsBoard] = useState(false);
+  console.log(oneBoard.board.columns);
+
+  useEffect(() => {
+    if (oneBoard.board.length !== 0) {
+      setIsBoard(true);
+    }
+  }, [oneBoard.board, setIsBoard]);
+
   // const aciveBoardId = allBoards.boards.find(
   //   board => board.title === boardName
   // )._id;
@@ -28,10 +36,12 @@ function ScreenPage() {
   //   dispatch(getBoardById(aciveBoardId));
   // }, [aciveBoardId, dispatch]);
 
-  // useEffect(() => {
-  //   console.log(columns)
-  //   setElements(columns);
-  // }, [columns]);
+  useEffect(() => {
+if(isBoard) {
+  console.log(oneBoard.board.columns)
+  setElements(oneBoard.board.columns);
+}
+  }, [isBoard, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -73,10 +83,10 @@ function ScreenPage() {
   };
   // console.log('elements2', elements);
   return (
-    !isOneBoardLoading && (
+    isBoard && (
       <>
         <header>
-          <h2>{board.title}</h2>
+          <h2>{oneBoard.title}</h2>
           <p>Filters</p>
         </header>
         <Section>

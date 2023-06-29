@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import AddBoardButton from 'components/AddBoardButton';
 import BoardButton from 'components/BoardButton';
 import { useAllBoards, useIsBoardsLoading } from 'hooks';
@@ -14,18 +14,29 @@ function BoardList() {
   const isBoardsLoading = useIsBoardsLoading();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isBoards, setIsBoards] = useState(false);
 
   useEffect(() => {
+    if (allBoards.boards.length !== 0) {
+      setIsBoards(true);
+    }
+  }, [allBoards.boards.length]);
+
+  useEffect(() => {
+    console.log("isBoards", isBoards)
+  if (isBoards) {
     if (allBoards.boards.length !== 0) {
       const activeBoard = allBoards.boards.filter(
         board => board.active === true
       );
-      console.log("activeBoard", activeBoard)
+      console.log('activeBoard', activeBoard);
       if (activeBoard) {
+        console.log("i get one board")
         dispatch(getBoardById(`${activeBoard[0]._id}`));
       }
     }
-  }, [allBoards.boards, dispatch]);
+  }
+  }, [allBoards.boards, dispatch, isBoards]);
 
   return (
     <Wrapper>
