@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { useBoard, useOneBoardLoading, useAllBoards } from 'hooks';
 import Column from 'components/Column';
-import { Section } from './ScreenPage.styled';
+import { Wrapper, ColumnList, Header, BoardTitle } from './ScreenPage.styled';
 import { setBoard } from 'redux/board/slice';
 import { getBoardById } from 'redux/board/operations';
 import { useParams } from 'react-router';
@@ -13,14 +13,13 @@ import { useParams } from 'react-router';
 function ScreenPage() {
   const allBoards = useAllBoards();
   const oneBoard = useBoard();
-  console.log('board', oneBoard);
+  // console.log('oneBoard', oneBoard);
   // const { columns, board } = useBoard();
   const [elements, setElements] = useState([]);
   const dispatch = useDispatch();
   const isOneBoardLoading = useOneBoardLoading();
   const { boardName } = useParams();
   const [isBoard, setIsBoard] = useState(false);
-  console.log(oneBoard.board.columns);
 
   useEffect(() => {
     if (oneBoard.board.length !== 0) {
@@ -37,10 +36,9 @@ function ScreenPage() {
   // }, [aciveBoardId, dispatch]);
 
   useEffect(() => {
-if(isBoard) {
-  console.log(oneBoard.board.columns)
-  setElements(oneBoard.board.columns);
-}
+    if (isBoard) {
+      setElements(oneBoard.board.columns);
+    }
   }, [isBoard, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
@@ -77,19 +75,20 @@ if(isBoard) {
       result.destination.index,
       removedElement
     );
-    // console.log('listCopy', listCopy);
+    console.log('listCopy', listCopy);
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  // console.log('elements2', elements);
+  console.log('elements --> ', elements);
+
   return (
     isBoard && (
-      <>
-        <header>
-          <h2>{oneBoard.title}</h2>
+      <Wrapper>
+        <Header>
+          <h2>{oneBoard.boardtitle}</h2>
           <p>Filters</p>
-        </header>
-        <Section>
+        </Header>
+        <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
             {elements.length !== 0 &&
               elements.map(({ title, _id, tasks }, columnIndex) => (
@@ -103,8 +102,8 @@ if(isBoard) {
               ))}
           </DragDropContext>
           <AddColumnButton />
-        </Section>
-      </>
+        </ColumnList>
+      </Wrapper>
     )
   );
 }
