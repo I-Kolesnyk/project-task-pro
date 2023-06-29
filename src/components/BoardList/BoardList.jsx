@@ -23,19 +23,19 @@ function BoardList() {
   }, [allBoards.boards.length]);
 
   useEffect(() => {
-    console.log("isBoards", isBoards)
-  if (isBoards) {
-    if (allBoards.boards.length !== 0) {
-      const activeBoard = allBoards.boards.filter(
-        board => board.active === true
-      );
-      console.log('activeBoard', activeBoard);
-      if (activeBoard) {
-        console.log("i get one board")
-        dispatch(getBoardById(`${activeBoard[0]._id}`));
+    console.log('isBoards', isBoards);
+    if (isBoards) {
+      if (allBoards.boards.length !== 0) {
+        const activeBoard = allBoards.boards.filter(
+          board => board.active === true
+        );
+        console.log('activeBoard', activeBoard);
+        if (activeBoard) {
+          console.log('i get one board');
+          dispatch(getBoardById(`${activeBoard[0]._id}`));
+        }
       }
     }
-  }
   }, [allBoards.boards, dispatch, isBoards]);
 
   return (
