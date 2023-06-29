@@ -1,13 +1,11 @@
-export const selectStyles = {
+export const selectStyles = (selectedOption, optionValueName) => ({
   control: (provided, state) => ({
     ...provided,
-    // backgroundColor: 'red',
-    backgroundColor: 'theme.backgroundColors.header',
+    backgroundColor: optionValueName === 'dark' ? '#151515' : 'none',
     border: 'none',
     borderRadius: '4px',
     outline: 'none',
     padding: '0px',
-
     fontSize: '14px',
     fontWeight: '500',
     letterSpacing: '-0.28px',
@@ -17,13 +15,11 @@ export const selectStyles = {
 
   valueContainer: provided => ({
     ...provided,
-
     padding: '0',
   }),
 
   placeholder: provided => ({
     ...provided,
-
     margin: '0',
   }),
 
@@ -45,28 +41,23 @@ export const selectStyles = {
     padding: '18px 40px 18px 18px',
     fontSize: '14px',
     letterSspacing: '-0.28px',
-
     borderRadius: '8px',
     border: '1px solid #BEDBB0',
-    // backgroundColor: `theme.backgroundColors.header`,
-    backgroundColor: '#151515',
+    backgroundColor: optionValueName === 'dark' ? '#151515' : '#fff',
     boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)',
   }),
 
   menuList: (provided, state) => ({
     ...provided,
-    // backgroundColor: 'red',
     '& > div': {
       padding: '0',
-
-      backgroundColor: '#151515',
+      backgroundColor: optionValueName === 'dark' ? '#151515' : '#fff',
       color: state.isSelected ? '#BEDBB0;' : 'rgba(255, 255, 255, 0.5)',
       cursor: 'pointer',
     },
     '& > div:not(:last-child)': {
       marginBottom: '4px',
     },
-
     '& > div:hover': {
       color: '#BEDBB0',
       cursor: 'pointer',
@@ -78,4 +69,4 @@ export const selectStyles = {
     padding: '18px',
     backgroundColor: 'blue',
   }),
-};
+});
