@@ -52,8 +52,16 @@ export const selectStyles = (selectedOption, optionValue) => ({
     ...provided,
     '& > div': {
       padding: '0',
-      backgroundColor: optionValue === 'dark' ? '#151515' : '#fff',
-      color: state.isSelected ? '#BEDBB0;' : 'rgba(255, 255, 255, 0.5)',
+      backgroundColor:
+        optionValue === 'light' || optionValue === 'violet'
+          ? '#fff'
+          : '#151515',
+
+      color: state.isSelected
+        ? '#BEDBB0'
+        : optionValue === 'light' || optionValue === 'violet'
+        ? '#151515'
+        : 'rgba(255, 255, 255, 0.5)',
       cursor: 'pointer',
     },
     '& > div:not(:last-child)': {
