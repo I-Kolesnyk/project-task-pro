@@ -11,9 +11,10 @@ import {
   Title,
   ActiveSvg,
   IconsWrapper,
+  IconButton,
 } from './BoardButton.styled';
 
-function BoardButton({ name,  id, icon, isActive }) {
+function BoardButton({ name, id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const { boardName } = useParams();
@@ -43,16 +44,16 @@ function BoardButton({ name,  id, icon, isActive }) {
         <Title>{name}</Title>
         {isActive && (
           <IconsWrapper>
-            <button type="button" onClick={openModal}>
+            <IconButton type="button" onClick={openModal}>
               <ActiveSvg width="18px" height="18px">
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
-            </button>
-            <button type="button">
+            </IconButton>
+            <IconButton type="button">
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
-            </button>
+            </IconButton>
           </IconsWrapper>
         )}
       </Wrapper>
