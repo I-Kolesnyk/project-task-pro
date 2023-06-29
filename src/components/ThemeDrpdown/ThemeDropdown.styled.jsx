@@ -42,7 +42,11 @@ export const selectStyles = (selectedOption, optionValue) => ({
     fontSize: '14px',
     letterSspacing: '-0.28px',
     borderRadius: '8px',
-    border: '1px solid #BEDBB0',
+
+    border:
+      optionValue === 'light' || optionValue === 'dark'
+        ? '1px solid #BEDBB0'
+        : '1px solid #ECEDFD',
     backgroundColor:
       optionValue === 'light' || optionValue === 'violet' ? '#fff' : '#151515',
     boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)',
@@ -68,7 +72,10 @@ export const selectStyles = (selectedOption, optionValue) => ({
       marginBottom: '4px',
     },
     '& > div:hover': {
-      color: '#BEDBB0',
+      color:
+        optionValue === 'light' || optionValue === 'dark'
+          ? '#BEDBB0'
+          : '#5255BC',
       cursor: 'pointer',
     },
   }),
