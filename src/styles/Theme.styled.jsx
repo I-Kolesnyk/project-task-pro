@@ -40,6 +40,8 @@ const dark = {
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
     addColumnButton: '#ffffff',
+    dayColor: '#FFFFFF80',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -68,7 +70,9 @@ const dark = {
     addColumnIconFill: '#FFFFFF',
     columnTitleIcon: 'rgba(255, 255, 255, 0.5)',
     columnTitleIconHover: '#BEDBB0',
+    selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#FFFFFF33',
   },
 
   logOutIcon: {
@@ -131,6 +135,8 @@ const light = {
     logo: '#161616',
     addButton: '#161616',
     addColumnButton: '#161616',
+    dayColor: '#16161680',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -159,7 +165,9 @@ const light = {
     addColumnIconFill: ' #161616',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#121212',
+    selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#16161633',
   },
 
   logOutIcon: {
@@ -222,6 +230,8 @@ const violet = {
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
     addColumnButton: '#161616',
+    dayColor: '#16161680',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -250,7 +260,9 @@ const violet = {
     addColumnIconFill: 'rgba(82, 85, 188, 1)',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#5255BC',
+    selectedDateHover: '#5255BC50',
     formButtonBg: '#ECEDFD',
+    datePickerCurMonth: '#16161633',
   },
 
   labelColors: {
