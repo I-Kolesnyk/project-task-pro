@@ -1,7 +1,7 @@
-export const selectStyles = (selectedOption, optionValueName) => ({
+export const selectStyles = (selectedOption, optionValue) => ({
   control: (provided, state) => ({
     ...provided,
-    backgroundColor: optionValueName === 'dark' ? '#151515' : 'none',
+    backgroundColor: 'none',
     border: 'none',
     borderRadius: '4px',
     outline: 'none',
@@ -43,7 +43,8 @@ export const selectStyles = (selectedOption, optionValueName) => ({
     letterSspacing: '-0.28px',
     borderRadius: '8px',
     border: '1px solid #BEDBB0',
-    backgroundColor: optionValueName === 'dark' ? '#151515' : '#fff',
+    backgroundColor:
+      optionValue === 'light' || optionValue === 'violet' ? '#fff' : '#151515',
     boxShadow: '0px 4px 16px 0px rgba(17, 17, 17, 0.10)',
   }),
 
@@ -51,7 +52,7 @@ export const selectStyles = (selectedOption, optionValueName) => ({
     ...provided,
     '& > div': {
       padding: '0',
-      backgroundColor: optionValueName === 'dark' ? '#151515' : '#fff',
+      backgroundColor: optionValue === 'dark' ? '#151515' : '#fff',
       color: state.isSelected ? '#BEDBB0;' : 'rgba(255, 255, 255, 0.5)',
       cursor: 'pointer',
     },

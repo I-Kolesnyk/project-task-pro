@@ -24,20 +24,20 @@ function ThemeDropdown() {
     { value: 'violet', label: 'Violet' },
   ];
 
-  const { value } = optionValue;
-  console.log('optionValueName', value);
-
   const onChange = option => {
     setOptionValue(option);
     setSelectedOption(null);
     if (option && option.value !== '') {
       const userData = { id: userId, body: { theme: option.value } };
 
+      const userDataTheme = userData.body.theme;
+
+      setOptionValue(userDataTheme);
       dispatch(editTheme(userData));
     }
   };
 
-  const themeSelectStyles = selectStyles(selectedOption, value);
+  const themeSelectStyles = selectStyles(selectedOption, optionValue);
 
   return (
     <div>
