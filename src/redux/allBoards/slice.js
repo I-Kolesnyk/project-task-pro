@@ -9,15 +9,19 @@ const initialState = {
 export const allBoardsSlice = createSlice({
   name: 'boards',
   initialState,
-  reducers: {
-    removeBoards(state) {
-      state.boards.boards = [];
-    },
+  reducers: {    
   },
   extraReducers: builder =>
     builder
       .addCase(getAllBoards.fulfilled, (state, action) => {
         state.boards = action.payload.data;
+        state.isLoading = false;
+      })
+      .addCase(getAllBoards.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllBoards.rejected, (state, action) => {
+        state.isLoading = false;
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.boards.boards.push(action.payload.data.board);
@@ -30,28 +34,9 @@ export const allBoardsSlice = createSlice({
         if (changedBoard) {
           changedBoard.active = action.payload.data.board.active;
         }
-      })
-      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
-      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
-      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
+      }),
+      
 });
 
-const handleFulfilled = state => {
-  state.isLoading = false;
-};
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = state => {
-  state.isLoading = false;
-};
-
-const extraActions = [getAllBoards, addNewBoard, updateBoardStatus];
-
-const getActions = type => extraActions.map(action => action[type]);
-
-export const { removeBoards } = allBoardsSlice.actions;
 
 export const boardsReducer = allBoardsSlice.reducer;
