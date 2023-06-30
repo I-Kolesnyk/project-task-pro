@@ -1,6 +1,6 @@
 export { useTheme } from './useTheme';
 export { useIsLoggedIn } from './useIsLoggedIn';
-export { useIsLoading } from './useIsLoading';
+export { useIsUserLoading } from './useIsUserLoading';
 export { useUserName } from './useUserName';
 export { useUserAvatar } from './useUserAvatar';
 export { useAllBoards } from './useAllBoards';

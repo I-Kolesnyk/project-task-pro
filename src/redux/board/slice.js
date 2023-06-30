@@ -18,40 +18,28 @@ export const boardSlice = createSlice({
     builder
       .addCase(getBoardById.fulfilled, (state, action) => {
         state.board = action.payload.data;
+        state.isLoading = false;
+      })
+      .addCase(getBoardById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getBoardById.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(addColumn.fulfilled, (state, action) => {
         state.board.board[0].columns.push(action.payload.data);
       })
       .addCase(addCard.fulfilled, (state, action) => {
         const columnIdToUpdate = action.payload.data.taks.column;
-        console.log(columnIdToUpdate)
+        console.log(columnIdToUpdate);
         const changedColumn = state.board.board[0].columns.find(
           column => column._id === columnIdToUpdate
         );
-        console.log(changedColumn)
+        console.log(changedColumn);
         if (changedColumn) {
           changedColumn.tasks.push(action.payload.data.taks);
         }
-      })
-      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
-      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
-      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
+      }),
 });
-
-const handleFulfilled = state => {
-  state.isLoading = false;
-};
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = state => {
-  state.isLoading = false;
-};
-
-const extraActions = [addColumn, addCard];
-
-const getActions = type => extraActions.map(action => action[type]);
 
 export const boardReducer = boardSlice.reducer;

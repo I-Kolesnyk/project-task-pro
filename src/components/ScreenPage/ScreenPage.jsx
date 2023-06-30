@@ -8,22 +8,15 @@ import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoard();
-  console.log(oneBoard.board.board[0].columns)
+  console.log(oneBoard.board.board[0].columns);
   const [elements, setElements] = useState([]);
-  const isOneBoardLoading = useOneBoardLoading();
-  const [isBoard, setIsBoard] = useState(false);
+  const isLoading = useOneBoardLoading();  
 
   useEffect(() => {
-    if (oneBoard.board.length !== 0) {
-      setIsBoard(true);
-    }
-  }, [oneBoard.board, setIsBoard, oneBoard]);
-
-  useEffect(() => {
-    if (isBoard) {
+    if (!isLoading) {
       setElements(oneBoard.board.board[0].columns);
     }
-  }, [isBoard, oneBoard.board.board, oneBoard.board.columns]);
+  }, [isLoading, oneBoard.board.board, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -66,7 +59,7 @@ function ScreenPage() {
   console.log('elements --> ', elements);
 
   return (
-    isBoard && (
+    !isLoading && (
       <Wrapper>
         <Header>
           <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>

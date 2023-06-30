@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   user: { name: '', email: '', avatar: '', id: '' },
-  token: "",
+  token: '',
   theme: 'dark',
   isLoggedIn: false,
   isLoading: false,
@@ -28,6 +28,7 @@ const authSlice = createSlice({
         state.token = action.payload.data.token;
         state.theme = action.payload.data.user.theme;
         state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
@@ -37,10 +38,17 @@ const authSlice = createSlice({
         state.token = action.payload.data.token;
         state.theme = action.payload.data.user.theme;
         state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(userLogin.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(userLogin.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(userLogOut.fulfilled, state => {
         state.user = { name: '', email: '', avatar: '' };
-        state.token = "";
+        state.token = '';
         state.theme = 'dark';
         state.isLoggedIn = false;
       })

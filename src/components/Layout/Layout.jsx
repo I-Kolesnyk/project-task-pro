@@ -8,20 +8,25 @@ import { getAllBoards } from 'redux/allBoards/operations';
 import { getBoardById } from 'redux/board/operations';
 
 import Loader from 'components/Loader';
-import { useUserId, useAllBoards, useBoard } from 'hooks';
+import {
+  useUserId,
+  useAllBoards,
+  useBoard,
+  useIsBoardsLoading,
+  useIsUserLoading,
+  useOneBoardLoading,
+} from 'hooks';
 import { StyledMain } from './Layout.styled';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const user = useUserId();
-  const allBoards = useAllBoards();
-  const oneBoard = useBoard();
-  const [isUser, setIsUser] = useState(false);
-  const [isBoards, setIsBoards] = useState(false);
-  const [isBoard, setIsBoard] = useState(false);
+  const navigate = useNavigate();  
+  const allBoards = useAllBoards(); 
+  const isUserLoading = useIsUserLoading();
+  const isLoading = useIsBoardsLoading();
+  const isBoardLoading = useOneBoardLoading(); 
 
   const isDesktop = window.screen.width;
 
@@ -39,43 +44,33 @@ function Layout() {
   }, [isDesktop]);
 
   useEffect(() => {
-    if (user) {
-      setIsUser(true);
-    }
-  }, [user]);
-
-  useEffect(() => {  
-    if (isUser) {
+    if (!isUserLoading) {
       dispatch(getAllBoards());
     }
-  }, [dispatch, isUser]);
+  }, [dispatch, isUserLoading]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
   };
 
   useEffect(() => {
-    if (allBoards.boards.length !== 0) {
-      setIsBoards(true);
-    }
-  }, [allBoards.boards.length]);
-
-  useEffect(() => {
-    if (isBoards) {   
+    if (!isLoading) {
       if (allBoards.boards.length !== 0) {
         const activeBoard = allBoards.boards.filter(
           board => board.active === true
-        );       
+        );
         if (activeBoard.length === 0) {
           return;
         }
         if (activeBoard) {
           dispatch(getBoardById(`${activeBoard[0]._id}`));
-          navigate(`${activeBoard[0].title}`);
+          if (!isBoardLoading) {
+            navigate(`${activeBoard[0].title}`);
+          }
         }
       }
     }
-  }, [allBoards.boards, dispatch, isBoards, navigate]);
+  }, [allBoards.boards, dispatch, isBoardLoading, isLoading, navigate]);
 
   // const handleClickOutside = e => {
   //   if (!myRef.current.contains(e.target)) {
@@ -83,14 +78,8 @@ function Layout() {
   //   }
   // };
 
-  useEffect(() => {
-    if (oneBoard.board) {
-      setIsBoard(true);
-    }
-  }, [oneBoard.board, setIsBoard]);
-
   return (
-    isBoards && isBoard && (
+    !isLoading && (
       <>
         <Header openSidebar={openSidebar} />
         <div ref={myRef}>
