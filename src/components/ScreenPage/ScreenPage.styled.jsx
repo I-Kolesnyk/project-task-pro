@@ -18,8 +18,19 @@ export const Wrapper = styled.section`
 
 const columnListDynamicStyles = ({ theme }) => css`
   display: flex;
+
+  padding-bottom: 24px;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    padding-bottom: 52px;
+  }
+
+  @media only screen and (min-width: ${theme.breakpoints[2]}) {
+    padding-bottom: 16px;
+  }
+
   overflow-x: auto;
-  /* scroll-snap-type: x mandatory; */
+  scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
     width: 12px;
