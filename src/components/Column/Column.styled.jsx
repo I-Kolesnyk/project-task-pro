@@ -42,16 +42,12 @@ export const ColumnTitle = styled.div`
 const taskListDynamicStyles = ({ theme }) => css`
   margin-bottom: 14px;
   width: 347px;
-  /* height: 478px; */
+
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 
   @media only screen and (min-width: 768px) {
     width: 350px;
-    /* height: 640px; */
-  }
-  @media only screen and (min-width: 1440px) {
-    /* height: 478px; */
   }
 
   &::-webkit-scrollbar {
