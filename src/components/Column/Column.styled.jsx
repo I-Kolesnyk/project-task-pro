@@ -31,6 +31,10 @@ const taskTitleDynamicStyles = ({ theme }) => css`
   background-color: ${theme.backgroundColors.pageButton};
 `;
 
+export const TaskTitle = styled.p`
+  ${taskTitleDynamicStyles}
+`;
+
 const taskListDynamicStyles = ({ theme }) => css`
   position: absolute;
   top: 70px;
@@ -81,10 +85,6 @@ const dynamicStylesButton = ({ theme }) => css`
 
 export const Wrapper = styled.div`
   ${wrapperDynamicStyles}
-`;
-
-export const TaskTitle = styled.p`
-  ${taskTitleDynamicStyles}
 `;
 
 export const TaskList = styled.ul`

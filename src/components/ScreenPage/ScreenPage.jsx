@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import AddColumnButton from 'components/AddColumnButton';
 import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
-import { Wrapper, Header, ColumnList } from './ScreenPage.styled';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoard();
@@ -68,7 +68,7 @@ function ScreenPage() {
     isBoard && (
       <Wrapper>
         <Header>
-          <h2>{oneBoard.board.board[0].title}</h2>
+          <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
           <p>Filters</p>
         </Header>
         <ColumnList>
