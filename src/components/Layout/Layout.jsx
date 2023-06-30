@@ -9,9 +9,7 @@ import { getBoardById } from 'redux/board/operations';
 
 import Loader from 'components/Loader';
 import {
-  useUserId,
   useAllBoards,
-  useBoard,
   useIsBoardsLoading,
   useIsUserLoading,
   useOneBoardLoading,
@@ -22,11 +20,11 @@ function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();  
-  const allBoards = useAllBoards(); 
+  const navigate = useNavigate();
+  const allBoards = useAllBoards();
   const isUserLoading = useIsUserLoading();
   const isLoading = useIsBoardsLoading();
-  const isBoardLoading = useOneBoardLoading(); 
+  const isBoardLoading = useOneBoardLoading();
 
   const isDesktop = window.screen.width;
 

@@ -74,7 +74,7 @@ function App() {
             <Route path="/" element={<Navigate to="/welcome" />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Suspense>
+        </Suspense>      
       </ThemeProvider>
     )
   );

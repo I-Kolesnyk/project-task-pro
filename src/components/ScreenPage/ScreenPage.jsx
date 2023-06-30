@@ -15,8 +15,7 @@ import {
 import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
-  const oneBoard = useBoard();
-  console.log(oneBoard.board.board[0].columns);
+  const oneBoard = useBoard();  
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
 
@@ -28,10 +27,12 @@ function ScreenPage() {
 
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', list);
-    console.log('removed', result.tasks);
+    console.log('index', index.typeof);
+    console.log('list', list);
+    console.log('tasks', Array.isArray(result.tasks));
+    console.log('result', result);
     const [removed] = result.tasks.splice(index, 1);
-
+    console.log('removed', removed);
     return [removed, result];
   };
 
@@ -48,8 +49,9 @@ function ScreenPage() {
     const listCopy = { ...elements };
     console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
+    console.log("sorseLise",  sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
-      sourceList,
+      sourceList,      
       result.source.index
     );
     listCopy[result.source.droppableId] = newSourceList;
@@ -64,7 +66,7 @@ function ScreenPage() {
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  console.log('elements --> ', elements);
+  // console.log('elements --> ', elements);
 
   return (
     !isLoading && (
