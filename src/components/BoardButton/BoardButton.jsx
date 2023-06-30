@@ -6,8 +6,7 @@ import { updateBoardStatus } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
-import { getBoardById } from 'redux/board/operations';
-import { useOneBoardLoading, useIsBoardsLoading, useBoardId } from 'hooks';
+import { useIsBoardsLoading } from 'hooks';
 import {
   Svg,
   Wrapper,
@@ -22,7 +21,6 @@ function BoardButton({ name, id, icon, isActive }) {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-  const isBoardLoading = useOneBoardLoading();
   const isAllBoardsLoading = useIsBoardsLoading();
 
 

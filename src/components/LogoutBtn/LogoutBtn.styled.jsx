@@ -6,9 +6,6 @@ const dynamicTextColor = ({ theme }) => css`
 `;
 
 export const StyledLogOutBtn = styled.button(`
-position: absolute;
-left: 24px;
-bottom: 24px;
 display: flex;
 gap: 14px;
 justify-content: center;

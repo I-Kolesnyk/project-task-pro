@@ -27,11 +27,12 @@ function ScreenPage() {
 
   const removeFromList = (list, index) => {
     const result = list;
+    console.log('index', index.typeof);
     console.log('list', list);
-    console.log('removed', result.tasks);
+    console.log('tasks', Array.isArray(result.tasks));
     console.log('result', result);
     const [removed] = result.tasks.splice(index, 1);
-
+    console.log('removed', removed);
     return [removed, result];
   };
 
@@ -48,8 +49,9 @@ function ScreenPage() {
     const listCopy = { ...elements };
     console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
+    console.log("sorseLise",  sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
-      sourceList,
+      sourceList,      
       result.source.index
     );
     listCopy[result.source.droppableId] = newSourceList;
