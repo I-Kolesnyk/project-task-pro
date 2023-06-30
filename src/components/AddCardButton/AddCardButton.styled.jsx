@@ -12,7 +12,8 @@ const dynamicStyledAddCardButton = ({ theme }) => css`
   font-weight: ${theme.fontWeights.medium};
   letter-spacing: -0.28px;
   transition: scale 250ms ease-in 0s;
-  &:hover {
+  &:hover,
+  &focus {
     scale: 1.05;
   }
 `;

@@ -2,43 +2,58 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const wrapperDynamicStyles = ({ theme }) => css`
-  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 335px;
+  width: 347px;
   height: 618px;
-  margin-left: 20px;
-  margin-right: 34px;
+  margin-right: 18px;
+  scroll-snap-align: start;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    width: 350px;
     height: 780px;
   }
 
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
+    width: 350px;
     height: 618px;
   }
 `;
 
-const taskTitleDynamicStyles = ({ theme }) => css`
+export const Wrapper = styled.li`
+  ${wrapperDynamicStyles}
+`;
+
+const columnTitleDynamicStyles = ({ theme }) => css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  width: 335px;
   padding: 18px 20px 17px;
+  margin-bottom: 14px;
   border-radius: ${theme.radii.md};
   color: ${theme.textColors.main};
   background-color: ${theme.backgroundColors.pageButton};
 `;
 
+export const ColumnTitle = styled.div`
+  ${columnTitleDynamicStyles}
+`;
+
 const taskListDynamicStyles = ({ theme }) => css`
-  position: absolute;
-  top: 70px;
-  left: 0;
   height: 478px;
+  margin-bottom: 14px;
   width: 347px;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+
+  @media only screen and (min-width: 768px) {
+    width: 350px;
+    height: 640px;
+  }
+  @media only screen and (min-width: 1440px) {
+    height: 478px;
+  }
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -54,23 +69,15 @@ const taskListDynamicStyles = ({ theme }) => css`
   }
 `;
 
-const dynamicStylesSvg = ({ theme }) => css`
-  width: 16px;
-  height: 16px;
-  fill: transparent;
-
-  stroke: inherit;
-  transition: stroke 250ms ease-in 0s;
-  &:hover,
-  &:focus {
-    stroke: inherit;
-  }
+export const TaskList = styled.ul`
+  ${taskListDynamicStyles}
 `;
 
 const dynamicStylesButton = ({ theme }) => css`
   display: block;
   height: 16px;
-  transition: scale 250ms ease-in 0s;
+  transition: scale 250ms ease-in 0s, stroke 250ms ease-in 0s;
+  fill: transparent;
   stroke: ${theme.backgroundColors.columnTitleIcon};
   &:hover,
   &:focus {
@@ -79,16 +86,8 @@ const dynamicStylesButton = ({ theme }) => css`
   }
 `;
 
-export const Wrapper = styled.div`
-  ${wrapperDynamicStyles}
-`;
-
-export const TaskTitle = styled.p`
-  ${taskTitleDynamicStyles}
-`;
-
-export const TaskList = styled.ul`
-  ${taskListDynamicStyles}
+export const IconButton = styled.button`
+  ${dynamicStylesButton}
 `;
 
 export const IconList = styled.ul`
@@ -97,12 +96,4 @@ export const IconList = styled.ul`
   & > li:not(:last-child) {
     margin-right: 8px;
   }
-`;
-
-export const Svg = styled.svg`
-  ${dynamicStylesSvg}
-`;
-
-export const IconButton = styled.button`
-  ${dynamicStylesButton}
 `;

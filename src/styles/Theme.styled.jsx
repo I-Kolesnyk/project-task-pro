@@ -73,6 +73,7 @@ const dark = {
     selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
     datePickerCurMonth: '#FFFFFF33',
+    addCardButtonHover: '#ffffff',
   },
 
   logOutIcon: {
@@ -168,6 +169,7 @@ const light = {
     selectedDateHover: '#BEDBB050',
     formButtonBg: '#BEDBB0',
     datePickerCurMonth: '#16161633',
+    addCardButtonHover: '#ffffff',
   },
 
   logOutIcon: {
@@ -263,6 +265,7 @@ const violet = {
     selectedDateHover: '#5255BC50',
     formButtonBg: '#ECEDFD',
     datePickerCurMonth: '#16161633',
+    addCardButtonHover: '#ffffff',
   },
 
   labelColors: {

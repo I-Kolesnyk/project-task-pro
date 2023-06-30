@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 
 const sidebarDynamicStyles = ({ theme }) => css`
   position: absolute;
+  z-index: 100;
   top: 0;
   width: 225px;
   min-height: 100vh;

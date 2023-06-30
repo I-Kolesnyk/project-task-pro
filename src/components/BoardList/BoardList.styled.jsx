@@ -1,6 +1,17 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+const wrapperDynamicStyles = ({ theme }) => css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Wrapper = styled.div`
+  ${wrapperDynamicStyles}
+`;
+
 const titleDynamicStyles = ({ theme }) => css`
   margin-bottom: 8px;
   align-self: flex-start;
@@ -13,25 +24,6 @@ const titleDynamicStyles = ({ theme }) => css`
   }
 `;
 
-const wrapperDynamicStyles = ({ theme }) => css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-const listDynamicStyles = ({ theme }) => css`
-  width: 100%;
-`;
-
 export const Title = styled.h2`
   ${titleDynamicStyles}
-`;
-
-export const Wrapper = styled.div`
-  ${wrapperDynamicStyles}
-`;
-
-export const List = styled.ul`
-  ${listDynamicStyles}
 `;
