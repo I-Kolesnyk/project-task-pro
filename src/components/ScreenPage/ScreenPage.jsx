@@ -62,7 +62,7 @@ function ScreenPage() {
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  // console.log('elements --> ', elements);
+  console.log('elements --> ', elements);
 
   return (
     isBoard && (

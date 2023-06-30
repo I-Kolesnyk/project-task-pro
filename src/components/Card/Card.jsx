@@ -14,7 +14,7 @@ function Card({ item, index }) {
     );
     const daysLeft = Math.ceil((deadline - Date.now()) / (1000 * 3600 * 24));
 
-    // console.log('days left--> ', daysLeft);
+    console.log('days left--> ', daysLeft <= 1);
     return daysLeft;
   };
 
