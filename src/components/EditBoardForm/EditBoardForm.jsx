@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { addNewBoard } from 'redux/allBoards/operations';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -18,35 +16,35 @@ import {
   BackgroundItem,
   BackgroundImage,
   Input,
-} from './NewBoardForm.styled';
+} from './EditBoardForm.styled';
 
 const NewBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
-  const dispatch = useDispatch();
 
   const handleTitleChange = event => {
-    setValue('title', event.target.value.toString());
+    setValue('title', event.target.value);
   };
 
   const handleIconSelect = icon => {
     setSelectedIcon(icon);
-    setValue('icon', icon);
+    setValue('selectedIcon', icon);
   };
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
-    setValue('background', backgroundId.toString());
+    setValue('selectedBackgroundId', backgroundId);
   };
 
   const handleCreateBoard = data => {
-    dispatch(addNewBoard(data)).then(() => {
-      setValue('title', '');
-      setValue('icon', '');
-      setValue('background', '');
-      onClose();
-    });
+    console.log('Title:', data.title);
+    console.log('Selected Icon:', data.selectedIcon);
+    console.log('Selected Background Id:', data.selectedBackgroundId);
+    setValue('title', '');
+    setValue('selectedIcon', '');
+    setValue('selectedBackgroundId', '');
+    onClose();
   };
 
   const renderIcons = () => {
@@ -86,7 +84,7 @@ const NewBoardForm = ({ onClose }) => {
 
   return (
     <div>
-      <NewBoardTitle>New Board</NewBoardTitle>
+      <NewBoardTitle>Edit Board</NewBoardTitle>
       <form onSubmit={handleSubmit(handleCreateBoard)}>
         {/* <label htmlFor="newBoardInput">Title</label> */}
         <Input
@@ -104,7 +102,7 @@ const NewBoardForm = ({ onClose }) => {
         <BgIcon>{renderBackgrounds()}</BgIcon>
 
         <FormBtn
-          textBtn={() => <ChildComponent textContent="Create" />}
+          textBtn={() => <ChildComponent textContent="Edit" />}
           type="submit"
         />
       </form>

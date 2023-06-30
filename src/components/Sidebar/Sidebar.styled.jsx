@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const sidebarDynamicStyles = ({ theme }) => css`
+  z-index: 100;
   position: absolute;
   z-index: 100;
   top: 0;
