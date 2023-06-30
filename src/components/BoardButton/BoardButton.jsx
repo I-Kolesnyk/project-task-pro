@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { updateBoardStatus } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
+import Modal from 'components/ModalWindow/ModalWindow';
+import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
 import {
   Svg,
   Wrapper,
@@ -13,7 +15,7 @@ import {
 } from './BoardButton.styled';
 
 function BoardButton({ name, id, icon, isActive }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
@@ -35,7 +37,11 @@ function BoardButton({ name, id, icon, isActive }) {
   };
 
   const openModal = () => {
-    setIsModalOpen(true);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -61,10 +67,9 @@ function BoardButton({ name, id, icon, isActive }) {
         )}
       </Wrapper>
       {isModalOpen && (
-        <p>модалка для редагування дошки</p>
-        // <Modal setIsModalOpen={setIsModalOpen}>
-        //   {/* <EditBoardModal /> */}
-        // </Modal>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <EditBoardForm onClose={closeModal} />
+        </Modal>
       )}
     </>
   );
