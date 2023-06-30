@@ -5,13 +5,13 @@ const HomePageDynamicStyles = ({ theme }) =>
   css`
     width: 335px;
     min-height: 80vh;
-    display: flex;
+    // display: flex;
     text-align: center;
     color: ${theme.textColors.theme};
     font-size: ${theme.fontSizes[2]};
     line-height: 1.5;
     letter-spacing: -0.26px;
-    display: flex;
+    // display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;

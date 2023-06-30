@@ -16,7 +16,7 @@ const headerDynamicStyles = ({ theme }) => css`
   @media screen and (min-width: ${theme.breakpoints[2]}) {
     float: right;
     width: 82%;
-    min-height: 8.9vh;
+    height: 8.9vh;
     padding: 18px 32px;
   }
 `;
