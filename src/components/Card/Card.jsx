@@ -1,7 +1,9 @@
 import { Draggable } from '@hello-pangea/dnd';
 import * as s from './Card.styled';
 import sprite from '../../assets/sprite.svg';
-import SvgComponent from './SvgComponent';
+import IconList from './IconList/IconList';
+import Details from './Details/Details';
+import DeadlineSignal from './DeadlineSignal/DeadlineSignal';
 
 const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
@@ -38,49 +40,15 @@ function Card({ item, index }) {
             </s.TaskDescription>
 
             <s.Box>
+              <Details priority={item.priority} deadline={item.deadline} />
               <s.Box>
-                <s.PriorityBox>
-                  <s.DetailsSuptitle>Priority</s.DetailsSuptitle>
-
-                  <s.Priority priority={item.priority}>
-                    {item.priority === 'without priority'
-                      ? 'Without'
-                      : item.priority[0].toUpperCase() + item.priority.slice(1)}
-                  </s.Priority>
-                </s.PriorityBox>
-                <s.DeadlineBox>
-                  <s.DetailsSuptitle>Deadline</s.DetailsSuptitle>
-
-                  <span>{item.deadline.replace(/[-]/gi, '/')}</span>
-                </s.DeadlineBox>
-              </s.Box>
-              <s.Box>
-                <div>
-                  {toDeadLine(item.deadline) <= 1 && (
-                    <s.BellWrapper>
-                      <SvgComponent
-                        w={'16px'}
-                        h={'16px'}
-                        sprite={sprite}
-                        name={'#bell-01'}
-                      />
-                    </s.BellWrapper>
-                  )}
-                </div>
-                <s.IconList>
-                  {icons.map(icon => (
-                    <s.IconListItem key={icon}>
-                      <s.IconBtn>
-                        <SvgComponent
-                          w={'16px'}
-                          h={'16px'}
-                          sprite={sprite}
-                          name={icon}
-                        />
-                      </s.IconBtn>
-                    </s.IconListItem>
-                  ))}
-                </s.IconList>
+                {toDeadLine(item.deadline) <= 1 && (
+                  <DeadlineSignal
+                    timeLeft={toDeadLine(item.deadline)}
+                    sprite={sprite}
+                  />
+                )}
+                <IconList icons={icons} sprite={sprite} />
               </s.Box>
             </s.Box>
           </s.Wrapper>

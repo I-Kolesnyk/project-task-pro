@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-const priorityIndicator = (priority, theme) => {
+export const priorityIndicator = (priority, theme) => {
   let priorityColor;
 
   switch (priority) {
@@ -75,7 +75,6 @@ export const TaskTitle = styled.p`
 
 const dynamicStylesTaskDescription = ({ theme }) => css`
   position: relative;
-  height: 35px;
   margin-bottom: 28px;
   color: ${theme.textColors.cardSecondary};
   -webkit-line-clamp: 2;
@@ -91,93 +90,16 @@ export const TaskDescription = styled.p`
   ${dynamicStylesTaskDescription}
 `;
 
-const dynamicStylePriorityBox = ({ theme }) => css`
-  display: block;
-  margin-right: 14px;
-`;
-export const PriorityBox = styled.div`
-  ${dynamicStylePriorityBox}
-`;
-
-const dynamicStylesDetailsSuptitle = ({ theme }) => css`
-  margin-bottom: 4px;
-  color: ${theme.textColors.cardSecondary};
-  font-size: ${theme.fontSizes[0]};
-  letter-spacing: -0.16px;
-`;
-export const DetailsSuptitle = styled.p`
-  ${dynamicStylesDetailsSuptitle}
-`;
-
-const dynamicStylesPriority = ({ priority, theme }) => css`
-  display: flex;
-  color: ${theme.textColors.main};
-  font-size: ${theme.fontSizes[1]};
-  letter-spacing: -0.2px;
-
-  &::before {
-    content: '';
-    display: block;
-    margin-right: 4px;
-    width: 12px;
-    height: 12px;
-    border-radius: 12px;
-    background-color: ${priorityIndicator(priority, theme)};
-  }
-`;
-export const Priority = styled.p`
-  ${dynamicStylesPriority}
-`;
-
-const dynamicStylesDetailsBox = ({ theme }) => css`
-  color: ${theme.textColors.main};
-  font-size: ${theme.fontSizes[1]};
-  letter-spacing: -0.2px;
-`;
-
 export const Box = styled.div`
-  ${dynamicStylesDetailsBox}
   display: flex;
   align-items: end;
   justify-content: space-between;
 `;
 
-export const DeadlineBox = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export const IconList = styled.ul`
-  display: flex;
-  margin-left: 13px;
-`;
-
-const dynamicStylesSvg = ({ theme }) => css`
-  fill: transparent;
-  stroke: ${theme.backgroundColors.columnTitleIcon};
-  transition: scale 250ms ease-in 0s;
-  &:hover,
-  &:focus {
-    stroke: ${theme.backgroundColors.columnTitleIconHover};
-    scale: 1.08;
-  }
-`;
-const dynamicStylesBell = ({ theme }) => css`
+const dynamicStylesBell = ({ time, theme }) => css`
   height: 16px;
-  fill: transparent;
-  stroke: ${theme.textColors.accent};
-`;
-
-export const IconListItem = styled.li`
-  height: 16px;
-  &:not(:last-child) {
-    margin-right: 8px;
-  }
-`;
-export const IconBtn = styled.button`
-  display: block;
-  height: 16px;
-  ${dynamicStylesSvg}
+  fill: ${time < 0 ? 'rgba(255, 3, 3, 0.901)' : 'transparent'};
+  stroke: ${time < 0 ? 'transparent' : theme.textColors.accent};
 `;
 
 export const BellWrapper = styled.div`
