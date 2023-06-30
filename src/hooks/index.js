@@ -10,3 +10,4 @@ export { useUserId } from './useUserId';
 export { useIsBoardsLoading } from './useIsBoardsLoading';
 export { useOneBoardLoading } from './useOneBoardLoading';
 export { useBoardId } from './useBoardId';
+export { useColumns } from './useColumns';

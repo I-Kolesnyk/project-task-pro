@@ -1,6 +1,4 @@
 import { useForm } from 'react-hook-form';
-
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   CustomRadio,
@@ -19,11 +17,16 @@ import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
+import { addCard } from 'redux/board/operations';
+import { useColumns } from 'hooks';
 
-const AddCardForm = () => {
+const AddCardForm = ({ columnId }) => {
   const [deadlineDate, setDeadlineDate] = useState(new Date());
   const [radioChoose, setRadioChoose] = useState('without');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const columns = useColumns();
+  const tasksLength = columns.filter(column => column._id === columnId)[0].tasks
+    .length;
 
   const {
     register,
@@ -39,11 +42,19 @@ const AddCardForm = () => {
     resolver: yupResolver(AddCardFormSchema),
   });
 
-  const onSubmit = data => {
+  const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    const newTask = { ...data, deadline };
-    console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
-
+    const newTask = {
+      title,
+      description,
+      priority: lableColor,
+      deadline,
+      column: columnId,
+      index: tasksLength + 1,
+    };
+    // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
+    console.log(newTask);
+    dispatch(addCard(newTask));
     reset();
   };
 
@@ -68,11 +79,11 @@ const AddCardForm = () => {
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="without"
+              value="without priority"
               id="withoutPriority"
               clr="lilac"
               onClick={chooseBtn}
-              checked={radioChoose === 'without' ? true : false}
+              checked={radioChoose === 'without priority' ? true : false}
               {...register('lableColor')}
             />
             <label htmlFor="withoutPriority">

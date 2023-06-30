@@ -22,16 +22,20 @@ export const boardSlice = createSlice({
       .addCase(addColumn.fulfilled, (state, action) => {
         state.board.board[0].columns.push(action.payload.data);
       })
+      .addCase(addCard.fulfilled, (state, action) => {
+        const columnIdToUpdate = action.payload.data.taks.column;
+        console.log(columnIdToUpdate)
+        const changedColumn = state.board.board[0].columns.find(
+          column => column._id === columnIdToUpdate
+        );
+        console.log(changedColumn)
+        if (changedColumn) {
+          changedColumn.tasks.push(action.payload.data.taks);
+        }
+      })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
-
-  // .addCase(addCard.fulfilled, (state, action) => {
-  //   const columnIdToUpdate = action.payload.data.column;
-  //   const changedColumn = state.board.columns.find(
-  //     board => board._id === columnIdToUpdate
-  //   );
-  // })
 });
 
 const handleFulfilled = state => {

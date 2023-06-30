@@ -40,13 +40,13 @@ function Column({ columnTitle, columnId, cards, prefix }) {
             {cards &&
               cards.length > 0 &&
               cards.map((card, index) => (
-                <Card index={index} item={card} key={card._id}/>
+                <Card index={index} item={card} key={card._id} />
               ))}
             {provided.placeholder}
           </TaskList>
         )}
       </Droppable>
-      <AddCardButton />
+      <AddCardButton columnId={columnId} />
     </Wrapper>
   );
 }
