@@ -25,7 +25,7 @@ function Column({ columnTitle, columnId, cards, prefix }) {
                   w={'16px'}
                   h={'16px'}
                   sprite={sprite}
-                  name={icon}
+                  icon={icon}
                 />
               </IconButton>
             </li>
