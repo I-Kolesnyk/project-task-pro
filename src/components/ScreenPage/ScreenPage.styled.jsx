@@ -2,14 +2,12 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const dynamicStylesWrapper = ({ theme }) => css`
- 
   padding: 14px 20px 24px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     padding: 26px 32px 32px;
   }
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    
     padding: 10px 24px 8px;
   }
 `;
@@ -20,12 +18,10 @@ export const Wrapper = styled.section`
 
 const columnListDynamicStyles = ({ theme }) => css`
   display: flex;
-
   padding-bottom: 24px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     padding-bottom: 52px;
-   
   }
 
   @media only screen and (min-width: ${theme.breakpoints[2]}) {

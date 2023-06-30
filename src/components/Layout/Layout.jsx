@@ -22,14 +22,15 @@ function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef();
   const dispatch = useDispatch();
-  const navigate = useNavigate();  
-  const allBoards = useAllBoards(); 
+  const navigate = useNavigate();
+  const allBoards = useAllBoards();
   const isUserLoading = useIsUserLoading();
   const isLoading = useIsBoardsLoading();
-  const isBoardLoading = useOneBoardLoading(); 
+  const isBoardLoading = useOneBoardLoading();
 
   const isDesktop = window.screen.width;
 
+  console.log(allBoards);
   useEffect(() => {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
