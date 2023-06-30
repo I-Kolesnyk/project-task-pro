@@ -6,6 +6,8 @@ import { updateBoardStatus } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
+import { getBoardById } from 'redux/board/operations';
+import { useOneBoardLoading, useIsBoardsLoading, useBoardId } from 'hooks';
 import {
   Svg,
   Wrapper,
@@ -20,21 +22,26 @@ function BoardButton({ name, id, icon, isActive }) {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
+  const isBoardLoading = useOneBoardLoading();
+  const isAllBoardsLoading = useIsBoardsLoading();
+
 
   useEffect(() => {
-    if (params.boardName) {
-      if (isActive) {
-        console.log(name.toString(), params.boardName);
-        if (name.toString() !== params.boardName) {
-          dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        }
-      }
+    
+    if (isActive) {
+      console.log(name.toString(), params.boardName);
+      if (name.toString() !== params.boardName) {
+        dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+        console.log ("i am inactive", name.toString())
+      }  
     }
   }, [dispatch, id, isActive, name, params.boardName]);
 
   const handleActive = () => {
-    navigate(`${name}`);
     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+    if (!isAllBoardsLoading) {
+      navigate(`${name}`);
+    }
   };
 
   const openModal = () => {

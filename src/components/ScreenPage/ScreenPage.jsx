@@ -7,10 +7,9 @@ import Column from 'components/Column';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
-  const oneBoard = useBoard();
-  console.log(oneBoard.board.board[0].columns);
+  const oneBoard = useBoard();  
   const [elements, setElements] = useState([]);
-  const isLoading = useOneBoardLoading();  
+  const isLoading = useOneBoardLoading();
 
   useEffect(() => {
     if (!isLoading) {
@@ -20,8 +19,9 @@ function ScreenPage() {
 
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', list);
+    console.log('list', list);
     console.log('removed', result.tasks);
+    console.log('result', result);
     const [removed] = result.tasks.splice(index, 1);
 
     return [removed, result];
@@ -56,7 +56,7 @@ function ScreenPage() {
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  console.log('elements --> ', elements);
+  // console.log('elements --> ', elements);
 
   return (
     !isLoading && (
