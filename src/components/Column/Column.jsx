@@ -4,35 +4,34 @@ import AddCardButton from 'components/AddCardButton/AddCardButton';
 import {
   Wrapper,
   TaskList,
-  TaskTitle,
+  ColumnTitle,
   IconList,
-  Svg,
   IconButton,
 } from './Column.styled';
 import sprite from '../../assets/sprite.svg';
+import SvgComponent from 'components/SvgComponent/SvgComponent';
+const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
   return (
     <Wrapper>
-      <TaskTitle>
-        <span>{columnTitle}</span>
+      <ColumnTitle>
+        <p>{columnTitle}</p>
         <IconList>
-          <li>
-            <IconButton>
-              <Svg>
-                <use href={sprite + '#pencil'}></use>
-              </Svg>
-            </IconButton>
-          </li>
-          <li>
-            <IconButton>
-              <Svg>
-                <use href={sprite + '#trash'}></use>
-              </Svg>
-            </IconButton>
-          </li>
+          {icons.map(icon => (
+            <li key={icon}>
+              <IconButton>
+                <SvgComponent
+                  w={'16px'}
+                  h={'16px'}
+                  sprite={sprite}
+                  name={icon}
+                />
+              </IconButton>
+            </li>
+          ))}
         </IconList>
-      </TaskTitle>
+      </ColumnTitle>
 
       <Droppable droppableId={`${prefix}`}>
         {provided => (
@@ -40,7 +39,7 @@ function Column({ columnTitle, columnId, cards, prefix }) {
             {cards &&
               cards.length > 0 &&
               cards.map((card, index) => (
-                <Card index={index} item={card} key={card._id}/>
+                <Card index={index} item={card} key={card._id} />
               ))}
             {provided.placeholder}
           </TaskList>

@@ -3,7 +3,7 @@ import AddBoardButton from 'components/AddBoardButton';
 import ButtonList from 'components/ButtonList/ButtonList';
 import { Title, Wrapper } from './BoardList.styled';
 
-function BoardList() { 
+function BoardList() {
   const allBoards = useAllBoards();
   const isBoardsLoading = useIsBoardsLoading();
 

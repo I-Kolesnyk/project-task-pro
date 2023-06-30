@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import AddColumnButton from 'components/AddColumnButton';
 import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
-import { Section } from './ScreenPage.styled';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
-function ScreenPage() { 
+function ScreenPage() {
   const oneBoard = useBoard();
   const [elements, setElements] = useState(oneBoard.board.board[0].columns);
   const isOneBoardLoading = useOneBoardLoading();
@@ -19,7 +19,7 @@ function ScreenPage() {
   }, [oneBoard.board, setIsBoard, oneBoard]);
 
   useEffect(() => {
-    if (isBoard) {    
+    if (isBoard) {
       setElements(oneBoard.board.board[0].columns);
     }
   }, [isBoard, oneBoard.board.board, oneBoard.board.columns]);
@@ -58,20 +58,20 @@ function ScreenPage() {
       result.destination.index,
       removedElement
     );
-    // console.log('listCopy', listCopy);
+    console.log('listCopy', listCopy);
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  // console.log('elements2', elements);
+  console.log('elements --> ', elements);
+
   return (
-    isBoard &&
-    !isOneBoardLoading && (
-      <>
-        <header>
-          <h2>{oneBoard.board.board[0].title}</h2>
+    isBoard && (
+      <Wrapper>
+        <Header>
+          <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
           <p>Filters</p>
-        </header>
-        <Section>
+        </Header>
+        <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
             {elements.length !== 0 &&
               elements.map(({ title, _id, tasks }, columnIndex) => (
@@ -85,8 +85,8 @@ function ScreenPage() {
               ))}
           </DragDropContext>
           <AddColumnButton />
-        </Section>
-      </>
+        </ColumnList>
+      </Wrapper>
     )
   );
 }
