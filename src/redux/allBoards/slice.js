@@ -20,7 +20,7 @@ export const allBoardsSlice = createSlice({
         state.boards = action.payload.data;
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.push(action.payload);
+        state.boards.boards.push(action.payload.data.board);
       })
       .addCase(updateBoardStatus.fulfilled, (state, action) => {
         const boardIdToUpdate = action.payload.data.board._id;

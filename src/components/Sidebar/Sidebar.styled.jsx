@@ -7,7 +7,7 @@ const sidebarDynamicStyles = ({ theme }) => css`
   z-index: 100;
   top: 0;
   width: 225px;
-  min-height: 100vh;
+  height: 100vh;
   margin: 0;
   background-color: ${theme.backgroundColors.asideMain};
 
@@ -19,7 +19,7 @@ const sidebarDynamicStyles = ({ theme }) => css`
     position: static;
     float: left;
     width: 18%;
-    min-height: 100vh;
+    height: 100vh;
   }
 `;
 
