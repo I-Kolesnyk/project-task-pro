@@ -1,24 +1,38 @@
-import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 import { Button, Svg, Box } from './AddCardButton.styled';
 import sprite from '../../assets/sprite.svg';
-import { addCard } from 'redux/board/operations';
+import AddCardForm from 'components/AddCardForm';
+import Modal from 'components/ModalWindow';
 
-const AddCardButton = () => {
-  const dispatch = useDispatch();
-  const onClick = () => {
-    dispatch(addCard({title: "title", deadline: "04.07.23", column: "649b357fb6a41ba022759ace", index : 1}))
-  }
+const AddCardButton = ({ columnId }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div>
-      <Button onClick={onClick}>
-        <Box>
-          <Svg>
-            <use href={sprite + '#plus'}></use>
-          </Svg>
-        </Box>
-        Add another card
-      </Button>
-    </div>
+    <>
+      <div>
+        <Button onClick={openModal}>
+          <Box>
+            <Svg>
+              <use href={sprite + '#plus'}></use>
+            </Svg>
+          </Box>
+          Add another card
+        </Button>
+      </div>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AddCardForm onClose={closeModal} columnId={columnId} />
+        </Modal>
+      )}
+    </>
   );
 };
 

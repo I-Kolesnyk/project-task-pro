@@ -45,7 +45,7 @@ function Column({ columnTitle, columnId, cards, prefix }) {
           </TaskList>
         )}
       </Droppable>
-      <AddCardButton />
+      <AddCardButton columnId={columnId} />
     </Wrapper>
   );
 }

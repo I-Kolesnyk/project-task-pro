@@ -8,7 +8,8 @@ import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoard();
-  const [elements, setElements] = useState(oneBoard.board.board[0].columns);
+  console.log(oneBoard.board.board[0].columns)
+  const [elements, setElements] = useState([]);
   const isOneBoardLoading = useOneBoardLoading();
   const [isBoard, setIsBoard] = useState(false);
 
