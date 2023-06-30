@@ -18,7 +18,6 @@ export const Wrapper = styled.section`
 
 const columnListDynamicStyles = ({ theme }) => css`
   display: flex;
-
   padding-bottom: 24px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {

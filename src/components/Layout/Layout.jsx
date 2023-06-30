@@ -28,6 +28,7 @@ function Layout() {
 
   const isDesktop = window.screen.width;
 
+  console.log(allBoards);
   useEffect(() => {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
