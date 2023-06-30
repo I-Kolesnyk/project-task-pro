@@ -13,22 +13,14 @@ const initialState = {
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {
-    setBoard(state, actions) {
-      state.board.columns = actions.payload;
-    },
-    removeBoard(state) {
-      state.board.board = [];
-      state.board.columns = [];
-    },
-  },
+  reducers: {},
   extraReducers: builder =>
     builder
       .addCase(getBoardById.fulfilled, (state, action) => {
         state.board = action.payload.data;
       })
       .addCase(addColumn.fulfilled, (state, action) => {
-        state.board.columns.push(action.payload.data);
+        state.board.board[0].columns.push(action.payload.data);
       })
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
@@ -57,7 +49,5 @@ const handleRejected = state => {
 const extraActions = [addColumn, addCard];
 
 const getActions = type => extraActions.map(action => action[type]);
-
-export const { setBoard, removeBoard } = boardSlice.actions;
 
 export const boardReducer = boardSlice.reducer;

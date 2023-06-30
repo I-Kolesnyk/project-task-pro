@@ -26,6 +26,7 @@ const UserInfo = () => {
 
   const userAvatarDefaultTheme = theme => {
     let defaultAvatar;
+
     switch (theme) {
       case 'dark':
         defaultAvatar = darkAvatar;
@@ -39,18 +40,18 @@ const UserInfo = () => {
       default:
         defaultAvatar = darkAvatar;
     }
-
     return defaultAvatar;
   };
 
-  const avatar = userAvatarDefaultTheme(theme);
   useEffect(() => {
+    const avatar = userAvatarDefaultTheme(theme);
+
     if (userAvatarGet === 'https://i.ibb.co/7VFWmkN/user2x-min.png') {
       return setUserAvatar(avatar);
     } else {
       return setUserAvatar(userAvatarGet);
     }
-  }, [theme, avatar, userAvatarGet]);
+  }, [theme, userAvatarGet]);
 
   return (
     <Wrapper>

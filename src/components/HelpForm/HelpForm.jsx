@@ -1,12 +1,13 @@
 import FormBtn from 'components/FormBtn/FormBtn';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
 import { ErrorMessage, Form, Input, Textarea, Title } from './HelpForm.styled';
-// import { useDispatch } from 'react-redux';
 import { HelpSchema } from 'schemas';
+import { userNeedHelp } from 'redux/auth/operations';
 
 const HelpForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -23,7 +24,9 @@ const HelpForm = () => {
   });
 
   const onSubmit = data => {
-    //  dispatch(HelpLetter(data));
+    data.message = data.comment;
+    delete data.comment;
+    dispatch(userNeedHelp(data));
     reset();
   };
 

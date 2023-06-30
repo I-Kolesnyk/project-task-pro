@@ -1,45 +1,28 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-import AddColumnButton from 'components/AddColumnButton/AddColumnButton';
-import { useDispatch } from 'react-redux';
 
-import { useBoard, useOneBoardLoading, useAllBoards } from 'hooks';
+import AddColumnButton from 'components/AddColumnButton';
+import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
-import { Wrapper, ColumnList, Header, BoardTitle } from './ScreenPage.styled';
-import { setBoard } from 'redux/board/slice';
-import { getBoardById } from 'redux/board/operations';
-import { useParams } from 'react-router';
+import { Wrapper, Header, ColumnList } from './ScreenPage.styled';
 
 function ScreenPage() {
-  const allBoards = useAllBoards();
   const oneBoard = useBoard();
-  // console.log('oneBoard', oneBoard);
-  // const { columns, board } = useBoard();
-  const [elements, setElements] = useState([]);
-  const dispatch = useDispatch();
+  const [elements, setElements] = useState(oneBoard.board.board[0].columns);
   const isOneBoardLoading = useOneBoardLoading();
-  const { boardName } = useParams();
   const [isBoard, setIsBoard] = useState(false);
 
   useEffect(() => {
     if (oneBoard.board.length !== 0) {
       setIsBoard(true);
     }
-  }, [oneBoard.board, setIsBoard]);
-
-  // const aciveBoardId = allBoards.boards.find(
-  //   board => board.title === boardName
-  // )._id;
-
-  // useEffect(() => {
-  //   dispatch(getBoardById(aciveBoardId));
-  // }, [aciveBoardId, dispatch]);
+  }, [oneBoard.board, setIsBoard, oneBoard]);
 
   useEffect(() => {
     if (isBoard) {
-      setElements(oneBoard.board.columns);
+      setElements(oneBoard.board.board[0].columns);
     }
-  }, [isBoard, oneBoard.board.columns]);
+  }, [isBoard, oneBoard.board.board, oneBoard.board.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -85,7 +68,7 @@ function ScreenPage() {
     isBoard && (
       <Wrapper>
         <Header>
-          <h2>{oneBoard.boardtitle}</h2>
+          <h2>{oneBoard.board.board[0].title}</h2>
           <p>Filters</p>
         </Header>
         <ColumnList>

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { updateBoardStatus } from 'redux/allBoards/operations';
-import { getBoardById } from 'redux/board/operations';
 import sprite from '../../assets/sprite.svg';
 import {
   Svg,
@@ -17,24 +16,29 @@ import {
 function BoardButton({ name, id, icon, isActive }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const { boardName } = useParams();
+  const params = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (params.boardName) {
+      if (isActive) {
+        console.log(name.toString(), params.boardName);
+        if (name.toString() !== params.boardName) {
+          dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+        }
+      }
+    }
+  }, [dispatch, id, isActive, name, params.boardName]);
+
+  const handleActive = () => {
+    navigate(`${name}`);
+    dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
-  const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (name.toString() === boardName) {
-  //     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
-  //   } else {
-  //     dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-  //   }
-  // }, [boardName, dispatch, id, name]);
-
-  const handleActive = () => {
-    // dispatch(getBoardById(id));
-    setTimeout(navigate(`${name}`), 2000);
-  };
   return (
     <>
       <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
