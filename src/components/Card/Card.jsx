@@ -35,8 +35,7 @@ function Card({ item, index }) {
               {item.description
                 ? item.description
                 : `
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos sint  itaque tempore ducimus cum eius. Exercitationem quaerat magnam
-              pariatur molestiae!`}
+              Lorem ipsum dolor sit `}
             </s.TaskDescription>
 
             <s.Box>

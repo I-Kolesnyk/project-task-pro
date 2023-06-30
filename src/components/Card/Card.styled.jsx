@@ -75,6 +75,7 @@ export const TaskTitle = styled.p`
 
 const dynamicStylesTaskDescription = ({ theme }) => css`
   position: relative;
+  height: 35px;
   margin-bottom: 28px;
   color: ${theme.textColors.cardSecondary};
   -webkit-line-clamp: 2;

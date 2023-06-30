@@ -70,7 +70,7 @@ const activeSvgDynamicStyles = ({ theme }) => css`
   transition: scale 250ms ease-in 0s, stroke 250ms ease-in 0s;
   &:hover,
   &:focus {
-    stroke: ${theme.backgroundColors.columnTitleIconHover};
+    stroke: ${theme.labelColors.green};
     scale: 1.08;
   }
 `;
