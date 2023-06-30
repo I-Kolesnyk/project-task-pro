@@ -1,7 +1,7 @@
-export const SvgComponent = ({ w, h, sprite, name }) => {
+export const SvgComponent = ({ w, h, sprite, icon }) => {
   return (
     <svg width={w} height={h}>
-      <use href={sprite + name}></use>
+      <use href={sprite + icon}></use>
     </svg>
   );
 };

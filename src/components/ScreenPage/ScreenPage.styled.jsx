@@ -2,14 +2,12 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const dynamicStylesWrapper = ({ theme }) => css`
- 
   padding: 14px 20px 24px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     padding: 26px 32px 32px;
   }
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    
     padding: 10px 24px 8px;
   }
 `;
@@ -25,7 +23,6 @@ const columnListDynamicStyles = ({ theme }) => css`
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     padding-bottom: 52px;
-   
   }
 
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
@@ -85,4 +82,41 @@ const dynamicStylesBoardTitle = ({ theme }) => css`
 
 export const BoardTitle = styled.h2`
   ${dynamicStylesBoardTitle}
+`;
+
+const dynamicStylesFilters = ({ theme }) => css`
+  display: flex;
+  align-items: center;
+  height: 20px;
+  font-style: normal;
+  font-weight: ${theme.fontWeights.medium};
+  line-height: normal;
+  letter-spacing: -0.28px;
+  color: ${theme.textColors.theme};
+  transition: color 250ms ease-in 0s;
+
+  &:hover,
+  &focus {
+    color: ${theme.textColors.accent};
+  }
+`;
+
+export const Filters = styled.button`
+  ${dynamicStylesFilters}
+`;
+
+const dynamicStylesFilterIcon = ({ theme }) => css`
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  stroke: currentColor;
+  transition: stroke 250ms ease-in 0s;
+  &:hover,
+  &focus {
+    stroke: currentColor;
+  }
+`;
+
+export const FilterIcon = styled.svg`
+  ${dynamicStylesFilterIcon}
 `;

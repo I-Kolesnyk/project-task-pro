@@ -7,7 +7,7 @@ const IconList = ({ icons, sprite }) => {
       {icons.map(icon => (
         <s.IconListItem key={icon}>
           <s.IconBtn>
-            <SvgComponent w={'16px'} h={'16px'} sprite={sprite} name={icon} />
+            <SvgComponent w={'16px'} h={'16px'} sprite={sprite} icon={icon} />
           </s.IconBtn>
         </s.IconListItem>
       ))}
