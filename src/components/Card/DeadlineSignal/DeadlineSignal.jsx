@@ -9,7 +9,7 @@ const DeadlineSignal = ({ timeLeft, sprite }) => {
           w={'16px'}
           h={'16px'}
           sprite={sprite}
-          name={timeLeft < 0 ? '#time-is-up' : '#bell'}
+          icon={timeLeft < 0 ? '#time-is-up' : '#bell'}
         />
       </BellWrapper>
     </div>

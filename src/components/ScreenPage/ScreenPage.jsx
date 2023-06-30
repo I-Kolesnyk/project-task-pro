@@ -4,7 +4,15 @@ import { useState, useEffect } from 'react';
 import AddColumnButton from 'components/AddColumnButton';
 import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
-import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
+import {
+  Wrapper,
+  Header,
+  ColumnList,
+  BoardTitle,
+  Filters,
+  FilterIcon,
+} from './ScreenPage.styled';
+import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
   const oneBoard = useBoard();  
@@ -63,7 +71,12 @@ function ScreenPage() {
       <Wrapper>
         <Header>
           <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
-          <p>Filters</p>
+          <Filters>
+            <FilterIcon>
+              <use href={sprite + '#filter'}></use>
+            </FilterIcon>
+            <span>Filters</span>
+          </Filters>
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
