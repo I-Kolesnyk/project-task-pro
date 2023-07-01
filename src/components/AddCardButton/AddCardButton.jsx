@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Svg, Box } from './AddCardButton.styled';
 import sprite from '../../assets/sprite.svg';
 import AddCardForm from 'components/AddCardForm';
-import Modal from 'components/ModalWindow';
+import Modal from 'components/ModalWindow/ModalWindow';
 
 const AddCardButton = ({ columnId }) => {
   const [isModalOpen, setModalOpen] = useState(false);
