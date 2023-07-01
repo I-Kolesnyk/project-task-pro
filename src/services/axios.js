@@ -123,7 +123,7 @@ axiosPrivateJson.interceptors.response.use(
       toast.success('New board was successfully added');
       return response;
     }
-    if (response.data.status === 200 && response.config.url === '/api/email') {
+    if (response.data.code === 200 && response.config.url === '/api/email') {
       toast.success(
         'Your question was sent. We will answer your as soon as posiible.'
       );
