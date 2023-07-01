@@ -15,6 +15,7 @@ import {
   IconsWrapper,
   IconButton,
 } from './BoardButton.styled';
+import { getBoardById } from 'redux/board/operations';
 
 function BoardButton({ name, id, icon, isActive }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -23,20 +24,18 @@ function BoardButton({ name, id, icon, isActive }) {
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
 
-
   useEffect(() => {
-    
     if (isActive) {
-      console.log(name.toString(), params.boardName);
       if (name.toString() !== params.boardName) {
         dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        console.log ("i am inactive", name.toString())
-      }  
+        console.log('i am inactive', name.toString());
+      }
     }
-  }, [dispatch, id, isActive, name, params.boardName]);
+  }, [dispatch, id, isActive, params.boardName, name]);
 
   const handleActive = () => {
     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+    dispatch(getBoardById(`${id}`));
     if (!isAllBoardsLoading) {
       navigate(`${name}`);
     }
