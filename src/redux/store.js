@@ -33,13 +33,17 @@ const boardPersistConfig = {
   key: 'board',
   storage,
 };
+const filterPersistConfig = {
+  key: 'priorityFilter',
+  storage,
+};
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     boards: persistReducer(allBoardsPersistConfig, boardsReducer),
     board: persistReducer(boardPersistConfig, boardReducer),
-    filter: filterReducer,
+    filter: persistReducer(filterPersistConfig, filterReducer),
   },
 
   middleware: getDefaultMiddleware =>

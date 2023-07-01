@@ -85,8 +85,8 @@ const dark = {
     pink: '#E09CB5',
     green: '#BEDBB0',
     gray: 'rgba(255, 255, 255, 0.3)',
+    yellow: '#dec5088a',
   },
-
   radii: {
     sm: '6px',
     md: '8px',
@@ -181,6 +181,7 @@ const light = {
     pink: '#E09CB5',
     green: '#BEDBB0',
     gray: 'rgba(22, 22, 22, 0.30)',
+    yellow: '#dec5088a',
   },
 
   radii: {
@@ -273,6 +274,7 @@ const violet = {
     pink: '#E09CB5',
     green: '#BEDBB0',
     gray: 'rgba(22, 22, 22, 0.30)',
+    yellow: '#dec5088a',
   },
 
   logOutIcon: {

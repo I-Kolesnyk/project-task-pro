@@ -9,10 +9,8 @@ import {
   Header,
   ColumnList,
   BoardTitle,
-  Filters,
-  FilterIcon,
+
 } from './ScreenPage.styled';
-import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
   const oneBoard = useBoard();

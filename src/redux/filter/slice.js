@@ -11,7 +11,6 @@ const filterSlice = createSlice({
   reducers: {
     filterTasksByPriority: {
       reducer: (state, { payload }) => {
-        console.log('filter slice payload --> ', payload);
         return { ...state, filterPriority: payload };
       },
     },

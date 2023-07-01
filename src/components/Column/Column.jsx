@@ -12,19 +12,18 @@ import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
 import { useSelector } from 'react-redux';
+
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
   const filter = useSelector(selectFilter);
-  console.log('cards in column -->', cards);
 
   const filteredCards = (cards, filter) => {
     if (filter === 'all') return cards;
     const filteredCards = cards.filter(card => card.priority === filter);
-    console.log('filtered cards -->', filteredCards);
     return filteredCards;
   };
-  // .filter(card => card.priority === ? all
+
   return (
     <Wrapper>
       <ColumnTitle>
