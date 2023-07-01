@@ -1,31 +1,23 @@
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAllBoards } from 'redux/allBoards/operations';
-import { getBoardById } from 'redux/board/operations';
 import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
-
 import Loader from 'components/Loader';
-import {
-  useAllBoards,
-  useIsBoardsLoading,
-  useIsUserLoading,
-  useOneBoardLoading,
-} from 'hooks';
+import { useAllBoards, useIsBoardsLoading, useIsUserLoading } from 'hooks';
 import { StyledMain } from './Layout.styled';
+import { useNavToActiveBoard } from 'hooks/useNavToActivBoard';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const allBoards = useAllBoards();
   const isUserLoading = useIsUserLoading();
   const isLoading = useIsBoardsLoading();
-  const isBoardLoading = useOneBoardLoading();
+  const { navigateToActive } = useNavToActiveBoard();
 
   const isDesktop = window.screen.width;
 
@@ -53,23 +45,8 @@ function Layout() {
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      if (allBoards.boards.length !== 0) {
-        const activeBoard = allBoards.boards.filter(
-          board => board.active === true
-        );
-        if (activeBoard.length === 0) {
-          return;
-        }
-        if (activeBoard) {
-          dispatch(getBoardById(`${activeBoard[0]._id}`));
-          if (!isBoardLoading) {
-            navigate(`${activeBoard[0].title}`);
-          }
-        }
-      }
-    }
-  }, [allBoards.boards, dispatch, isBoardLoading, isLoading, navigate]);
+    navigateToActive();
+  }, []);
 
   const handleClickOutside = e => {
     if (!myRef.current.contains(e.target)) {
