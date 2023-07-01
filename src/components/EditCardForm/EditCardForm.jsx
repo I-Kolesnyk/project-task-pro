@@ -9,7 +9,7 @@ import {
   LabelColorBox,
   LabelColorText,
   StyledHeader,
-} from './AddCardForm.styled';
+} from './EditCardForm.styled';
 import { useState } from 'react';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
@@ -17,27 +17,27 @@ import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
-import { addCard } from 'redux/board/operations';
-import { useColumns } from 'hooks';
+import { parseDate } from 'Helpers/CustomDateFormate';
 
-const AddCardForm = ({ columnId }) => {
-  const [deadlineDate, setDeadlineDate] = useState(new Date());
-  const [radioChoose, setRadioChoose] = useState('without priority');
-  const dispatch = useDispatch();
-  const columns = useColumns();
-  const tasksLength = columns.filter(column => column._id === columnId)[0].tasks
-    .length;
+const EditCardForm = ({ taskInfo, closeModal }) => {
+  const { title, description, priority, deadline, column, index, owner } =
+    taskInfo;
+  const [deadlineDate, setDeadlineDate] = useState(
+    new Date(parseDate(deadline))
+  );
+  const [radioChoose, setRadioChoose] = useState(priority);
+  // const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: '',
-      description: '',
-      lableColor: '',
+      title: title,
+      description: description,
+      priority: priority,
     },
     resolver: yupResolver(AddCardFormSchema),
   });
@@ -49,13 +49,16 @@ const AddCardForm = ({ columnId }) => {
       description,
       priority: lableColor,
       deadline,
-      column: columnId,
-      index: tasksLength + 1,
+      column,
+      index,
+      owner,
     };
-    // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
-    console.log(newTask);
-    dispatch(addCard(newTask));
-    reset();
+    console.log(
+      '🚀 ~ file: EditCardForm.jsx:48 ~ onSubmit ~ newTask:',
+      newTask
+    );
+    // dispatch(editCard(newTask));
+    closeModal(false);
   };
 
   const chooseBtn = e => {
@@ -64,7 +67,7 @@ const AddCardForm = ({ columnId }) => {
 
   return (
     <>
-      <StyledHeader>Add card</StyledHeader>
+      <StyledHeader>Edit card</StyledHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Title" {...register('title')} />
@@ -152,4 +155,4 @@ const AddCardForm = ({ columnId }) => {
   );
 };
 
-export default AddCardForm;
+export default EditCardForm;
