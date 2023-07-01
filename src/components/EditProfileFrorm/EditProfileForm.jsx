@@ -22,12 +22,14 @@ import {
   Title,
 } from './EditProfileForm.styled';
 import { EditProfileSchema } from 'schemas';
+import { useUserEmail } from 'hooks/useUserEmail';
 
 const EditProfileForm = ({ userAvatar }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState('password');
   const userName = useUserName();
   const userId = useUserId();
+  const userEmail = useUserEmail();
 
   const {
     register,
@@ -54,14 +56,13 @@ const EditProfileForm = ({ userAvatar }) => {
 
   const onSubmit = async data => {
     const formData = new FormData();
-    formData.append('file', data.file);
+    formData.append('avatar', data.avatar[0]);
     formData.append('name', data.name);
     formData.append('email', data.email);
     formData.append('password', data.password);
-    for (const pair of formData.entries()) {
-      console.log(`${pair[0]}, ${pair[1]}`);
-    }
-    dispatch(editProfile(userId, formData));
+
+    const userData = { userId, formData };
+    dispatch(editProfile(userData));
     reset();
   };
 
@@ -70,9 +71,9 @@ const EditProfileForm = ({ userAvatar }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Title>Edit profile</Title>
         <DataForm>
+          <Image src={userAvatar} alt="user-avatar" />
           <LabelAvatar>
-            <Image src={userAvatar} alt="user-avatar" />
-            <AvatarInput type="file" {...register('file')} />
+            <AvatarInput type="file" {...register('avatar')} />
             <Svg width="10px" height="10px" stroke="black">
               <use href={sprite + '#plus'}></use>
             </Svg>
@@ -86,7 +87,7 @@ const EditProfileForm = ({ userAvatar }) => {
             <ErrorMessage>{errors.name?.message}</ErrorMessage>
           </Label>
           <Label>
-            <Input placeholder="new email" {...register('email')} />
+            <Input placeholder={userEmail} {...register('email')} />
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
           </Label>
 
