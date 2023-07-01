@@ -9,7 +9,7 @@ import {
   LabelColorBox,
   LabelColorText,
   StyledHeader,
-} from './AddCardForm.styled';
+} from './EditCardForm.styled';
 import { useState } from 'react';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
@@ -17,16 +17,16 @@ import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
-import { addCard } from 'redux/board/operations';
-import { useColumns } from 'hooks';
 
-const AddCardForm = ({ columnId }) => {
+const EditCardForm = ({
+  titleName = '',
+  descriptionText = '',
+  chooseLableColor = 'without',
+  pickDeadline = new Date(),
+}) => {
   const [deadlineDate, setDeadlineDate] = useState(new Date());
-  const [radioChoose, setRadioChoose] = useState('without priority');
-  const dispatch = useDispatch();
-  const columns = useColumns();
-  const tasksLength = columns.filter(column => column._id === columnId)[0].tasks
-    .length;
+  const [radioChoose, setRadioChoose] = useState('without');
+  // const dispatch = useDispatch();
 
   const {
     register,
@@ -35,26 +35,21 @@ const AddCardForm = ({ columnId }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: '',
-      description: '',
-      lableColor: '',
+      title: titleName,
+      description: descriptionText,
+      lableColor: chooseLableColor,
     },
     resolver: yupResolver(AddCardFormSchema),
   });
 
-  const onSubmit = ({ title, description, lableColor }) => {
+  const onSubmit = data => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    const newTask = {
-      title,
-      description,
-      priority: lableColor,
-      deadline,
-      column: columnId,
-      index: tasksLength + 1,
-    };
-    // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
-    console.log(newTask);
-    dispatch(addCard(newTask));
+    const newTask = { ...data, deadline };
+    console.log(
+      '🚀 ~ file: EditCardForm.jsx:52 ~ onSubmit ~ newTask:',
+      newTask
+    );
+
     reset();
   };
 
@@ -64,7 +59,7 @@ const AddCardForm = ({ columnId }) => {
 
   return (
     <>
-      <StyledHeader>Add card</StyledHeader>
+      <StyledHeader>Edit card</StyledHeader>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Title" {...register('title')} />
@@ -79,11 +74,11 @@ const AddCardForm = ({ columnId }) => {
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="without priority"
+              value="without"
               id="withoutPriority"
               clr="lilac"
               onClick={chooseBtn}
-              checked={radioChoose === 'without priority' ? true : false}
+              checked={radioChoose === 'without' ? true : false}
               {...register('lableColor')}
             />
             <label htmlFor="withoutPriority">
@@ -152,4 +147,4 @@ const AddCardForm = ({ columnId }) => {
   );
 };
 
-export default AddCardForm;
+export default EditCardForm;
