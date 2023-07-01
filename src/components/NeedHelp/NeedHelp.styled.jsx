@@ -8,7 +8,6 @@ const ContainerDynamicStyles = ({ theme }) => css`
   width: 197px;
   height: 238px;
   margin-bottom: 24px;
-  margin-top: 14px;
   padding: 15px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     margin-left: 24px;
