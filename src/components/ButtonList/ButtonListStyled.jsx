@@ -3,9 +3,15 @@ import { css } from '@emotion/react';
 
 const listDynamicStyles = ({ theme }) => css`
   width: 100%;
-  max-height: 195px;
+  min-height: 61px;
+  margin-bottom: 40px;
+  height: calc(100vh - 611px);
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    height: calc(100vh - 646px);
+  }
 
   &::-webkit-scrollbar {
     width: 0px;
