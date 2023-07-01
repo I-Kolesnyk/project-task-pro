@@ -26,11 +26,9 @@ function Layout() {
       setIsSidebarOpen(true);
     } else {
       document.addEventListener('mousedown', handleClickOutside);
-      // document.body.classList.toggle('no-scroll');
     }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      // document.body.classList.remove('no-scroll');
     };
   }, [isDesktop]);
 
@@ -49,7 +47,8 @@ function Layout() {
   }, []);
 
   const handleClickOutside = e => {
-    if (!myRef.current.contains(e.target)) {
+    const modal = document.getElementById('modal-root');
+    if (!myRef.current.contains(e.target) && !modal.contains(e.target)) {
       setIsSidebarOpen(false);
     }
   };

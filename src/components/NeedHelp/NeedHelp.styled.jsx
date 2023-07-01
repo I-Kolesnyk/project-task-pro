@@ -2,15 +2,14 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const ContainerDynamicStyles = ({ theme }) => css`
+  align-self: center;
   background-color: ${theme.backgroundColors.asideSecondary};
   border-radius: ${theme.radii.md};
-  margin-left: 14px;
   width: 197px;
   height: 238px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   padding: 15px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
-    margin-left: 24px;
     width: 212px;
     height: 272px;
     padding: 20px;

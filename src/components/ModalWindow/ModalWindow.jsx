@@ -28,20 +28,20 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('keydown',event => {
+      document.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
           onClose();
         }
       });
     } else {
-      document.removeEventListener('keydown',event => {
+      document.removeEventListener('keydown', event => {
         if (event.key === 'Escape') {
           onClose();
         }
       });
     }
     return () => {
-      document.removeEventListener('keydown',event => {
+      document.removeEventListener('keydown', event => {
         if (event.key === 'Escape') {
           onClose();
         }

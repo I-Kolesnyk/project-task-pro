@@ -6,8 +6,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
-  margin-top: 24px;
+  gap: 8px;  
   margin-left: 24px;
   margin-bottom: 60px;
   &::before {

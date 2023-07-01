@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import sprite from '../../assets/sprite.svg';
-import Modal from 'components/ModalWindow';
+import Modal from 'components/ModalWindow/ModalWindow';
 import AddColumnForm from 'components/AddColumnForm';
 import { Button, Svg, Box, Wrapper } from './AddColumnButton.styled';
 
