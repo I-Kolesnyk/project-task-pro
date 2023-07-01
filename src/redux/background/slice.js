@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getBackgrounds } from './operations';
 
 const initialState = {
-  backgrounds: [],
+  backgrounds: {},
   isLoading: false,
 };
 
@@ -13,6 +13,7 @@ export const backgroundsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(getBackgrounds.fulfilled, (state, action) => {
+        console.log('backs', action.payload.data);
         state.backgrounds = action.payload.data;
         state.isLoading = false;
       })
@@ -23,3 +24,5 @@ export const backgroundsSlice = createSlice({
         state.isLoading = false;
       }),
 });
+
+export const backgroundsReducer = backgroundsSlice.reducer;

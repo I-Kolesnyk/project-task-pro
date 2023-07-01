@@ -9,6 +9,7 @@ import Loader from 'components/Loader';
 import { useAllBoards, useIsBoardsLoading, useIsUserLoading } from 'hooks';
 import { StyledMain } from './Layout.styled';
 import { useNavToActiveBoard } from 'hooks/useNavToActivBoard';
+import { getBackgrounds } from 'redux/background/operations';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,6 +36,7 @@ function Layout() {
   useEffect(() => {
     if (!isUserLoading) {
       dispatch(getAllBoards());
+      dispatch(getBackgrounds());
     }
   }, [dispatch, isUserLoading]);
 
