@@ -1,13 +1,15 @@
-import {
-  axiosPublic,
-  axiosPrivateJson,
-  axiosPrivateFormData,
-} from 'services/axios';
+import
+  {
+    axiosPublic,
+    axiosPrivateJson,
+    axiosPrivateFormData,
+  } from 'services/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const userRegister = createAsyncThunk(
   'auth/register',
-  async (user, thunkAPI) => {
+  async (user, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPublic.post(`/api/users/register`, user);
       const { email, password } = user;
@@ -29,7 +31,8 @@ export const userRegister = createAsyncThunk(
 
 export const userLogin = createAsyncThunk(
   'auth/login',
-  async (user, thunkAPI) => {
+  async (user, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPublic.post(`/api/users/login`, user);
       return data;
@@ -41,7 +44,8 @@ export const userLogin = createAsyncThunk(
 
 export const userLogOut = createAsyncThunk(
   'auth/logout',
-  async (_, thunkAPI) => {
+  async (_, thunkAPI) =>
+  {
     try {
       await axiosPrivateJson.post('/api/users/logout');
 
@@ -54,7 +58,8 @@ export const userLogOut = createAsyncThunk(
 
 export const currentUser = createAsyncThunk(
   'auth/current',
-  async (_, thunkAPI) => {
+  async (_, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.get(`/api/users/current`);
       return data;
@@ -66,11 +71,12 @@ export const currentUser = createAsyncThunk(
 
 export const editProfile = createAsyncThunk(
   'auth/profile',
-  async (userId, userData, thunkAPI) => {
+  async (userData, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateFormData.put(
-        `/api/users/current/${userId}`,
-        userData
+        `/api/users/current/${userData.userId}`,
+        userData.formData
       );
       return data;
     } catch (error) {
@@ -81,7 +87,8 @@ export const editProfile = createAsyncThunk(
 
 export const editTheme = createAsyncThunk(
   'auth/theme',
-  async (userData, thunkAPI) => {
+  async (userData, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.patch(
         `/api/users/current/${userData.id}/theme`,
@@ -98,7 +105,8 @@ export const editTheme = createAsyncThunk(
 
 export const userNeedHelp = createAsyncThunk(
   'auth/current',
-  async (userMessage, thunkAPI) => {
+  async (userMessage, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.post(`/api/email`, userMessage);
       console.log(data);

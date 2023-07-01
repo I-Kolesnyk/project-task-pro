@@ -6,3 +6,4 @@ export const selectUserId = state => state.auth.user.id;
 export const selectTheme = state => state.auth.theme;
 export const selectIsFetchingCurrentUser = state => state.auth.isFetchingCurrentUser;
 export const selectToken = state => state.auth.token;
+export const selectUserEmail = state => state.auth.user.email;
