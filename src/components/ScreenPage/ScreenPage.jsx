@@ -1,6 +1,6 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-
+import Filter from 'components/FilterModal/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
@@ -15,7 +15,7 @@ import {
 import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
-  const oneBoard = useBoard();  
+  const oneBoard = useBoard();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
 
@@ -49,9 +49,9 @@ function ScreenPage() {
     const listCopy = { ...elements };
     console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
-    console.log("sorseLise",  sourceList, result.source.index);
+    console.log('sorseLise', sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
-      sourceList,      
+      sourceList,
       result.source.index
     );
     listCopy[result.source.droppableId] = newSourceList;
@@ -73,12 +73,7 @@ function ScreenPage() {
       <Wrapper>
         <Header>
           <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
-          <Filters>
-            <FilterIcon>
-              <use href={sprite + '#filter'}></use>
-            </FilterIcon>
-            <span>Filters</span>
-          </Filters>
+          <Filter />
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>

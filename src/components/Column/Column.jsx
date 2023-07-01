@@ -8,11 +8,23 @@ import {
   IconList,
   IconButton,
 } from './Column.styled';
+import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
+import { useSelector } from 'react-redux';
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
+  const filter = useSelector(selectFilter);
+  console.log('cards in column -->', cards);
+
+  const filteredCards = (cards, filter) => {
+    if (filter === 'all') return cards;
+    const filteredCards = cards.filter(card => card.priority === filter);
+    console.log('filtered cards -->', filteredCards);
+    return filteredCards;
+  };
+  // .filter(card => card.priority === ? all
   return (
     <Wrapper>
       <ColumnTitle>
@@ -37,8 +49,8 @@ function Column({ columnTitle, columnId, cards, prefix }) {
         {provided => (
           <TaskList {...provided.droppableProps} ref={provided.innerRef}>
             {cards &&
-              cards.length > 0 &&
-              cards.map((card, index) => (
+              filteredCards(cards, filter).length > 0 &&
+              filteredCards(cards, filter).map((card, index) => (
                 <Card index={index} item={card} key={card._id} />
               ))}
             {provided.placeholder}

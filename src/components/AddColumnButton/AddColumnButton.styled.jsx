@@ -14,6 +14,15 @@ const dynamicStyledAddCardButton = ({ theme }) => css`
   transition: scale 250ms ease-in 0s;
   scroll-snap-align: center;
 
+  margin-right: 20px;
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    margin-right: 32px;
+  }
+  @media only screen and (min-width: ${theme.breakpoints[2]}) {
+    margin-right: 24px;
+  }
+
   &:hover {
     scale: 1.05;
   }

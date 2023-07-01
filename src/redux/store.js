@@ -16,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/slice';
 import { boardsReducer } from './allBoards/slice';
 import { boardReducer } from './board/slice';
+import { filterReducer } from './filter/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -38,6 +39,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     boards: persistReducer(allBoardsPersistConfig, boardsReducer),
     board: persistReducer(boardPersistConfig, boardReducer),
+    filter: filterReducer,
   },
 
   middleware: getDefaultMiddleware =>

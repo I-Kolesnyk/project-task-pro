@@ -5,18 +5,9 @@ const wrapperDynamicStyles = ({ theme }) => css`
   display: flex;
   flex-direction: column;
   width: 347px;
-  height: calc(100vh - 200px);
+
   margin-right: 18px;
   scroll-snap-align: start;
-
-  @media only screen and (min-width: ${theme.breakpoints[1]}) {
-    width: 350px;
-    height: calc(100vh - 239px);
-  }
-
-  @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    height: calc(100vh - 150px);
-  }
 `;
 
 export const Wrapper = styled.li`
@@ -46,8 +37,15 @@ const taskListDynamicStyles = ({ theme }) => css`
   overflow-y: auto;
   scroll-snap-type: y mandatory;
 
-  @media only screen and (min-width: 768px) {
+  height: calc(100vh - 341px);
+
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
     width: 350px;
+    height: calc(100vh - 379px);
+  }
+
+  @media only screen and (min-width: ${theme.breakpoints[2]}) {
+    height: calc(100vh - 288px);
   }
 
   &::-webkit-scrollbar {
