@@ -19,7 +19,7 @@ import { StyledMain } from './Layout.styled';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef();
+  const myRef = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allBoards = useAllBoards();
@@ -29,7 +29,6 @@ function Layout() {
 
   const isDesktop = window.screen.width;
 
-  console.log(allBoards);
   useEffect(() => {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
@@ -82,9 +81,7 @@ function Layout() {
     !isLoading && (
       <>
         <Header openSidebar={openSidebar} />
-        <div ref={myRef}>
-          {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
-        </div>
+        <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
         <StyledMain>
           <Suspense fallback={<Loader />}>
             <Outlet />
