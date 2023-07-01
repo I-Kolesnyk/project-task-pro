@@ -1,14 +1,8 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-import { Link } from 'react-router-dom';
 
-export const StyledLogo = styled.svg(`
-    background-color: #1F1F1F;
-    border-radius: 5px;
-    fill: transparent;
-`);
-
-export const StyledWrapper = styled(Link)`
+const wrapperDynamicStyles = ({ theme }) => css`
+  position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,10 +10,31 @@ export const StyledWrapper = styled(Link)`
   margin-top: 24px;
   margin-left: 24px;
   margin-bottom: 60px;
+  &::before {
+    content: '';
+    width: 32px;
+    height: 32px;
+    background-color: ${theme.logo.bcg};
+    cursor: pointer;
+    border-radius: ${theme.radii.md};
+  }
+`;
+
+const logoDynamicStyles = ({ theme }) => css`
+  fill: ${theme.logo.icon};
+  position: absolute;
 `;
 
 const dynamicTextColor = ({ theme }) => css`
   color: ${theme.textColors.addButton};
+`;
+
+export const StyledWrapper = styled.div`
+  ${wrapperDynamicStyles}
+`;
+
+export const StyledLogo = styled.svg`
+  ${logoDynamicStyles}
 `;
 
 export const StyledSpanLogo = styled.span`
