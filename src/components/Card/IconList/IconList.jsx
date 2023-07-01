@@ -9,15 +9,12 @@ import sprite from '../../../assets/sprite.svg';
 
 const IconList = ({ taskInfo }) => {
   const [isModalOpen, setModalOpen] = useState(false);
-  console.log(isModalOpen);
 
   const openModal = () => {
-    console.log('open');
     setModalOpen(true);
   };
 
   const closeModal = () => {
-    console.log('closed');
     setModalOpen(false);
   };
 
