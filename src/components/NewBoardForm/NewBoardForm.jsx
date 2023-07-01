@@ -50,9 +50,9 @@ const NewBoardForm = ({ onClose }) => {
       setValue('icon', '');
       setValue('background', '');
       onClose();
-      if (!isLoading) {
-        navigate(data.title);
-      }
+      // if (!isLoading) {
+      //   navigate(data.title);
+      // }
     });
   };
 
