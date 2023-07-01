@@ -1,7 +1,7 @@
 import { Filters, FilterIcon } from './Filter.styled';
 import { useState } from 'react';
 import Modal from 'components/ModalWindow/ModalWindow';
-import FilterModal from './FilterModal';
+import FilterModal from './FilterModal/FilterModal';
 import sprite from '../../assets/sprite.svg';
 
 const Filter = () => {
@@ -23,6 +23,7 @@ const Filter = () => {
         </FilterIcon>
         <span>Filters</span>
       </Filters>
+
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={closeModal}>
           <FilterModal onClose={closeModal} />

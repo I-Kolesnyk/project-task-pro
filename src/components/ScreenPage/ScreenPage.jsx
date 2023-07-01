@@ -1,16 +1,10 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-import Filter from 'components/FilterModal/Filter';
+import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useBoard, useOneBoardLoading } from 'hooks';
 import Column from 'components/Column';
-import {
-  Wrapper,
-  Header,
-  ColumnList,
-  BoardTitle,
-
-} from './ScreenPage.styled';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoard();

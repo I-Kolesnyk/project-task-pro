@@ -16,6 +16,11 @@ const dynamicStylesBtn = ({ theme }) => css`
   color: ${theme.textColors.button};
   font-size: ${theme.fontSizes[3]};
   font-weight: ${theme.fontWeights.medium};
+  transition: scale 250ms ease-in 0s;
+  &:hover,
+  &focus {
+    scale: 1.05;
+  }
 `;
 
 export const BtnForm = styled.button`

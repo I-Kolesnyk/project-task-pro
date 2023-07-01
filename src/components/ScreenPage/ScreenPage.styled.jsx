@@ -59,6 +59,7 @@ export const ColumnList = styled.ul`
 const dynamicStylesHeader = ({ theme }) => css`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-right: 20px;
   margin-bottom: 39px;
 

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import sprite from '../../assets/sprite.svg';
+import sprite from '../../../assets/sprite.svg';
 import { useDispatch } from 'react-redux';
 import { filterTasksByPriority } from 'redux/filter/slice';
 
@@ -8,12 +8,14 @@ import {
   CustomRadio,
   CustomRadioContainer,
   RadioItem,
-} from './FilterModal.styled';
+  FilterModalWindow,
+  LabelColors,
+  Container,
+  ShowAllBtn,
+} from './FilterLabels.styled';
 
-const FilterModal = () => {
-  const [radioChoose, setRadioChoose] = useState(
-    sessionStorage.getItem('tasksFilter') || 'all'
-  );
+const FilterLabels = () => {
+  const [radioChoose, setRadioChoose] = useState();
 
   const dispatch = useDispatch();
   const { register } = useForm({
@@ -23,32 +25,24 @@ const FilterModal = () => {
   });
 
   const chooseBtn = e => {
-    sessionStorage.setItem('tasksFilter', e.target.value);
     setRadioChoose(e.target.value);
     dispatch(filterTasksByPriority(e.target.value));
   };
 
   return (
-    <>
+    <FilterModalWindow>
+      <Container>
+        <LabelColors>Label colors</LabelColors>
+        <ShowAllBtn
+          type="button"
+          onClick={() => {
+            dispatch(filterTasksByPriority('all'));
+          }}
+        >
+          Show all
+        </ShowAllBtn>
+      </Container>
       <CustomRadioContainer>
-        <RadioItem>
-          <CustomRadio
-            type="radio"
-            value="all"
-            id="all"
-            clr="yellow"
-            onClick={chooseBtn}
-            checked={radioChoose === 'all' ? true : false}
-            {...register('lableColor')}
-          />
-          <label htmlFor="all">
-            <svg width="14px" height="14px">
-              <use href={sprite + '#radioButtonYellow'}></use>
-            </svg>
-            All
-          </label>
-        </RadioItem>
-
         <RadioItem>
           <CustomRadio
             type="radio"
@@ -63,7 +57,7 @@ const FilterModal = () => {
             <svg width="14px" height="14px">
               <use href={sprite + '#radioButtonGray'}></use>
             </svg>
-            Without
+            <span>Without priority</span>
           </label>
         </RadioItem>
 
@@ -81,7 +75,7 @@ const FilterModal = () => {
             <svg width="14px" height="14px">
               <use href={sprite + '#radioButtonLilac'}></use>
             </svg>
-            Low
+            <span>Low</span>
           </label>
         </RadioItem>
 
@@ -99,7 +93,7 @@ const FilterModal = () => {
             <svg width="14px" height="14px">
               <use href={sprite + '#radioButtonPink'}></use>
             </svg>
-            Medium
+            <span>Medium</span>
           </label>
         </RadioItem>
 
@@ -117,12 +111,12 @@ const FilterModal = () => {
             <svg width="14px" height="14px">
               <use href={sprite + '#radioButtonGreen'}></use>
             </svg>
-            High
+            <span>High</span>
           </label>
         </RadioItem>
       </CustomRadioContainer>
-    </>
+    </FilterModalWindow>
   );
 };
 
-export default FilterModal;
+export default FilterLabels;

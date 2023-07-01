@@ -1,44 +1,34 @@
 import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { Suspense, useEffect, useState, useRef } from 'react';
-import { useNavigate } from 'react-router';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAllBoards } from 'redux/allBoards/operations';
-import { getBoardById } from 'redux/board/operations';
-
+import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import Loader from 'components/Loader';
-import {
-  useAllBoards,
-  useIsBoardsLoading,
-  useIsUserLoading,
-  useOneBoardLoading,
-} from 'hooks';
+import { useAllBoards, useIsBoardsLoading, useIsUserLoading } from 'hooks';
 import { StyledMain } from './Layout.styled';
+import { useNavToActiveBoard } from 'hooks/useNavToActivBoard';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef();
+  const myRef = useRef(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const allBoards = useAllBoards();
   const isUserLoading = useIsUserLoading();
   const isLoading = useIsBoardsLoading();
-  const isBoardLoading = useOneBoardLoading();
+  const { navigateToActive } = useNavToActiveBoard();
 
   const isDesktop = window.screen.width;
 
-  console.log(allBoards);
   useEffect(() => {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
     } else {
-      // document.addEventListener('mousedown', handleClickOutside);
-      // document.body.classList.toggle('no-scroll');
+      document.addEventListener('mousedown', handleClickOutside);
     }
     return () => {
-      // document.removeEventListener('mousedown', handleClickOutside);
-      // document.body.classList.remove('no-scroll');
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isDesktop]);
 
@@ -53,42 +43,27 @@ function Layout() {
   };
 
   useEffect(() => {
-    if (!isLoading) {
-      if (allBoards.boards.length !== 0) {
-        const activeBoard = allBoards.boards.filter(
-          board => board.active === true
-        );
-        if (activeBoard.length === 0) {
-          return;
-        }
-        if (activeBoard) {
-          dispatch(getBoardById(`${activeBoard[0]._id}`));
-          if (!isBoardLoading) {
-            navigate(`${activeBoard[0].title}`);
-          }
-        }
-      }
-    }
-  }, [allBoards.boards, dispatch, isBoardLoading, isLoading, navigate]);
+    navigateToActive();
+  }, []);
 
-  // const handleClickOutside = e => {
-  //   if (!myRef.current.contains(e.target)) {
-  //     setIsSidebarOpen(false);
-  //   }
-  // };
+  const handleClickOutside = e => {
+    const modal = document.getElementById('modal-root');
+    if (!myRef.current.contains(e.target) && !modal.contains(e.target)) {
+      setIsSidebarOpen(false);
+    }
+  };
 
   return (
     !isLoading && (
       <>
         <Header openSidebar={openSidebar} />
-        <div ref={myRef}>
-          {isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen} />}
-        </div>
+        <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
         <StyledMain>
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>
         </StyledMain>
+        <ToastWrapper />
       </>
     )
   );

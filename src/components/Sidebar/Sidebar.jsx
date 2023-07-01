@@ -4,20 +4,9 @@ import LogoutBtn from 'components/LogoutBtn/LogoutBtn';
 import NeedHelp from 'components/NeedHelp/NeedHelp';
 import Logo from 'components/Logo/Logo';
 
-function Sidebar({ setIsSidebarOpen }) {
-  const isDesktop = window.screen.width;
-
-  const handleClose = () => {
-    setIsSidebarOpen(false);
-  };
+function Sidebar() {
   return (
     <StyledSidebar>
-      {isDesktop < 1439 && (
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
-      )}
-
       <Logo />
       <BoardList />
       <NeedHelp />

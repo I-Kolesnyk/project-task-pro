@@ -11,16 +11,17 @@ export const userRegister = createAsyncThunk(
     try {
       const { data } = await axiosPublic.post(`/api/users/register`, user);
       const { email, password } = user;
-
+      let needData;
       if (data.status === 'success') {
-        const loginData = await axiosPublic.post('/api/users/login', {
+        const { data } = await axiosPublic.post('/api/users/login', {
           email,
           password,
         });
-
-        return loginData;
+        needData = data;
+        console.log(needData);
+        return needData;
       }
-      return data;
+      return needData;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
     }
@@ -66,11 +67,11 @@ export const currentUser = createAsyncThunk(
 
 export const editProfile = createAsyncThunk(
   'auth/profile',
-  async (userId, userData, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
       const { data } = await axiosPrivateFormData.put(
-        `/api/users/current/${userId}`,
-        userData
+        `/api/users/current/${userData.userId}`,
+        userData.formData
       );
       return data;
     } catch (error) {

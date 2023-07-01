@@ -92,8 +92,8 @@
 <circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#BEDBB0"/>
 </symbol>
 <symbol id="radioButtonGray" viewBox="0 0 14 14" fill="none">
-<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#1616164D"/>
-<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#1616164D"/>
+<circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#B0B0B0"/>
+<circle id="Ellipse 4" cx="7" cy="7" r="6.5" stroke="#B0B0B0"/>
 </symbol>
 <symbol id="radioButtonYellow" viewBox="0 0 14 14" fill="none">
 <circle id="Ellipse 8" cx="7" cy="7" r="4" fill="#dec5088a"/>

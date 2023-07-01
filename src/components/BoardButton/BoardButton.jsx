@@ -15,6 +15,7 @@ import {
   IconsWrapper,
   IconButton,
 } from './BoardButton.styled';
+import { getBoardById } from 'redux/board/operations';
 
 function BoardButton({ name, id, icon, isActive }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -23,20 +24,19 @@ function BoardButton({ name, id, icon, isActive }) {
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
 
-
   useEffect(() => {
-    
     if (isActive) {
-      console.log(name.toString(), params.boardName);
       if (name.toString() !== params.boardName) {
+        console.log(name.toString(), params.boardName);
         dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        console.log ("i am inactive", name.toString())
-      }  
+        console.log('i am inactive', name.toString());
+      }
     }
-  }, [dispatch, id, isActive, name, params.boardName]);
+  }, [dispatch, id, isActive, params.boardName, name]);
 
   const handleActive = () => {
     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+    dispatch(getBoardById(`${id}`));
     if (!isAllBoardsLoading) {
       navigate(`${name}`);
     }
@@ -54,7 +54,7 @@ function BoardButton({ name, id, icon, isActive }) {
     <>
       <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
         <Svg width="18px" height="18px">
-          <use href={sprite + '#project'}></use>
+          <use href={sprite + `#${icon}`}></use>
         </Svg>
         <Title>{name}</Title>
         {isActive && (

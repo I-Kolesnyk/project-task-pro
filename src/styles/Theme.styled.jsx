@@ -74,6 +74,7 @@ const dark = {
     formButtonBg: '#BEDBB0',
     datePickerCurMonth: '#FFFFFF33',
     addCardButtonHover: '#ffffff',
+    popUpForm: '#1F1F1F',
   },
 
   logOutIcon: {
@@ -86,7 +87,9 @@ const dark = {
     green: '#BEDBB0',
     gray: 'rgba(255, 255, 255, 0.3)',
     yellow: '#dec5088a',
+    // gray: '#B0B0B0',
   },
+
   radii: {
     sm: '6px',
     md: '8px',
@@ -170,6 +173,7 @@ const light = {
     formButtonBg: '#BEDBB0',
     datePickerCurMonth: '#16161633',
     addCardButtonHover: '#ffffff',
+    popUpForm: '#ffffff',
   },
 
   logOutIcon: {
@@ -182,6 +186,7 @@ const light = {
     green: '#BEDBB0',
     gray: 'rgba(22, 22, 22, 0.30)',
     yellow: '#dec5088a',
+    // gray: '#B0B0B0',
   },
 
   radii: {
@@ -267,6 +272,7 @@ const violet = {
     formButtonBg: '#ECEDFD',
     datePickerCurMonth: '#16161633',
     addCardButtonHover: '#ffffff',
+    popUpForm: '#ffffff',
   },
 
   labelColors: {
@@ -275,6 +281,7 @@ const violet = {
     green: '#BEDBB0',
     gray: 'rgba(22, 22, 22, 0.30)',
     yellow: '#dec5088a',
+    // gray: '#B0B0B0',
   },
 
   logOutIcon: {

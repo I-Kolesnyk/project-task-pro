@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
+export const FilterModalWindow = styled.div`
+  width: 252px;
+`;
+
 const dynamicStylesRadio = ({ theme, clr }) => css`
   position: absolute;
   z-index: -1;
@@ -11,6 +15,12 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
     display: flex;
     align-items: center;
     user-select: none;
+
+    color: ${theme.textColors.secondary};
+    font-size: ${theme.fontSizes[2]};
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.24px;
 
     &::before {
       content: '';
@@ -35,12 +45,14 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
 
   &:checked + label > svg {
     position: absolute;
-    top: 3px;
+    top: 0;
     left: 0;
 
     opacity: 1;
   }
-
+  &:checked + label > span {
+    color: ${theme.textColors.main};
+  }
   & + label > svg {
     position: absolute;
     top: 0;
@@ -60,4 +72,35 @@ export const CustomRadioContainer = styled.ul`
 
 export const RadioItem = styled.li`
   position: relative;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const dynamicStylesLabelColors = ({ theme }) => css`
+  margin-bottom: 16px;
+  color: ${theme.textColors.main};
+  font-style: normal;
+  font-weight: ${theme.fontWeights.medium};
+  line-height: normal;
+  letter-spacing: -0.28px;
+`;
+
+export const LabelColors = styled.p`
+  ${dynamicStylesLabelColors}
+`;
+
+const dynamicStylesShowAllBtn = ({ theme }) => css`
+  color: ${theme.textColors.secondary};
+  font-size: ${theme.fontSizes[2]};
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: -0.24px;
+  text-decoration-line: underline;
+`;
+
+export const ShowAllBtn = styled.button`
+  ${dynamicStylesShowAllBtn}
 `;
