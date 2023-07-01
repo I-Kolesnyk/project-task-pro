@@ -1,11 +1,10 @@
 import { Draggable } from '@hello-pangea/dnd';
 import * as s from './Card.styled';
 import sprite from '../../assets/sprite.svg';
+
 import IconList from './IconList/IconList';
 import Details from './Details/Details';
 import DeadlineSignal from './DeadlineSignal/DeadlineSignal';
-
-const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
 function Card({ item, index }) {
   const toDeadLine = date => {
@@ -14,7 +13,6 @@ function Card({ item, index }) {
     );
     const daysLeft = Math.ceil((deadline - Date.now()) / (1000 * 3600 * 24));
 
-    // console.log('days left--> ', daysLeft <= 1);
     return daysLeft;
   };
 
@@ -47,7 +45,7 @@ function Card({ item, index }) {
                     sprite={sprite}
                   />
                 )}
-                <IconList icons={icons} sprite={sprite} />
+                <IconList sprite={sprite} taskInfo={item} />
               </s.Box>
             </s.Box>
           </s.Wrapper>
