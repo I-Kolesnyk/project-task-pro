@@ -6,6 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getAllBoards } from 'redux/allBoards/operations';
 import { getBoardById } from 'redux/board/operations';
+import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 
 import Loader from 'components/Loader';
 import {
@@ -33,11 +34,11 @@ function Layout() {
     if (isDesktop > 1439) {
       setIsSidebarOpen(true);
     } else {
-      // document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       // document.body.classList.toggle('no-scroll');
     }
     return () => {
-      // document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
       // document.body.classList.remove('no-scroll');
     };
   }, [isDesktop]);
@@ -71,11 +72,11 @@ function Layout() {
     }
   }, [allBoards.boards, dispatch, isBoardLoading, isLoading, navigate]);
 
-  // const handleClickOutside = e => {
-  //   if (!myRef.current.contains(e.target)) {
-  //     setIsSidebarOpen(false);
-  //   }
-  // };
+  const handleClickOutside = e => {
+    if (!myRef.current.contains(e.target)) {
+      setIsSidebarOpen(false);
+    }
+  };
 
   return (
     !isLoading && (
@@ -89,6 +90,7 @@ function Layout() {
             <Outlet />
           </Suspense>
         </StyledMain>
+        <ToastWrapper />
       </>
     )
   );
