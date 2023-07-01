@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
 import { parseDate } from 'Helpers/CustomDateFormate';
 
-const EditCardForm = ({ taskInfo, closeModal }) => {
+const EditCardForm = ({ taskInfo, onClose }) => {
   const { title, description, priority, deadline, column, index, owner } =
     taskInfo;
   const [deadlineDate, setDeadlineDate] = useState(
@@ -58,7 +58,7 @@ const EditCardForm = ({ taskInfo, closeModal }) => {
       newTask
     );
     // dispatch(editCard(newTask));
-    closeModal(false);
+    onClose(false);
   };
 
   const chooseBtn = e => {
