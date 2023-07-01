@@ -7,6 +7,7 @@ import {
   ColumnTitle,
   IconList,
   IconButton,
+  Container,
 } from './Column.styled';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
@@ -32,19 +33,20 @@ function Column({ columnTitle, columnId, cards, prefix }) {
           ))}
         </IconList>
       </ColumnTitle>
-
-      <Droppable droppableId={`${prefix}`}>
-        {provided => (
-          <TaskList {...provided.droppableProps} ref={provided.innerRef}>
-            {cards &&
-              cards.length > 0 &&
-              cards.map((card, index) => (
-                <Card index={index} item={card} key={card._id} />
-              ))}
-            {provided.placeholder}
-          </TaskList>
-        )}
-      </Droppable>
+      <Container>
+        <Droppable droppableId={`${prefix}`}>
+          {provided => (
+            <TaskList {...provided.droppableProps} ref={provided.innerRef}>
+              {cards &&
+                cards.length > 0 &&
+                cards.map((card, index) => (
+                  <Card index={index} item={card} key={card._id} />
+                ))}
+              {provided.placeholder}
+            </TaskList>
+          )}
+        </Droppable>
+      </Container>
       <AddCardButton columnId={columnId} />
     </Wrapper>
   );
