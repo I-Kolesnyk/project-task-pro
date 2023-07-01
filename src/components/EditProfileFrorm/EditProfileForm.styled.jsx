@@ -52,6 +52,10 @@ const avatarInputDynamicStyles = ({ theme }) => css`
   border-radius: ${theme.radii.sm};
 `;
 
+const imgDynamicStyles = ({ theme }) => css`
+  border-radius: ${theme.radii.md};
+`;
+
 export const Title = styled.h3`
   ${titleDynamicStyles}
 `;
@@ -95,6 +99,7 @@ export const Input = styled.input`
 export const Image = styled.img`
   width: 68px;
   height: 68px;
+  ${imgDynamicStyles};
 `;
 
 export const LabelAvatar = styled.label`

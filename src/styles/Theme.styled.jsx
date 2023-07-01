@@ -93,6 +93,11 @@ const dark = {
     md: '8px',
     lg: '50%',
   },
+
+  logo: {
+    icon: '#FFFFFF',
+    bcg: '#1F1F1F',
+  },
 };
 
 const light = {
@@ -190,6 +195,11 @@ const light = {
     md: '8px',
     lg: '50%',
   },
+
+  logo: {
+    icon: '#FFFFFF',
+    bcg: '#1F1F1F',
+  },
 };
 
 const violet = {
@@ -286,6 +296,11 @@ const violet = {
     sm: '6px',
     md: '8px',
     lg: '50%',
+  },
+
+  logo: {
+    icon: '#5255BC',
+    bcg: '#FFFFFF',
   },
 };
 
