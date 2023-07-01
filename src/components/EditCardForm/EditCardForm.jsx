@@ -17,40 +17,48 @@ import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
+import { parseDate } from 'Helpers/CustomDateFormate';
 
-const EditCardForm = ({
-  titleName = '',
-  descriptionText = '',
-  chooseLableColor = 'without',
-  pickDeadline = new Date(),
-}) => {
-  const [deadlineDate, setDeadlineDate] = useState(new Date());
-  const [radioChoose, setRadioChoose] = useState('without');
+const EditCardForm = ({ taskInfo, closeModal }) => {
+  const { title, description, priority, deadline, column, index, owner } =
+    taskInfo;
+  const [deadlineDate, setDeadlineDate] = useState(
+    new Date(parseDate(deadline))
+  );
+  const [radioChoose, setRadioChoose] = useState(priority);
   // const dispatch = useDispatch();
 
   const {
     register,
     handleSubmit,
-    reset,
+
     formState: { errors },
   } = useForm({
     defaultValues: {
-      title: titleName,
-      description: descriptionText,
-      lableColor: chooseLableColor,
+      title: title,
+      description: description,
+      priority: priority,
     },
     resolver: yupResolver(AddCardFormSchema),
   });
 
-  const onSubmit = data => {
+  const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    const newTask = { ...data, deadline };
+    const newTask = {
+      title,
+      description,
+      priority: lableColor,
+      deadline,
+      column,
+      index,
+      owner,
+    };
     console.log(
-      '🚀 ~ file: EditCardForm.jsx:52 ~ onSubmit ~ newTask:',
+      '🚀 ~ file: EditCardForm.jsx:48 ~ onSubmit ~ newTask:',
       newTask
     );
-
-    reset();
+    // dispatch(editCard(newTask));
+    closeModal(false);
   };
 
   const chooseBtn = e => {
@@ -74,11 +82,11 @@ const EditCardForm = ({
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="without"
+              value="without priority"
               id="withoutPriority"
               clr="lilac"
               onClick={chooseBtn}
-              checked={radioChoose === 'without' ? true : false}
+              checked={radioChoose === 'without priority' ? true : false}
               {...register('lableColor')}
             />
             <label htmlFor="withoutPriority">
