@@ -27,6 +27,7 @@ function BoardButton({ name, id, icon, isActive }) {
   useEffect(() => {
     if (isActive) {
       if (name.toString() !== params.boardName) {
+        console.log(name.toString(), params.boardName);
         dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
         console.log('i am inactive', name.toString());
       }
@@ -53,7 +54,7 @@ function BoardButton({ name, id, icon, isActive }) {
     <>
       <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
         <Svg width="18px" height="18px">
-          <use href={sprite + '#project'}></use>
+          <use href={sprite + `#${icon}`}></use>
         </Svg>
         <Title>{name}</Title>
         {isActive && (

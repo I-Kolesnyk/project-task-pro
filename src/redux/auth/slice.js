@@ -1,12 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import
-{
+import {
   currentUser,
   userRegister,
   userLogin,
   userLogOut,
   editTheme,
-  editProfile
+  editProfile,
 } from './operations';
 
 const initialState = {
@@ -22,8 +21,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder =>
     builder
-      .addCase(userRegister.fulfilled, (state, action) =>
-      {
+      .addCase(userRegister.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
         state.user.email = action.payload.data.user.email;
         state.user.avatar = action.payload.data.user.avatarUrl;
@@ -33,52 +31,49 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(userLogin.fulfilled, (state, action) =>
-      {
-        state.user.name = action.payload.data.user.name;
-        state.user.email = action.payload.data.user.email;
-        state.user.avatar = action.payload.data.user.avatarUrl;
-        state.user.id = action.payload.data.user._id;
-        state.token = action.payload.data.token;
-        state.theme = action.payload.data.user.theme;
-        state.isLoggedIn = true;
-        state.isLoading = false;
-      })
-      .addCase(userLogin.pending, state =>
-      {
+      .addCase(userRegister.pending, state => {
         state.isLoading = true;
       })
-      .addCase(userLogin.rejected, state =>
-      {
+      .addCase(userRegister.rejected, state => {
         state.isLoading = false;
       })
-      .addCase(userLogOut.fulfilled, state =>
-      {
+      .addCase(userLogin.fulfilled, (state, action) => {
+        state.user.name = action.payload.data.user.name;
+        state.user.email = action.payload.data.user.email;
+        state.user.avatar = action.payload.data.user.avatarUrl;
+        state.user.id = action.payload.data.user._id;
+        state.token = action.payload.data.token;
+        state.theme = action.payload.data.user.theme;
+        state.isLoggedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(userLogin.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(userLogin.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(userLogOut.fulfilled, state => {
         state.user = { name: '', email: '', avatar: '' };
         state.token = '';
         state.theme = 'dark';
         state.isLoggedIn = false;
       })
-      .addCase(editTheme.fulfilled, (state, action) =>
-      {
+      .addCase(editTheme.fulfilled, (state, action) => {
         state.theme = action.payload.data.theme;
       })
-      .addCase(currentUser.fulfilled, (state, action) =>
-      {
+      .addCase(currentUser.fulfilled, (state, action) => {
         state.token = action.payload.data.token;
         state.isLoggedIn = true;
         state.isFetchingCurrentUser = false;
       })
-      .addCase(currentUser.pending, state =>
-      {
+      .addCase(currentUser.pending, state => {
         state.isFetchingCurrentUser = true;
       })
-      .addCase(currentUser.rejected, state =>
-      {
+      .addCase(currentUser.rejected, state => {
         state.isFetchingCurrentUser = false;
       })
-      .addCase(editProfile.fulfilled, (state, action) =>
-      {
+      .addCase(editProfile.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
         state.user.email = action.payload.data.user.email;
         state.user.avatar = action.payload.data.user.avatarUrl;
@@ -89,22 +84,25 @@ const authSlice = createSlice({
       .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
 });
 
-const handleFulfilled = state =>
-{
+const handleFulfilled = state => {
   state.isLoading = false;
 };
 
-const handlePending = state =>
-{
+const handlePending = state => {
   state.isLoading = true;
 };
 
-const handleRejected = state =>
-{
+const handleRejected = state => {
   state.isLoading = false;
 };
 
-const extraActions = [userRegister, userLogin, userLogOut, editTheme, editProfile];
+const extraActions = [
+  userRegister,
+  userLogin,
+  userLogOut,
+  editTheme,
+  editProfile,
+];
 
 const getActions = type => extraActions.map(action => action[type]);
 

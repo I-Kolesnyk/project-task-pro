@@ -43,25 +43,25 @@ const taskListDynamicStyles = ({ theme }) => css`
   margin-bottom: 14px;
   width: 347px;
 
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
+  // overflow-y: auto;
+  // scroll-snap-type: y mandatory;
 
   @media only screen and (min-width: 768px) {
     width: 350px;
   }
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
+  // &::-webkit-scrollbar {
+  //   width: 8px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    background-color: ${theme.backgroundColors.scrollBar};
-    border-radius: 12px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    background-color: ${theme.backgroundColors.scrollBarThumb};
-  }
+  // &::-webkit-scrollbar-track {
+  //   background-color: ${theme.backgroundColors.scrollBar};
+  //   border-radius: 12px;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 12px;
+  //   background-color: ${theme.backgroundColors.scrollBarThumb};
+  // }
 `;
 
 export const TaskList = styled.ul`
