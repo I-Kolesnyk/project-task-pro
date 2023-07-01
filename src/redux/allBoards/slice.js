@@ -25,6 +25,12 @@ export const allBoardsSlice = createSlice({
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.boards.boards.push(action.payload.data.board);
       })
+      .addCase(addNewBoard.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(addNewBoard.rejected, (state, action) => {
+        state.isLoading = false;
+      })
       .addCase(updateBoardStatus.fulfilled, (state, action) => {
         const boardIdToUpdate = action.payload.data.board._id;
         const changedBoard = state.boards.boards.find(

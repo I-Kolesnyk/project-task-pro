@@ -4,6 +4,8 @@ import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { addNewBoard } from 'redux/allBoards/operations';
+import { useOneBoardLoading } from 'hooks';
+import { useNavigate } from 'react-router-dom';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -25,6 +27,8 @@ const NewBoardForm = ({ onClose }) => {
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
   const dispatch = useDispatch();
+  const isLoading = useOneBoardLoading();
+  const navigate = useNavigate();
 
   const handleTitleChange = event => {
     setValue('title', event.target.value.toString());
@@ -46,6 +50,9 @@ const NewBoardForm = ({ onClose }) => {
       setValue('icon', '');
       setValue('background', '');
       onClose();
+      if (!isLoading) {
+        navigate(data.title);
+      }
     });
   };
 
