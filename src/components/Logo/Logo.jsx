@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <StyledWrapper>
       <StyledLogo width="32px" height="32px">
-        <use href={`${sprite}#logo`} />
+        <use href={`${sprite}#logo1`} />
       </StyledLogo>
       <StyledSpanLogo>Task Pro</StyledSpanLogo>
     </StyledWrapper>
