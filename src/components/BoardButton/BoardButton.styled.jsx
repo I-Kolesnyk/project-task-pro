@@ -11,7 +11,6 @@ const wrapperDynamicStyles = ({ theme }) => css`
 
   background-color: ${theme.backgroundColors.asideSecondary};
   opacity: 0.4;
-  scroll-snap-align: start;
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     padding: 20px 24px;
@@ -22,6 +21,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   }
 
   &.active {
+    background-color: ${theme.backgroundColors.asideSecondary};
     opacity: 1;
 
     &::before {

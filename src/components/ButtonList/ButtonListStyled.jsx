@@ -7,7 +7,6 @@ const listDynamicStyles = ({ theme }) => css`
   margin-bottom: 40px;
   height: calc(100vh - 611px);
   overflow-y: auto;
-  scroll-snap-type: y mandatory;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     height: calc(100vh - 646px);

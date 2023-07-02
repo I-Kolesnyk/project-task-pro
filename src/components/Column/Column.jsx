@@ -11,9 +11,24 @@ import {
 } from './Column.styled';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
+import { useFilter } from 'hooks';
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
+  const filter = useFilter();
+
+  console.log('cards --> ', cards.length);
+  cards.forEach(task => console.log(task.hasOwnProperty('index')));
+
+  const filteredCards = (tasks, filter) => {
+    if (!tasks.every(task => task.hasOwnProperty('index'))) {
+      return;
+    }
+    if (filter === 'all') return tasks;
+    const sortedCards = tasks.sort((a, b) => a.index - b.index);
+    const filteredCards = sortedCards.filter(card => card.priority === filter);
+    return filteredCards;
+  };
   return (
     <Wrapper>
       <ColumnTitle>
@@ -37,11 +52,15 @@ function Column({ columnTitle, columnId, cards, prefix }) {
         <Droppable droppableId={`${prefix}`}>
           {provided => (
             <TaskList {...provided.droppableProps} ref={provided.innerRef}>
-              {cards &&
-                cards.length > 0 &&
-                cards.map((card, index) => (
-                  <Card index={index} item={card} key={card._id} />
-                ))}
+              {cards.length > 0 &&
+                filteredCards(cards, filter).map((card, index) => {
+                  console.log(card);
+                  console.log('has card index', card.hasOwnProperty('index'));
+                  if (card.hasOwnProperty('index')) {
+                    card.index = index;
+                  }
+                  return <Card index={index} item={card} key={card._id} />;
+                })}
               {provided.placeholder}
             </TaskList>
           )}
