@@ -44,6 +44,7 @@ const filterPersistConfig = {
   key: 'priorityFilter',
   storage,
 };
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),

@@ -9,6 +9,7 @@ import ScreenPage from 'components/ScreenPage/ScreenPage';
 import Layout from 'components/Layout/Layout';
 import PrivateRoute from 'components/PrivateRoute';
 import RestrictedRoute from 'components/RestrictedRoute';
+import { useNavToActiveBoard } from 'hooks/useNavToActivBoard';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const WelcomePage = lazy(() => import('pages/WelcomePage'));
@@ -18,6 +19,7 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 function App() {
   const themeMode = useTheme();
   const isFetching = useIsFetching();
+  const activeBoard = useNavToActiveBoard();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +43,10 @@ function App() {
             <Route
               path="/auth/:id"
               element={
-                <RestrictedRoute redirectTo="/home" restricted>
+                <RestrictedRoute
+                  redirectTo={activeBoard ? `/home/${activeBoard}` : '/home'}
+                  restricted
+                >
                   <AuthPage />
                 </RestrictedRoute>
               }
@@ -74,7 +79,7 @@ function App() {
             <Route path="/" element={<Navigate to="/welcome" />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Suspense>      
+        </Suspense>
       </ThemeProvider>
     )
   );

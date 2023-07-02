@@ -13,7 +13,6 @@ const dynamicStyledAddCardButton = ({ theme }) => css`
   letter-spacing: -0.28px;
   transition: scale 250ms ease-in 0s;
   scroll-snap-align: center;
-
   margin-right: 20px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {

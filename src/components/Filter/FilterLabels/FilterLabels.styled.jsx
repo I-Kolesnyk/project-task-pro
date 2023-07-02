@@ -11,7 +11,6 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
   opacity: 0;
 
   & + label {
-    /* для элемента label связанного с .custom-radio */
     display: flex;
     align-items: center;
     user-select: none;
@@ -24,7 +23,7 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
 
     &::before {
       content: '';
-      /* создание в label псевдоэлемента  before со следующими стилями */
+
       display: inline-block;
       width: 14px;
       height: 14px;

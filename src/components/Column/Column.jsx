@@ -9,15 +9,16 @@ import {
   IconButton,
   Container,
 } from './Column.styled';
-import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
-import { useSelector } from 'react-redux';
-
+import { useFilter } from 'hooks';
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
-  const filter = useSelector(selectFilter);
+  const filter = useFilter();
+
+  console.log('cards --> ', cards.length);
+  cards.forEach(task => console.log(task.hasOwnProperty('index')));
 
   const filteredCards = (tasks, filter) => {
     if (!tasks.every(task => task.hasOwnProperty('index'))) {
@@ -28,7 +29,6 @@ function Column({ columnTitle, columnId, cards, prefix }) {
     const filteredCards = sortedCards.filter(card => card.priority === filter);
     return filteredCards;
   };
-
   return (
     <Wrapper>
       <ColumnTitle>
@@ -55,6 +55,7 @@ function Column({ columnTitle, columnId, cards, prefix }) {
               {cards.length > 0 &&
                 filteredCards(cards, filter).map((card, index) => {
                   card.index = index;
+
                   return <Card index={index} item={card} key={card._id} />;
                 })}
               {provided.placeholder}

@@ -46,3 +46,20 @@ export const updateBoardStatus = createAsyncThunk(
     }
   }
 );
+
+export const editBoardById = createAsyncThunk(
+  'boards/edit',
+  async (boardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.put(
+        `/api/boards/${boardData.boardId}`,
+        boardData.body
+      );
+      console.log('editBoardById----------------->', data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);

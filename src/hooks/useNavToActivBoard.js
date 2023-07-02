@@ -1,10 +1,8 @@
-const { useNavigate } = require('react-router-dom');
 const { useAllBoards } = require('./useAllBoards');
 const { useIsBoardsLoading } = require('./useIsBoardsLoading');
 const { useOneBoardLoading } = require('./useOneBoardLoading');
 
 export const useNavToActiveBoard = () => {
-  const navigate = useNavigate();
   const allBoards = useAllBoards();
   const isLoading = useIsBoardsLoading();
   const isBoardLoading = useOneBoardLoading();
@@ -17,13 +15,12 @@ export const useNavToActiveBoard = () => {
         }
 
         if (activeBoard) {
-          // console.log(activeBoard);
           if (!isBoardLoading) {
-            navigate(`${activeBoard.title}`);
+            return activeBoard.title;
           }
         }
       }
     }
   };
-  return { navigateToActive };
+  return navigateToActive();
 };

@@ -32,9 +32,7 @@ function BoardButton({ name, id, icon, isActive }) {
   useEffect(() => {
     if (active && params.boardName) {
       if (name.toString() !== params.boardName) {
-        console.log(name.toString(), params.boardName);
         dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        console.log('i am inactive', name.toString());
       }
     }
   }, [dispatch, id, params.boardName, name, active]);
