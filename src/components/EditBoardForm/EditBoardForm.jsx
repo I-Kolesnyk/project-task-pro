@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
-import { useAllBoards } from 'hooks/useAllBoards';
-import { getBackgrounds } from 'redux/background/operations';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -20,27 +18,10 @@ import {
   Input,
 } from './EditBoardForm.styled';
 
-const EditBoardForm = ({ onClose }) => {
+const NewBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
-
-  const Backgrounds = getBackgrounds();
-
-  console.log('Backgrounds------------------->', Backgrounds);
-
-  const allBoards = useAllBoards();
-  const activeBoardId = allBoards.find(board => board.active === true);
-
-  useEffect(() => {
-    console.log('activeBoard_ID =====>', activeBoardId);
-    setValue('title', activeBoardId.title);
-    console.log('activeBoard_title =====>', activeBoardId.title);
-    setValue('selectedIcon', activeBoardId.icon);
-    console.log('activeBoard_icon =====>', activeBoardId.icon);
-    // setValue('selectedBackgroundId', activeBoardId.background);
-    console.log('activeBoard_BG =====>', activeBoardId.background);
-  }, [activeBoardId, allBoards, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value);
@@ -129,4 +110,4 @@ const EditBoardForm = ({ onClose }) => {
   );
 };
 
-export default EditBoardForm;
+export default NewBoardForm;
