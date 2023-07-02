@@ -7,7 +7,6 @@ import {
   ColumnTitle,
   IconList,
   IconButton,
-  Container,
 } from './Column.styled';
 import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
@@ -17,6 +16,7 @@ import { useSelector } from 'react-redux';
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
+  const sortedCards = cards.sort((a, b) => a.index - b.index);
   const filter = useSelector(selectFilter);
 
   const filteredCards = (cards, filter) => {
@@ -49,10 +49,11 @@ function Column({ columnTitle, columnId, cards, prefix }) {
         {provided => (
           <TaskList {...provided.droppableProps} ref={provided.innerRef}>
             {cards &&
-              filteredCards(cards, filter).length > 0 &&
-              filteredCards(cards, filter).map((card, index) => (
-                <Card index={index} item={card} key={card._id} />
-              ))}
+              filteredCards(sortedCards, filter).length > 0 &&
+              filteredCards(sortedCards, filter).map((card, index) => {
+                card.index = index;
+                return <Card index={index} item={card} key={card._id} />;
+              })}
             {provided.placeholder}
           </TaskList>
         )}

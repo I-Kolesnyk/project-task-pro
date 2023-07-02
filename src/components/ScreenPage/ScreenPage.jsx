@@ -5,12 +5,18 @@ import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData } from 'hooks';
 import Column from 'components/Column';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
+import { useBackgrounds } from 'hooks';
 
 function ScreenPage() {
   const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
-  console.log(oneBoard);
+  const {
+    backgrounds: { backgrounds },
+  } = useBackgrounds();
+
+  const boardBackground = backgrounds.find(bg => bg.name === 'mountains');
+  console.log('backgrounds --> ', boardBackground);
 
   useEffect(() => {
     if (!isLoading) {
@@ -63,7 +69,7 @@ function ScreenPage() {
 
   return (
     !isLoading && (
-      <Wrapper>
+      <Wrapper background={boardBackground}>
         <Header>
           <BoardTitle>{oneBoard.title}</BoardTitle>
           <Filter></Filter>
