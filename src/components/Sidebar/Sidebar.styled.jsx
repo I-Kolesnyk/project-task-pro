@@ -26,7 +26,7 @@ const containerDynamicStyles = ({ theme }) => css`
   display: flex;
   flex-direction: column;
   // justify-content: space-between;
-  // align-items: space-between;
+  align-items: space-between;
   padding-top: 24px;
   padding-bottom: 24px;
 `;

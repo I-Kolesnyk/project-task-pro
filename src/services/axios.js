@@ -34,7 +34,7 @@ axiosPrivateJson.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/project-task-pro/auth/login');
+      // return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },
@@ -54,7 +54,7 @@ axiosPrivateFormData.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/project-task-pro/auth/login');
+      // return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },

@@ -41,10 +41,7 @@ export const ColumnTitle = styled.div`
 
 const taskListDynamicStyles = ({ theme }) => css`
   margin-bottom: 14px;
-  width: 347px;
-
-  // overflow-y: auto;
-  // scroll-snap-type: y mandatory;
+  width: 347px; 
 
   @media only screen and (min-width: 768px) {
     width: 350px;

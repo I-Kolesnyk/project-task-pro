@@ -31,12 +31,12 @@ function Layout() {
     };
   }, [isDesktop]);
 
-  useEffect(() => {
-    if (!isUserLoading) {
-      dispatch(getAllBoards());
-      dispatch(getBackgrounds());
-    }
-  }, [dispatch, isUserLoading]);
+  // useEffect(() => {
+  //   if (!isUserLoading) {
+  //     dispatch(getAllBoards());
+  //     dispatch(getBackgrounds());
+  //   }
+  // }, [dispatch, isUserLoading]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
@@ -66,18 +66,16 @@ function Layout() {
   };
 
   return (
-    !isLoading && (
-      <>
-        <Header openSidebar={openSidebar} />
-        <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
-        <StyledMain>
-          <Suspense fallback={<Loader />}>
-            <Outlet />
-          </Suspense>
-        </StyledMain>
-        <ToastWrapper />
-      </>
-    )
+    <>
+      <Header openSidebar={openSidebar} />
+      <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
+      <StyledMain>
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
+      </StyledMain>
+      <ToastWrapper />
+    </>
   );
 }
 

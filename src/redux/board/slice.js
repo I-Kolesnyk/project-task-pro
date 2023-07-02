@@ -10,12 +10,22 @@ const initialState = {
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
-  reducers: {},
+  reducers: {
+    updateBoardColumns: (state, action) => {
+      state.info.columns = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(getBoardById.fulfilled, (state, action) => {
-        state.info = action.payload.data.board[0];
-        state.isLoading = false;
+        const board = action.payload.data.board[0];
+        state = {
+          isLoading: false,
+          info: board,
+        };
+        return state;
+        // state.info = action.payload.data.board[0];
+        // state.isLoading = false;
       })
       .addCase(getBoardById.pending, state => {
         state.isLoading = true;
@@ -24,7 +34,11 @@ export const boardSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addColumn.fulfilled, (state, action) => {
-        state.info.columns.push(action.payload.data.column);
+        const newColumn = {
+          ...action.payload.data.column,
+          tasks: [],
+        };
+        state.info.columns.push(newColumn);
       })
       .addCase(addCard.fulfilled, (state, action) => {
         const columnIdToUpdate = action.payload.data.taks.column;
@@ -47,3 +61,5 @@ export const boardSlice = createSlice({
 });
 
 export const boardReducer = boardSlice.reducer;
+
+export const { updateBoardColumns } = boardSlice.actions;

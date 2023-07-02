@@ -23,22 +23,28 @@ function BoardButton({ name, id, icon, isActive }) {
   const params = useParams();
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
-  const [active, setActive] = useState(isActive);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     setActive(isActive);
   }, [isActive]);
 
   useEffect(() => {
-    if (active && params.boardName) {
+    // if (active && params.boardName) {
       if (name.toString() !== params.boardName) {
-        dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+        // dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+        setActive(false);
       }
-    }
+      if (name.toString() === params.boardName) {
+        // dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+        setActive(true);
+      }
+    // }
   }, [dispatch, id, params.boardName, name, active]);
 
   const handleActive = () => {
-    dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+    setActive(true);
+    // dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
     dispatch(getBoardById(`${id}`));
     if (!isAllBoardsLoading) {
       navigate(`${name}`);
@@ -55,12 +61,12 @@ function BoardButton({ name, id, icon, isActive }) {
 
   return (
     <>
-      <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
+      <Wrapper className={active ? 'active' : ''} onClick={handleActive}>
         <Svg width="18px" height="18px">
           <use href={sprite + `#${icon}`}></use>
         </Svg>
         <Title>{name}</Title>
-        {isActive && (
+        {active && (
           <IconsWrapper>
             <IconButton type="button" onClick={openModal}>
               <ActiveSvg width="18px" height="18px">

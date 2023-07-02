@@ -29,6 +29,7 @@ export const allBoardsSlice = createSlice({
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.info.push(action.payload.data.board);
+        state.isLoading = false;
       })
       .addCase(addNewBoard.pending, state => {
         state.isLoading = true;
