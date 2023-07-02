@@ -39,14 +39,14 @@ export const allBoardsSlice = createSlice({
         if (changedBoard) {
           changedBoard.active = action.payload.data.board.active;
         }
-        state.isLoading = false;
+        // state.isLoading = false;
       })
-      .addCase(updateBoardStatus.pending, (state, action) => {
-        state.isLoading = true;
-      })
-      .addCase(updateBoardStatus.rejected, (state, action) => {
-        state.isLoading = false;
-      }),
+      // .addCase(updateBoardStatus.pending, (state, action) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(updateBoardStatus.rejected, (state, action) => {
+      //   state.isLoading = false;
+      // }),
 });
 
 export const boardsReducer = allBoardsSlice.reducer;

@@ -23,16 +23,21 @@ function BoardButton({ name, id, icon, isActive }) {
   const params = useParams();
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
+  const [active, setActive] = useState(isActive);
 
   useEffect(() => {
-    if (isActive) {
+    setActive(isActive);
+  }, [isActive]);
+
+  useEffect(() => {
+    if (active && params.boardName) {
       if (name.toString() !== params.boardName) {
         console.log(name.toString(), params.boardName);
         dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
         console.log('i am inactive', name.toString());
       }
     }
-  }, [dispatch, id, isActive, params.boardName, name]);
+  }, [dispatch, id, params.boardName, name, active]);
 
   const handleActive = () => {
     dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
