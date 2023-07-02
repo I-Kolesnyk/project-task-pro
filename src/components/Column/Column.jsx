@@ -12,11 +12,17 @@ import {
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
 import { useFilter } from 'hooks';
-const icons = ['#pencil', '#trash'];
+import EditColumnForm from 'components/EditColumnForm/EditColumnForm';
+import Modal from 'components/ModalWindow/ModalWindow';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteColumn } from 'redux/board/operations';
 
 function Column({ columnTitle, columnId, cards, prefix }) {
   const filter = useFilter();
+  const dispatch = useDispatch();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   console.log('cards --> ', cards.length);
   cards.forEach(task => console.log(task.hasOwnProperty('index')));
 
@@ -29,24 +35,44 @@ function Column({ columnTitle, columnId, cards, prefix }) {
     const filteredCards = sortedCards.filter(card => card.priority === filter);
     return filteredCards;
   };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <Wrapper>
       <ColumnTitle>
         <p>{columnTitle}</p>
         <IconList>
-          {icons.map(icon => (
-            <li key={icon}>
-              <IconButton>
-                <SvgComponent
-                  w={'16px'}
-                  h={'16px'}
-                  sprite={sprite}
-                  icon={icon}
-                />
-              </IconButton>
-            </li>
-          ))}
+          <li>
+            <IconButton onClick={openModal}>
+              <SvgComponent
+                w={'16px'}
+                h={'16px'}
+                sprite={sprite}
+                icon={'#pencil'}
+              />
+            </IconButton>
+          </li>
+          <li>
+            <IconButton onClick={() => dispatch(deleteColumn(columnId))}>
+              <SvgComponent
+                w={'16px'}
+                h={'16px'}
+                sprite={sprite}
+                icon={'#trash'}
+              />
+            </IconButton>
+          </li>
         </IconList>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <EditColumnForm columnId={columnId} columnTitle={columnTitle} />
+        </Modal>
       </ColumnTitle>
       <Container>
         <Droppable droppableId={`${prefix}`}>
