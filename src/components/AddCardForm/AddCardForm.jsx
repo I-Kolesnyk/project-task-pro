@@ -79,14 +79,14 @@ const AddCardForm = ({ columnId }) => {
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="low"
-              id="low"
+              value="without priority"
+              id="withoutPriority"
               clr="lilac"
               onClick={chooseBtn}
-              checked={radioChoose === 'low' ? true : false}
+              checked={radioChoose === 'without priority' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="low">
+            <label htmlFor="withoutPriority">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonLilac'}></use>
               </svg>
@@ -94,14 +94,14 @@ const AddCardForm = ({ columnId }) => {
 
             <CustomRadio
               type="radio"
-              value="medium"
-              id="medium"
+              value="low"
+              id="low"
               clr="pink"
               onClick={chooseBtn}
-              checked={radioChoose === 'medium' ? true : false}
+              checked={radioChoose === 'low' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="medium">
+            <label htmlFor="low">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonPink'}></use>
               </svg>
@@ -109,14 +109,14 @@ const AddCardForm = ({ columnId }) => {
 
             <CustomRadio
               type="radio"
-              value="high"
-              id="high"
+              value="medium"
+              id="medium"
               clr="green"
               onClick={chooseBtn}
-              checked={radioChoose === 'high' ? true : false}
+              checked={radioChoose === 'medium' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="high">
+            <label htmlFor="medium">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonGreen'}></use>
               </svg>
@@ -124,14 +124,14 @@ const AddCardForm = ({ columnId }) => {
 
             <CustomRadio
               type="radio"
-              value="without priority"
-              id="withoutPriority"
+              value="high"
+              id="high"
               clr="gray"
               onClick={chooseBtn}
-              checked={radioChoose === 'without priority' ? true : false}
+              checked={radioChoose === 'high' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="withoutPriority">
+            <label htmlFor="high">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonGray'}></use>
               </svg>
