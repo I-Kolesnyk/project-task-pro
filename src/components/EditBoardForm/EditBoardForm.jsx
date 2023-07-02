@@ -33,7 +33,7 @@ const EditBoardForm = ({ onClose }) => {
     console.log('activeBoard_title =====>', activeBoardId.title);
     setValue('selectedIcon', activeBoardId.icon);
     console.log('activeBoard_icon =====>', activeBoardId.icon);
-    setValue('selectedBackgroundId', activeBoardId.background);
+    // setValue('selectedBackgroundId', activeBoardId.background);
     console.log('activeBoard_BG =====>', activeBoardId.background);
   }, [activeBoardId, allBoards, setValue]);
 
