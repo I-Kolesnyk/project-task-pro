@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Project Task Pro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Task Pro is an application designed to simplify the task of project
+management. This app will help you organize your work.
 
-## Available Scripts
+The application is posted on the live page of GitHub
+[Project Task Pro](https://i-kolesnyk.github.io/project-task-pro).
 
-In the project directory, you can run:
+## Features and benefits of the application
 
-### `npm start`
+- **Manage multiple projects in one app.**  
+   You can create many boards and choose your own background for each
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Create columns and drag tasks between them.**  
+   And also you have the opportunity not only to create columns and tasks, but also
+  edit and delete them.
+- **Create tasks and prioritize.**  
+   You can create tasks and prioritize them by coloring each task according to its
+  importance. Using the filter, you can sort tasks by priority.
+- **Set time for tasks to complete.**  
+   You can set the time before the deadline for the task and it will start the countdown.
+- **Availability of a support service.**  
+   If you need any help with Task Pro, you can send an email describing your problem.
+- **Create an account and update personal information.**  
+   You can change your avatar, name, email and password if necessary.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## App Tutorial
 
-### `npm test`
+1. Transfer to site
+   [Project Task Pro](https://i-kolesnyk.github.io/project-task-pro).
+2. On the welcome page, select registration or login
+3. On the home page, create a new board. You can start implementing your project
+   by creating columns and cards.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Used Technologies
 
-### `npm run build`
+- React
+- Redux Toolkit
+- Axios
+- React Router
+- React Hook Form
+- Emotion
+- Yup
+- React Datepicker
+- React Tabs
+- React Select
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**To run the project locally you need**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone this repository.
+2. Install dependencies by writing the command in the terminal
+   ### `npm i`
+3. Run the project in development mode
+   ### `npm start`
+4. Opened link in browser http://localhost:3000/project-task-pro/
