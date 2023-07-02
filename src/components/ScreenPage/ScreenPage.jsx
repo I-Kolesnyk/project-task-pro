@@ -16,7 +16,9 @@ function ScreenPage() {
     backgrounds: { backgrounds },
   } = useBackgrounds();
 
-  const boardBackground = backgrounds.find(bg => bg.name === 'mountains');
+  const boardBackground = backgrounds.find(
+    bg => bg.name === oneBoard.background
+  );
   console.log('backgrounds --> ', backgrounds);
   useEffect(() => {
     if (!isLoading) {
