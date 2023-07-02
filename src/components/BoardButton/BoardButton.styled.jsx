@@ -10,7 +10,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   padding: 20px 14px;
 
   opacity: 0.4;
-  scroll-snap-align: start;
+  /* scroll-snap-align: start; */
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     padding: 20px 24px;

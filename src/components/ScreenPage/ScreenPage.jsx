@@ -1,5 +1,6 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
+
 import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData } from 'hooks';
@@ -16,8 +17,7 @@ function ScreenPage() {
   } = useBackgrounds();
 
   const boardBackground = backgrounds.find(bg => bg.name === 'mountains');
-  console.log('backgrounds --> ', boardBackground);
-
+  console.log('oneBoard --> ', oneBoard);
   useEffect(() => {
     if (!isLoading) {
       setElements(oneBoard.columns);
@@ -26,7 +26,7 @@ function ScreenPage() {
 
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', index.typeof);
+    console.log('index in remove', typeof index);
     console.log('list', list);
     console.log('tasks', Array.isArray(result.tasks));
     console.log('result', result);
@@ -36,6 +36,8 @@ function ScreenPage() {
   };
 
   const addToList = (list, index, element) => {
+    console.log('index in add', index);
+    console.log('list', list);
     const result = list;
     list.tasks.splice(index, 0, element);
     return result;
@@ -46,7 +48,7 @@ function ScreenPage() {
       return;
     }
     const listCopy = { ...elements };
-    console.log(listCopy);
+    // console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
     console.log('sorseLise', sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
@@ -65,7 +67,7 @@ function ScreenPage() {
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  // console.log('elements --> ', elements);
+  console.log('elements --> ', elements);
 
   return (
     !isLoading && (

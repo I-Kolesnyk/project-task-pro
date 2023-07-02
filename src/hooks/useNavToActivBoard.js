@@ -11,15 +11,13 @@ export const useNavToActiveBoard = () => {
   const navigateToActive = () => {
     if (!isLoading) {
       if (allBoards.length !== 0) {
-        const activeBoard = allBoards.find(
-          board => board.active === true
-        );
+        const activeBoard = allBoards.find(board => board.active === true);
         if (!activeBoard) {
           return;
         }
 
         if (activeBoard) {
-          console.log(activeBoard);
+          // console.log(activeBoard);
           if (!isBoardLoading) {
             navigate(`${activeBoard.title}`);
           }

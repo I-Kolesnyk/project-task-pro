@@ -7,6 +7,7 @@ import {
   ColumnTitle,
   IconList,
   IconButton,
+  Container,
 } from './Column.styled';
 import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
@@ -16,12 +17,15 @@ import { useSelector } from 'react-redux';
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
-  const sortedCards = cards.sort((a, b) => a.index - b.index);
   const filter = useSelector(selectFilter);
 
-  const filteredCards = (cards, filter) => {
-    if (filter === 'all') return cards;
-    const filteredCards = cards.filter(card => card.priority === filter);
+  const filteredCards = (tasks, filter) => {
+    if (!tasks.every(task => task.hasOwnProperty('index'))) {
+      return;
+    }
+    if (filter === 'all') return tasks;
+    const sortedCards = tasks.sort((a, b) => a.index - b.index);
+    const filteredCards = sortedCards.filter(card => card.priority === filter);
     return filteredCards;
   };
 
@@ -44,20 +48,20 @@ function Column({ columnTitle, columnId, cards, prefix }) {
           ))}
         </IconList>
       </ColumnTitle>
-
-      <Droppable droppableId={`${prefix}`}>
-        {provided => (
-          <TaskList {...provided.droppableProps} ref={provided.innerRef}>
-            {cards &&
-              filteredCards(sortedCards, filter).length > 0 &&
-              filteredCards(sortedCards, filter).map((card, index) => {
-                card.index = index;
-                return <Card index={index} item={card} key={card._id} />;
-              })}
-            {provided.placeholder}
-          </TaskList>
-        )}
-      </Droppable>
+      <Container>
+        <Droppable droppableId={`${prefix}`}>
+          {provided => (
+            <TaskList {...provided.droppableProps} ref={provided.innerRef}>
+              {cards.length > 0 &&
+                filteredCards(cards, filter).map((card, index) => {
+                  card.index = index;
+                  return <Card index={index} item={card} key={card._id} />;
+                })}
+              {provided.placeholder}
+            </TaskList>
+          )}
+        </Droppable>
+      </Container>
       <AddCardButton columnId={columnId} />
     </Wrapper>
   );

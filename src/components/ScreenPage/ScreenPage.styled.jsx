@@ -7,73 +7,40 @@ const dynamicStylesWrapper = ({
 }) => css`
   height: calc(100vh - 60px);
   padding: 14px 0 24px 20px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 
-  background-image: linear-gradient(
-      rgba(47, 48, 58, 0.4),
-      rgba(47, 48, 58, 0.4)
-    ),
-    url(${mobile.link1x || ''});
+  background: url(${mobile.link1x || ''});
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-image: linear-gradient(
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
-      ),
-      url(${mobile.link2x || ''});
+    background-size: 100vw calc(100vh - 60px);
+    background-image: url(${mobile.link2x || ''});
   }
 
   @media only screen and (min-width: ${breakpoints[1]}) {
     height: calc(100vh - 68px);
     padding: 26px 0 32px 32px;
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
-    background-image: linear-gradient(
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
-      ),
-      url(${tablet.link1x || ''});
+    background-image: url(${tablet.link1x || ''});
   }
   @media screen and (min-width: ${breakpoints[1]}) and (min-device-pixel-ratio: 2),
     screen and (min-width: ${breakpoints[1]}) and (min-resolution: 192dpi),
     screen and (min-width: ${breakpoints[1]}) and (min-resolution: 2dppx) {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background: linear-gradient(rgba(47, 48, 58, 0.4), rgba(47, 48, 58, 0.4)),
-      url(${tablet.link2x || ''});
+    background-image: url(${tablet.link2x || ''});
   }
 
   @media only screen and (min-width: ${breakpoints[2]}) {
     background-repeat: no-repeat;
-    background-position: center;
     background-size: cover;
     padding: 10px 0 8px 24px;
-    background-image: linear-gradient(
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
-      ),
-      url(${desktop.link1x || ''});
+    background-image: url(${desktop.link1x || ''});
   }
   @media screen and (min-width: ${breakpoints[2]}) and (min-device-pixel-ratio: 2),
     screen and (min-width: ${breakpoints[2]}) and (min-resolution: 192dpi),
     screen and (min-width: ${breakpoints[2]}) and (min-resolution: 2dppx) {
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    background-image: linear-gradient(
-        rgba(47, 48, 58, 0.4),
-        rgba(47, 48, 58, 0.4)
-      ),
-      url(${desktop.link2x || ''});
+    background-image: url(${desktop.link2x || ''});
   }
 `;
 
@@ -93,7 +60,7 @@ const columnListDynamicStyles = ({ theme }) => css`
     padding-bottom: 16px;
   }
 
-  overflow-x: cover;
+  overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
 
