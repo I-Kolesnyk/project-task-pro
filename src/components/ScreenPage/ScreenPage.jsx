@@ -1,18 +1,10 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-
+import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData } from 'hooks';
-import { Column } from 'components/Column/Column';
-import {
-  Wrapper,
-  Header,
-  ColumnList,
-  BoardTitle,
-  Filters,
-  FilterIcon,
-} from './ScreenPage.styled';
-import sprite from '../../assets/sprite.svg';
+import Column from 'components/Column';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoardData();
@@ -74,12 +66,7 @@ function ScreenPage() {
       <Wrapper>
         <Header>
           <BoardTitle>{oneBoard.title}</BoardTitle>
-          <Filters>
-            <FilterIcon>
-              <use href={sprite + '#filter'}></use>
-            </FilterIcon>
-            <span>Filters</span>
-          </Filters>
+          <Filter></Filter>
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
