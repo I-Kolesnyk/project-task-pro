@@ -117,8 +117,7 @@ axiosPrivateFormData.interceptors.response.use(
 );
 
 axiosPrivateJson.interceptors.response.use(
-  async response => {
-    console.log(response);
+  async response => {   
     if (response.data.code === 201 && response.config.url === '/api/boards') {
       toast.success('New board was successfully added');
       return response;

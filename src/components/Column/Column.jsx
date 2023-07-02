@@ -7,6 +7,7 @@ import {
   ColumnTitle,
   IconList,
   IconButton,
+  Container,
 } from './Column.styled';
 import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';

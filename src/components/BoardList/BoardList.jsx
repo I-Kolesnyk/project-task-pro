@@ -13,7 +13,7 @@ function BoardList() {
       {!isBoardsLoading && (
         <>
           <AddBoardButton />
-          {allBoards.boards.length !== 0 && <ButtonList />}
+          {allBoards.length !== 0 && <ButtonList />}
         </>
       )}
     </Wrapper>

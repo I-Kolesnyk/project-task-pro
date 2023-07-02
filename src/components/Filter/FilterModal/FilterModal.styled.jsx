@@ -9,7 +9,7 @@ export const dynamicStylesFilterModalWindow = ({ theme }) => css`
     content: '';
     position: absolute;
     left: 0;
-    top: 65px;
+    top: 164px;
     width: 252px;
     border-bottom: 1px solid ${theme.backgroundColors.cardSeparator};
   }
@@ -18,7 +18,7 @@ export const dynamicStylesFilterModalWindow = ({ theme }) => css`
     content: '';
     position: absolute;
     left: 0;
-    top: 188px;
+    top: 41px;
     width: 252px;
     border-bottom: 1px solid ${theme.backgroundColors.cardSeparator};
   }

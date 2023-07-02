@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const dynamicStyledAddCardButton = ({ theme }) => css`
   display: flex;
-  align-items: start;
+  align-items: center;
   width: 335px;
   padding: 14px 79px;
   background-color: ${theme.backgroundColors.pageButton};

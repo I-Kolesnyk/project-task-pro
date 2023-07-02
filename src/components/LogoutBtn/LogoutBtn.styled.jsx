@@ -10,7 +10,7 @@ display: flex;
 gap: 14px;
 justify-content: center;
 align-items: center;
-margin-top: auto;
+margin-left: 24px;
 width: 105px;
 height: 32px;
 `);

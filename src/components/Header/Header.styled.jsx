@@ -37,6 +37,14 @@ const svgDynamicStyles = ({ theme }) => css`
     height: 32px;    
 `;
 
+const containerDynamicStyles = ({ theme }) => css`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+`;
+
 export const StyledHeader = styled.header`
   ${headerDynamicStyles}
 `;
@@ -47,4 +55,8 @@ export const Svg = styled.svg`
 
 export const Button = styled.button`
   ${buttonDynamicStyles}
+`;
+
+export const Container = styled.div`
+  ${containerDynamicStyles}
 `;

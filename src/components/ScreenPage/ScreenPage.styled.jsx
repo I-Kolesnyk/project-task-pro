@@ -29,6 +29,7 @@ const columnListDynamicStyles = ({ theme }) => css`
   }
 
   overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {

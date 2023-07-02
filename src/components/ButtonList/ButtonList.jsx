@@ -54,8 +54,8 @@ function ButtonList() {
 
   return (
     <List>
-      {allBoards2.boards.length !== 0 &&
-        allBoards2.boards.map(({ _id, title, icon, active }) => (
+      {allBoards.length !== 0 &&
+        allBoards.map(({ _id, title, icon, active }) => (
           <BoardButton
             key={_id}
             name={title}

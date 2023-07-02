@@ -16,7 +16,7 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
     align-items: center;
     user-select: none;
 
-    color: ${theme.textColors.secondary};
+    color: ${theme.textColors.cardSecondary};
     font-size: ${theme.fontSizes[2]};
     font-style: normal;
     line-height: normal;
@@ -50,6 +50,7 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
 
     opacity: 1;
   }
+
   &:checked + label > span {
     color: ${theme.textColors.main};
   }
@@ -93,7 +94,7 @@ export const LabelColors = styled.p`
 `;
 
 const dynamicStylesShowAllBtn = ({ theme }) => css`
-  color: ${theme.textColors.secondary};
+  color: ${theme.textColors.cardSecondary};
   font-size: ${theme.fontSizes[2]};
   font-style: normal;
   line-height: normal;

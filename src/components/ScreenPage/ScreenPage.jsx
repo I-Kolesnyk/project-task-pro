@@ -2,20 +2,21 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
 import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
-import { useBoard, useOneBoardLoading } from 'hooks';
+import { useOneBoardLoading, useBoardData } from 'hooks';
 import Column from 'components/Column';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
-  const oneBoard = useBoard();
+  const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
+  console.log(oneBoard);
 
   useEffect(() => {
     if (!isLoading) {
-      setElements(oneBoard.board.board[0].columns);
+      setElements(oneBoard.columns);
     }
-  }, [isLoading, oneBoard.board.board, oneBoard.board.columns]);
+  }, [isLoading, oneBoard.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -64,8 +65,8 @@ function ScreenPage() {
     !isLoading && (
       <Wrapper>
         <Header>
-          <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
-          <Filter />
+          <BoardTitle>{oneBoard.title}</BoardTitle>
+          <Filter></Filter>
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
