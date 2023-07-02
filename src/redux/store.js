@@ -17,6 +17,7 @@ import { authReducer } from './auth/slice';
 import { boardsReducer } from './allBoards/slice';
 import { boardReducer } from './board/slice';
 import { backgroundsReducer } from './background/slice';
+import { filterReducer } from './filter/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -39,12 +40,18 @@ const backgroundsConfig = {
   storage,
 };
 
+const filterPersistConfig = {
+  key: 'priorityFilter',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     boards: persistReducer(allBoardsPersistConfig, boardsReducer),
     board: persistReducer(boardPersistConfig, boardReducer),
     backgrounds: persistReducer(backgroundsConfig, backgroundsReducer),
+    filter: persistReducer(filterPersistConfig, filterReducer),
   },
 
   middleware: getDefaultMiddleware =>

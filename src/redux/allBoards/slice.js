@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllBoards, addNewBoard, updateBoardStatus } from './operations';
+import {
+  getAllBoards,
+  addNewBoard,
+  updateBoardStatus,
+  editBoardById,
+} from './operations';
 
 const initialState = {
   info: [],
@@ -47,6 +52,15 @@ export const allBoardsSlice = createSlice({
       // .addCase(updateBoardStatus.rejected, (state, action) => {
       //   state.isLoading = false;
       // }),
+      .addCase(editBoardById.fulfilled, (state, action) => {
+        const { boardId, title, icon, background } = action.payload.data.board;
+        const index = state.info.findIndex(board => board._id === boardId);
+        if (index !== -1) {
+          state.info[index].title = title;
+          state.info[index].icon = icon;
+          state.info[index].background = background;
+        }
+      }),
 });
 
 export const boardsReducer = allBoardsSlice.reducer;

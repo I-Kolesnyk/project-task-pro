@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { editBoardById } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
 import { useAllBoards } from 'hooks/useAllBoards';
-import { getBackgrounds } from 'redux/background/operations';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -25,22 +26,16 @@ const EditBoardForm = ({ onClose }) => {
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
 
-  const Backgrounds = getBackgrounds();
-
-  console.log('Backgrounds------------------->', Backgrounds);
+  const dispatch = useDispatch();
 
   const allBoards = useAllBoards();
   const activeBoardId = allBoards.find(board => board.active === true);
 
   useEffect(() => {
-    console.log('activeBoard_ID =====>', activeBoardId);
     setValue('title', activeBoardId.title);
-    console.log('activeBoard_title =====>', activeBoardId.title);
-    setValue('selectedIcon', activeBoardId.icon);
-    console.log('activeBoard_icon =====>', activeBoardId.icon);
-    // setValue('selectedBackgroundId', activeBoardId.background);
-    console.log('activeBoard_BG =====>', activeBoardId.background);
-  }, [activeBoardId, allBoards, setValue]);
+    setSelectedIcon(activeBoardId.icon);
+    setSelectedBackgroundId(activeBoardId.background);
+  }, [activeBoardId, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value);
@@ -56,14 +51,28 @@ const EditBoardForm = ({ onClose }) => {
     setValue('selectedBackgroundId', backgroundId);
   };
 
-  const handleCreateBoard = data => {
-    console.log('Title:', data.title);
-    console.log('Selected Icon:', data.selectedIcon);
-    console.log('Selected Background Id:', data.selectedBackgroundId);
-    setValue('title', '');
-    setValue('selectedIcon', '');
-    setValue('selectedBackgroundId', '');
-    onClose();
+  const handleEditBoardForm = data => {
+    const boardData = {
+      boardId: activeBoardId._id,
+      body: {
+        title: data.title,
+        icon: data.selectedIcon,
+        background: data.selectedBackgroundId,
+      },
+    };
+
+    dispatch(editBoardById(boardData))
+      .unwrap()
+      .then(response => {
+        console.log('Обновленные данные:', response);
+        setValue('title', data.title);
+        setValue('selectedIcon', data.selectedIcon);
+        setValue('selectedBackgroundId', data.selectedBackgroundId);
+        onClose();
+      })
+      .catch(error => {
+        console.error('Ошибка при обновлении:', error);
+      });
   };
 
   const renderIcons = () => {
@@ -104,8 +113,7 @@ const EditBoardForm = ({ onClose }) => {
   return (
     <div>
       <NewBoardTitle>Edit Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleCreateBoard)}>
-        {/* <label htmlFor="newBoardInput">Title</label> */}
+      <form onSubmit={handleSubmit(handleEditBoardForm)}>
         <Input
           id="newBoardInput"
           type="text"
