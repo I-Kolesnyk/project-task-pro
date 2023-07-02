@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const dynamicStyledAddCardButton = ({ theme }) => css`
   display: flex;
-  align-items: center;
+  align-items: start;
   width: 335px;
   padding: 14px 79px;
   background-color: ${theme.backgroundColors.pageButton};
@@ -13,15 +13,6 @@ const dynamicStyledAddCardButton = ({ theme }) => css`
   letter-spacing: -0.28px;
   transition: scale 250ms ease-in 0s;
   scroll-snap-align: center;
-
-  margin-right: 20px;
-
-  @media only screen and (min-width: ${theme.breakpoints[1]}) {
-    margin-right: 32px;
-  }
-  @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    margin-right: 24px;
-  }
 
   &:hover {
     scale: 1.05;

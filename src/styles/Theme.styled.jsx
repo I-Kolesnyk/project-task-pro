@@ -85,9 +85,7 @@ const dark = {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(255, 255, 255, 0.3)',
-    yellow: '#dec5088a',
-    // gray: '#B0B0B0',
+    gray: '#B0B0B0',
   },
 
   radii: {
@@ -189,9 +187,7 @@ const light = {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(22, 22, 22, 0.30)',
-    yellow: '#dec5088a',
-    // gray: '#B0B0B0',
+    gray: '#B0B0B0',
   },
 
   radii: {
@@ -289,9 +285,7 @@ const violet = {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(22, 22, 22, 0.30)',
-    yellow: '#dec5088a',
-    // gray: '#B0B0B0',
+    gray: '#B0B0B0',
   },
 
   logOutIcon: {
