@@ -37,20 +37,3 @@ export const addCard = createAsyncThunk(
     }
   }
 );
-
-export const editCard = createAsyncThunk(
-  'board/editCard',
-  async (cardData, thunkAPI) => {
-    try {
-      const { title, description, priority, deadline } = cardData;
-      const newTask = { title, description, priority, deadline };
-      const { data } = await axiosPrivateJson.put(
-        `/api/tasks/${cardData._id}`,
-        newTask
-      );
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.code);
-    }
-  }
-);

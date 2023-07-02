@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
-
 const dynamicStyledHeader = ({ theme }) => css`
   color: ${theme.textColors.main};
   font-weight: ${theme.fontWeights.medium};
@@ -20,19 +19,12 @@ const dynamicStylesForm = ({ theme }) => css`
 
 const dynamicStylesInput = ({ theme }) => css`
   width: 100%;
+
   padding: 14px 18px;
   background-color: ${theme.backgroundColors.popUpForm};
   border: 1px solid ${theme.authColors.lightButtonBackground};
   border-radius: ${theme.radii.md};
   color: ${theme.textColors.main};
-
-  @media screen and (min-width: ${theme.breakpoints[0]}) {
-    width: 287px;
-  }
-
-  @media screen and (min-width: ${theme.breakpoints[1]}) {
-    width: 302px;
-  }
 `;
 
 const dynamicStylesTextArea = ({ theme }) => css`

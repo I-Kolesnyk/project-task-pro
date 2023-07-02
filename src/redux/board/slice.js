@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getBoardById } from './operations';
-import { addColumn, addCard, editCard } from './operations';
+import { addColumn, addCard } from './operations';
 
 const initialState = {
   isLoading: false,
@@ -36,13 +36,6 @@ export const boardSlice = createSlice({
         if (changedColumn) {
           changedColumn.tasks.push(action.payload.data.taks);
         }
-      })
-      .addCase(editCard.fulfilled, (state, action) => {
-        const changedTasksIdToUpdate = action.payload.data.task._id;
-        // const changedTask = state.info.columns.tasks.find(
-        //   task => task._id === changedTasksIdToUpdate
-        // );
-        console.log(state.info);
       }),
 });
 
