@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData } from 'hooks';
-import Column from 'components/Column';
+import { Column } from 'components/Column/Column';
 import {
   Wrapper,
   Header,
@@ -15,10 +15,10 @@ import {
 import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
-  const oneBoard = useBoardData();  
+  const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
-  console.log(oneBoard)
+  console.log(oneBoard);
 
   useEffect(() => {
     if (!isLoading) {
@@ -50,9 +50,9 @@ function ScreenPage() {
     const listCopy = { ...elements };
     console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
-    console.log("sorseLise",  sourceList, result.source.index);
+    console.log('sorseLise', sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
-      sourceList,      
+      sourceList,
       result.source.index
     );
     listCopy[result.source.droppableId] = newSourceList;
