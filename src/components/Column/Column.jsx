@@ -22,14 +22,10 @@ function Column({ columnTitle, columnId, cards, prefix }) {
   const filter = useFilter();
   const dispatch = useDispatch();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
   console.log('cards --> ', cards.length);
   cards.forEach(task => console.log(task.hasOwnProperty('index')));
 
   const filteredCards = (tasks, filter) => {
-    if (!tasks.every(task => task.hasOwnProperty('index'))) {
-      return;
-    }
     if (filter === 'all') return tasks;
     const sortedCards = tasks.sort((a, b) => a.index - b.index);
     const filteredCards = sortedCards.filter(card => card.priority === filter);
@@ -80,11 +76,8 @@ function Column({ columnTitle, columnId, cards, prefix }) {
             <TaskList {...provided.droppableProps} ref={provided.innerRef}>
               {cards.length > 0 &&
                 filteredCards(cards, filter).map((card, index) => {
-                  console.log(card);
-                  console.log('has card index', card.hasOwnProperty('index'));
-                  if (card.hasOwnProperty('index')) {
-                    card.index = index;
-                  }
+                  card.index = index;
+
                   return <Card index={index} item={card} key={card._id} />;
                 })}
               {provided.placeholder}
