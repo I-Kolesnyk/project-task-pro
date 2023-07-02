@@ -19,6 +19,7 @@ import { useDispatch } from 'react-redux';
 import { deleteColumn } from 'redux/board/operations';
 
 function Column({ columnTitle, columnId, cards, prefix }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const filter = useFilter();
   const dispatch = useDispatch();
 
