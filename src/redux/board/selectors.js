@@ -1,5 +1,4 @@
-export const selectBoard = state => state.board;
-export const selectOneBoardLoading = state => state.isLoading;
-export const selectBoardId = state => state.board.board.board[0]?._id;
-export const selectColumns = state => state.board.board.board[0]?.columns;
-export const selectBoardData = state => state.board.board.board[0];
+export const selectOneBoardLoading = state => state.board.isLoading;
+export const selectBoardId = state => state.board.info._id;
+export const selectColumns = state => state.board.info.columns;
+export const selectBoardData = state => state.board.info;
