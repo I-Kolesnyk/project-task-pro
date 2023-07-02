@@ -21,6 +21,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   }
 
   &.active {
+    background-color: ${theme.backgroundColors.asideSecondary};
     opacity: 1;
 
     &::before {
