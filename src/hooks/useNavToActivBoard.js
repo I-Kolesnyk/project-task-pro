@@ -10,8 +10,8 @@ export const useNavToActiveBoard = () => {
   const isBoardLoading = useOneBoardLoading();
   const navigateToActive = () => {
     if (!isLoading) {
-      if (allBoards.boards.length !== 0) {
-        const activeBoard = allBoards.boards.find(
+      if (allBoards.length !== 0) {
+        const activeBoard = allBoards.find(
           board => board.active === true
         );
         if (!activeBoard) {

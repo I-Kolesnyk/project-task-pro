@@ -2,7 +2,7 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
 
 import AddColumnButton from 'components/AddColumnButton';
-import { useBoard, useOneBoardLoading } from 'hooks';
+import { useOneBoardLoading, useBoardData } from 'hooks';
 import Column from 'components/Column';
 import {
   Wrapper,
@@ -15,15 +15,16 @@ import {
 import sprite from '../../assets/sprite.svg';
 
 function ScreenPage() {
-  const oneBoard = useBoard();  
+  const oneBoard = useBoardData();  
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
+  console.log(oneBoard)
 
   useEffect(() => {
     if (!isLoading) {
-      setElements(oneBoard.board.board[0].columns);
+      setElements(oneBoard.columns);
     }
-  }, [isLoading, oneBoard.board.board, oneBoard.board.columns]);
+  }, [isLoading, oneBoard.columns]);
 
   const removeFromList = (list, index) => {
     const result = list;
@@ -72,7 +73,7 @@ function ScreenPage() {
     !isLoading && (
       <Wrapper>
         <Header>
-          <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
+          <BoardTitle>{oneBoard.title}</BoardTitle>
           <Filters>
             <FilterIcon>
               <use href={sprite + '#filter'}></use>
