@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Form, Input, Title } from './AddColumnForm.styled';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
-import { addColumn } from 'redux/board/operations';
 import { useBoardId } from 'hooks';
+import { addColumn } from 'redux/board/operations';
 
 const AddColumnForm = () => {
   const dispatch = useDispatch();
