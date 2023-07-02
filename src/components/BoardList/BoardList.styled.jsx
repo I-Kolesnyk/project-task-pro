@@ -6,6 +6,14 @@ const wrapperDynamicStyles = ({ theme }) => css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 61px;
+  margin-bottom: 40px;
+  height: calc(100vh - 611px);
+  scroll-behavior: smooth;
+  overflow-y: auto;
+  @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    height: calc(100vh - 646px);
+  }
 `;
 
 export const Wrapper = styled.div`

@@ -2,7 +2,7 @@ import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
 import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
-import { useOneBoardLoading, useBoardData } from 'hooks';
+import { useOneBoardLoading, useBoardData, useBackground } from 'hooks';
 import Column from 'components/Column';
 import { updateBoardColumns } from 'redux/board/slice';
 import { useDispatch } from 'react-redux';
@@ -21,7 +21,15 @@ function ScreenPage() {
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
   const dispatch = useDispatch();
-  console.log(oneBoard);
+ 
+  const {
+    backgrounds: { backgrounds },
+  } = useBackground();
+
+  const boardBackground = backgrounds.find(
+    bg => bg.name === oneBoard.background
+  );
+
 
   useEffect(() => {
     if (!isLoading) {
@@ -29,50 +37,7 @@ function ScreenPage() {
     }
   }, [isLoading, oneBoard.columns]);
 
-  const removeFromList = (list, index) => {
-    const result = list;
-    console.log('index', index.typeof);
-    console.log('list', list);
-    console.log('tasks', Array.isArray(result.tasks));
-    console.log('result', result);
-    const [removed] = result.tasks.splice(index, 1);
-    console.log('removed', removed);
-    return [removed, result];
-  };
-
-  const addToList = (list, index, element) => {
-    const result = list;
-    list.tasks.splice(index, 0, element);
-    return result;
-  };
-
-  // const onDragEnd = result => {
-  //   if (!result.destination) {
-  //     return;
-  //   }
-  //   const listCopy = { ...elements };
-  //   console.log(listCopy);
-  //   const sourceList = listCopy[result.source.droppableId];
-  //   console.log('sorseLise', sourceList, result.source.index);
-  //   const [removedElement, newSourceList] = removeFromList(
-  //     sourceList,
-  //     result.source.index
-  //   );
-  //   listCopy[result.source.droppableId] = newSourceList;
-  //   const destinationList = listCopy[result.destination.droppableId];
-  //   console.log(destinationList);
-  //   listCopy[result.destination.droppableId] = addToList(
-  //     destinationList,
-  //     result.destination.index,
-  //     removedElement
-  //   );
-  //   console.log('listCopy', listCopy);
-  //   setElements(Object.values(listCopy));
-  //   // dispatch(setBoard(elements));
-  // };
-  // console.log('elements --> ', elements);
-
-  const onDragEnd = result => {
+   const onDragEnd = result => {
     if (!result.destination) {
       return;
     }
@@ -114,7 +79,7 @@ function ScreenPage() {
 
   return (
     !isLoading && (
-      <Wrapper>
+      <Wrapper background={boardBackground}>
         <Header>
           <BoardTitle>{oneBoard.title}</BoardTitle>
           <Filter></Filter>

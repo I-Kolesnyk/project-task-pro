@@ -6,7 +6,6 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.get(`/api/boards/${id}`);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);

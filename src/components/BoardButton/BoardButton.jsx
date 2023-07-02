@@ -17,7 +17,7 @@ import {
 } from './BoardButton.styled';
 import { getBoardById } from 'redux/board/operations';
 
-function BoardButton({ name, id, icon, isActive }) {
+function BoardButton({ name, id, icon }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
@@ -26,28 +26,19 @@ function BoardButton({ name, id, icon, isActive }) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setActive(isActive);
-  }, [isActive]);
-
-  useEffect(() => {
-    // if (active && params.boardName) {
-      if (name.toString() !== params.boardName) {
-        // dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        setActive(false);
-      }
-      if (name.toString() === params.boardName) {
-        // dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-        setActive(true);
-      }
-    // }
-  }, [dispatch, id, params.boardName, name, active]);
+    if (name.toString().toLowerCase() !== params.boardName) {
+      setActive(false);
+    }
+    if (name.toString().toLowerCase() === params.boardName) {
+      setActive(true);
+    }
+  }, [dispatch, params.boardName, name]);
 
   const handleActive = () => {
     setActive(true);
-    // dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
     dispatch(getBoardById(`${id}`));
     if (!isAllBoardsLoading) {
-      navigate(`${name}`);
+      navigate(`${name.toLowerCase()}`);
     }
   };
 

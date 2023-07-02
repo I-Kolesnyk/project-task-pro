@@ -23,9 +23,7 @@ export const boardSlice = createSlice({
           isLoading: false,
           info: board,
         };
-        return state;
-        // state.info = action.payload.data.board[0];
-        // state.isLoading = false;
+        return state;     
       })
       .addCase(getBoardById.pending, state => {
         state.isLoading = true;

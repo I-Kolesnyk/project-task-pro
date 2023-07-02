@@ -22,16 +22,6 @@ const IconList = ({ taskInfo }) => {
     <>
       <div>
         <s.IconList>
-          <s.IconListItem key={'#arrow-circle-broken-right'}>
-            <IconBtn type="button">
-              <SvgComponent
-                w={'16px'}
-                h={'16px'}
-                sprite={sprite}
-                icon={'#arrow-circle-broken-right'}
-              />
-            </IconBtn>
-          </s.IconListItem>
           <s.IconListItem key={'#pencil'}>
             <IconBtn onClick={openModal}>
               <SvgComponent

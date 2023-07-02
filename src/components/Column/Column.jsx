@@ -18,17 +18,14 @@ function Column({ columnTitle, columnId, cards, prefix }) {
   const filter = useFilter();
 
  
-  // cards.forEach(task => console.log(task.hasOwnProperty('index')));
+  cards.forEach(task => console.log(task.hasOwnProperty('index')));
 
-  // const filteredCards = (tasks, filter) => {
-  //   if (!tasks.every(task => task.hasOwnProperty('index'))) {
-  //     return;
-  //   }
-  //   if (filter === 'all') return tasks;
-  //   const sortedCards = tasks.sort((a, b) => a.index - b.index);
-  //   const filteredCards = sortedCards.filter(card => card.priority === filter);
-  //   return filteredCards;
-  // };
+  const filteredCards = (tasks, filter) => {
+       if (filter === 'all') return tasks;
+    const sortedCards = tasks.sort((a, b) => a.index - b.index);
+    const filteredCards = sortedCards.filter(card => card.priority === filter);
+    return filteredCards;
+  };
   return (
     <Wrapper>
       <ColumnTitle>

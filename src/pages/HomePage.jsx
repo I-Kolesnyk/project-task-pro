@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useIsUserLoading, useAllBoards, useIsBoardsLoading } from 'hooks';
-import { getAllBoards } from 'redux/allBoards/operations';
-import { getBackgrounds } from 'redux/background/operations';
+import { useState } from 'react';
+import { useAllBoards, useIsBoardsLoading } from 'hooks';
+
 import {
   HomePageContainer,
   HomePageText,
@@ -14,16 +12,7 @@ import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 function HomePage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const isLoading = useIsBoardsLoading();
-  const dispatch = useDispatch();
   const boards = useAllBoards()
-  console.log(boards)
-
-  // useEffect(() => {
-  //   // if (!isLoading) {
-  //     dispatch(getAllBoards());
-  //     dispatch(getBackgrounds());
-  //   // }
-  // }, [dispatch]);
 
   const openModal = () => {
     setModalOpen(true);
