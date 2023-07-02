@@ -1,25 +1,25 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
+
 import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData } from 'hooks';
 import Column from 'components/Column';
-import {
-  Wrapper,
-  Header,
-  ColumnList,
-  BoardTitle,
-  Filters,
-  FilterIcon,
-} from './ScreenPage.styled';
-import sprite from '../../assets/sprite.svg';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
+import { useBackgrounds } from 'hooks';
 
 function ScreenPage() {
   const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
-  console.log(oneBoard);
+  const {
+    backgrounds: { backgrounds },
+  } = useBackgrounds();
 
+  const boardBackground = backgrounds.find(
+    bg => bg.name === oneBoard.background
+  );
+  console.log('backgrounds --> ', backgrounds);
   useEffect(() => {
     if (!isLoading) {
       setElements(oneBoard.columns);
@@ -28,7 +28,7 @@ function ScreenPage() {
 
   const removeFromList = (list, index) => {
     const result = list;
-    console.log('index', index.typeof);
+    console.log('index in remove', typeof index);
     console.log('list', list);
     console.log('tasks', Array.isArray(result.tasks));
     console.log('result', result);
@@ -38,6 +38,8 @@ function ScreenPage() {
   };
 
   const addToList = (list, index, element) => {
+    console.log('index in add', index);
+    console.log('list', list);
     const result = list;
     list.tasks.splice(index, 0, element);
     return result;
@@ -48,7 +50,7 @@ function ScreenPage() {
       return;
     }
     const listCopy = { ...elements };
-    console.log(listCopy);
+    // console.log(listCopy);
     const sourceList = listCopy[result.source.droppableId];
     console.log('sorseLise', sourceList, result.source.index);
     const [removedElement, newSourceList] = removeFromList(
@@ -67,11 +69,11 @@ function ScreenPage() {
     setElements(Object.values(listCopy));
     // dispatch(setBoard(elements));
   };
-  // console.log('elements --> ', elements);
+  console.log('elements --> ', elements);
 
   return (
     !isLoading && (
-      <Wrapper>
+      <Wrapper background={boardBackground}>
         <Header>
           <BoardTitle>{oneBoard.title}</BoardTitle>
           <Filter></Filter>
