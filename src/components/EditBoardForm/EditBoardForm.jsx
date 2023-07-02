@@ -3,6 +3,7 @@ import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
 import { useAllBoards } from 'hooks/useAllBoards';
+import { getBackgrounds } from 'redux/background/operations';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -23,6 +24,10 @@ const EditBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
+
+  const Backgrounds = getBackgrounds();
+
+  console.log('Backgrounds------------------->', Backgrounds);
 
   const allBoards = useAllBoards();
   const activeBoardId = allBoards.find(board => board.active === true);
