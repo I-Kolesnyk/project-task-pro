@@ -11,4 +11,5 @@ export { useOneBoardLoading } from './useOneBoardLoading';
 export { useBoardId } from './useBoardId';
 export { useColumns } from './useColumns';
 export { useBoardData } from './useBoardData';
+export { useBackgrounds } from './useBackgrounds';
 export { useFilter } from './useFilter';

@@ -6,7 +6,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;  
+  gap: 8px;
   margin-left: 24px;
   margin-bottom: 60px;
   &::before {
@@ -25,6 +25,11 @@ const logoDynamicStyles = ({ theme }) => css`
 `;
 
 const dynamicTextColor = ({ theme }) => css`
+  font-size: ${theme.fontSizes[4]};
+  font-style: normal;
+  line-height: normal;
+  font-weight: ${theme.fontWeights.semibold};
+  letter-spacing: -0.64px;
   color: ${theme.textColors.addButton};
 `;
 
@@ -38,8 +43,4 @@ export const StyledLogo = styled.svg`
 
 export const StyledSpanLogo = styled.span`
   ${dynamicTextColor}
-  font-size: 16px;
-  font-family: 'Poppins';
-  font-weight: 600;
-  letter-spacing: -0.64px;
 `;
