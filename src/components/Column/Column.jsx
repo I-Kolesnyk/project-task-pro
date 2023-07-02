@@ -9,11 +9,22 @@ import {
   IconButton,
   Container,
 } from './Column.styled';
+import { selectFilter } from 'redux/filter/selectors';
 import sprite from '../../assets/sprite.svg';
 import SvgComponent from 'components/SvgComponent/SvgComponent';
+import { useSelector } from 'react-redux';
+
 const icons = ['#pencil', '#trash'];
 
 function Column({ columnTitle, columnId, cards, prefix }) {
+  const filter = useSelector(selectFilter);
+
+  const filteredCards = (cards, filter) => {
+    if (filter === 'all') return cards;
+    const filteredCards = cards.filter(card => card.priority === filter);
+    return filteredCards;
+  };
+
   return (
     <Wrapper>
       <ColumnTitle>
@@ -33,20 +44,19 @@ function Column({ columnTitle, columnId, cards, prefix }) {
           ))}
         </IconList>
       </ColumnTitle>
-      <Container>
-        <Droppable droppableId={`${prefix}`}>
-          {provided => (
-            <TaskList {...provided.droppableProps} ref={provided.innerRef}>
-              {cards &&
-                cards.length > 0 &&
-                cards.map((card, index) => (
-                  <Card index={index} item={card} key={card._id} />
-                ))}
-              {provided.placeholder}
-            </TaskList>
-          )}
-        </Droppable>
-      </Container>
+
+      <Droppable droppableId={`${prefix}`}>
+        {provided => (
+          <TaskList {...provided.droppableProps} ref={provided.innerRef}>
+            {cards &&
+              filteredCards(cards, filter).length > 0 &&
+              filteredCards(cards, filter).map((card, index) => (
+                <Card index={index} item={card} key={card._id} />
+              ))}
+            {provided.placeholder}
+          </TaskList>
+        )}
+      </Droppable>
       <AddCardButton columnId={columnId} />
     </Wrapper>
   );

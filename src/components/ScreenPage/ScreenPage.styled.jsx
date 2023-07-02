@@ -2,13 +2,13 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const dynamicStylesWrapper = ({ theme }) => css`
-  padding: 14px 20px 24px;
+  padding: 14px 0 24px 20px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
-    padding: 26px 32px 32px;
+    padding: 26px 0 32px 32px;
   }
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    padding: 10px 24px 8px;
+    padding: 10px 0 8px 24px;
   }
 `;
 
@@ -45,6 +45,12 @@ const columnListDynamicStyles = ({ theme }) => css`
     border-radius: 12px;
     background-color: ${theme.backgroundColors.scrollBarThumb};
   }
+
+  ::-webkit-scrollbar-button:horizontal:end:increment {
+    width: 24px;
+    background: transparent;
+    background-color: transparent;
+  }
 `;
 
 export const ColumnList = styled.ul`
@@ -54,12 +60,16 @@ export const ColumnList = styled.ul`
 const dynamicStylesHeader = ({ theme }) => css`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding-right: 20px;
   margin-bottom: 39px;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
+    padding-right: 32px;
     margin-bottom: 26px;
   }
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
+    padding-right: 24px;
     margin-bottom: 10px;
   }
 `;
