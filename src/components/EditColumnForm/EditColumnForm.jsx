@@ -10,7 +10,7 @@ const EditColumnForm = ({ columnId, columnTitle, onClose }) => {
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      title: '',
+      title: columnTitle,
     },
   });
 
@@ -29,11 +29,7 @@ const EditColumnForm = ({ columnId, columnTitle, onClose }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Title>Edit column</Title>
         <label>
-          <Input
-            autoComplete="off"
-            placeholder={columnTitle}
-            {...register('title')}
-          />
+          <Input autoComplete="off" {...register('title')} />
         </label>
         <FormBtn
           textBtn={() => <ChildComponent textContent="Add" />}
