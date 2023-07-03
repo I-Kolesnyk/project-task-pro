@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useTheme, useUserId } from 'hooks';
@@ -14,6 +14,8 @@ function ThemeDropdown() {
     theme: useTheme(),
   };
 
+  const currentTheme = useTheme();
+
   const { register } = useForm({ defaultValues: defaultValues });
   const [selectedOption, setSelectedOption] = useState(null);
   const [optionValue, setOptionValue] = useState(null);
@@ -23,6 +25,12 @@ function ThemeDropdown() {
     { value: 'dark', label: 'Dark' },
     { value: 'violet', label: 'Violet' },
   ];
+
+  useEffect(() => {
+    if (optionValue === null) {
+      setOptionValue(currentTheme);
+    }
+  }, [currentTheme, optionValue]);
 
   const onChange = option => {
     setOptionValue(option);
