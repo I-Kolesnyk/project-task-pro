@@ -1,16 +1,6 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-// const dynamicStylesWrapper = ({ theme }) => css`
-//   padding: 14px 0 24px 20px;
-
-//   @media only screen and (min-width: ${theme.breakpoints[1]}) {
-//     padding: 26px 0 32px 32px;
-//   }
-//   @media only screen and (min-width: ${theme.breakpoints[2]}) {
-//     padding: 10px 0 8px 24px;
-//   }
-// `;
 const dynamicStylesWrapper = ({
   theme: { breakpoints },
   background: { mobile, tablet, desktop },
@@ -180,3 +170,4 @@ const dynamicStylesFilterIcon = ({ theme }) => css`
 export const FilterIcon = styled.svg`
   ${dynamicStylesFilterIcon}
 `;
+
