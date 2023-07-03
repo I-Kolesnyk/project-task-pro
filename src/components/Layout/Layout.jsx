@@ -6,14 +6,27 @@ import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import Loader from 'components/Loader';
 import { StyledMain } from './Layout.styled';
 
-
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [size, setSize] = useState({});
+
   const myRef = useRef(null);
-  const isDesktop = window.screen.width;
+
+  const resizeHandler = () => {
+    const { clientHeight, clientWidth } = myRef.current || {};
+    setSize({ clientHeight, clientWidth });
+  };
 
   useEffect(() => {
-    if (isDesktop > 1439) {
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (size.clientWidth > 1439) {
       setIsSidebarOpen(true);
     } else {
       document.addEventListener('mousedown', handleClickOutside);
@@ -21,7 +34,7 @@ function Layout() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isDesktop]);
+  }, [size.clientWidth]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);

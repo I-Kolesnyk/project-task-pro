@@ -16,7 +16,7 @@ const dynamicStylesWrapper = ({
     (min-resolution: 2dppx) {
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100vw calc(100vh - 60px);
+    background-size: cover;
     background-image: url(${mobile.link2x || ''});
   }
   @media only screen and (min-width: ${breakpoints[1]}) {
@@ -170,4 +170,3 @@ const dynamicStylesFilterIcon = ({ theme }) => css`
 export const FilterIcon = styled.svg`
   ${dynamicStylesFilterIcon}
 `;
-
