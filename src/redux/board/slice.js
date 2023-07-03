@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getBoardById, deleteColumn, editColumn } from './operations';
-import { addColumn, addCard, editCard } from './operations';
+import { addColumn, addCard, editCard, deleteCard } from './operations';
 
 const initialState = {
   isLoading: false,
@@ -54,7 +54,7 @@ export const boardSlice = createSlice({
         const changedTaskId = action.payload.data.task._id;
         const changedColumn = state.info.columns.find(
           column => column._id === changedColumnId
-        );  
+        );
 
         if (changedColumn) {
           const changedTask = changedColumn.tasks.find(
@@ -78,7 +78,18 @@ export const boardSlice = createSlice({
         state.info.columns.splice(index, 1, data);
       })
       .addCase(deleteColumn.fulfilled, (state, action) => {
-        // const index = state.info.columns.findIndex(column => column._id === action.payload.data.column._id);
+        const deletedColumnId = action.payload.data.deletedColumn._id;
+        state.info.columns = state.info.columns.filter(
+          column => column._id !== deletedColumnId
+        );
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        const deletedTaskId = action.payload.data.deletedTask._id;
+        state.info.columns.forEach(column => {
+          column.tasks = column.tasks.filter(
+            task => task._id !== deletedTaskId
+          );
+        });
       }),
 });
 
