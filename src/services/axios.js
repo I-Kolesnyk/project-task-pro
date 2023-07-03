@@ -34,7 +34,7 @@ axiosPrivateJson.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      // return (window.location.href = '/project-task-pro/auth/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },
@@ -54,7 +54,7 @@ axiosPrivateFormData.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      // return (window.location.href = '/project-task-pro/auth/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     return config;
   },
@@ -117,7 +117,7 @@ axiosPrivateFormData.interceptors.response.use(
 );
 
 axiosPrivateJson.interceptors.response.use(
-  async response => {   
+  async response => {
     if (response.data.code === 201 && response.config.url === '/api/boards') {
       toast.success('New board was successfully added');
       return response;
@@ -131,7 +131,6 @@ axiosPrivateJson.interceptors.response.use(
     return response;
   },
   async error => {
-    console.log(error);
     if (error.response.status === 500) {
       toast.error('Something has happened. Please try again later.');
     }
