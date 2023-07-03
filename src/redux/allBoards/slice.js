@@ -4,6 +4,7 @@ import {
   addNewBoard,
   updateBoardStatus,
   editBoardById,
+  deleteBoard,
 } from './operations';
 
 const initialState = {
@@ -45,14 +46,8 @@ export const allBoardsSlice = createSlice({
         if (changedBoard) {
           changedBoard.active = action.payload.data.board.active;
         }
-        // state.isLoading = false;
       })
-      // .addCase(updateBoardStatus.pending, (state, action) => {
-      //   state.isLoading = true;
-      // })
-      // .addCase(updateBoardStatus.rejected, (state, action) => {
-      //   state.isLoading = false;
-      // }),
+
       .addCase(editBoardById.fulfilled, (state, action) => {
         const { boardId, title, icon, background } = action.payload.data.board;
         const index = state.info.findIndex(board => board._id === boardId);
@@ -69,7 +64,17 @@ export const allBoardsSlice = createSlice({
       .addCase(editBoardById.rejected, state => {
         state.isLoading = false;
       })
-      ,
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        const deletedBoardId = action.payload.data.deletedBoard._id;
+        state.info = state.info.filter(board => board._id !== deletedBoardId);
+        state.isLoading = false;
+      })
+      .addCase(deleteBoard.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteBoard.rejected, state => {
+        state.isLoading = false;
+      }),
 });
 
 export const boardsReducer = allBoardsSlice.reducer;
