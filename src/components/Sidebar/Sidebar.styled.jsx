@@ -25,10 +25,10 @@ const sidebarDynamicStyles = ({ theme }) => css`
 const containerDynamicStyles = ({ theme }) => css`
   display: flex;
   flex-direction: column;
-  // justify-content: space-between;
-  align-items: space-between;
+  justify-content: space-between;
   padding-top: 24px;
   padding-bottom: 24px;
+  height: 100%;
 `;
 
 export const StyledSidebar = styled.aside`
