@@ -2,15 +2,16 @@ import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { Suspense, useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useIsUserLoading } from 'hooks';
 import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import Loader from 'components/Loader';
 import { StyledMain } from './Layout.styled';
-
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef(null);
   const isDesktop = window.screen.width;
+  const isLoading = useIsUserLoading();
 
   useEffect(() => {
     if (isDesktop > 1439) {
@@ -35,7 +36,7 @@ function Layout() {
   };
 
   return (
-    <>
+    !isLoading && (<>
       <Header openSidebar={openSidebar} />
       <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
       <StyledMain>
@@ -44,7 +45,8 @@ function Layout() {
         </Suspense>
       </StyledMain>
       <ToastWrapper />
-    </>
+    </>)
+    
   );
 }
 

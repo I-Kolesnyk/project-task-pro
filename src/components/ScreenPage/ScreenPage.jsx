@@ -50,10 +50,17 @@ function ScreenPage() {
 
     const sourceTasks = [...sourceColumn.tasks];
     const destinationTasks = [...destinationColumn.tasks];
-    const [task] = sourceTasks.splice(sourceIndex, 1);
+    // const [task] = sourceTasks.splice(sourceIndex, 1);
+    const task = sourceTasks.splice(sourceIndex, 1)[0];
+    console.log(sourceTasks, destinationTasks)
 
-    destinationTasks.splice(destinationIndex, 0, task);
-
+    // destinationTasks.splice(destinationIndex, 0, task);
+    if (sourceColumnId !== destinationColumnId) {
+      destinationTasks.splice(destinationIndex, 0, task);
+    } else {
+      // If source and destination columns are the same, no need to copy the task
+      destinationTasks.splice(destinationIndex, 0, ...sourceTasks.slice(sourceIndex));
+    }
     sourceColumn.tasks = sourceTasks;
     destinationColumn.tasks = destinationTasks;
 

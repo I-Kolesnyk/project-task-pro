@@ -49,14 +49,10 @@ export const allBoardsSlice = createSlice({
       })
 
       .addCase(editBoardById.fulfilled, (state, action) => {
-        const { boardId, title, icon, background } = action.payload.data.board;
+        const { _id: boardId } = action.payload.data.board;
         const index = state.info.findIndex(board => board._id === boardId);
-        if (index !== -1) {
-          state.info[index].title = title;
-          state.info[index].icon = icon;
-          state.info[index].background = background;
-          state.isLoading = false;
-        }
+
+        state.info.splice(index, 1, action.payload.data.board);
       })
       .addCase(editBoardById.pending, state => {
         state.isLoading = true;
