@@ -50,6 +50,11 @@ function BoardButton({ name, id, icon }) {
     setModalOpen(false);
   };
 
+  const handleDelete = (id) => {
+    dispatch(deleteBoard(id));
+    navigate('/home');
+  };
+
   return (
     <>
       <Wrapper className={active ? 'active' : ''} onClick={handleActive}>
@@ -64,7 +69,7 @@ function BoardButton({ name, id, icon }) {
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
             </IconButton>
-            <IconButton type="button" onClick={() => dispatch(deleteBoard(id))}>
+            <IconButton type="button" onClick={() => handleDelete(id)}>
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
