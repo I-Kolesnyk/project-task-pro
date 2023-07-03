@@ -7,7 +7,9 @@ const ContainerDynamicStyles = ({ theme }) => css`
   border-radius: ${theme.radii.md};
   width: 197px;
   height: 238px;
-  margin: auto 14px 28px 14px;
+  margin-bottom: 28px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     width: 212px;
