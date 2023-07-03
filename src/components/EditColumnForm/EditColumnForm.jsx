@@ -5,7 +5,7 @@ import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import { editColumn } from 'redux/board/operations';
 
-const EditColumnForm = ({ columnId, columnTitle }) => {
+const EditColumnForm = ({ columnId, columnTitle, onClose }) => {
   const dispatch = useDispatch();
 
   const { register, handleSubmit, reset } = useForm({
@@ -21,6 +21,7 @@ const EditColumnForm = ({ columnId, columnTitle }) => {
     };
     dispatch(editColumn(columnData));
     reset();
+    onClose();
   };
 
   return (
