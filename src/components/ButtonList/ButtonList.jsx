@@ -1,9 +1,19 @@
-import { useAllBoards } from 'hooks';
+import { useEffect } from 'react';
+import { useAllBoards, useBoardId } from 'hooks';
 import BoardButton from 'components/BoardButton/BoardButton';
 import { List } from './ButtonListStyled';
+import { getBoardById } from 'redux/board/operations';
+import { useDispatch } from 'react-redux';
 
 function ButtonList() {
   const allBoards = useAllBoards();
+  const dispatch = useDispatch();
+
+  const boardID = useBoardId();
+
+  useEffect(() => {
+    dispatch(getBoardById(boardID));
+  }, [allBoards, boardID, dispatch]);
 
   return (
     <List>

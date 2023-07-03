@@ -64,7 +64,6 @@ const EditBoardForm = ({ onClose }) => {
     dispatch(editBoardById(boardData))
       .unwrap()
       .then(response => {
-        console.log('Обновленные данные:', response);
         setValue('title', data.title);
         setValue('selectedIcon', data.selectedIcon);
         setValue('selectedBackgroundId', data.selectedBackgroundId);
@@ -73,6 +72,7 @@ const EditBoardForm = ({ onClose }) => {
       .catch(error => {
         console.error('Error:', error);
       });
+   
     navigate(`${data.title}`);
   };
 
@@ -139,3 +139,4 @@ const EditBoardForm = ({ onClose }) => {
 };
 
 export default EditBoardForm;
+

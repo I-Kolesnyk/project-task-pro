@@ -2,18 +2,32 @@ import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { Suspense, useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
+import { useIsUserLoading } from 'hooks';
 import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import Loader from 'components/Loader';
 import { StyledMain } from './Layout.styled';
 
-
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef(null);
-  const isDesktop = window.screen.width;
+  const myRef = useRef(null); 
+  const [size, setSize] = useState({});
+  const isLoading = useIsUserLoading();
+
+  const resizeHandler = () => {
+    const { clientHeight, clientWidth } = myRef.current || {};
+    setSize({ clientHeight, clientWidth });
+  };
 
   useEffect(() => {
-    if (isDesktop > 1439) {
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (size.clientWidth > 1439) {
       setIsSidebarOpen(true);
     } else {
       document.addEventListener('mousedown', handleClickOutside);
@@ -21,7 +35,7 @@ function Layout() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isDesktop]);
+  }, [size.clientWidth]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
@@ -35,7 +49,7 @@ function Layout() {
   };
 
   return (
-    <>
+    !isLoading && (<>
       <Header openSidebar={openSidebar} />
       <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
       <StyledMain>
@@ -44,7 +58,8 @@ function Layout() {
         </Suspense>
       </StyledMain>
       <ToastWrapper />
-    </>
+    </>)
+    
   );
 }
 
