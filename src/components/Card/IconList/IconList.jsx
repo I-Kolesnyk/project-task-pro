@@ -5,10 +5,14 @@ import { useState } from 'react';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditCardForm from 'components/EditCardForm/EditCardForm';
 import sprite from '../../../assets/sprite.svg';
+import { deleteCard } from 'redux/board/operations';
+import { useDispatch } from 'react-redux';
+
 // const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
 const IconList = ({ taskInfo }) => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const openModal = () => {
     setModalOpen(true);
@@ -17,6 +21,8 @@ const IconList = ({ taskInfo }) => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const { _id: taskId } = taskInfo;
 
   return (
     <>
@@ -33,7 +39,7 @@ const IconList = ({ taskInfo }) => {
             </IconBtn>
           </s.IconListItem>
           <s.IconListItem key={'#trash'}>
-            <IconBtn type="button">
+            <IconBtn type="button" onClick={() => dispatch(deleteCard(taskId))}>
               <SvgComponent
                 w={'16px'}
                 h={'16px'}

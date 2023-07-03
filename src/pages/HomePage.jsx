@@ -46,13 +46,11 @@ function HomePage() {
     ) : ( <>
       <HomePageContainer>
         <HomePageText>
-         Open your project or click &nbsp;
+         Open your board or click &nbsp;
           <HomePageCreateBoardBtn onClick={openModal}>
             to create a board
           </HomePageCreateBoardBtn>
-          &nbsp; to visualize and track all the necessary tasks and
-          milestones. This board serves as a powerful tool to organize the
-          workflow and ensure effective collaboration among team members.
+          &nbsp;.
         </HomePageText>
       </HomePageContainer>
 

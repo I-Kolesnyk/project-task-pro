@@ -20,7 +20,7 @@ const data = [
   { id: 'abstraction', image: abstraction },
   { id: 'aerostats', image: aerostats },
   { id: 'balloon', image: balloon },
-  { id: 'blue-ea', image: blueSea },
+  { id: 'blue-sea', image: blueSea },
   { id: 'canyon', image: canyon },
   { id: 'clouds', image: clouds },
   { id: 'fern', image: fern },

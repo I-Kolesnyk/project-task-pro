@@ -6,22 +6,14 @@ import { useOneBoardLoading, useBoardData, useBackground } from 'hooks';
 import Column from 'components/Column';
 import { updateBoardColumns } from 'redux/board/slice';
 import { useDispatch } from 'react-redux';
-import {
-  Wrapper,
-  Header,
-  ColumnList,
-  BoardTitle,
-  Filters,
-  FilterIcon,
-} from './ScreenPage.styled';
-import sprite from '../../assets/sprite.svg';
+import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 
 function ScreenPage() {
   const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
   const isLoading = useOneBoardLoading();
   const dispatch = useDispatch();
- 
+
   const {
     backgrounds: { backgrounds },
   } = useBackground();
@@ -30,14 +22,13 @@ function ScreenPage() {
     bg => bg.name === oneBoard.background
   );
 
-
   useEffect(() => {
     if (!isLoading) {
       setElements(oneBoard.columns);
     }
   }, [isLoading, oneBoard.columns]);
 
-   const onDragEnd = result => {
+  const onDragEnd = result => {
     if (!result.destination) {
       return;
     }
@@ -48,21 +39,19 @@ function ScreenPage() {
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
 
-    // Make a copy of the board state
     const boardCopy = { ...oneBoard };
     console.log('boardCopy', boardCopy);
 
     const columnsArray = Object.values(boardCopy.columns);
 
-    // Find the source column and destination column in the board copy
     const sourceColumn = { ...boardCopy.columns[sourceColumnId] };
     const destinationColumn = { ...boardCopy.columns[destinationColumnId] };
     console.log('sourse', sourceColumn);
-    // Remove the task from the source column
+
     const sourceTasks = [...sourceColumn.tasks];
     const destinationTasks = [...destinationColumn.tasks];
     const [task] = sourceTasks.splice(sourceIndex, 1);
-    // Insert the task into the destination column at the specified index
+
     destinationTasks.splice(destinationIndex, 0, task);
 
     sourceColumn.tasks = sourceTasks;
@@ -71,9 +60,8 @@ function ScreenPage() {
     columnsArray[sourceColumnId] = sourceColumn;
     columnsArray[destinationColumnId] = destinationColumn;
 
-
     boardCopy.columns = columnsArray;
-    // Dispatch an action to update the board with the modified columns
+
     dispatch(updateBoardColumns(boardCopy.columns));
   };
 
@@ -82,7 +70,7 @@ function ScreenPage() {
       <Wrapper background={boardBackground}>
         <Header>
           <BoardTitle>{oneBoard.title}</BoardTitle>
-          <Filter></Filter>
+          <Filter />
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>
