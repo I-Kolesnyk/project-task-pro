@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const sidebarDynamicStyles = ({ theme }) => css`
-  /* z-index: 100; */
+  z-index: 1;
   position: absolute;
   top: 0;
   width: 225px;
@@ -27,9 +27,13 @@ const containerDynamicStyles = ({ theme }) => css`
   flex-direction: column;
   justify-content: space-between;
   align-items: space-between;
-  padding-top: 24px;
+  padding-top: 18px;
   padding-bottom: 24px;
   height: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints[1]}) {
+    padding-top: 24px;
+  }
 `;
 
 export const StyledSidebar = styled.aside`

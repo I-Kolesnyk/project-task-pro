@@ -3,21 +3,21 @@ import { css } from '@emotion/react';
 
 const dynamicStylesWrapper = ({
   theme: { breakpoints },
-  background: { mobile, tablet, desktop },
+  bg: { mobile, tablet, desktop },
 }) => css`
   height: calc(100vh - 60px);
   padding: 14px 0 24px 20px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background: url(${mobile.link1x || ''});
+  background: url(${mobile.link1x});
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(${mobile.link2x || ''});
+    background-image: url(${mobile.link2x});
   }
   @media only screen and (min-width: ${breakpoints[1]}) {
     height: calc(100vh - 68px);
@@ -25,7 +25,7 @@ const dynamicStylesWrapper = ({
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(${tablet.link1x || ''});
+    background-image: url(${tablet.link1x});
   }
   @media screen and (min-width: ${breakpoints[1]}) and (min-device-pixel-ratio: 2),
     screen and (min-width: ${breakpoints[1]}) and (min-resolution: 192dpi),
@@ -33,14 +33,14 @@ const dynamicStylesWrapper = ({
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(${tablet.link2x || ''});
+    background-image: url(${tablet.link2x});
   }
   @media only screen and (min-width: ${breakpoints[2]}) {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     padding: 10px 0 8px 24px;
-    background-image: url(${desktop.link1x || ''});
+    background-image: url(${desktop.link1x});
   }
   @media screen and (min-width: ${breakpoints[2]}) and (min-device-pixel-ratio: 2),
     screen and (min-width: ${breakpoints[2]}) and (min-resolution: 192dpi),
@@ -48,7 +48,7 @@ const dynamicStylesWrapper = ({
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url(${desktop.link2x || ''});
+    background-image: url(${desktop.link2x});
   }
 `;
 
@@ -170,4 +170,3 @@ const dynamicStylesFilterIcon = ({ theme }) => css`
 export const FilterIcon = styled.svg`
   ${dynamicStylesFilterIcon}
 `;
-

@@ -6,12 +6,14 @@ const wrapperDynamicStyles = ({ theme }) => css`
   justify-content: space-between;
   width: 87.6%;
   height: 70px;
+  margin-left: 14px;
   margin-bottom: 40px;
   padding: 14px 4px 14px 0;
   border-top: 1px solid ${theme.backgroundColors.pseudo};
   border-bottom: 1px solid ${theme.backgroundColors.pseudo};
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
+    margin-left: 24px;
     width: 81.5%;
     padding: 14px 0;
   }
@@ -21,8 +23,8 @@ const textDynamicStyles = ({ theme }) => css`
   width: 76px;
   color: ${theme.textColors.addButton};
   font-size: ${theme.fontSizes[3]};
-  font-weight: ${theme.fontWeights.medium}
-  letter-spacing: -0.28px;  
+  font-weight: ${theme.fontWeights.medium};
+  letter-spacing: -0.28px;
 `;
 
 const buttonDynamicStyles = ({ theme }) => css`

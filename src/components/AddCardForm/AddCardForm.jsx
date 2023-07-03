@@ -44,6 +44,7 @@ const AddCardForm = ({ columnId }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
+    if (!description) description = 'No description';
     const newTask = {
       title,
       description,
