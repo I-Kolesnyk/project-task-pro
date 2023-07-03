@@ -12,7 +12,9 @@ function ButtonList() {
   const boardID = useBoardId();
 
   useEffect(() => {
-    dispatch(getBoardById(boardID));
+    if (allBoards.length !== 0 && boardID) {
+      dispatch(getBoardById(boardID));
+    }
   }, [allBoards, boardID, dispatch]);
 
   return (
