@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
-import { useIsBoardsLoading, useOneBoardLoading } from 'hooks';
+import { useIsBoardsLoading } from 'hooks';
 import {
   Svg,
   Wrapper,
@@ -22,9 +22,8 @@ function BoardButton({ name, id, icon }) {
   const params = useParams();
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
-  const isBoardLoading = useOneBoardLoading();
   const [active, setActive] = useState(false);
-
+  const [click, setClick] = useState(false);
   useEffect(() => {
     if (name.toString().toLowerCase() !== params.boardName) {
       setActive(false);
@@ -42,11 +41,6 @@ function BoardButton({ name, id, icon }) {
     }
   };
 
-  const boardDeleteHandler = () => {
-    dispatch(deleteBoard(id));
-    if (!isBoardLoading) navigate('/home');
-  };
-
   const openModal = () => {
     setModalOpen(true);
   };
@@ -54,6 +48,16 @@ function BoardButton({ name, id, icon }) {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const handleDelete = id => {
+    dispatch(deleteBoard(id));
+    setClick(true);
+  };
+  useEffect(() => {
+    if (click) {
+      navigate('/home');
+    }
+  }, [click, navigate]);
 
   return (
     <>
@@ -69,7 +73,7 @@ function BoardButton({ name, id, icon }) {
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
             </IconButton>
-            <IconButton type="button" onClick={boardDeleteHandler}>
+            <IconButton type="button" onClick={() => handleDelete(id)}>
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
