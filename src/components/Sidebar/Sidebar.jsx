@@ -8,10 +8,12 @@ function Sidebar() {
   return (
     <StyledSidebar>
       <Container>
-      <Logo />
-      <BoardList />
-      <NeedHelp />
-      <LogoutBtn />
+        <div>
+          <Logo />
+          <BoardList />
+          <NeedHelp />
+        </div>
+        <LogoutBtn />
       </Container>
     </StyledSidebar>
   );

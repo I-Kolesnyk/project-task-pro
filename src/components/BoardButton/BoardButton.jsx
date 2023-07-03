@@ -15,6 +15,7 @@ import {
   IconButton,
 } from './BoardButton.styled';
 import { getBoardById } from 'redux/board/operations';
+import { deleteBoard } from 'redux/allBoards/operations';
 
 function BoardButton({ name, id, icon }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -63,7 +64,7 @@ function BoardButton({ name, id, icon }) {
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
             </IconButton>
-            <IconButton type="button">
+            <IconButton type="button" onClick={() => dispatch(deleteBoard(id))}>
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
