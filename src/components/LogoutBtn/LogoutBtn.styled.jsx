@@ -18,7 +18,6 @@ height: 32px;
 export const StyledSpan = styled.span`
   ${dynamicTextColor}
   font-size: 16px;
-  font-family: Poppins;
   font-weight: 500;
 `;
 
