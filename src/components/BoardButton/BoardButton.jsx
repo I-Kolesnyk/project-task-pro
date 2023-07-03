@@ -24,7 +24,7 @@ function BoardButton({ name, id, icon }) {
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
   const [active, setActive] = useState(false);
-
+  const [click, setClick] = useState(false);
   useEffect(() => {
     if (name.toString().toLowerCase() !== params.boardName) {
       setActive(false);
@@ -50,10 +50,15 @@ function BoardButton({ name, id, icon }) {
     setModalOpen(false);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     dispatch(deleteBoard(id));
-    navigate('/home');
+    setClick(true);
   };
+  useEffect(() => {
+    if (click) {
+      navigate('/home');
+    }
+  }, [click, navigate]);
 
   return (
     <>
