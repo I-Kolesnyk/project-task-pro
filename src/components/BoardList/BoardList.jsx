@@ -8,7 +8,7 @@ import { getAllBoards } from 'redux/allBoards/operations';
 import { getBackgrounds } from 'redux/background/operations';
 
 function BoardList() {
-  const allBoards = useAllBoards(); 
+  const allBoards = useAllBoards();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -18,9 +18,9 @@ function BoardList() {
 
   return (
     <Wrapper>
-      <Title>My boards</Title>     
-        <AddBoardButton />
-        {allBoards.length !== 0 && <ButtonList />}     
+      <Title>My boards</Title>
+      <AddBoardButton />
+      {allBoards.length !== 0 && <ButtonList />}
     </Wrapper>
   );
 }

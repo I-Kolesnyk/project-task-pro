@@ -1,5 +1,5 @@
 import { useAllBoards } from 'hooks';
-import BoardButton from 'components/BoardButton';
+import BoardButton from 'components/BoardButton/BoardButton';
 import { List } from './ButtonListStyled';
 
 function ButtonList() {
