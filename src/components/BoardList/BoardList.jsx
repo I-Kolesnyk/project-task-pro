@@ -17,11 +17,11 @@ function BoardList() {
   }, [dispatch]);
 
   return (
-    <Wrapper>
+    <>
       <Title>My boards</Title>
       <AddBoardButton />
       {allBoards.length !== 0 && <ButtonList />}
-    </Wrapper>
+    </>
   );
 }
 

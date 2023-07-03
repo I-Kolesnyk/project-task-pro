@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const listDynamicStyles = ({ theme }) => css`
   width: 100%;
-  min-height: 61px;
+  min-height: 127px;
   margin-bottom: 40px;
   height: calc(100vh - 611px);
   scroll-behavior: smooth;

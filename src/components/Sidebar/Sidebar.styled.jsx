@@ -27,9 +27,13 @@ const containerDynamicStyles = ({ theme }) => css`
   flex-direction: column;
   justify-content: space-between;
   align-items: space-between;
-  padding-top: 24px;
+  padding-top: 18px;
   padding-bottom: 24px;
   height: 100%;
+
+  @media screen and (min-width: ${theme.breakpoints[1]}) {
+    padding-top: 24px;
+  }
 `;
 
 export const StyledSidebar = styled.aside`
@@ -39,4 +43,3 @@ export const StyledSidebar = styled.aside`
 export const Container = styled.div`
   ${containerDynamicStyles}
 `;
-
