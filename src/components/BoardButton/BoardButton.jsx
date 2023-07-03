@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
-import { useIsBoardsLoading } from 'hooks';
+import { useIsBoardsLoading, useOneBoardLoading } from 'hooks';
 import {
   Svg,
   Wrapper,
@@ -23,6 +22,7 @@ function BoardButton({ name, id, icon }) {
   const params = useParams();
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
+  const isBoardLoading = useOneBoardLoading();
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -40,6 +40,11 @@ function BoardButton({ name, id, icon }) {
     if (!isAllBoardsLoading) {
       navigate(`${name.toLowerCase()}`);
     }
+  };
+
+  const boardDeleteHandler = () => {
+    dispatch(deleteBoard(id));
+    if (!isBoardLoading) navigate('/home');
   };
 
   const openModal = () => {
@@ -64,7 +69,7 @@ function BoardButton({ name, id, icon }) {
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
             </IconButton>
-            <IconButton type="button" onClick={() => dispatch(deleteBoard(id))}>
+            <IconButton type="button" onClick={boardDeleteHandler}>
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
