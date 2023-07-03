@@ -11,10 +11,24 @@ function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const myRef = useRef(null);
   const isDesktop = window.screen.width;
+  const [size, setSize] = useState({});
   const isLoading = useIsUserLoading();
 
+  const resizeHandler = () => {
+    const { clientHeight, clientWidth } = myRef.current || {};
+    setSize({ clientHeight, clientWidth });
+  };
+
   useEffect(() => {
-    if (isDesktop > 1439) {
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (size.clientWidth > 1439) {
       setIsSidebarOpen(true);
     } else {
       document.addEventListener('mousedown', handleClickOutside);
@@ -22,7 +36,7 @@ function Layout() {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isDesktop]);
+  }, [size.clientWidth]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);

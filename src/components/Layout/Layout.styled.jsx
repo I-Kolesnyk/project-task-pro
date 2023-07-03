@@ -5,7 +5,7 @@ const mainDynamicStyles = ({ theme }) => css`
   background-color: ${theme.backgroundColors.main};
   overflow: hidden;
   height: calc(100vh - 60px);
-  width: 82%; 
+  width: 100%; 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     height: calc(100vh - 68px);
   }
