@@ -1,6 +1,4 @@
 import { useForm } from 'react-hook-form';
-
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   CustomRadio,
@@ -18,19 +16,17 @@ import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
 import { useDispatch } from 'react-redux';
+import { AddCardFormSchema } from 'schemas';
+import { addCard } from 'redux/board/operations';
+import { useColumns } from 'hooks';
 
-const schema = yup
-  .object({
-    title: yup.string().required('Title is required'),
-    description: yup.string(),
-    lableColor: yup.string().required(''),
-  })
-  .required();
-
-const AddCardForm = () => {
+const AddCardForm = ({ columnId }) => {
   const [deadlineDate, setDeadlineDate] = useState(new Date());
-  const [radioChoose, setRadioChoose] = useState('without');
-  // const dispatch = useDispatch();
+  const [radioChoose, setRadioChoose] = useState('without priority');
+  const dispatch = useDispatch();
+  const columns = useColumns();
+  const tasksLength = columns.filter(column => column._id === columnId)[0].tasks
+    .length;
 
   const {
     register,
@@ -43,14 +39,22 @@ const AddCardForm = () => {
       description: '',
       lableColor: '',
     },
-    resolver: yupResolver(schema),
+    resolver: yupResolver(AddCardFormSchema),
   });
 
-  const onSubmit = data => {
+  const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    const newTask = { ...data, deadline };
-    console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
-
+    const newTask = {
+      title,
+      description,
+      priority: lableColor,
+      deadline,
+      column: columnId,
+      index: tasksLength + 1,
+    };
+    // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
+    console.log(newTask);
+    dispatch(addCard(newTask));
     reset();
   };
 
@@ -75,14 +79,14 @@ const AddCardForm = () => {
           <CustomRadioContainer>
             <CustomRadio
               type="radio"
-              value="without"
-              id="withoutPriority"
+              value="low"
+              id="low"
               clr="lilac"
               onClick={chooseBtn}
-              checked={radioChoose === 'without' ? true : false}
+              checked={radioChoose === 'low' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="withoutPriority">
+            <label htmlFor="low">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonLilac'}></use>
               </svg>
@@ -90,14 +94,14 @@ const AddCardForm = () => {
 
             <CustomRadio
               type="radio"
-              value="low"
-              id="low"
+              value="medium"
+              id="medium"
               clr="pink"
               onClick={chooseBtn}
-              checked={radioChoose === 'low' ? true : false}
+              checked={radioChoose === 'medium' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="low">
+            <label htmlFor="medium">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonPink'}></use>
               </svg>
@@ -105,14 +109,14 @@ const AddCardForm = () => {
 
             <CustomRadio
               type="radio"
-              value="medium"
-              id="medium"
+              value="high"
+              id="high"
               clr="green"
               onClick={chooseBtn}
-              checked={radioChoose === 'medium' ? true : false}
+              checked={radioChoose === 'high' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="medium">
+            <label htmlFor="high">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonGreen'}></use>
               </svg>
@@ -120,14 +124,14 @@ const AddCardForm = () => {
 
             <CustomRadio
               type="radio"
-              value="high"
-              id="high"
+              value="without priority"
+              id="withoutPriority"
               clr="gray"
               onClick={chooseBtn}
-              checked={radioChoose === 'high' ? true : false}
+              checked={radioChoose === 'without priority' ? true : false}
               {...register('lableColor')}
             />
-            <label htmlFor="high">
+            <label htmlFor="withoutPriority">
               <svg width="14px" height="14px">
                 <use href={sprite + '#radioButtonGray'}></use>
               </svg>

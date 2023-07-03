@@ -1,28 +1,66 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { getAllBoards } from 'redux/allBoards/operations';
-import { useAllBoards } from 'hooks';
-import { getBoardById } from 'redux/board/operations';
+import { useState } from 'react';
+import { useAllBoards, useIsBoardsLoading } from 'hooks';
+
+import {
+  HomePageContainer,
+  HomePageText,
+  HomePageCreateBoardBtn,
+} from './styled/HomePage.styled';
+import Modal from 'components/ModalWindow/ModalWindow';
+import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 
 function HomePage() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const allBoards = useAllBoards();
-  const activeBoard = allBoards.filter(board => board.active === true);
-  console.log(activeBoard);
+  const [isModalOpen, setModalOpen] = useState(false);
+  const isLoading = useIsBoardsLoading();
+  const boards = useAllBoards()
 
-  useEffect(() => {
-    if (activeBoard.length !== 0 && allBoards.length !== 0) {
-      dispatch(getAllBoards());
-      if (allBoards.length !== 0) {
-        dispatch(getBoardById(`${activeBoard[0]._id}`));
-        navigate(`${activeBoard[0].title}`);
-      }
-    }
-  }, [activeBoard, allBoards, dispatch, navigate]);
+  const openModal = () => {
+    setModalOpen(true);
+  };
 
-  return <p>Homepage</p>;
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  return (   
+    !isLoading &&  boards.length === 0 ? (
+      <>
+        <HomePageContainer>
+          <HomePageText>
+            Before starting your project, it is essential&nbsp;
+            <HomePageCreateBoardBtn onClick={openModal}>
+              to create a board
+            </HomePageCreateBoardBtn>
+            &nbsp; to visualize and track all the necessary tasks and
+            milestones. This board serves as a powerful tool to organize the
+            workflow and ensure effective collaboration among team members.
+          </HomePageText>
+        </HomePageContainer>
+
+        {isModalOpen && (
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+            <CreateNewBoard onClose={closeModal} />
+          </Modal>
+        )}
+      </>
+    ) : ( <>
+      <HomePageContainer>
+        <HomePageText>
+         Open your board or click &nbsp;
+          <HomePageCreateBoardBtn onClick={openModal}>
+            to create a board
+          </HomePageCreateBoardBtn>
+          &nbsp;.
+        </HomePageText>
+      </HomePageContainer>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <CreateNewBoard onClose={closeModal} />
+        </Modal>
+      )}
+    </>)
+  );
 }
 
 export default HomePage;

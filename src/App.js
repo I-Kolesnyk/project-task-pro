@@ -41,7 +41,10 @@ function App() {
             <Route
               path="/auth/:id"
               element={
-                <RestrictedRoute redirectTo="/home" restricted>
+                <RestrictedRoute
+                  redirectTo='/home'
+                  restricted
+                >
                   <AuthPage />
                 </RestrictedRoute>
               }

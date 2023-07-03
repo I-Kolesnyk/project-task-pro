@@ -33,12 +33,15 @@ const dark = {
   textColors: {
     main: '#FFFFFF',
     secondary: 'rgba(255, 255, 255, 0.5)',
+    cardSecondary: 'rgba(255, 255, 255, 0.5)',
     theme: 'rgba(255, 255, 255, 0.8)',
     accent: '#BEDBB0',
     button: '#161616',
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
     addColumnButton: '#ffffff',
+    dayColor: '#FFFFFF80',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -57,28 +60,43 @@ const dark = {
     borderIcon: '#FFFFFF',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
-    formButtonBg: '#BEDBB0',
     scrollBar: 'rgba(255, 255, 255, 0.07999999821186066)',
     scrollBarThumb: '#121212',
+    cardBgColor: '#121212',
+    cardSeparator: 'rgba(255, 255, 255, 0.1)',
     addCardIconStroke: '#FFFFFF',
     addCardIconFill: '#161616',
     addColumnIconStroke: '#161616',
     addColumnIconFill: '#FFFFFF',
     columnTitleIcon: 'rgba(255, 255, 255, 0.5)',
     columnTitleIconHover: '#BEDBB0',
+    selectedDateHover: '#BEDBB050',
+    formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#FFFFFF33',
+    addCardButtonHover: '#ffffff',
+    popUpForm: '#1F1F1F',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
   },
 
   labelColors: {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(255, 255, 255, 0.3)',
+    gray: '#B0B0B0',
   },
 
   radii: {
     sm: '6px',
     md: '8px',
     lg: '50%',
+  },
+
+  logo: {
+    icon: '#FFFFFF',
+    bcg: '#1F1F1F',
   },
 };
 
@@ -117,12 +135,15 @@ const light = {
   textColors: {
     main: '#161616',
     secondary: 'rgba(22, 22, 22, 0.5)',
+    cardSecondary: 'rgba(22, 22, 22, 0.5)',
     theme: 'rgba(22, 22, 22, 0.8)',
     accent: '#BEDBB0',
     button: '#161616',
     logo: '#161616',
     addButton: '#161616',
     addColumnButton: '#161616',
+    dayColor: '#16161680',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -141,28 +162,43 @@ const light = {
     borderIcon: '#161616',
     formButtonSvg: '#FFFFFF',
     formButtonSvgBg: '#161616',
-    formButtonBg: '#BEDBB0',
     scrollBar: '#E8E8E8',
     scrollBarThumb: 'rgba(22, 22, 22, 0.1)',
+    cardBgColor: '#FFFFFF',
+    cardSeparator: 'rgba(22, 22, 22, 0.1)',
     addCardIconStroke: '#FFFFFF',
     addCardIconFill: '#161616',
     addColumnIconStroke: '#FFFFFF',
     addColumnIconFill: ' #161616',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#121212',
+    selectedDateHover: '#BEDBB050',
+    formButtonBg: '#BEDBB0',
+    datePickerCurMonth: '#16161633',
+    addCardButtonHover: '#ffffff',
+    popUpForm: '#ffffff',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#BEDBB0',
   },
 
   labelColors: {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(255, 255, 255, 0.3)',
+    gray: '#B0B0B0',
   },
 
   radii: {
     sm: '6px',
     md: '8px',
     lg: '50%',
+  },
+
+  logo: {
+    icon: '#FFFFFF',
+    bcg: '#1F1F1F',
   },
 };
 
@@ -201,12 +237,15 @@ const violet = {
   textColors: {
     main: '#161616',
     secondary: 'rgba(255, 255, 255, 0.5)',
+    cardSecondary: 'rgba(22, 22, 22, 0.5)',
     theme: 'rgba(22, 22, 22, 0.8)',
     accent: '#5255BC',
     button: '#FFFFFF',
     logo: '#FFFFFF',
     addButton: '#FFFFFF',
     addColumnButton: '#161616',
+    dayColor: '#16161680',
+    selectedDate: '#1F1F1F',
   },
 
   backgroundColors: {
@@ -225,28 +264,43 @@ const violet = {
     borderIcon: '#FFFFFF',
     formButtonSvg: '#161616',
     formButtonSvgBg: '#FFFFFF',
-    formButtonBg: '#ECEDFD',
     scrollBar: '#FFFFFF',
     scrollBarThumb: '#B8BCFD',
+    cardBgColor: '#FFFFFF',
+    cardSeparator: 'rgba(22, 22, 22, 0.1)',
     addCardIconStroke: '#161616',
     addCardIconFill: '#FFFFFF',
     addColumnIconStroke: '#FFFFFF',
     addColumnIconFill: 'rgba(82, 85, 188, 1)',
     columnTitleIcon: 'rgba(22, 22, 22, 0.5)',
     columnTitleIconHover: '#5255BC',
+    selectedDateHover: '#5255BC50',
+    formButtonBg: '#ECEDFD',
+    datePickerCurMonth: '#16161633',
+    addCardButtonHover: '#ffffff',
+    popUpForm: '#ffffff',
   },
 
   labelColors: {
     lilac: '#8FA1D0',
     pink: '#E09CB5',
     green: '#BEDBB0',
-    gray: 'rgba(255, 255, 255, 0.3)',
+    gray: '#B0B0B0',
+  },
+
+  logOutIcon: {
+    logOutIconStroke: '#FFFFFF',
   },
 
   radii: {
     sm: '6px',
     md: '8px',
     lg: '50%',
+  },
+
+  logo: {
+    icon: '#5255BC',
+    bcg: '#FFFFFF',
   },
 };
 

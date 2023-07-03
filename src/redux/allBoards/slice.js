@@ -1,8 +1,14 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getAllBoards, addNewBoard, updateBoardStatus } from './operations';
+import { createSlice } from '@reduxjs/toolkit';
+import {
+  getAllBoards,
+  addNewBoard,
+  updateBoardStatus,
+  editBoardById,
+  deleteBoard,
+} from './operations';
 
 const initialState = {
-  boards: [],
+  info: [],
   isLoading: false,
 };
 
@@ -13,36 +19,58 @@ export const allBoardsSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(getAllBoards.fulfilled, (state, action) => {
-        state.boards = action.payload.data;
+        state.info = action.payload.data.boards;
+        state.isLoading = false;
+      })
+      .addCase(getAllBoards.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getAllBoards.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
-        state.boards = state.boards.push(action.payload);
+        state.info.push(action.payload.data.board);
+        state.isLoading = false;
+      })
+      .addCase(addNewBoard.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addNewBoard.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(updateBoardStatus.fulfilled, (state, action) => {
-        const changedBoard = state.boards.filter(
-          board => board.id === action.payload._id
+        const boardIdToUpdate = action.payload.data.board._id;
+        const changedBoard = state.info.find(
+          board => board._id === boardIdToUpdate
         );
-        changedBoard.active = action.payload.active;
+        if (changedBoard) {
+          changedBoard.active = action.payload.data.board.active;
+        }
       })
-      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
-      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
-      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
+
+      .addCase(editBoardById.fulfilled, (state, action) => {
+        const { _id: boardId } = action.payload.data.board;
+        const index = state.info.findIndex(board => board._id === boardId);
+
+        state.info.splice(index, 1, action.payload.data.board);
+      })
+      .addCase(editBoardById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(editBoardById.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(deleteBoard.fulfilled, (state, action) => {
+        const deletedBoardId = action.payload.data.deletedBoard._id;
+        state.info = state.info.filter(board => board._id !== deletedBoardId);
+        state.isLoading = false;
+      })
+      .addCase(deleteBoard.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteBoard.rejected, state => {
+        state.isLoading = false;
+      }),
 });
-
-const handleFulfilled = state => {
-  state.isLoading = false;
-};
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = state => {
-  state.isLoading = false;
-};
-
-const extraActions = [getAllBoards, addNewBoard, updateBoardStatus];
-
-const getActions = type => extraActions.map(action => action[type]);
 
 export const boardsReducer = allBoardsSlice.reducer;

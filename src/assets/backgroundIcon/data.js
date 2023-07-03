@@ -1,37 +1,37 @@
 import bgIcon00 from '../backgroundIcon/bg-icon-00.png';
-import bgIcon01 from '../backgroundIcon/bg-icon-01.png';
-import bgIcon02 from '../backgroundIcon/bg-icon-02.png';
-import bgIcon03 from '../backgroundIcon/bg-icon-03.png';
-import bgIcon04 from '../backgroundIcon/bg-icon-04.png';
-import bgIcon05 from '../backgroundIcon/bg-icon-05.png';
-import bgIcon06 from '../backgroundIcon/bg-icon-06.png';
-import bgIcon07 from '../backgroundIcon/bg-icon-07.png';
-import bgIcon08 from '../backgroundIcon/bg-icon-08.png';
-import bgIcon09 from '../backgroundIcon/bg-icon-09.png';
-import bgIcon10 from '../backgroundIcon/bg-icon-10.png';
-import bgIcon11 from '../backgroundIcon/bg-icon-11.png';
-import bgIcon12 from '../backgroundIcon/bg-icon-12.png';
-import bgIcon13 from '../backgroundIcon/bg-icon-13.png';
-import bgIcon14 from '../backgroundIcon/bg-icon-14.png';
-import bgIcon15 from '../backgroundIcon/bg-icon-15.png';
+import abstraction from '../backgroundIcon/abstraction.png';
+import aerostats from '../backgroundIcon/aerostats.png';
+import balloon from '../backgroundIcon/balloon.png';
+import blueSea from '../backgroundIcon/blue-sea.png';
+import canyon from '../backgroundIcon/canyon.png';
+import clouds from '../backgroundIcon/clouds.png';
+import fern from '../backgroundIcon/fern.png';
+import halfMoon from '../backgroundIcon/half-moon.png';
+import moon from '../backgroundIcon/moon.png';
+import mountains from '../backgroundIcon/mountains.png';
+import pinkFlowers from '../backgroundIcon/pink-flowers.png';
+import rocks from '../backgroundIcon/rocks.png';
+import roseTree from '../backgroundIcon/rose-tree.png';
+import starrySky from '../backgroundIcon/starry-sky.png';
+import yacht from '../backgroundIcon/yacht.png';
 
 const data = [
   { id: 0, image: bgIcon00 },
-  { id: 1, image: bgIcon01 },
-  { id: 2, image: bgIcon02 },
-  { id: 3, image: bgIcon03 },
-  { id: 4, image: bgIcon04 },
-  { id: 5, image: bgIcon05 },
-  { id: 6, image: bgIcon06 },
-  { id: 7, image: bgIcon07 },
-  { id: 8, image: bgIcon08 },
-  { id: 9, image: bgIcon09 },
-  { id: 10, image: bgIcon10 },
-  { id: 11, image: bgIcon11 },
-  { id: 12, image: bgIcon12 },
-  { id: 13, image: bgIcon13 },
-  { id: 14, image: bgIcon14 },
-  { id: 15, image: bgIcon15 },
+  { id: 'abstraction', image: abstraction },
+  { id: 'aerostats', image: aerostats },
+  { id: 'balloon', image: balloon },
+  { id: 'blue-sea', image: blueSea },
+  { id: 'canyon', image: canyon },
+  { id: 'clouds', image: clouds },
+  { id: 'fern', image: fern },
+  { id: 'half-moon', image: halfMoon },
+  { id: 'moon', image: moon },
+  { id: 'mountains', image: mountains },
+  { id: 'pink-flowers', image: pinkFlowers },
+  { id: 'rocks', image: rocks },
+  { id: 'rose-tree', image: roseTree },
+  { id: 'starry-sky', image: starrySky },
+  { id: 'yacht', image: yacht },
 ];
 
 export default data;

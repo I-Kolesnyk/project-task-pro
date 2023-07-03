@@ -1,64 +1,86 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
-
-import { updateBoardStatus } from 'redux/allBoards/operations';
+import { useParams } from 'react-router';
 import sprite from '../../assets/sprite.svg';
+import Modal from 'components/ModalWindow/ModalWindow';
+import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
+import { useIsBoardsLoading } from 'hooks';
 import {
   Svg,
   Wrapper,
   Title,
   ActiveSvg,
   IconsWrapper,
+  IconButton,
 } from './BoardButton.styled';
+import { getBoardById } from 'redux/board/operations';
+import { deleteBoard } from 'redux/allBoards/operations';
 
-function BoardButton({ name, boardName, id, icon, isActive }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function BoardButton({ name, id, icon }) {
+  const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
-  console.log(boardName, name);
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  const params = useParams();
   const navigate = useNavigate();
+  const isAllBoardsLoading = useIsBoardsLoading();
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    if (name.toString() === boardName) {
-      dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
-    } else {
-      dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
+    if (name.toString().toLowerCase() !== params.boardName) {
+      setActive(false);
     }
-  }, [boardName, dispatch, id, name]);
+    if (name.toString().toLowerCase() === params.boardName) {
+      setActive(true);
+    }
+  }, [dispatch, params.boardName, name]);
 
   const handleActive = () => {
-    navigate(`${name}`);
+    setActive(true);
+    dispatch(getBoardById(`${id}`));
+    if (!isAllBoardsLoading) {
+      navigate(`${name.toLowerCase()}`);
+    }
   };
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleDelete = (id) => {
+    dispatch(deleteBoard(id));
+    navigate('/home');
+  };
+
   return (
     <>
-      <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
+      <Wrapper className={active ? 'active' : ''} onClick={handleActive}>
         <Svg width="18px" height="18px">
-          <use href={sprite + '#project'}></use>
+          <use href={sprite + `#${icon}`}></use>
         </Svg>
         <Title>{name}</Title>
-        {isActive && (
+        {active && (
           <IconsWrapper>
-            <button type="button" onClick={openModal}>
+            <IconButton type="button" onClick={openModal}>
               <ActiveSvg width="18px" height="18px">
                 <use href={sprite + '#pencil'}></use>
               </ActiveSvg>
-            </button>
-            <button type="button">
+            </IconButton>
+            <IconButton type="button" onClick={() => handleDelete(id)}>
               <ActiveSvg width="16px" height="16px">
                 <use href={sprite + '#trash'}></use>
               </ActiveSvg>
-            </button>
+            </IconButton>
           </IconsWrapper>
         )}
       </Wrapper>
       {isModalOpen && (
-        <p>модалка для редагування дошки</p>
-        // <Modal setIsModalOpen={setIsModalOpen}>
-        //   {/* <EditBoardModal /> */}
-        // </Modal>
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <EditBoardForm onClose={closeModal} />
+        </Modal>
       )}
     </>
   );

@@ -1,56 +1,98 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getBoardById } from './operations';
+import { getBoardById, deleteColumn, editColumn } from './operations';
+import { addColumn, addCard, editCard, deleteCard } from './operations';
 
 const initialState = {
-  board: {
-    title: 'test',
-    id: '111',
-    columns: [
-      {
-        title: 'first',
-        id: 'first',
-        cards: [
-          { title: 'card-1-1', id: 'c11' },
-          { title: 'card-1-2', id: 'c12' },
-          { title: 'card-1-3', id: 'c13' },
-        ],
-      },
-      {
-        title: 'second',
-        id: 'second',
-        cards: [
-          { title: 'card-2-1', id: 'c21' },
-          { title: 'card-2-2', id: 'c22' },
-          { title: 'card-2-3', id: 'c23' },
-        ],
-      },
-      {
-        title: 'third',
-        id: 'third',
-        cards: [
-          { title: 'card-3-1', id: 'c31' },
-          { title: 'card-3-2', id: 'c32' },
-          { title: 'card-3-3', id: 'c33' },
-        ],
-      },
-    ],
-  },
+  isLoading: false,
+  info: {},
 };
 
 export const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    setBoard(state, actions) {
-      state.board = actions.payload;
+    updateBoardColumns: (state, action) => {
+      state.info.columns = action.payload;
     },
   },
   extraReducers: builder =>
-    builder.addCase(getBoardById.fulfilled, (state, action) => {
-      state.board = action.payload.data;
-    }),
+    builder
+      .addCase(getBoardById.fulfilled, (state, action) => {
+        const board = action.payload.data.board[0];
+        state = {
+          isLoading: false,
+          info: board,
+        };
+        return state;
+      })
+      .addCase(getBoardById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getBoardById.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(addColumn.fulfilled, (state, action) => {
+        const newColumn = {
+          ...action.payload.data.column,
+          tasks: [],
+        };
+        state.info.columns.push(newColumn);
+      })
+      .addCase(addCard.fulfilled, (state, action) => {
+        const columnIdToUpdate = action.payload.data.taks.column;
+
+        const changedColumn = state.info.columns.find(
+          column => column._id === columnIdToUpdate
+        );
+
+        if (changedColumn) {
+          changedColumn.tasks.push(action.payload.data.taks);
+        }
+      })
+      .addCase(editCard.fulfilled, (state, action) => {
+        const changedColumnId = action.payload.data.task.column;
+        const changedTaskId = action.payload.data.task._id;
+        const changedColumn = state.info.columns.find(
+          column => column._id === changedColumnId
+        );
+
+        if (changedColumn) {
+          const changedTask = changedColumn.tasks.find(
+            task => task._id === changedTaskId
+          );
+
+          if (changedTask) {
+            changedTask.title = action.payload.data.task.title;
+            changedTask.description = action.payload.data.task.description;
+            changedTask.priority = action.payload.data.task.priority;
+            changedTask.deadline = action.payload.data.task.deadline;
+          }
+        }
+      })
+      .addCase(editColumn.fulfilled, (state, action) => {
+        const data = action.payload.data.column;
+        const index = state.info.columns.findIndex(
+          column => column._id === data._id
+        );
+
+        state.info.columns.splice(index, 1, data);
+      })
+      .addCase(deleteColumn.fulfilled, (state, action) => {
+        const deletedColumnId = action.payload.data.deletedColumn._id;
+        state.info.columns = state.info.columns.filter(
+          column => column._id !== deletedColumnId
+        );
+      })
+      .addCase(deleteCard.fulfilled, (state, action) => {
+        const deletedTaskId = action.payload.data.deletedTask._id;
+        state.info.columns.forEach(column => {
+          column.tasks = column.tasks.filter(
+            task => task._id !== deletedTaskId
+          );
+        });
+      }),
 });
 
-export const { setBoard } = boardSlice.actions;
-
 export const boardReducer = boardSlice.reducer;
+
+export const { updateBoardColumns } = boardSlice.actions;

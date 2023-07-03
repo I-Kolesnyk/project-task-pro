@@ -2,51 +2,64 @@ import Header from 'components/Header';
 import Sidebar from 'components/Sidebar/Sidebar';
 import { Suspense, useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router-dom';
-
+import { useIsUserLoading } from 'hooks';
+import { ToastWrapper } from 'components/ToastContainer/ToastContainer';
 import Loader from 'components/Loader';
 import { StyledMain } from './Layout.styled';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef();
+  const myRef = useRef(null); 
+  const [size, setSize] = useState({});
+  const isLoading = useIsUserLoading();
 
-  const isDesktop = window.screen.width;
-
-  console.log(isDesktop);
+  const resizeHandler = () => {
+    const { clientHeight, clientWidth } = myRef.current || {};
+    setSize({ clientHeight, clientWidth });
+  };
 
   useEffect(() => {
-    if (isDesktop > 1439) {
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (size.clientWidth > 1439) {
       setIsSidebarOpen(true);
     } else {
-      // document.addEventListener('mousedown', handleClickOutside);
-      // document.body.classList.toggle('no-scroll');
+      document.addEventListener('mousedown', handleClickOutside);
     }
     return () => {
-      // document.removeEventListener('mousedown', handleClickOutside);
-      // document.body.classList.remove('no-scroll');
+      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isDesktop]);
+  }, [size.clientWidth]);
 
   const openSidebar = () => {
     setIsSidebarOpen(true);
   };
 
-  // const handleClickOutside = e => {
-  //   if (!myRef.current.contains(e.target)) {
-  //     setIsSidebarOpen(false);
-  //   }
-  // };
+  const handleClickOutside = e => {
+    const modal = document.getElementById('modal-root');
+    if (!myRef.current.contains(e.target) && !modal.contains(e.target)) {
+      setIsSidebarOpen(false);
+    }
+  };
 
   return (
-    <>
+    !isLoading && (<>
       <Header openSidebar={openSidebar} />
-      <div ref={myRef}>{isSidebarOpen && <Sidebar setIsSidebarOpen={setIsSidebarOpen}/>}</div>
+      <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
       <StyledMain>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </StyledMain>
-    </>
+      <ToastWrapper />
+    </>)
+    
   );
 }
 

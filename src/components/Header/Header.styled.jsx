@@ -15,8 +15,7 @@ const headerDynamicStyles = ({ theme }) => css`
 
   @media screen and (min-width: ${theme.breakpoints[2]}) {
     float: right;
-    width: 82%;
-    min-height: 8.9vh;
+    width: 82%;    
     padding: 18px 32px;
   }
 `;
@@ -37,6 +36,14 @@ const svgDynamicStyles = ({ theme }) => css`
     height: 32px;    
 `;
 
+const containerDynamicStyles = ({ theme }) => css`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 14px;
+  margin-left: auto;
+`;
+
 export const StyledHeader = styled.header`
   ${headerDynamicStyles}
 `;
@@ -47,4 +54,8 @@ export const Svg = styled.svg`
 
 export const Button = styled.button`
   ${buttonDynamicStyles}
+`;
+
+export const Container = styled.div`
+  ${containerDynamicStyles}
 `;

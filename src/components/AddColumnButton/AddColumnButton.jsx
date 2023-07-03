@@ -1,18 +1,39 @@
-import { Button, Svg, Box } from './AddColumnButton.styled';
+import { useState } from 'react';
+
 import sprite from '../../assets/sprite.svg';
+import Modal from 'components/ModalWindow/ModalWindow';
+import AddColumnForm from 'components/AddColumnForm';
+import { Button, Svg, Box, Wrapper } from './AddColumnButton.styled';
 
 const AddColumnButton = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
-    <div>
-      <Button>
-        <Box>
-          <Svg>
-            <use href={sprite + '#plus'}></use>
-          </Svg>
-        </Box>
-        Add another column
-      </Button>
-    </div>
+    <>
+      <div>
+        <Button onClick={openModal}>
+          <Box>
+            <Svg>
+              <use href={sprite + '#plus'}></use>
+            </Svg>
+          </Box>
+          Add another column
+        </Button>
+      </div>
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <AddColumnForm onClose={closeModal} />
+        </Modal>
+      )}
+    </>
   );
 };
 

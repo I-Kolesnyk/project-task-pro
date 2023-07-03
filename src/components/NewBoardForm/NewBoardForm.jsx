@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addNewBoard } from 'redux/allBoards/operations';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -22,41 +24,41 @@ const NewBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
+  const dispatch = useDispatch();
 
   const handleTitleChange = event => {
-    setValue('title', event.target.value);
+    setValue('title', event.target.value.toString());
   };
 
   const handleIconSelect = icon => {
     setSelectedIcon(icon);
-    setValue('selectedIcon', icon);
+    setValue('icon', icon);
   };
 
   const handleBackgroundSelect = backgroundId => {
     setSelectedBackgroundId(backgroundId);
-    setValue('selectedBackgroundId', backgroundId);
+    setValue('background', backgroundId.toString());
   };
 
   const handleCreateBoard = data => {
-    console.log('Title:', data.title);
-    console.log('Selected Icon:', data.selectedIcon);
-    console.log('Selected Background Id:', data.selectedBackgroundId);
-    setValue('title', '');
-    setValue('selectedIcon', '');
-    setValue('selectedBackgroundId', '');
-    onClose();
+    dispatch(addNewBoard(data)).then(() => {
+      setValue('title', '');
+      setValue('icon', '');
+      setValue('background', '');
+      onClose();
+    });
   };
 
   const renderIcons = () => {
     const icons = [
       'Project',
-      'star-04',
-      'loading-03',
-      'puzzle-piece-02',
+      'star',
+      'loading',
+      'puzzle-piece',
       'container',
-      'lightning-02',
+      'lightning',
       'colors',
-      'hexagon-01',
+      'hexagon',
     ];
 
     return icons.map(icon => (

@@ -9,6 +9,10 @@ const userNameDynamicStyles = ({ theme }) => css`
   margin-right: 8px;
 `;
 
+const imgDynamicStyles = ({ theme }) => css`
+  border-radius: ${theme.radii.md};
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -21,4 +25,5 @@ export const Text = styled.p`
 export const Img = styled.img`
   width: 32px;
   height: 32px;
+  ${imgDynamicStyles}
 `;
