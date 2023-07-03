@@ -29,6 +29,7 @@ export const allBoardsSlice = createSlice({
       })
       .addCase(addNewBoard.fulfilled, (state, action) => {
         state.info.push(action.payload.data.board);
+        state.isLoading = false;
       })
       .addCase(addNewBoard.pending, state => {
         state.isLoading = true;
@@ -59,8 +60,16 @@ export const allBoardsSlice = createSlice({
           state.info[index].title = title;
           state.info[index].icon = icon;
           state.info[index].background = background;
+          state.isLoading = false;
         }
-      }),
+      })
+      .addCase(editBoardById.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(editBoardById.rejected, state => {
+        state.isLoading = false;
+      })
+      ,
 });
 
 export const boardsReducer = allBoardsSlice.reducer;

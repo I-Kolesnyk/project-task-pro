@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { updateBoardStatus } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
@@ -17,31 +16,28 @@ import {
 } from './BoardButton.styled';
 import { getBoardById } from 'redux/board/operations';
 
-function BoardButton({ name, id, icon, isActive }) {
+function BoardButton({ name, id, icon }) {
   const [isModalOpen, setModalOpen] = useState(false);
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
-  const [active, setActive] = useState(isActive);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setActive(isActive);
-  }, [isActive]);
-
-  useEffect(() => {
-    if (active && params.boardName) {
-      if (name.toString() !== params.boardName) {
-        dispatch(updateBoardStatus({ boardId: id, body: { active: false } }));
-      }
+    if (name.toString().toLowerCase() !== params.boardName) {
+      setActive(false);
     }
-  }, [dispatch, id, params.boardName, name, active]);
+    if (name.toString().toLowerCase() === params.boardName) {
+      setActive(true);
+    }
+  }, [dispatch, params.boardName, name]);
 
   const handleActive = () => {
-    dispatch(updateBoardStatus({ boardId: id, body: { active: true } }));
+    setActive(true);
     dispatch(getBoardById(`${id}`));
     if (!isAllBoardsLoading) {
-      navigate(`${name}`);
+      navigate(`${name.toLowerCase()}`);
     }
   };
 
@@ -55,12 +51,12 @@ function BoardButton({ name, id, icon, isActive }) {
 
   return (
     <>
-      <Wrapper className={isActive ? 'active' : ''} onClick={handleActive}>
+      <Wrapper className={active ? 'active' : ''} onClick={handleActive}>
         <Svg width="18px" height="18px">
           <use href={sprite + `#${icon}`}></use>
         </Svg>
         <Title>{name}</Title>
-        {isActive && (
+        {active && (
           <IconsWrapper>
             <IconButton type="button" onClick={openModal}>
               <ActiveSvg width="18px" height="18px">

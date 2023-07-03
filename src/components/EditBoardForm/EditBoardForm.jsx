@@ -4,7 +4,8 @@ import { editBoardById } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
-import { useAllBoards } from 'hooks/useAllBoards';
+import { useBoardData } from 'hooks';
+import { useNavigate } from 'react-router-dom';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -27,15 +28,14 @@ const EditBoardForm = ({ onClose }) => {
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
 
   const dispatch = useDispatch();
-
-  const allBoards = useAllBoards();
-  const activeBoardId = allBoards.find(board => board.active === true);
+  const navigate = useNavigate();
+  const board = useBoardData();
 
   useEffect(() => {
-    setValue('title', activeBoardId.title);
-    setSelectedIcon(activeBoardId.icon);
-    setSelectedBackgroundId(activeBoardId.background);
-  }, [activeBoardId, setValue]);
+    setValue('title', board.title);
+    setSelectedIcon(board.icon);
+    setSelectedBackgroundId(board.background);
+  }, [board.background, board.icon, board.title, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value);
@@ -53,7 +53,7 @@ const EditBoardForm = ({ onClose }) => {
 
   const handleEditBoardForm = data => {
     const boardData = {
-      boardId: activeBoardId._id,
+      boardId: board._id,
       body: {
         title: data.title,
         icon: data.selectedIcon,
@@ -71,8 +71,9 @@ const EditBoardForm = ({ onClose }) => {
         onClose();
       })
       .catch(error => {
-        console.error('Ошибка при обновлении:', error);
+        console.error('Error:', error);
       });
+    navigate(`${data.title}`);
   };
 
   const renderIcons = () => {

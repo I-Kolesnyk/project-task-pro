@@ -6,7 +6,6 @@ export const getBoardById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.get(`/api/boards/${id}`);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -51,6 +50,50 @@ export const editCard = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);
+
+export const deleteCard = createAsyncThunk(
+  'board/deleteCard',
+  async (taskId, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.delete(`/api/tasks/${taskId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editColumn = createAsyncThunk(
+  'board/editColumn',
+  async (columnData, thunkAPI) => {
+    try {
+      const { columnId, title } = columnData;
+      const columnTitle = { title };
+      const { data } = await axiosPrivateJson.put(
+        `/api/columns/${columnId}`,
+        columnTitle
+      );
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);
+
+export const deleteColumn = createAsyncThunk(
+  'board/deleteColumns',
+  async (columnId, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.delete(
+        `/api/columns/${columnId}`
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

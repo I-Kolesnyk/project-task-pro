@@ -12,8 +12,7 @@ export const backgroundsSlice = createSlice({
   reducers: {},
   extraReducers: builder =>
     builder
-      .addCase(getBackgrounds.fulfilled, (state, action) => {
-        // console.log('backs', action.payload.data);
+      .addCase(getBackgrounds.fulfilled, (state, action) => {       
         state.backgrounds = action.payload.data;
         state.isLoading = false;
       })

@@ -66,11 +66,14 @@ const authSlice = createSlice({
         state.token = action.payload.data.token;
         state.isLoggedIn = true;
         state.isFetchingCurrentUser = false;
+        state.isLoading = false;
       })
       .addCase(currentUser.pending, state => {
+        state.isLoading = true;
         state.isFetchingCurrentUser = true;
       })
       .addCase(currentUser.rejected, state => {
+        state.isLoading = false;
         state.isFetchingCurrentUser = false;
       })
       .addCase(editProfile.fulfilled, (state, action) => {

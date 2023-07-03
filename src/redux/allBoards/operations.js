@@ -19,11 +19,6 @@ export const addNewBoard = createAsyncThunk(
   async (board, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.post('/api/boards', board);
-      console.log(data);
-      if (data.status === 'success') {
-        window.location.href = `/project-task-pro/home/${data.data.board.title}`;
-      }
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -54,8 +49,7 @@ export const editBoardById = createAsyncThunk(
       const { data } = await axiosPrivateJson.put(
         `/api/boards/${boardData.boardId}`,
         boardData.body
-      );
-      console.log('editBoardById----------------->', data);
+      );     
       return data;
     } catch (error) {
       console.log(error);
