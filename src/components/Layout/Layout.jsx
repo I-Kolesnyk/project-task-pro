@@ -9,8 +9,7 @@ import { StyledMain } from './Layout.styled';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef(null);
-  const isDesktop = window.screen.width;
+  const myRef = useRef(null); 
   const [size, setSize] = useState({});
   const isLoading = useIsUserLoading();
 

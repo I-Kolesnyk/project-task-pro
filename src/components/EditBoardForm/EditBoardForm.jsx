@@ -21,7 +21,6 @@ import {
   BackgroundImage,
   Input,
 } from './EditBoardForm.styled';
-import { getBoardById } from 'redux/board/operations';
 
 const EditBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
