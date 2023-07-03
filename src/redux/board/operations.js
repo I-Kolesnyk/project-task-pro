@@ -3,7 +3,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getBoardById = createAsyncThunk(
   'board/one',
-  async (id, thunkAPI) => {
+  async (id, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.get(`/api/boards/${id}`);
       return data;
@@ -15,7 +16,8 @@ export const getBoardById = createAsyncThunk(
 
 export const addColumn = createAsyncThunk(
   'board/addColumn',
-  async (columnData, thunkAPI) => {
+  async (columnData, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.post(`/api/columns`, columnData);
       return data;
@@ -27,7 +29,8 @@ export const addColumn = createAsyncThunk(
 
 export const addCard = createAsyncThunk(
   'board/addCard',
-  async (cardData, thunkAPI) => {
+  async (cardData, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.post(`/api/tasks`, cardData);
       return data;
@@ -39,7 +42,8 @@ export const addCard = createAsyncThunk(
 
 export const editCard = createAsyncThunk(
   'board/editCard',
-  async (cardData, thunkAPI) => {
+  async (cardData, thunkAPI) =>
+  {
     try {
       const { title, description, priority, deadline } = cardData;
       const newTask = { title, description, priority, deadline };
@@ -56,7 +60,8 @@ export const editCard = createAsyncThunk(
 
 export const deleteCard = createAsyncThunk(
   'board/deleteCard',
-  async (taskId, thunkAPI) => {
+  async (taskId, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.delete(`/api/tasks/${taskId}`);
       return data;
@@ -68,7 +73,8 @@ export const deleteCard = createAsyncThunk(
 
 export const editColumn = createAsyncThunk(
   'board/editColumn',
-  async (columnData, thunkAPI) => {
+  async (columnData, thunkAPI) =>
+  {
     try {
       const { columnId, title } = columnData;
       const columnTitle = { title };
@@ -85,11 +91,27 @@ export const editColumn = createAsyncThunk(
 );
 
 export const deleteColumn = createAsyncThunk(
-  'board/deleteColumns',
-  async (columnId, thunkAPI) => {
+  'board/deleteColumn',
+  async (columnId, thunkAPI) =>
+  {
     try {
       const { data } = await axiosPrivateJson.delete(
         `/api/columns/${columnId}`
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteBoard = createAsyncThunk(
+  'board/deleteBoard',
+  async (boardId, thunkAPI) =>
+  {
+    try {
+      const { data } = await axiosPrivateJson.delete(
+        `/api/boards/${boardId}`
       );
       return data;
     } catch (error) {
