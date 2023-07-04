@@ -60,7 +60,7 @@ const UserInfo = () => {
         <Img src={userAvatar} alt="user-avatar" />
       </button>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <EditProfileForm userAvatar={userAvatar} />
+        <EditProfileForm userAvatar={userAvatar} onClose={closeModal} />
       </Modal>
     </Wrapper>
   );
