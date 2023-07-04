@@ -29,12 +29,14 @@ axiosPrivateJson.interceptors.request.use(
     const user = localStorage.getItem('persist:auth');
     const parsedUser = JSON.parse(user);
     const token = parsedUser.token.slice(1, -1);
+    console.log(token);
     if (token) {
+      console.log('In');
       if (config?.headers) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/project-task-pro/auth/login');
+      return;
     }
     return config;
   },
@@ -54,7 +56,7 @@ axiosPrivateFormData.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${token}`;
       }
     } else {
-      return (window.location.href = '/project-task-pro/auth/login');
+      return;
     }
     return config;
   },
