@@ -149,3 +149,49 @@ axiosPrivateJson.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+axiosPrivateJson.interceptors.response.use(
+  async response => {
+    console.log('response -------------> ', response);
+    if (response.data.code === 201 && response.config.url === '/api/columns') {
+      toast.success('New column was successfully added');
+      return response;
+    }
+    return response;
+  },
+  async error => {
+    if (error.response.status === 500) {
+      toast.error('Something has happened. Please try again later.');
+    }
+    if (error.response.status === 401) {
+      return (window.location.href = '/project-task-pro/auth/login');
+    }
+    if (error.response.status === 400) {
+      toast.error('Something has happened. Please report us an error!');
+    }
+    return Promise.reject(error);
+  }
+);
+
+axiosPrivateJson.interceptors.response.use(
+  async response => {
+    console.log('response -------------> ', response);
+    if (response.data.code === 201 && response.config.url === '/api/tasks') {
+      toast.success('New card was successfully added');
+      return response;
+    }
+    return response;
+  },
+  async error => {
+    if (error.response.status === 500) {
+      toast.error('Something has happened. Please try again later.');
+    }
+    if (error.response.status === 401) {
+      return (window.location.href = '/project-task-pro/auth/login');
+    }
+    if (error.response.status === 400) {
+      toast.error('Something has happened. Please report us an error!');
+    }
+    return Promise.reject(error);
+  }
+);
