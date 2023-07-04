@@ -41,46 +41,47 @@ function ScreenPage() {
     if (!result.destination) {
       return;
     }
-
+    console.log(result);
     const sourceColumnId = result.source.droppableId;
-    console.log('sourceColumnId', sourceColumnId);
+    // console.log('sourceColumnId', sourceColumnId);
     const destinationColumnId = result.destination.droppableId;
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
 
     const boardCopy = { ...oneBoard };
-    console.log('boardCopy', boardCopy);
+    // console.log('boardCopy', boardCopy);
 
     const columnsArray = Object.values(boardCopy.columns);
 
     const sourceColumn = { ...boardCopy.columns[sourceColumnId] };
     const destinationColumn = { ...boardCopy.columns[destinationColumnId] };
-    console.log('sourse', sourceColumn);
+    // console.log('sourse', sourceColumn);
 
     const sourceTasks = [...sourceColumn.tasks];
     const destinationTasks = [...destinationColumn.tasks];
     // const [task] = sourceTasks.splice(sourceIndex, 1);
     const task = sourceTasks.splice(sourceIndex, 1)[0];
+    console.log(task);
     console.log(sourceTasks, destinationTasks);
-
+    console.log(destinationIndex);
     // destinationTasks.splice(destinationIndex, 0, task);
     if (sourceColumnId !== destinationColumnId) {
       destinationTasks.splice(destinationIndex, 0, task);
     } else {
       // If source and destination columns are the same, no need to copy the task
-      destinationTasks.splice(
-        destinationIndex,
-        0,
-        ...sourceTasks.slice(sourceIndex)
-      );
+      // destinationTasks.splice(
+      //   destinationIndex,
+      //   0,
+      //   ...sourceTasks.slice(sourceIndex)
+      // );
     }
     sourceColumn.tasks = sourceTasks;
     destinationColumn.tasks = destinationTasks;
 
     columnsArray[sourceColumnId] = sourceColumn;
     columnsArray[destinationColumnId] = destinationColumn;
-    console.log(destinationIndex);
-    console.log(destinationTasks[0].index);
+    // console.log(destinationIndex);
+    // console.log(destinationTasks[0].index);
 
     boardCopy.columns = columnsArray;
     dispatch(updateBoardColumns(boardCopy.columns));
