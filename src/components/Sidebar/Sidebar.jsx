@@ -4,9 +4,9 @@ import LogoutBtn from 'components/LogoutBtn/LogoutBtn';
 import NeedHelp from 'components/NeedHelp/NeedHelp';
 import Logo from 'components/Logo/Logo';
 
-function Sidebar() {
+function Sidebar({ isOpen }) {
   return (
-    <StyledSidebar>
+    <StyledSidebar className={isOpen ? 'isOpen' : null}>
       <Container>
         <Logo />
         <BoardList />

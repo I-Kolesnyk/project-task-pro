@@ -16,7 +16,7 @@ import starrySky from '../backgroundIcon/starry-sky.png';
 import yacht from '../backgroundIcon/yacht.png';
 
 const data = [
-  { id: 0, image: bgIcon00 },
+  { id: 'theme-background', image: bgIcon00 },
   { id: 'abstraction', image: abstraction },
   { id: 'aerostats', image: aerostats },
   { id: 'balloon', image: balloon },
