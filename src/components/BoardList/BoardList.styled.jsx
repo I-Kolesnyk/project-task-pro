@@ -18,6 +18,7 @@ const titleDynamicStyles = ({ theme }) => css`
   letter-spacing: -0.24px;
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
+    /* margin-left: 3.125vw; */
     margin-left: 24px;
   }
 `;

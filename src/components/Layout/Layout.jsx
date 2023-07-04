@@ -46,17 +46,19 @@ function Layout() {
     }
   };
 
-  return (
-    <>
-      <Header openSidebar={openSidebar} />
-      <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
-      <StyledMain>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </StyledMain>
-      <ToastWrapper />
-    </>
+  return (    
+      <>
+        <Header openSidebar={openSidebar} />
+        <div ref={myRef}>
+          {isSidebarOpen && <Sidebar isOpen={isSidebarOpen} />
+        </div>
+        <StyledMain>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </StyledMain>
+        <ToastWrapper />
+      </>  
   );
 }
 
