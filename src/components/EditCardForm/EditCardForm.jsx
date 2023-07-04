@@ -54,7 +54,7 @@ const EditCardForm = ({ taskInfo, onClose }) => {
     };
 
     dispatch(editCard(newTask));
-    onClose(false);
+    onClose();
   };
 
   const chooseBtn = e => {

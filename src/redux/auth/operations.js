@@ -18,7 +18,7 @@ export const userRegister = createAsyncThunk(
           password,
         });
         userData = data;
-       
+
         return userData;
       }
       return userData;

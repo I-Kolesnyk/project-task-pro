@@ -38,8 +38,8 @@ const EditProfileForm = ({ userAvatar }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: '',
-      email: '',
+      name: userName,
+      email: userEmail,
       password: '',
     },
     resolver: yupResolver(EditProfileSchema),
@@ -79,15 +79,11 @@ const EditProfileForm = ({ userAvatar }) => {
             </Svg>
           </LabelAvatar>
           <Label>
-            <Input
-              autoComplete="off"
-              placeholder={userName}
-              {...register('name')}
-            />
+            <Input autoComplete="off" {...register('name')} />
             <ErrorMessage>{errors.name?.message}</ErrorMessage>
           </Label>
           <Label>
-            <Input placeholder={userEmail} {...register('email')} />
+            <Input {...register('email')} />
             <ErrorMessage>{errors.email?.message}</ErrorMessage>
           </Label>
 

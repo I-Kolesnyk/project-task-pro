@@ -6,7 +6,7 @@ import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import { addColumn } from 'redux/board/operations';
 import { useBoardId } from 'hooks';
 
-const AddColumnForm = () => {
+const AddColumnForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const boardId = useBoardId();
 
@@ -25,6 +25,7 @@ const AddColumnForm = () => {
     dispatch(addColumn(boardData));
 
     reset();
+    onClose();
   };
 
   return (

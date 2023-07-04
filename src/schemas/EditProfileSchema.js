@@ -4,7 +4,10 @@ export const EditProfileSchema = yup
   .object({
     name: yup
       .string()
-      .matches('^[A-Za-z0-9]{2,32}$', 'Invalid name format')
+      .matches(
+        "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+        'Invalid name format'
+      )
       .trim(),
     email: yup
       .string()
