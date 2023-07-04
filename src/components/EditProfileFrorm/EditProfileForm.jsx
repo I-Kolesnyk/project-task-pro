@@ -23,18 +23,21 @@ import {
 } from './EditProfileForm.styled';
 import { EditProfileSchema } from 'schemas';
 import { useUserEmail } from 'hooks/useUserEmail';
+import { useEffect } from 'react';
 
-const EditProfileForm = ({ userAvatar }) => {
+const EditProfileForm = ({ userAvatar, onClose }) => {
   const dispatch = useDispatch();
   const [type, setType] = useState('password');
   const userName = useUserName();
   const userId = useUserId();
   const userEmail = useUserEmail();
+  const [newAvatar, setNewAvatar] = useState(null);
 
   const {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -45,6 +48,19 @@ const EditProfileForm = ({ userAvatar }) => {
     resolver: yupResolver(EditProfileSchema),
     mode: 'onChange',
   });
+
+  const selectedFile = watch('avatar');
+
+  useEffect(() => {
+    if (selectedFile && selectedFile.length !== 0) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const filePath = reader.result;
+        setNewAvatar(filePath);
+      };
+      reader.readAsDataURL(new Blob([selectedFile[0]]));
+    }
+  }, [selectedFile, reset]);
 
   const handleToggle = () => {
     if (type === 'password') {
@@ -64,6 +80,7 @@ const EditProfileForm = ({ userAvatar }) => {
     const userData = { userId, formData };
     dispatch(editProfile(userData));
     reset();
+    onClose();
   };
 
   return (
@@ -71,7 +88,7 @@ const EditProfileForm = ({ userAvatar }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Title>Edit profile</Title>
         <DataForm>
-          <Image src={userAvatar} alt="user-avatar" />
+          <Image src={newAvatar || userAvatar} alt="user-avatar" />
           <LabelAvatar>
             <AvatarInput type="file" {...register('avatar')} />
             <Svg width="10px" height="10px" stroke="black">
