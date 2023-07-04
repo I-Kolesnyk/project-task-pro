@@ -5,7 +5,10 @@ export const RegisterFormSchema = yup
     name: yup
       .string()
       .required('Name is required')
-      .matches('^[A-Za-z0-9]{2,32}$', 'Invalid name format')
+      .matches(
+        "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$",
+        'Invalid name format'
+      )
       .trim(),
     email: yup
       .string()

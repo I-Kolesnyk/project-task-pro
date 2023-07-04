@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
@@ -24,7 +23,7 @@ function BoardButton({ name, id, icon }) {
   const navigate = useNavigate();
   const isAllBoardsLoading = useIsBoardsLoading();
   const [active, setActive] = useState(false);
-
+  const [click, setClick] = useState(false);
   useEffect(() => {
     if (name.toString().toLowerCase() !== params.boardName) {
       setActive(false);
@@ -50,10 +49,15 @@ function BoardButton({ name, id, icon }) {
     setModalOpen(false);
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = id => {
     dispatch(deleteBoard(id));
-    navigate('/home');
+    setClick(true);
   };
+  useEffect(() => {
+    if (click) {
+      navigate('/home');
+    }
+  }, [click, navigate]);
 
   return (
     <>

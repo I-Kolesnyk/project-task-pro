@@ -97,3 +97,20 @@ export const deleteColumn = createAsyncThunk(
     }
   }
 );
+
+export const editCardOwner = createAsyncThunk(
+  'board/editCardOwner',
+  async (cardData, thunkAPI) => {
+    const { taskId, info } = cardData;
+    try {
+      const { data } = await axiosPrivateJson.patch(
+        `/api/tasks/${taskId}`,
+        info
+      );
+      console.log(data);
+      // return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);

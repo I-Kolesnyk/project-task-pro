@@ -44,6 +44,7 @@ const EditCardForm = ({ taskInfo, onClose }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
+    if (!description) description = 'No description';
     const newTask = {
       title,
       description,
@@ -53,7 +54,7 @@ const EditCardForm = ({ taskInfo, onClose }) => {
     };
 
     dispatch(editCard(newTask));
-    onClose(false);
+    onClose();
   };
 
   const chooseBtn = e => {
@@ -144,7 +145,7 @@ const EditCardForm = ({ taskInfo, onClose }) => {
           />
         </div>
 
-        <FormBtn textBtn={() => <ChildComponent textContent="Add" />} />
+        <FormBtn textBtn={() => <ChildComponent textContent="Edit" />} />
       </Form>
     </>
   );

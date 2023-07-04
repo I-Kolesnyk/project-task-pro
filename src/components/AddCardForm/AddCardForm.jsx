@@ -20,7 +20,7 @@ import { AddCardFormSchema } from 'schemas';
 import { addCard } from 'redux/board/operations';
 import { useColumns } from 'hooks';
 
-const AddCardForm = ({ columnId }) => {
+const AddCardForm = ({ columnId, onClose }) => {
   const [deadlineDate, setDeadlineDate] = useState(new Date());
   const [radioChoose, setRadioChoose] = useState('without priority');
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ const AddCardForm = ({ columnId }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
+    if (!description) description = 'No description';
     const newTask = {
       title,
       description,
@@ -56,6 +57,7 @@ const AddCardForm = ({ columnId }) => {
     console.log(newTask);
     dispatch(addCard(newTask));
     reset();
+    onClose();
   };
 
   const chooseBtn = e => {

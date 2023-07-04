@@ -9,7 +9,6 @@ const wrapperDynamicStyles = ({ theme }) => css`
   width: 100%;
   padding: 20px 14px;
 
-  background-color: ${theme.backgroundColors.asideSecondary};
   opacity: 0.4;
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
