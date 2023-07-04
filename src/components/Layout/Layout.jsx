@@ -50,7 +50,7 @@ function Layout() {
       <>
         <Header openSidebar={openSidebar} />
         <div ref={myRef}>
-          {isSidebarOpen && <Sidebar isOpen={isSidebarOpen} />
+          <Sidebar isOpen={isSidebarOpen} />
         </div>
         <StyledMain>
           <Suspense fallback={<Loader />}>
