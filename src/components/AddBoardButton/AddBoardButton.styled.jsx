@@ -13,6 +13,7 @@ const wrapperDynamicStyles = ({ theme }) => css`
   border-bottom: 1px solid ${theme.backgroundColors.pseudo};
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
+    /* margin-left: 3.125vw; */
     margin-left: 24px;
     width: 81.5%;
     padding: 14px 0;

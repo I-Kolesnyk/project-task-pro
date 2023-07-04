@@ -9,7 +9,7 @@ import { StyledMain } from './Layout.styled';
 
 function Layout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const myRef = useRef(null); 
+  const myRef = useRef(null);
   const [size, setSize] = useState({});
   const isLoading = useIsUserLoading();
 
@@ -49,17 +49,20 @@ function Layout() {
   };
 
   return (
-    !isLoading && (<>
-      <Header openSidebar={openSidebar} />
-      <div ref={myRef}>{isSidebarOpen && <Sidebar />}</div>
-      <StyledMain>
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
-      </StyledMain>
-      <ToastWrapper />
-    </>)
-    
+    !isLoading && (
+      <>
+        <Header openSidebar={openSidebar} />
+        <div ref={myRef}>
+          <Sidebar isOpen={isSidebarOpen} />
+        </div>
+        <StyledMain>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </StyledMain>
+        <ToastWrapper />
+      </>
+    )
   );
 }
 
