@@ -7,6 +7,7 @@ import Column from 'components/Column';
 import { updateBoardColumns } from 'redux/board/slice';
 import { useDispatch } from 'react-redux';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
+import { editCardOwner } from 'redux/board/operations';
 
 function ScreenPage() {
   const oneBoard = useBoardData();
@@ -78,10 +79,22 @@ function ScreenPage() {
 
     columnsArray[sourceColumnId] = sourceColumn;
     columnsArray[destinationColumnId] = destinationColumn;
+    console.log(destinationIndex);
+    console.log(destinationTasks[0].index);
 
     boardCopy.columns = columnsArray;
-
     dispatch(updateBoardColumns(boardCopy.columns));
+    destinationTasks.forEach(task => {
+      dispatch(
+        editCardOwner({
+          taskId: task._id,
+          info: {
+            column: destinationColumn._id,
+            index: task.index,
+          },
+        })
+      );
+    });
   };
 
   return (

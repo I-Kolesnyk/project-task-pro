@@ -38,7 +38,7 @@ function Column({ columnTitle, columnId, cards, prefix }) {
       <ColumnTitle>
         <p>{columnTitle}</p>
         <IconList>
-        <li>
+          <li>
             <IconButton onClick={openModal}>
               <SvgComponent
                 w={'16px'}
@@ -60,7 +60,11 @@ function Column({ columnTitle, columnId, cards, prefix }) {
           </li>
         </IconList>
         <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <EditColumnForm columnId={columnId} columnTitle={columnTitle} />
+          <EditColumnForm
+            columnId={columnId}
+            columnTitle={columnTitle}
+            onClose={closeModal}
+          />
         </Modal>
       </ColumnTitle>
       <Container>
