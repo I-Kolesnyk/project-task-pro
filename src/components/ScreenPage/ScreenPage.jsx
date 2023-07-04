@@ -69,11 +69,9 @@ function ScreenPage() {
       destinationTasks.splice(destinationIndex, 0, task);
     } else {
       // If source and destination columns are the same, no need to copy the task
-      // destinationTasks.splice(
-      //   destinationIndex,
-      //   0,
-      //   ...sourceTasks.slice(sourceIndex)
-      // );
+      const delTask = destinationTasks.splice(destinationIndex, 1, task);
+      console.log(delTask);
+      destinationTasks.splice(sourceIndex, 1, delTask[0]);
     }
     sourceColumn.tasks = sourceTasks;
     destinationColumn.tasks = destinationTasks;
@@ -82,6 +80,8 @@ function ScreenPage() {
     columnsArray[destinationColumnId] = destinationColumn;
     // console.log(destinationIndex);
     // console.log(destinationTasks[0].index);
+
+    console.log(columnsArray);
 
     boardCopy.columns = columnsArray;
     dispatch(updateBoardColumns(boardCopy.columns));
