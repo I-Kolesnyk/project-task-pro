@@ -1,69 +1,108 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
-
+import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
-import { useBoard, useOneBoardLoading } from 'hooks';
+import { useOneBoardLoading, useBoardData, useBackground } from 'hooks';
 import Column from 'components/Column';
+import { updateBoardColumns } from 'redux/board/slice';
+import { useDispatch } from 'react-redux';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
+import { editCardOwner } from 'redux/board/operations';
 
 function ScreenPage() {
-  const oneBoard = useBoard();
-  console.log(oneBoard.board.board[0].columns);
+  const oneBoard = useBoardData();
   const [elements, setElements] = useState([]);
-  const isLoading = useOneBoardLoading();  
+  const isLoading = useOneBoardLoading();
+  const dispatch = useDispatch();
+
+  const {
+    backgrounds: { backgrounds },
+  } = useBackground();
+
+  const boardBackground = oneBoard => {
+    let bg = backgrounds.find(bg => bg.name === oneBoard.background);
+    if (!bg)
+      bg = {
+        mobile: '',
+        tablet: '',
+        desktop: '',
+      };
+
+    return bg;
+  };
 
   useEffect(() => {
     if (!isLoading) {
-      setElements(oneBoard.board.board[0].columns);
+      setElements(oneBoard.columns);
     }
-  }, [isLoading, oneBoard.board.board, oneBoard.board.columns]);
-
-  const removeFromList = (list, index) => {
-    const result = list;
-    console.log('index', list);
-    console.log('removed', result.tasks);
-    const [removed] = result.tasks.splice(index, 1);
-
-    return [removed, result];
-  };
-
-  const addToList = (list, index, element) => {
-    const result = list;
-    list.tasks.splice(index, 0, element);
-    return result;
-  };
+  }, [isLoading, oneBoard.columns]);
 
   const onDragEnd = result => {
     if (!result.destination) {
       return;
     }
-    const listCopy = { ...elements };
-    console.log(listCopy);
-    const sourceList = listCopy[result.source.droppableId];
-    const [removedElement, newSourceList] = removeFromList(
-      sourceList,
-      result.source.index
-    );
-    listCopy[result.source.droppableId] = newSourceList;
-    const destinationList = listCopy[result.destination.droppableId];
-    console.log(destinationList);
-    listCopy[result.destination.droppableId] = addToList(
-      destinationList,
-      result.destination.index,
-      removedElement
-    );
-    console.log('listCopy', listCopy);
-    setElements(Object.values(listCopy));
-    // dispatch(setBoard(elements));
+
+    const sourceColumnId = result.source.droppableId;
+    console.log('sourceColumnId', sourceColumnId);
+    const destinationColumnId = result.destination.droppableId;
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    const boardCopy = { ...oneBoard };
+    console.log('boardCopy', boardCopy);
+
+    const columnsArray = Object.values(boardCopy.columns);
+
+    const sourceColumn = { ...boardCopy.columns[sourceColumnId] };
+    const destinationColumn = { ...boardCopy.columns[destinationColumnId] };
+    console.log('sourse', sourceColumn);
+
+    const sourceTasks = [...sourceColumn.tasks];
+    const destinationTasks = [...destinationColumn.tasks];
+    // const [task] = sourceTasks.splice(sourceIndex, 1);
+    const task = sourceTasks.splice(sourceIndex, 1)[0];
+    console.log(sourceTasks, destinationTasks);
+
+    // destinationTasks.splice(destinationIndex, 0, task);
+    if (sourceColumnId !== destinationColumnId) {
+      destinationTasks.splice(destinationIndex, 0, task);
+    } else {
+      // If source and destination columns are the same, no need to copy the task
+      destinationTasks.splice(
+        destinationIndex,
+        0,
+        ...sourceTasks.slice(sourceIndex)
+      );
+    }
+    sourceColumn.tasks = sourceTasks;
+    destinationColumn.tasks = destinationTasks;
+
+    columnsArray[sourceColumnId] = sourceColumn;
+    columnsArray[destinationColumnId] = destinationColumn;
+    console.log(destinationIndex);
+    console.log(destinationTasks[0].index);
+
+    boardCopy.columns = columnsArray;
+    dispatch(updateBoardColumns(boardCopy.columns));
+    destinationTasks.forEach(task => {
+      dispatch(
+        editCardOwner({
+          taskId: task._id,
+          info: {
+            column: destinationColumn._id,
+            index: task.index,
+          },
+        })
+      );
+    });
   };
-  console.log('elements --> ', elements);
 
   return (
     !isLoading && (
-      <Wrapper>
+      <Wrapper bg={boardBackground(oneBoard)}>
         <Header>
-          <BoardTitle>{oneBoard.board.board[0].title}</BoardTitle>
-          <p>Filters</p>
+          <BoardTitle>{oneBoard.title}</BoardTitle>
+          <Filter />
         </Header>
         <ColumnList>
           <DragDropContext onDragEnd={onDragEnd}>

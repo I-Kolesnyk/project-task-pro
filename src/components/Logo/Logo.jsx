@@ -3,9 +3,9 @@ import { StyledLogo, StyledWrapper, StyledSpanLogo } from './Logo.styled';
 
 const Logo = () => {
   return (
-    <StyledWrapper href="/home">
-      <StyledLogo width="32px" height="32px" className="logout-icon">
-        <use href={`${sprite}#logo`} />
+    <StyledWrapper>
+      <StyledLogo width="32px" height="32px">
+        <use href={`${sprite}#logo1`} />
       </StyledLogo>
       <StyledSpanLogo>Task Pro</StyledSpanLogo>
     </StyledWrapper>

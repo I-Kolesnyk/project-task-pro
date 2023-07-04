@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { editBoardById } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
+import { useBoardData } from 'hooks';
+import { useNavigate } from 'react-router-dom';
 
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -18,10 +22,20 @@ import {
   Input,
 } from './EditBoardForm.styled';
 
-const NewBoardForm = ({ onClose }) => {
+const EditBoardForm = ({ onClose }) => {
   const { register, handleSubmit, setValue } = useForm();
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const board = useBoardData();
+
+  useEffect(() => {
+    setValue('title', board.title);
+    setSelectedIcon(board.icon);
+    setSelectedBackgroundId(board.background);
+  }, [board.background, board.icon, board.title, setValue]);
 
   const handleTitleChange = event => {
     setValue('title', event.target.value);
@@ -37,14 +51,29 @@ const NewBoardForm = ({ onClose }) => {
     setValue('selectedBackgroundId', backgroundId);
   };
 
-  const handleCreateBoard = data => {
-    console.log('Title:', data.title);
-    console.log('Selected Icon:', data.selectedIcon);
-    console.log('Selected Background Id:', data.selectedBackgroundId);
-    setValue('title', '');
-    setValue('selectedIcon', '');
-    setValue('selectedBackgroundId', '');
-    onClose();
+  const handleEditBoardForm = data => {
+    const boardData = {
+      boardId: board._id,
+      body: {
+        title: data.title,
+        icon: data.selectedIcon,
+        background: data.selectedBackgroundId,
+      },
+    };
+
+    dispatch(editBoardById(boardData))
+      .unwrap()
+      .then(response => {
+        setValue('title', data.title);
+        setValue('selectedIcon', data.selectedIcon);
+        setValue('selectedBackgroundId', data.selectedBackgroundId);
+        onClose();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+   
+    navigate(`${data.title}`);
   };
 
   const renderIcons = () => {
@@ -85,8 +114,7 @@ const NewBoardForm = ({ onClose }) => {
   return (
     <div>
       <NewBoardTitle>Edit Board</NewBoardTitle>
-      <form onSubmit={handleSubmit(handleCreateBoard)}>
-        {/* <label htmlFor="newBoardInput">Title</label> */}
+      <form onSubmit={handleSubmit(handleEditBoardForm)}>
         <Input
           id="newBoardInput"
           type="text"
@@ -110,4 +138,5 @@ const NewBoardForm = ({ onClose }) => {
   );
 };
 
-export default NewBoardForm;
+export default EditBoardForm;
+

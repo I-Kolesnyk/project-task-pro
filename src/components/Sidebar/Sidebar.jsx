@@ -1,27 +1,19 @@
-import BoardList from 'components/BoardList';
-import { StyledSidebar } from './Sidebar.styled';
+import BoardList from 'components/BoardList/BoardList';
+import { StyledSidebar, Container } from './Sidebar.styled';
 import LogoutBtn from 'components/LogoutBtn/LogoutBtn';
 import NeedHelp from 'components/NeedHelp/NeedHelp';
 import Logo from 'components/Logo/Logo';
 
-function Sidebar({ setIsSidebarOpen }) {
-  const isDesktop = window.screen.width;
-
-  const handleClose = () => {
-    setIsSidebarOpen(false);
-  };
+function Sidebar() {
   return (
     <StyledSidebar>
-      {isDesktop < 1439 && (
-        <button type="button" onClick={handleClose}>
-          Close
-        </button>
-      )}
+      <Container>
+        <Logo />
+        <BoardList />
+        <NeedHelp />
 
-      <Logo />
-      <BoardList />
-      <NeedHelp />
-      <LogoutBtn />
+        <LogoutBtn />
+      </Container>
     </StyledSidebar>
   );
 }

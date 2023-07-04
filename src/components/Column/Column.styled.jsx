@@ -4,19 +4,19 @@ import { css } from '@emotion/react';
 const wrapperDynamicStyles = ({ theme }) => css`
   display: flex;
   flex-direction: column;
+  // justify-content: space-between;
   width: 347px;
-  height: 618px;
+  height: calc(100vh - 200px);
   margin-right: 18px;
   scroll-snap-align: start;
 
   @media only screen and (min-width: ${theme.breakpoints[1]}) {
     width: 350px;
-    height: 780px;
+    height: calc(100vh - 239px);
   }
 
   @media only screen and (min-width: ${theme.breakpoints[2]}) {
-    width: 350px;
-    height: 618px;
+    height: calc(100vh - 150px);
   }
 `;
 
@@ -41,31 +41,13 @@ export const ColumnTitle = styled.div`
 `;
 
 const taskListDynamicStyles = ({ theme }) => css`
-  height: 478px;
+  display: flex;
+  flex-direction: column;  
   margin-bottom: 14px;
   width: 347px;
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
 
   @media only screen and (min-width: 768px) {
     width: 350px;
-    height: 640px;
-  }
-  @media only screen and (min-width: 1440px) {
-    height: 478px;
-  }
-
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: ${theme.backgroundColors.scrollBar};
-    border-radius: 12px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    background-color: ${theme.backgroundColors.scrollBarThumb};
   }
 `;
 
@@ -96,4 +78,34 @@ export const IconList = styled.ul`
   & > li:not(:last-child) {
     margin-right: 8px;
   }
+`;
+
+const containerDynamicStyles = ({ theme }) => css`
+  margin-bottom: 14px;
+  width: 347px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+
+  @media only screen and (min-width: 768px) {
+    width: 350px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${theme.backgroundColors.scrollBar};
+    border-radius: 12px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: ${theme.backgroundColors.scrollBarThumb};
+  }
+`;
+
+export const Container = styled.div`
+  ${containerDynamicStyles}
 `;

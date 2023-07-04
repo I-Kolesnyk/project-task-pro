@@ -1,61 +1,26 @@
-import { useAllBoards } from 'hooks';
-import BoardButton from 'components/BoardButton';
+import { useEffect } from 'react';
+import { useAllBoards, useBoardId } from 'hooks';
+import BoardButton from 'components/BoardButton/BoardButton';
 import { List } from './ButtonListStyled';
+import { getBoardById } from 'redux/board/operations';
+import { useDispatch } from 'react-redux';
 
 function ButtonList() {
   const allBoards = useAllBoards();
+  const dispatch = useDispatch();
 
-  // let allBoards2 = {
-  //   boards: [
-  //     {
-  //       _id: '64996aeb200e2e9a4078415e',
-  //       title: 'Test board',
-  //       icon: '',
-  //       active: true,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //     {
-  //       _id: '64996aeb200e2e9a4078e45e',
-  //       title: 'Second board',
-  //       icon: '',
-  //       active: false,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //     {
-  //       _id: '64996aeb200e2e9a4078415e',
-  //       title: 'Just board',
-  //       icon: '',
-  //       active: false,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //     {
-  //       _id: '64996aeb200e2e9a4078415e',
-  //       title: 'Just board',
-  //       icon: '',
-  //       active: false,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //     {
-  //       _id: '64996aeb200e2e9a4078415e',
-  //       title: 'Just board',
-  //       icon: '',
-  //       active: false,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //     {
-  //       _id: '64996aeb200e2e9a4078415e',
-  //       title: 'Just board',
-  //       icon: '',
-  //       active: false,
-  //       owner: '64996677200e2e9a40783df1',
-  //     },
-  //   ],
-  // };
+  const boardID = useBoardId();
+
+  useEffect(() => {
+    if (allBoards.length !== 0 && boardID) {
+      dispatch(getBoardById(boardID));
+    }
+  }, [allBoards, boardID, dispatch]);
 
   return (
     <List>
-      {allBoards.boards.length !== 0 &&
-        allBoards.boards.map(({ _id, title, icon, active }) => (
+      {allBoards.length !== 0 &&
+        allBoards.map(({ _id, title, icon, active }) => (
           <BoardButton
             key={_id}
             name={title}

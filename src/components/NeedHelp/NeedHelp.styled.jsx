@@ -2,21 +2,23 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const ContainerDynamicStyles = ({ theme }) => css`
+  align-self: center;
   background-color: ${theme.backgroundColors.asideSecondary};
   border-radius: ${theme.radii.md};
-  margin-left: 14px;
   width: 197px;
   height: 238px;
-  margin-bottom: 24px;
-  margin-top: 14px;
+  margin-bottom: 28px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 15px;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
-    margin-left: 24px;
     width: 212px;
     height: 272px;
     padding: 20px;
+    margin: auto 24px 28px 24px;
   }
 `;
+
 const textDynamicStyles = ({ theme }) => css`
   width: 150px;
   margin-bottom: 19px;

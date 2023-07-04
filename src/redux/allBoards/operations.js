@@ -41,3 +41,31 @@ export const updateBoardStatus = createAsyncThunk(
     }
   }
 );
+
+export const editBoardById = createAsyncThunk(
+  'boards/edit',
+  async (boardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.put(
+        `/api/boards/${boardData.boardId}`,
+        boardData.body
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.code);
+    }
+  }
+);
+
+export const deleteBoard = createAsyncThunk(
+  'board/deleteBoard',
+  async (boardId, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.delete(`/api/boards/${boardId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
