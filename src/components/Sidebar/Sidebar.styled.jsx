@@ -31,6 +31,8 @@ const sidebarDynamicStyles = ({ theme }) => css`
     float: left;
     width: 18%;
     height: 100vh;
+    transition: transform 0s ease-in 0s, opacity 0s ease-in 0s,
+      visibility 0s ease-in 0s;
   }
 `;
 
