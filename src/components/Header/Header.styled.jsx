@@ -15,7 +15,7 @@ const headerDynamicStyles = ({ theme }) => css`
 
   @media screen and (min-width: ${theme.breakpoints[2]}) {
     float: right;
-    width: 82%;    
+    width: 82%;
     padding: 18px 32px;
   }
 `;
@@ -33,7 +33,8 @@ const svgDynamicStyles = ({ theme }) => css`
 
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     width: 32px;
-    height: 32px;    
+    height: 32px;
+  }
 `;
 
 const containerDynamicStyles = ({ theme }) => css`
