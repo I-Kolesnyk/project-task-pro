@@ -86,7 +86,7 @@ export const allBoardsSlice = createSlice({
           }
         ) => {
           const boardId = board._id;
-
+          state.isLoading = false;
           state.info = [
             ...state.info.map(board =>
               board._id === boardId
