@@ -3,11 +3,14 @@ import sprite from 'assets/sprite.svg';
 import { StyledLogo, StyledWrapper, StyledSpanLogo } from './Logo.styled';
 
 const Logo = () => {
+  const animationKey = Date.now();
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -100, y: -100, rotate: -45 }}
-      animate={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
-      transition={{ duration: 0.5 }}
+      key={animationKey}
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.3 }}
     >
       <StyledWrapper>
         <StyledLogo width="32px" height="32px">
