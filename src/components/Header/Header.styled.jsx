@@ -4,6 +4,8 @@ import { css } from '@emotion/react';
 const headerDynamicStyles = ({ theme }) => css`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   height: 60px;
   padding: 14px 20px;
   background-color: ${theme.backgroundColors.header};
@@ -21,6 +23,11 @@ const headerDynamicStyles = ({ theme }) => css`
 `;
 
 const buttonDynamicStyles = ({ theme }) => css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 25px;
+
   @media screen and (min-width: ${theme.breakpoints[2]}) {
     display: none;
   }
@@ -59,4 +66,28 @@ export const Button = styled.button`
 
 export const Container = styled.div`
   ${containerDynamicStyles}
+`;
+
+const dynamicPhraseStyles = ({ theme }) => css`
+  font-size: ${theme.fontSizes[2]};
+  width: 73vw;
+  margin-right: 25px;
+
+  color: ${theme.textColors.main};
+  font-style: normal;
+  text-align: center;
+  line-height: 16px;
+  letter-spacing: -0.24px;
+
+  @media screen and (min-width: ${theme.breakpoints[1]}) {
+    font-size: ${theme.fontSizes[3]};
+  }
+  @media screen and (min-width: ${theme.breakpoints[2]}) {
+    width: 64.2vw;
+    margin-right: 32px;
+  }
+`;
+
+export const Phrase = styled.p`
+  ${dynamicPhraseStyles}
 `;
