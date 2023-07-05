@@ -1,6 +1,4 @@
 import { useEffect, useRef } from 'react';
-import { useAllBoards, useBoardId } from 'hooks';
-import { useEffect } from 'react';
 import { useAllBoards, useBoardId, useOneBoardLoading } from 'hooks';
 import BoardButton from 'components/BoardButton/BoardButton';
 import { List } from './ButtonListStyled';
@@ -23,12 +21,10 @@ function ButtonList() {
     }
   }, [allBoards, boardID, dispatch]);
 
-  return (
-    <List ref={ref} onMouseDown={onMouseDown}>
   return isLoading ? (
     <Loader />
   ) : (
-    <List>
+    <List ref={ref} onMouseDown={onMouseDown}>
       {allBoards.length !== 0 &&
         allBoards.map(({ _id, title, icon, active }) => (
           <BoardButton
@@ -40,7 +36,7 @@ function ButtonList() {
           />
         ))}
     </List>
-  );)
+  );
 }
 
 export default ButtonList;
