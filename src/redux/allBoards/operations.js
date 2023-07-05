@@ -69,3 +69,18 @@ export const deleteBoard = createAsyncThunk(
     }
   }
 );
+
+export const editBoardBackground = createAsyncThunk(
+  'boards/editBackground',
+  async (boardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.patch(
+        `/api/boards/${boardData.id}/background`,
+        boardData.body
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

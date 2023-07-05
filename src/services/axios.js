@@ -131,6 +131,16 @@ axiosPrivateJson.interceptors.response.use(
       );
       return response;
     }
+
+    if (response.data.code === 201 && response.config.url === '/api/columns') {
+      toast.success('New column was successfully added');
+      return response;
+    }
+
+    if (response.data.code === 201 && response.config.url === '/api/tasks') {
+      toast.success('New card was successfully added');
+      return response;
+    }
     return response;
   },
   async error => {

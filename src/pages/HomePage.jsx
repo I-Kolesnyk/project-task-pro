@@ -8,14 +8,13 @@ import {
 } from './styled/HomePage.styled';
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
-import Loader from 'components/Loader/Loader';
 import { HomePageList } from 'components/HomePageList/HomePageList';
+import Loader from 'components/Loader/Loader';
 
 function HomePage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const isLoading = useIsBoardsLoading();
   const boards = useAllBoards();
-
   const openModal = () => {
     setModalOpen(true);
   };
