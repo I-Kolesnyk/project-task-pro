@@ -86,11 +86,16 @@ export const boardSlice = createSlice({
       })
       .addCase(editColumn.fulfilled, (state, action) => {
         const data = action.payload.data.column;
+
         const index = state.info.columns.findIndex(
           column => column._id === data._id
         );
+        const newData = {
+          ...data,
+          tasks: [...state.info.columns[index].tasks],
+        };
 
-        state.info.columns.splice(index, 1, data);
+        state.info.columns.splice(index, 1, newData);
         state.isLoading = false;
       })
       .addCase(deleteColumn.pending, (state, action) => {
