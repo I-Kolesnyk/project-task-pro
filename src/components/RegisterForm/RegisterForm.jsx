@@ -1,15 +1,19 @@
-import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { userRegister } from 'redux/auth/operations';
 import { useDispatch } from 'react-redux';
+
+import AuthBtn from 'components/AuthBtn/AuthBtn';
+import { userRegister } from 'redux/auth/operations';
 import { Form, Input, ShowPassword, Svg } from './RegisterForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import { RegisterFormSchema } from 'schemas';
+import { useIsUserLoading } from 'hooks';
+import Loader from 'components/Loader/Loader';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useIsUserLoading();
   const {
     register,
     handleSubmit,
@@ -32,13 +36,13 @@ const RegisterForm = () => {
   };
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(userRegister(data));
     reset();
   };
 
   return (
     <>
+      {isLoading && <Loader />}
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Enter your name" {...register('name')} />

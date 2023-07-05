@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
   BackgroundsList,
   BackgroundItem,
@@ -5,13 +8,21 @@ import {
   BackgroundsTitle,
 } from './FilterBackgrounds.styled';
 import data from '../../../assets/backgroundIcon/data';
-import { useState } from 'react';
+import { editBoardBackground } from 'redux/allBoards/operations';
+import { useBoardData } from 'hooks';
 
 const FilterBackgrounds = () => {
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
+
+  const dispatch = useDispatch();
+  const { _id: id } = useBoardData();
+
   const handleBackgroundSelect = backgroundId => {
+    const boardData = { id, body: { background: backgroundId } };
     setSelectedBackgroundId(backgroundId);
+    dispatch(editBoardBackground(boardData));
   };
+
   return (
     <>
       <BackgroundsTitle>Backgrounds</BackgroundsTitle>

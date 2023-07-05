@@ -5,6 +5,7 @@ import {
   updateBoardStatus,
   editBoardById,
   deleteBoard,
+  editBoardBackground,
 } from './operations';
 
 const initialState = {
@@ -69,6 +70,34 @@ export const allBoardsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(deleteBoard.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(editBoardBackground.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(
+        editBoardBackground.fulfilled,
+        (
+          state,
+          {
+            payload: {
+              data: { board },
+            },
+          }
+        ) => {
+          const boardId = board._id;
+          state.isLoading = false;
+          state.info = [
+            ...state.info.map(board =>
+              board._id === boardId
+                ? { ...board, background: board.background }
+                : board
+            ),
+          ];
+        }
+      )
+
+      .addCase(editBoardBackground.rejected, state => {
         state.isLoading = false;
       }),
 });

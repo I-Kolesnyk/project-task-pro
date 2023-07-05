@@ -1,5 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
   CustomRadio,
   CustomRadioContainer,
@@ -10,12 +13,11 @@ import {
   LabelColorText,
   StyledHeader,
 } from './EditCardForm.styled';
-import { useState } from 'react';
+
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
-import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
 import { parseDate } from 'Helpers/CustomDateFormate';
 import { editCard } from 'redux/board/operations';
@@ -44,14 +46,20 @@ const EditCardForm = ({ taskInfo, onClose }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    if (!description) description = 'No description';
-    const newTask = {
-      title,
-      description,
-      priority: lableColor,
-      deadline,
-      _id,
-    };
+    const newTask = description
+      ? {
+          title,
+          description,
+          priority: lableColor,
+          deadline,
+          _id,
+        }
+      : {
+          title,
+          priority: lableColor,
+          deadline,
+          _id,
+        };
 
     dispatch(editCard(newTask));
     onClose();

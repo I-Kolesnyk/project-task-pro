@@ -1,5 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
   CustomRadio,
   CustomRadioContainer,
@@ -10,12 +13,10 @@ import {
   LabelColorText,
   StyledHeader,
 } from './AddCardForm.styled';
-import { useState } from 'react';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import sprite from '../../assets/sprite.svg';
 import CustomDatePicker from 'components/CustomDatePicker/CustomDatePicker';
-import { useDispatch } from 'react-redux';
 import { AddCardFormSchema } from 'schemas';
 import { addCard } from 'redux/board/operations';
 import { useColumns } from 'hooks';
@@ -44,17 +45,23 @@ const AddCardForm = ({ columnId, onClose }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    if (!description) description = 'No description';
-    const newTask = {
-      title,
-      description,
-      priority: lableColor,
-      deadline,
-      column: columnId,
-      index: tasksLength + 1,
-    };
-    // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
-    console.log(newTask);
+    const newTask = description
+      ? {
+          title,
+          description,
+          priority: lableColor,
+          deadline,
+          column: columnId,
+          index: tasksLength + 1,
+        }
+      : {
+          title,
+          priority: lableColor,
+          deadline,
+          column: columnId,
+          index: tasksLength + 1,
+        };
+    
     dispatch(addCard(newTask));
     reset();
     onClose();

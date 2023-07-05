@@ -1,5 +1,6 @@
-import { axiosPrivateJson } from 'services/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
+import { axiosPrivateJson } from 'services/axios';
 
 export const getBoardById = createAsyncThunk(
   'board/one',
@@ -76,7 +77,6 @@ export const editColumn = createAsyncThunk(
         `/api/columns/${columnId}`,
         columnTitle
       );
-      console.log(data);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
@@ -103,12 +103,7 @@ export const editCardOwner = createAsyncThunk(
   async (cardData, thunkAPI) => {
     const { taskId, info } = cardData;
     try {
-      const { data } = await axiosPrivateJson.patch(
-        `/api/tasks/${taskId}`,
-        info
-      );
-      console.log(data);
-      // return data;
+      await axiosPrivateJson.patch(`/api/tasks/${taskId}`, info);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);
     }

@@ -2,8 +2,7 @@ import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
 const HomePageDynamicStyles = ({ theme }) =>
-  css`
-    width: calc(100vh - 225px);
+  css`   
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
@@ -15,8 +14,7 @@ const HomePageDynamicStyles = ({ theme }) =>
     text-align: center;
     margin: 0 auto;
 
-    @media only screen and (min-width: ${theme.breakpoints[1]}) {
-      width: calc(100vh - 260px);
+    @media only screen and (min-width: ${theme.breakpoints[1]}) {      
       height: calc(100vh - 68px);
       flex-direction: column;
       font-size: ${theme.fontSizes[3]};

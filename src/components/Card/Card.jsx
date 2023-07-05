@@ -1,7 +1,7 @@
 import { Draggable } from '@hello-pangea/dnd';
+
 import * as s from './Card.styled';
 import sprite from '../../assets/sprite.svg';
-
 import IconList from './IconList/IconList';
 import Details from './Details/Details';
 import DeadlineSignal from './DeadlineSignal/DeadlineSignal';
@@ -29,12 +29,7 @@ function Card({ item, index }) {
             {...provided.dragHandleProps}
           >
             <s.TaskTitle>{item.title}</s.TaskTitle>
-            <s.TaskDescription>
-              {item.description
-                ? item.description
-                : `
-              Lorem ipsum dolor sit `}
-            </s.TaskDescription>
+            <s.TaskDescription>{item.description}</s.TaskDescription>
 
             <s.Box>
               <Details priority={item.priority} deadline={item.deadline} />

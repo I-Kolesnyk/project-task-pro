@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import sprite from '../../../assets/sprite.svg';
 import { useDispatch } from 'react-redux';
+
+import sprite from '../../../assets/sprite.svg';
 import { filterTasksByPriority } from 'redux/filter/slice';
 
 import {

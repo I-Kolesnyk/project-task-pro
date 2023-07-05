@@ -3,12 +3,11 @@ import { IconBtn } from './IconList.styled';
 import SvgComponent from '../../SvgComponent/SvgComponent';
 import { useState } from 'react';
 import Modal from 'components/ModalWindow/ModalWindow';
+import { useDispatch } from 'react-redux';
+
 import EditCardForm from 'components/EditCardForm/EditCardForm';
 import sprite from '../../../assets/sprite.svg';
 import { deleteCard } from 'redux/board/operations';
-import { useDispatch } from 'react-redux';
-
-// const icons = ['#arrow-circle-broken-right', '#pencil', '#trash'];
 
 const IconList = ({ taskInfo }) => {
   const [isModalOpen, setModalOpen] = useState(false);

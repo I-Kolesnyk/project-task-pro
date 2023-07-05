@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
 import { editBoardById } from 'redux/allBoards/operations';
 import sprite from '../../assets/sprite.svg';
 import data from '../../assets/backgroundIcon/data';
-import { useForm } from 'react-hook-form';
 import { useBoardData } from 'hooks';
-import { useNavigate } from 'react-router-dom';
-
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
 

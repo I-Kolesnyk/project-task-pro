@@ -8,7 +8,6 @@ export const getAllBoards = createAsyncThunk(
       const { data } = await axiosPrivateJson.get('/api/boards');
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -36,7 +35,6 @@ export const updateBoardStatus = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -52,7 +50,6 @@ export const editBoardById = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -63,6 +60,21 @@ export const deleteBoard = createAsyncThunk(
   async (boardId, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.delete(`/api/boards/${boardId}`);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editBoardBackground = createAsyncThunk(
+  'boards/editBackground',
+  async (boardData, thunkAPI) => {
+    try {
+      const { data } = await axiosPrivateJson.patch(
+        `/api/boards/${boardData.id}/background`,
+        boardData.body
+      );
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
