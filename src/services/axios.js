@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-// const BASE_URL = 'https://task-pro-api.onrender.com';
-const BASE_URL = 'http://localhost:8682';
+const BASE_URL = 'https://task-pro-api.onrender.com';
 
 export const axiosPublic = axios.create({
   baseURL: BASE_URL,
