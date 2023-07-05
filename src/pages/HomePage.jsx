@@ -9,6 +9,7 @@ import {
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 import Loader from 'components/Loader/Loader';
+import { HomePageList } from 'components/HomePageList/HomePageList';
 
 function HomePage() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -48,13 +49,7 @@ function HomePage() {
       ) : (
         <>
           <HomePageContainer>
-            <HomePageText>
-              Open your board or click &nbsp;
-              <HomePageCreateBoardBtn onClick={openModal}>
-                to create a board
-              </HomePageCreateBoardBtn>
-              &nbsp;.
-            </HomePageText>
+            <HomePageList boards={boards} />
           </HomePageContainer>
 
           {isModalOpen && (
