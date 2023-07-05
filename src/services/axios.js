@@ -29,9 +29,7 @@ axiosPrivateJson.interceptors.request.use(
     const user = localStorage.getItem('persist:auth');
     const parsedUser = JSON.parse(user);
     const token = parsedUser.token.slice(1, -1);
-    console.log(token);
     if (token) {
-      console.log('In');
       if (config?.headers) {
         config.headers['Authorization'] = `Bearer ${token}`;
       }
@@ -49,7 +47,6 @@ axiosPrivateFormData.interceptors.request.use(
   async config => {
     const user = localStorage.getItem('persist:auth');
     const parsedUser = JSON.parse(user);
-    console.log(parsedUser);
     const token = parsedUser.token.slice(1, -1);
     if (token) {
       if (config?.headers) {
@@ -68,7 +65,6 @@ axiosPrivateFormData.interceptors.request.use(
 axiosPublic.interceptors.response.use(
   response => response,
   async error => {
-    console.log(error);
     if (error.response.status === 500) {
       toast.error('Something has happened. Please try again later.');
     }
@@ -93,7 +89,6 @@ axiosPublic.interceptors.response.use(
 
 axiosPrivateFormData.interceptors.response.use(
   async response => {
-    console.log(response);
     if ((response.data.status = 200)) {
       toast.success('User data were successfully updated');
       return response;
@@ -101,7 +96,6 @@ axiosPrivateFormData.interceptors.response.use(
     return response;
   },
   async error => {
-    console.log(error);
     if (error.response.status === 500) {
       toast.error('Something has happened. Please try again later.');
     }
@@ -120,7 +114,6 @@ axiosPrivateFormData.interceptors.response.use(
 
 axiosPrivateJson.interceptors.response.use(
   async response => {
-    console.log('response -------------> ', response);
     if (response.data.code === 201 && response.config.url === '/api/boards') {
       toast.success('New board was successfully added');
       return response;

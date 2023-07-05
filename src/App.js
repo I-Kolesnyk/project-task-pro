@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { theme } from 'styles/Theme.styled';
 import { useTheme, useIsFetching } from 'hooks';
 import { currentUser } from 'redux/auth/operations';

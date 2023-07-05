@@ -1,5 +1,6 @@
-import { useTheme, useUserAvatar, useUserName } from 'hooks';
 import { useEffect, useState } from 'react';
+
+import { useTheme, useUserAvatar, useUserName } from 'hooks';
 import { Img, Text, Wrapper } from './UserInfo.styled';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditProfileForm from 'components/EditProfileFrorm/EditProfileForm';

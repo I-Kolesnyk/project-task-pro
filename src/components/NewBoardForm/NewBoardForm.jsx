@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import sprite from '../../assets/sprite.svg';
-import data from '../../assets/backgroundIcon/data';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addNewBoard } from 'redux/allBoards/operations';
 
+import sprite from '../../assets/sprite.svg';
+import data from '../../assets/backgroundIcon/data';
+import { addNewBoard } from 'redux/allBoards/operations';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import FormBtn from 'components/FormBtn/FormBtn';
 

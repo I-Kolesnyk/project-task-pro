@@ -24,9 +24,7 @@ export const StyledSpan = styled.span`
 const IconDynamicStyles = ({ theme, selected }) => css`
   width: 32px;
   height: 32px;
-
   stroke: ${theme.logOutIcon.logOutIconStroke};
-
   cursor: pointer;
 
   @media screen and (min-width: ${theme.breakpoints[3]}) {

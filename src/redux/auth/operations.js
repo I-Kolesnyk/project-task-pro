@@ -1,9 +1,10 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import {
   axiosPublic,
   axiosPrivateJson,
   axiosPrivateFormData,
 } from 'services/axios';
-import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const userRegister = createAsyncThunk(
   'auth/register',
@@ -88,10 +89,8 @@ export const editTheme = createAsyncThunk(
         `/api/users/current/${userData.id}/theme`,
         userData.body
       );
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -102,8 +101,6 @@ export const userNeedHelp = createAsyncThunk(
   async (userMessage, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.post(`/api/email`, userMessage);
-      console.log(data);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);

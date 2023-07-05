@@ -6,9 +6,7 @@ const dynamicStyle = ({ theme }) =>
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
-
-    /* max-width: 1440px; */
+    margin: 0 auto;    
     height: 100vh;
 
     background: linear-gradient(

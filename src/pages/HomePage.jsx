@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useAllBoards, useIsBoardsLoading } from 'hooks';
 
+import { useAllBoards, useIsBoardsLoading } from 'hooks';
 import {
   HomePageContainer,
   HomePageText,
@@ -8,7 +8,6 @@ import {
 } from './styled/HomePage.styled';
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
-import { HomePageList } from 'components/HomePageList/HomePageList';
 import Loader from 'components/Loader/Loader';
 
 function HomePage() {
@@ -48,7 +47,13 @@ function HomePage() {
       ) : (
         <>
           <HomePageContainer>
-            <HomePageList boards={boards} />
+            <HomePageText>
+              Choose your project or&nbsp;
+              <HomePageCreateBoardBtn onClick={openModal}>
+                create a new board
+              </HomePageCreateBoardBtn>
+              .
+            </HomePageText>
           </HomePageContainer>
 
           {isModalOpen && (

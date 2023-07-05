@@ -13,15 +13,16 @@ const LogoutBtn = () => {
     dispatch(userLogOut());
   }
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <StyledLogOutBtn onClick={onClick}>
-      <Icon width="32px" height="32px">
-        <use href={`${sprite}#logout`} />
-      </Icon>
-      <StyledSpan>Log out</StyledSpan>
-    </StyledLogOutBtn>
+  return (
+    <>
+      {isLoading && <Loader />}
+      <StyledLogOutBtn onClick={onClick}>
+        <Icon width="32px" height="32px">
+          <use href={`${sprite}#logout`} />
+        </Icon>
+        <StyledSpan>Log out</StyledSpan>
+      </StyledLogOutBtn>
+    </>
   );
 };
 

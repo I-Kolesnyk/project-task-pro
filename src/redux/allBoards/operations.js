@@ -8,7 +8,6 @@ export const getAllBoards = createAsyncThunk(
       const { data } = await axiosPrivateJson.get('/api/boards');
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -36,7 +35,6 @@ export const updateBoardStatus = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }
@@ -52,7 +50,6 @@ export const editBoardById = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.code);
     }
   }

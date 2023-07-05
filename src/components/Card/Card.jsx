@@ -1,7 +1,7 @@
 import { Draggable } from '@hello-pangea/dnd';
+
 import * as s from './Card.styled';
 import sprite from '../../assets/sprite.svg';
-
 import IconList from './IconList/IconList';
 import Details from './Details/Details';
 import DeadlineSignal from './DeadlineSignal/DeadlineSignal';

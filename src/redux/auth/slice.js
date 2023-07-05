@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   currentUser,
   userRegister,
@@ -81,32 +81,7 @@ const authSlice = createSlice({
         state.user.email = action.payload.data.user.email;
         state.user.avatar = action.payload.data.user.avatarUrl;
         state.user.id = action.payload.data.user._id;
-      })
-      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
-      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
-      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected),
+      }),
 });
-
-const handleFulfilled = state => {
-  state.isLoading = false;
-};
-
-const handlePending = state => {
-  state.isLoading = true;
-};
-
-const handleRejected = state => {
-  state.isLoading = false;
-};
-
-const extraActions = [
-  userRegister,
-  userLogin,
-  userLogOut,
-  editTheme,
-  editProfile,
-];
-
-const getActions = type => extraActions.map(action => action[type]);
 
 export const authReducer = authSlice.reducer;

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import Select from 'react-select';
+
 import { useTheme, useUserId } from 'hooks';
 import { editTheme } from 'redux/auth/operations';
 import { selectStyles } from './ThemeDropdown.styled';
-import Select from 'react-select';
 
 function ThemeDropdown() {
   const dispatch = useDispatch();

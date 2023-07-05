@@ -1,10 +1,11 @@
 import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import useDraggableScroll from 'use-draggable-scroll';
+
 import { useAllBoards, useBoardId, useOneBoardLoading } from 'hooks';
 import BoardButton from 'components/BoardButton/BoardButton';
 import { List } from './ButtonListStyled';
 import { getBoardById } from 'redux/board/operations';
-import { useDispatch } from 'react-redux';
-import useDraggableScroll from 'use-draggable-scroll';
 import Loader from 'components/Loader/Loader';
 
 function ButtonList() {

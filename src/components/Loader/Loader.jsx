@@ -1,5 +1,6 @@
 import { Oval } from 'react-loader-spinner';
 import { createPortal } from 'react-dom';
+
 import { StyledLoader, LoaderOverlay } from './Loader.styled';
 
 const loaderRoot = document.getElementById('loader-root');

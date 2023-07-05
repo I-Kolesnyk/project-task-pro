@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import sprite from '../../assets/sprite.svg';
-
 import {
   ModalOverlay,
   ModalContent,

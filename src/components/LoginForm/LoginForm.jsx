@@ -1,4 +1,3 @@
-import AuthBtn from 'components/AuthBtn/AuthBtn';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from 'redux/auth/operations';
 import { LoginFormSchema } from 'schemas';
 import { Form, Input, ShowPassword, Svg } from './LoginForm.styled';
-
+import AuthBtn from 'components/AuthBtn/AuthBtn';
 import sprite from '../../assets/sprite.svg';
 import { useIsUserLoading } from 'hooks';
 import Loader from 'components/Loader/Loader';
@@ -40,10 +39,10 @@ const LoginForm = () => {
     reset();
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <>
+      {isLoading && <Loader />}
+
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Enter your email" {...register('email')} />
