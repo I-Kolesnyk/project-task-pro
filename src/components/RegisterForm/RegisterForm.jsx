@@ -7,9 +7,12 @@ import { Form, Input, ShowPassword, Svg } from './RegisterForm.styled';
 import { useState } from 'react';
 import sprite from '../../assets/sprite.svg';
 import { RegisterFormSchema } from 'schemas';
+import { useIsUserLoading } from 'hooks';
+import Loader from 'components/Loader/Loader';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const isLoading = useIsUserLoading();
   const {
     register,
     handleSubmit,
@@ -32,12 +35,13 @@ const RegisterForm = () => {
   };
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(userRegister(data));
     reset();
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
