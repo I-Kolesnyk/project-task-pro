@@ -8,12 +8,12 @@ import {
 } from './styled/HomePage.styled';
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
+import { HomePageList } from 'components/HomePageList/HomePageList';
 
 function HomePage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const isLoading = useIsBoardsLoading();
-  const boards = useAllBoards()
-
+  const boards = useAllBoards();
   const openModal = () => {
     setModalOpen(true);
   };
@@ -22,35 +22,17 @@ function HomePage() {
     setModalOpen(false);
   };
 
-  return (   
-    !isLoading &&  boards.length === 0 ? (
-      <>
-        <HomePageContainer>
-          <HomePageText>
-            Before starting your project, it is essential&nbsp;
-            <HomePageCreateBoardBtn onClick={openModal}>
-              to create a board
-            </HomePageCreateBoardBtn>
-            &nbsp; to visualize and track all the necessary tasks and
-            milestones. This board serves as a powerful tool to organize the
-            workflow and ensure effective collaboration among team members.
-          </HomePageText>
-        </HomePageContainer>
-
-        {isModalOpen && (
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-            <CreateNewBoard onClose={closeModal} />
-          </Modal>
-        )}
-      </>
-    ) : ( <>
+  return !isLoading && boards.length === 0 ? (
+    <>
       <HomePageContainer>
         <HomePageText>
-         Open your board or click &nbsp;
+          Before starting your project, it is essential&nbsp;
           <HomePageCreateBoardBtn onClick={openModal}>
             to create a board
           </HomePageCreateBoardBtn>
-          &nbsp;.
+          &nbsp; to visualize and track all the necessary tasks and milestones.
+          This board serves as a powerful tool to organize the workflow and
+          ensure effective collaboration among team members.
         </HomePageText>
       </HomePageContainer>
 
@@ -59,7 +41,19 @@ function HomePage() {
           <CreateNewBoard onClose={closeModal} />
         </Modal>
       )}
-    </>)
+    </>
+  ) : (
+    <>
+      <HomePageContainer>
+        <HomePageList boards={boards} />
+      </HomePageContainer>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <CreateNewBoard onClose={closeModal} />
+        </Modal>
+      )}
+    </>
   );
 }
 
