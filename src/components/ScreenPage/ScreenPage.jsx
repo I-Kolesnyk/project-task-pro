@@ -108,29 +108,27 @@ function ScreenPage() {
   };
 
   return (
-    !isLoading && (
-      <Wrapper bg={boardBackground(oneBoard)}>
-        <Header>
-          <BoardTitle>{oneBoard.title}</BoardTitle>
-          <Filter />
-        </Header>
-        <ColumnList>
-          <DragDropContext onDragEnd={onDragEnd}>
-            {elements.length !== 0 &&
-              elements.map(({ title, _id, tasks }, columnIndex) => (
-                <Column
-                  cards={tasks}
-                  columnTitle={title}
-                  columnId={_id}
-                  key={_id}
-                  prefix={columnIndex}
-                />
-              ))}
-          </DragDropContext>
-          <AddColumnButton />
-        </ColumnList>
-      </Wrapper>
-    )
+    <Wrapper bg={boardBackground(oneBoard)}>
+      <Header>
+        <BoardTitle>{oneBoard.title}</BoardTitle>
+        <Filter />
+      </Header>
+      <ColumnList>
+        <DragDropContext onDragEnd={onDragEnd}>
+          {elements.length !== 0 &&
+            elements.map(({ title, _id, tasks }, columnIndex) => (
+              <Column
+                cards={tasks}
+                columnTitle={title}
+                columnId={_id}
+                key={_id}
+                prefix={columnIndex}
+              />
+            ))}
+        </DragDropContext>
+        <AddColumnButton />
+      </ColumnList>
+    </Wrapper>
   );
 }
 

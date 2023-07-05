@@ -19,21 +19,22 @@ function ButtonList() {
     }
   }, [allBoards, boardID, dispatch]);
 
-  return isLoading ? (
-    <Loader />
-  ) : (
-    <List>
-      {allBoards.length !== 0 &&
-        allBoards.map(({ _id, title, icon, active }) => (
-          <BoardButton
-            key={_id}
-            name={title}
-            id={_id}
-            icon={icon}
-            isActive={active}
-          />
-        ))}
-    </List>
+  return (
+    <>
+      {isLoading && <Loader />}
+      <List>
+        {allBoards.length !== 0 &&
+          allBoards.map(({ _id, title, icon, active }) => (
+            <BoardButton
+              key={_id}
+              name={title}
+              id={_id}
+              icon={icon}
+              isActive={active}
+            />
+          ))}
+      </List>
+    </>
   );
 }
 
