@@ -11,6 +11,7 @@ export const selectStyles = (selectedOption, optionValue) => ({
     letterSpacing: '-0.28px',
     cursor: 'pointer',
     boxShadow: 'none',
+    width: '70px',
   }),
 
   valueContainer: provided => ({
