@@ -9399,11 +9399,6 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
-use-draggable-scroll@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/use-draggable-scroll/-/use-draggable-scroll-0.1.0.tgz#ca7967eeec9d6a53f965b84f9c295c214aa43ed7"
-  integrity sha512-mX6nT3cUqOTtA+8QUH9HfdKtzI6Oquj9QIB0wALWZYmWogNQ746MaUcmqKOKCIlt2UH6egxhSKNPiSlfEqmKhA==
-
 use-isomorphic-layout-effect@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz#497cefb13d863d687b08477d9e5a164ad8c1a6fb"
