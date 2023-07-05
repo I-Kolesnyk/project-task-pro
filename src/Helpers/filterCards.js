@@ -1,8 +1,9 @@
 export const filterCards = (cards, filter) => {
-  const sortedCards = [...cards].sort((a, b) => a.index - b.index);
-  if (filter === 'all') return sortedCards;
+  if (filter === 'all') return cards;
 
-  const filteredCards = sortedCards.filter(card => card.priority === filter);
-
+  const filteredCards = cards.filter(card => card.priority === filter);
+  if (filteredCards.length > 1) {
+    filteredCards.sort((a, b) => a.index - b.index);
+  }
   return filteredCards;
 };
