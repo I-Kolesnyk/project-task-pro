@@ -31,7 +31,7 @@ function Header({ openSidebar }) {
           <use href={sprite + '#menu'}></use>
         </Svg>
       </Button>
-      {size > 474 && <Phrase>{phrases[phrase]}</Phrase>}
+      {size > 500 && <Phrase>{phrases[phrase]}</Phrase>}
       <Container>
         <ThemeDropdown />
         <UserInfo />

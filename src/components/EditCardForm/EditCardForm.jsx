@@ -44,14 +44,20 @@ const EditCardForm = ({ taskInfo, onClose }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    if (!description) description = 'No description';
-    const newTask = {
-      title,
-      description,
-      priority: lableColor,
-      deadline,
-      _id,
-    };
+    const newTask = description
+      ? {
+          title,
+          description,
+          priority: lableColor,
+          deadline,
+          _id,
+        }
+      : {
+          title,
+          priority: lableColor,
+          deadline,
+          _id,
+        };
 
     dispatch(editCard(newTask));
     onClose();

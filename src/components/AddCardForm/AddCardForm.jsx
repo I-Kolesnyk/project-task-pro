@@ -44,15 +44,22 @@ const AddCardForm = ({ columnId, onClose }) => {
 
   const onSubmit = ({ title, description, lableColor }) => {
     const deadline = new Intl.DateTimeFormat('en-GB').format(deadlineDate);
-    if (!description) description = 'No description';
-    const newTask = {
-      title,
-      description,
-      priority: lableColor,
-      deadline,
-      column: columnId,
-      index: tasksLength + 1,
-    };
+    const newTask = description
+      ? {
+          title,
+          description,
+          priority: lableColor,
+          deadline,
+          column: columnId,
+          index: tasksLength + 1,
+        }
+      : {
+          title,
+          priority: lableColor,
+          deadline,
+          column: columnId,
+          index: tasksLength + 1,
+        };
     // console.log('🚀 ~ file: AddCardForm.jsx:52 ~ onSubmit ~ newTask:', newTask);
     console.log(newTask);
     dispatch(addCard(newTask));
