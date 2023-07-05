@@ -43,59 +43,68 @@ function ScreenPage() {
     }
     console.log(result);
     const sourceColumnId = result.source.droppableId;
-    // console.log('sourceColumnId', sourceColumnId);
     const destinationColumnId = result.destination.droppableId;
     const sourceIndex = result.source.index;
     const destinationIndex = result.destination.index;
 
     const boardCopy = { ...oneBoard };
-    // console.log('boardCopy', boardCopy);
 
     const columnsArray = Object.values(boardCopy.columns);
 
-    const sourceColumn = { ...boardCopy.columns[sourceColumnId] };
-    const destinationColumn = { ...boardCopy.columns[destinationColumnId] };
-    // console.log('sourse', sourceColumn);
+    const sourceColumn = JSON.parse(
+      JSON.stringify(boardCopy.columns[sourceColumnId])
+    );
+    const destinationColumn = JSON.parse(
+      JSON.stringify(boardCopy.columns[destinationColumnId])
+    );
 
     const sourceTasks = [...sourceColumn.tasks];
     const destinationTasks = [...destinationColumn.tasks];
-    // const [task] = sourceTasks.splice(sourceIndex, 1);
+
     const task = sourceTasks.splice(sourceIndex, 1)[0];
     console.log(task);
     console.log(sourceTasks, destinationTasks);
     console.log(destinationIndex);
-    // destinationTasks.splice(destinationIndex, 0, task);
+
     if (sourceColumnId !== destinationColumnId) {
       destinationTasks.splice(destinationIndex, 0, task);
+      destinationTasks.forEach((task, idx) => {
+        destinationTasks[idx].index = idx;
+        dispatch(
+          editCardOwner({
+            taskId: task._id,
+            info: {
+              column: destinationColumn._id,
+              index: idx,
+            },
+          })
+        );
+      });
     } else {
       // If source and destination columns are the same, no need to copy the task
       const delTask = destinationTasks.splice(destinationIndex, 1, task);
-      console.log(delTask);
       destinationTasks.splice(sourceIndex, 1, delTask[0]);
+      destinationTasks.forEach((task, idx) => {
+        destinationTasks[idx].index = idx;
+        dispatch(
+          editCardOwner({
+            taskId: task._id,
+            info: {
+              column: destinationColumn._id,
+              index: idx,
+            },
+          })
+        );
+      });
     }
     sourceColumn.tasks = sourceTasks;
     destinationColumn.tasks = destinationTasks;
 
     columnsArray[sourceColumnId] = sourceColumn;
     columnsArray[destinationColumnId] = destinationColumn;
-    // console.log(destinationIndex);
-    // console.log(destinationTasks[0].index);
-
-    console.log(columnsArray);
 
     boardCopy.columns = columnsArray;
     dispatch(updateBoardColumns(boardCopy.columns));
-    destinationTasks.forEach(task => {
-      dispatch(
-        editCardOwner({
-          taskId: task._id,
-          info: {
-            column: destinationColumn._id,
-            index: task.index,
-          },
-        })
-      );
-    });
   };
 
   return (
