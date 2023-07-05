@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { useAllBoards } from 'hooks';
 import AddBoardButton from 'components/AddBoardButton';
 import ButtonList from 'components/ButtonList/ButtonList';
 import { Title } from './BoardList.styled';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { getAllBoards } from 'redux/allBoards/operations';
 import { getBackgrounds } from 'redux/background/operations';
 

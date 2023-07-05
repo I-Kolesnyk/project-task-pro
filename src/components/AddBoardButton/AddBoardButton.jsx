@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';

@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+
 import sprite from '../../assets/sprite.svg';
 import { useUserId, useUserName } from 'hooks';
 import FormBtn from 'components/FormBtn/FormBtn';
@@ -23,7 +25,6 @@ import {
 } from './EditProfileForm.styled';
 import { EditProfileSchema } from 'schemas';
 import { useUserEmail } from 'hooks/useUserEmail';
-import { useEffect } from 'react';
 
 const EditProfileForm = ({ userAvatar, onClose }) => {
   const dispatch = useDispatch();

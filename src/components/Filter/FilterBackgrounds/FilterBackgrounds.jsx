@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import {
   BackgroundsList,
   BackgroundItem,
@@ -5,8 +8,6 @@ import {
   BackgroundsTitle,
 } from './FilterBackgrounds.styled';
 import data from '../../../assets/backgroundIcon/data';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { editBoardBackground } from 'redux/allBoards/operations';
 import { useBoardData } from 'hooks';
 

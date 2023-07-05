@@ -56,14 +56,12 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
   position: absolute;
   z-index: -1;
   opacity: 0;
-  & + label {
-    /* для элемента label связанного с .custom-radio */
+  & + label {   
     display: flex;
     align-items: center;
     user-select: none;
     &::before {
-      content: '';
-      /* создание в label псевдоэлемента  before со следующими стилями */
+      content: '';     
       display: inline-block;
       width: 14px;
       height: 14px;

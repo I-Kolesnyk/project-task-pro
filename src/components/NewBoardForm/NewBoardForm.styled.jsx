@@ -48,14 +48,11 @@ const InputDynamicStyles = ({ theme }) => css`
     height: 21px;
     left: 18px;
     top: 14px;
-
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 21px;
-
     letter-spacing: -0.02em;
-
     color: #bedbb0;
   }
 
@@ -182,13 +179,3 @@ export const BackgroundImage = styled.img`
   width: 28px;
   height: 28px;
 `;
-
-// export const CloseButton = styled.svg`
-//   position: absolute;
-//   top: 14px;
-//   right: 14px;
-//   width: 18px;
-//   height: 18px;
-//   stroke: white;
-//   cursor: pointer;
-// `;

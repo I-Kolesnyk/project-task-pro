@@ -1,11 +1,13 @@
 import { Droppable } from '@hello-pangea/dnd';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Card from 'components/Card';
 import AddCardButton from 'components/AddCardButton/AddCardButton';
 import { filterCards } from 'Helpers/filterCards';
 import EditColumnForm from 'components/EditColumnForm/EditColumnForm';
 import Modal from 'components/ModalWindow/ModalWindow';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+
 import { deleteColumn } from 'redux/board/operations';
 import {
   Wrapper,

@@ -1,11 +1,12 @@
 import { DragDropContext } from '@hello-pangea/dnd';
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Filter from 'components/Filter/Filter';
 import AddColumnButton from 'components/AddColumnButton';
 import { useOneBoardLoading, useBoardData, useBackground } from 'hooks';
 import Column from 'components/Column';
 import { updateBoardColumns } from 'redux/board/slice';
-import { useDispatch } from 'react-redux';
 import { Wrapper, Header, ColumnList, BoardTitle } from './ScreenPage.styled';
 import { editCardOwner } from 'redux/board/operations';
 
@@ -41,7 +42,6 @@ function ScreenPage() {
     if (!result.destination) {
       return;
     }
-    console.log(result);
     const sourceColumnId = result.source.droppableId;
     const destinationColumnId = result.destination.droppableId;
     const sourceIndex = result.source.index;
@@ -62,9 +62,6 @@ function ScreenPage() {
     const destinationTasks = [...destinationColumn.tasks];
 
     const task = sourceTasks.splice(sourceIndex, 1)[0];
-    console.log(task);
-    console.log(sourceTasks, destinationTasks);
-    console.log(destinationIndex);
 
     if (sourceColumnId !== destinationColumnId) {
       destinationTasks.splice(destinationIndex, 0, task);
@@ -81,7 +78,6 @@ function ScreenPage() {
         );
       });
     } else {
-      // If source and destination columns are the same, no need to copy the task
       const delTask = destinationTasks.splice(destinationIndex, 1, task);
       destinationTasks.splice(sourceIndex, 1, delTask[0]);
       destinationTasks.forEach((task, idx) => {

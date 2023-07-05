@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-// import 'react-tabs/style/react-tabs.css';
 import '../../styles/react-tabs.css';
 
 export const AuthTabsContainer = styled.div`

@@ -8,14 +8,10 @@ const dynamicStyle = ({ theme }) =>
     flex-direction: column;
     text-align: center;
     margin: 0 auto;
-
     width: 335px;
     padding: 14px 0;
-
     border-radius: ${theme.radii.md};
-
     color: ${theme.authColors.darkText};
-
     font-size: ${theme.fontSizes[3]};
     font-weight: ${theme.fontWeights.medium};
     letter-spacing: -0.28px;
@@ -34,8 +30,6 @@ const WelcomePageContainerDynamicStyle = ({ theme }) =>
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-
-    /* max-width: 1440px; */
     height: 100vh;
 
     background: linear-gradient(

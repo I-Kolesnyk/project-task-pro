@@ -1,5 +1,6 @@
-import sprite from '../../assets/sprite.svg';
 import PropTypes from 'prop-types';
+
+import sprite from '../../assets/sprite.svg';
 import { ContainerSvg, Svg } from './ChildComponentBtn.styled';
 
 export function ChildComponent({ textContent }) {

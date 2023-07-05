@@ -1,9 +1,10 @@
+import { useRef, useEffect, useState } from 'react';
+
 import ThemeDropdown from 'components/ThemeDrpdown/ThemeDropdown';
 import sprite from '../../assets/sprite.svg';
 import { StyledHeader, Svg, Button, Container, Phrase } from './Header.styled';
 import UserInfo from 'components/UserInfo/UserInfo';
 import phrases from 'assets/phrases';
-import { useRef, useEffect, useState } from 'react';
 
 const phrase = Math.floor(Math.random() * phrases.length);
 

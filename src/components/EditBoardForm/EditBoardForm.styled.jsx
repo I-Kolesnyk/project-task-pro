@@ -182,13 +182,3 @@ export const BackgroundImage = styled.img`
   width: 28px;
   height: 28px;
 `;
-
-// export const CloseButton = styled.svg`
-//   position: absolute;
-//   top: 14px;
-//   right: 14px;
-//   width: 18px;
-//   height: 18px;
-//   stroke: white;
-//   cursor: pointer;
-// `;

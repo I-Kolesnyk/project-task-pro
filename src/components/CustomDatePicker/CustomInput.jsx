@@ -1,6 +1,5 @@
 import { StyledInput } from './CustomInput.styled';
-
-const { forwardRef } = require('react');
+import { forwardRef } from 'react';
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => {
   return (
