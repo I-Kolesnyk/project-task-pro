@@ -16,8 +16,9 @@ const HomePageDynamicStyles = ({ theme }) =>
     margin: 0 auto;
 
     @media only screen and (min-width: ${theme.breakpoints[1]}) {
-      width: calc(100vh - 260px);
+      /* width: calc(100vh - 260px); */
       height: calc(100vh - 68px);
+
       flex-direction: column;
       font-size: ${theme.fontSizes[3]};
       line-height: 1.28571;
