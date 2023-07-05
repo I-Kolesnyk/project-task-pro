@@ -31,12 +31,19 @@ export const boardSlice = createSlice({
       .addCase(getBoardById.rejected, state => {
         state.isLoading = false;
       })
+      .addCase(addColumn.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(addColumn.fulfilled, (state, action) => {
         const newColumn = {
           ...action.payload.data.column,
           tasks: [],
         };
         state.info.columns.push(newColumn);
+        state.isLoading = false;
+      })
+      .addCase(addCard.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(addCard.fulfilled, (state, action) => {
         const columnIdToUpdate = action.payload.data.taks.column;
@@ -48,6 +55,10 @@ export const boardSlice = createSlice({
         if (changedColumn) {
           changedColumn.tasks.push(action.payload.data.taks);
         }
+        state.isLoading = false;
+      })
+      .addCase(editCard.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(editCard.fulfilled, (state, action) => {
         const changedColumnId = action.payload.data.task.column;
@@ -68,6 +79,10 @@ export const boardSlice = createSlice({
             changedTask.deadline = action.payload.data.task.deadline;
           }
         }
+        state.isLoading = false;
+      })
+      .addCase(editColumn.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(editColumn.fulfilled, (state, action) => {
         const data = action.payload.data.column;
@@ -76,12 +91,20 @@ export const boardSlice = createSlice({
         );
 
         state.info.columns.splice(index, 1, data);
+        state.isLoading = false;
+      })
+      .addCase(deleteColumn.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(deleteColumn.fulfilled, (state, action) => {
         const deletedColumnId = action.payload.data.deletedColumn._id;
         state.info.columns = state.info.columns.filter(
           column => column._id !== deletedColumnId
         );
+        state.isLoading = false;
+      })
+      .addCase(deleteCard.pending, (state, action) => {
+        state.isLoading = true;
       })
       .addCase(deleteCard.fulfilled, (state, action) => {
         const deletedTaskId = action.payload.data.deletedTask._id;
@@ -90,6 +113,7 @@ export const boardSlice = createSlice({
             task => task._id !== deletedTaskId
           );
         });
+        state.isLoading = false;
       }),
 });
 
