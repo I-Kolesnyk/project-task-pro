@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 
 const HomePageDynamicStyles = ({ theme }) =>
   css`
-    width: calc(100vh - 225px);
+    /* width: calc(100vh - 225px); */
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
