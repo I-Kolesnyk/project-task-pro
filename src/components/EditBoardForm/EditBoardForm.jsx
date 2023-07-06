@@ -72,8 +72,8 @@ const EditBoardForm = ({ onClose }) => {
       .catch(error => {
         console.error('Error:', error);
       });
-   
-    navigate(`${data.title}`);
+
+    navigate(`${data.title.toLowerCase()}`);
   };
 
   const renderIcons = () => {
@@ -139,4 +139,3 @@ const EditBoardForm = ({ onClose }) => {
 };
 
 export default EditBoardForm;
-

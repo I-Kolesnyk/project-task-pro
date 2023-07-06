@@ -42,6 +42,9 @@ export const boardSlice = createSlice({
         state.info.columns.push(newColumn);
         state.isLoading = false;
       })
+      .addCase(addColumn.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(addCard.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -55,6 +58,9 @@ export const boardSlice = createSlice({
         if (changedColumn) {
           changedColumn.tasks.push(action.payload.data.taks);
         }
+        state.isLoading = false;
+      })
+      .addCase(addCard.rejected, state => {
         state.isLoading = false;
       })
       .addCase(editCard.pending, (state, action) => {
@@ -81,6 +87,9 @@ export const boardSlice = createSlice({
         }
         state.isLoading = false;
       })
+      .addCase(editCard.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(editColumn.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -98,6 +107,9 @@ export const boardSlice = createSlice({
         state.info.columns.splice(index, 1, newData);
         state.isLoading = false;
       })
+      .addCase(editColumn.rejected, state => {
+        state.isLoading = false;
+      })
       .addCase(deleteColumn.pending, (state, action) => {
         state.isLoading = true;
       })
@@ -106,6 +118,9 @@ export const boardSlice = createSlice({
         state.info.columns = state.info.columns.filter(
           column => column._id !== deletedColumnId
         );
+        state.isLoading = false;
+      })
+      .addCase(deleteColumn.rejected, state => {
         state.isLoading = false;
       })
       .addCase(deleteCard.pending, (state, action) => {
@@ -118,6 +133,9 @@ export const boardSlice = createSlice({
             task => task._id !== deletedTaskId
           );
         });
+        state.isLoading = false;
+      })
+      .addCase(deleteCard.rejected, state => {
         state.isLoading = false;
       }),
 });
