@@ -32,14 +32,7 @@ function App() {
     <ThemeProvider theme={theme[themeMode]}>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <RestrictedRoute>
-                <WelcomePage />
-              </RestrictedRoute>
-            }
-          />
+          <Route path="/" element={<WelcomePage />} />
 
           <Route
             path="/register"
