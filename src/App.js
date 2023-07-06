@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { theme } from 'styles/Theme.styled';
 import { useTheme, useIsFetching } from 'hooks';
@@ -32,18 +32,10 @@ function App() {
     <ThemeProvider theme={theme[themeMode]}>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="/" element={<WelcomePage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
 
           <Route
-            path="/register"
-            element={
-              <RestrictedRoute redirectTo="/home">
-                <AuthPage />
-              </RestrictedRoute>
-            }
-          />
-          <Route
-            path="/login"
+            path="/auth/:id"
             element={
               <RestrictedRoute redirectTo="/home">
                 <AuthPage />
@@ -53,7 +45,7 @@ function App() {
           <Route
             path="/home"
             element={
-              <PrivateRoute redirectTo="/login">
+              <PrivateRoute redirectTo="/auth/login">
                 <Layout />
               </PrivateRoute>
             }
@@ -61,7 +53,7 @@ function App() {
             <Route
               index
               element={
-                <PrivateRoute redirectTo="/login">
+                <PrivateRoute redirectTo="/auth/login">
                   <HomePage />
                 </PrivateRoute>
               }
@@ -69,12 +61,13 @@ function App() {
             <Route
               path="/home/:boardName"
               element={
-                <PrivateRoute redirectTo="/login">
+                <PrivateRoute redirectTo="/auth/login">
                   <ScreenPage />
                 </PrivateRoute>
               }
             />
           </Route>
+          <Route path="/" element={<Navigate to="/welcome" />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
