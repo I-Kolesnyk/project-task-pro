@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import sprite from '../../assets/sprite.svg';
 import Modal from 'components/ModalWindow/ModalWindow';
 import EditBoardForm from 'components/EditBoardForm/EditBoardForm';
-import { useIsBoardsLoading } from 'hooks';
+
 import {
   Svg,
   Wrapper,
@@ -22,7 +22,6 @@ function BoardButton({ name, id, icon }) {
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate();
-  const isAllBoardsLoading = useIsBoardsLoading();
   const [active, setActive] = useState(false);
   const [click, setClick] = useState(false);
   useEffect(() => {
@@ -37,9 +36,7 @@ function BoardButton({ name, id, icon }) {
   const handleActive = () => {
     setActive(true);
     dispatch(getBoardById(`${id}`));
-    if (!isAllBoardsLoading) {
-      navigate(`${name.toLowerCase()}`);
-    }
+    navigate(`${name.toLowerCase()}`);
   };
 
   const openModal = () => {

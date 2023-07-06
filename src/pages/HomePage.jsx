@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAllBoards, useIsBoardsLoading } from 'hooks';
 import {
@@ -9,14 +9,20 @@ import {
 import Modal from 'components/ModalWindow/ModalWindow';
 import CreateNewBoard from 'components/NewBoardForm/NewBoardForm';
 import Loader from 'components/Loader/Loader';
+import { useDispatch } from 'react-redux';
+import { getAllBoards } from 'redux/allBoards/operations';
 
 function HomePage() {
   const [isModalOpen, setModalOpen] = useState(false);
   const isLoading = useIsBoardsLoading();
   const boards = useAllBoards();
+  const dispatch = useDispatch();
   const openModal = () => {
     setModalOpen(true);
   };
+  useEffect(() => {
+    dispatch(getAllBoards());
+  }, [dispatch]);
 
   const closeModal = () => {
     setModalOpen(false);
