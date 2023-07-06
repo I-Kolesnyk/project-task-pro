@@ -12,14 +12,14 @@ const WelcomePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.4 }}
         >
-          <StyledLink to="/auth/register">Registration</StyledLink>
+          <StyledLink to="/register">Registration</StyledLink>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 200 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.6 }}
         >
-          <StyledLink to="/auth/login">Log In</StyledLink>
+          <StyledLink to="/login">Log In</StyledLink>
         </motion.div>
       </div>
     </WelcomePageContainer>
