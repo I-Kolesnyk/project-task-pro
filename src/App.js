@@ -37,7 +37,7 @@ function App() {
           <Route
             path="/register"
             element={
-              <RestrictedRoute redirectTo="/home" restricted>
+              <RestrictedRoute redirectTo="/home">
                 <AuthPage />
               </RestrictedRoute>
             }
@@ -45,7 +45,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <RestrictedRoute redirectTo="/home" restricted>
+              <RestrictedRoute redirectTo="/home">
                 <AuthPage />
               </RestrictedRoute>
             }
