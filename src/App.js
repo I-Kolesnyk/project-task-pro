@@ -42,7 +42,15 @@ function App() {
           />
 
           <Route
-            path="/auth/:id"
+            path="/register"
+            element={
+              <RestrictedRoute redirectTo="/home" restricted>
+                <AuthPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/login"
             element={
               <RestrictedRoute redirectTo="/home" restricted>
                 <AuthPage />
@@ -52,7 +60,7 @@ function App() {
           <Route
             path="/home"
             element={
-              <PrivateRoute redirectTo="/auth/login">
+              <PrivateRoute redirectTo="/login">
                 <Layout />
               </PrivateRoute>
             }
@@ -60,7 +68,7 @@ function App() {
             <Route
               index
               element={
-                <PrivateRoute redirectTo="/auth/login">
+                <PrivateRoute redirectTo="/login">
                   <HomePage />
                 </PrivateRoute>
               }
@@ -68,7 +76,7 @@ function App() {
             <Route
               path="/home/:boardName"
               element={
-                <PrivateRoute redirectTo="/auth/login">
+                <PrivateRoute redirectTo="/login">
                   <ScreenPage />
                 </PrivateRoute>
               }
