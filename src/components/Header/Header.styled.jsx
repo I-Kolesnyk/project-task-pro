@@ -49,7 +49,6 @@ const containerDynamicStyles = ({ theme }) => css`
   justify-content: flex-end;
   align-items: center;
   gap: 14px;
-  margin-left: auto;
 `;
 
 export const StyledHeader = styled.header`
@@ -70,21 +69,20 @@ export const Container = styled.div`
 
 const dynamicPhraseStyles = ({ theme }) => css`
   font-size: ${theme.fontSizes[2]};
-  width: 73vw;
-  margin-right: 25px;
+  margin-right: auto;
+  margin-left: auto;
 
   color: ${theme.textColors.main};
   font-style: normal;
   text-align: center;
   line-height: 16px;
   letter-spacing: -0.24px;
-
+  display: none;
   @media screen and (min-width: ${theme.breakpoints[1]}) {
     font-size: ${theme.fontSizes[3]};
   }
   @media screen and (min-width: ${theme.breakpoints[2]}) {
-    width: 64.2vw;
-    margin-right: 32px;
+    display: block;
   }
 `;
 

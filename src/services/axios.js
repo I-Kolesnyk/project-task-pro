@@ -100,7 +100,7 @@ axiosPrivateFormData.interceptors.response.use(
       toast.error('Something has happened. Please try again later.');
     }
     if (error.response.status === 401) {
-      return (window.location.href = '/project-task-pro/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     if (error.response.status === 400) {
       toast.error('Something has happened. Please report us an error!');
@@ -141,7 +141,7 @@ axiosPrivateJson.interceptors.response.use(
       toast.error('Something has happened. Please try again later.');
     }
     if (error.response.status === 401) {
-      return (window.location.href = '/project-task-pro/login');
+      return (window.location.href = '/project-task-pro/auth/login');
     }
     if (error.response.status === 400) {
       toast.error('Something has happened. Please report us an error!');

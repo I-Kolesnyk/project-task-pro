@@ -16,9 +16,9 @@ const AuthTabs = () => {
 
   useEffect(() => {
     const { pathname } = location;
-    if (pathname === '/register') {
+    if (pathname === '/auth/register') {
       setActiveTab(0);
-    } else if (pathname === '/login') {
+    } else if (pathname === '/auth/login') {
       setActiveTab(1);
     }
   }, [location]);
@@ -28,10 +28,10 @@ const AuthTabs = () => {
       <Tabs selectedIndex={activeTab} onSelect={handleTabChange}>
         <TabList>
           <Tab>
-            <NavLink to="/register">Registration</NavLink>
+            <NavLink to="/auth/register">Registration</NavLink>
           </Tab>
           <Tab>
-            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/auth/login">Log In</NavLink>
           </Tab>
         </TabList>
 
