@@ -3,7 +3,7 @@ import { useIsLoggedIn } from 'hooks';
 
 const RestrictedRoute = ({
   children,
-  redirectTo = '/home',
+  redirectTo = '/',
   restricted = false,
 }) => {
   const isLoggedIn = useIsLoggedIn();
