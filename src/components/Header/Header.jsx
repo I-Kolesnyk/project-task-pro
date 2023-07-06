@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import ThemeDropdown from 'components/ThemeDrpdown/ThemeDropdown';
 import sprite from '../../assets/sprite.svg';
@@ -11,20 +11,20 @@ const phrase = Math.floor(Math.random() * phrases.length);
 function Header({ openSidebar }) {
   const myRef = useRef(null);
 
-  // const [size, setSize] = useState({});
+  const [size, setSize] = useState({});
 
-  // const resizeHandler = () => {
-  //   const { clientWidth } = myRef.current || {};
-  //   setSize(clientWidth);
-  // };
+  const resizeHandler = () => {
+    const { clientWidth } = myRef.current || {};
+    setSize(clientWidth);
+  };
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', resizeHandler);
-  //   resizeHandler();
-  //   return () => {
-  //     window.removeEventListener('resize', resizeHandler);
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener('resize', resizeHandler);
+    resizeHandler();
+    return () => {
+      window.removeEventListener('resize', resizeHandler);
+    };
+  }, []);
   return (
     <StyledHeader ref={myRef}>
       <Button type="button" onClick={openSidebar}>
@@ -32,7 +32,7 @@ function Header({ openSidebar }) {
           <use href={sprite + '#menu'}></use>
         </Svg>
       </Button>
-      <Phrase>{phrases[phrase]}</Phrase>
+      {size > 500 && <Phrase>{phrases[phrase]}</Phrase>}
       <Container>
         <ThemeDropdown />
         <UserInfo />
