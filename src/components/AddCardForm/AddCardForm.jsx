@@ -12,6 +12,7 @@ import {
   LabelColorBox,
   LabelColorText,
   StyledHeader,
+  ErrorMessage,
 } from './AddCardForm.styled';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
@@ -61,7 +62,7 @@ const AddCardForm = ({ columnId, onClose }) => {
           column: columnId,
           index: tasksLength + 1,
         };
-    
+
     dispatch(addCard(newTask));
     reset();
     onClose();
@@ -77,11 +78,11 @@ const AddCardForm = ({ columnId, onClose }) => {
       <Form onSubmit={handleSubmit(onSubmit)}>
         <label>
           <Input placeholder="Title" {...register('title')} />
-          <p>{errors.title?.message}</p>
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </label>
         <label>
           <TextArea placeholder="Description" {...register('description')} />
-          <p>{errors.description?.message}</p>
+          <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </label>
         <LabelColorBox>
           <LabelColorText>Label color</LabelColorText>

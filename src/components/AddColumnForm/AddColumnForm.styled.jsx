@@ -16,6 +16,12 @@ const titleDynamicStyles = ({ theme }) => css`
   margin-bottom: 24px;
 `;
 
+const errorMessageDynamicStyles = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  margin-bottom: 10px;
+  text-align: center;
+`;
+
 const inputDynamicStyles = ({ theme }) => css`
   font-size: ${theme.fontSizes[3]};
   width: 100%;
@@ -40,6 +46,10 @@ export const Form = styled.form`
 
 export const Title = styled.h3`
   ${titleDynamicStyles}
+`;
+
+export const ErrorMessage = styled.p`
+  ${errorMessageDynamicStyles};
 `;
 
 export const Input = styled.input`

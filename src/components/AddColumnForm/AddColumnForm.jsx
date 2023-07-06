@@ -1,20 +1,29 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { Form, Input, Title } from './AddColumnForm.styled';
+import { ErrorMessage, Form, Input, Title } from './AddColumnForm.styled';
 import FormBtn from 'components/FormBtn/FormBtn';
 import { ChildComponent } from 'components/FormBtn/ChildComponentBtn';
 import { addColumn } from 'redux/board/operations';
 import { useBoardId } from 'hooks';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { TitleSchema } from 'schemas';
 
 const AddColumnForm = ({ onClose }) => {
   const dispatch = useDispatch();
   const boardId = useBoardId();
 
-  const { register, handleSubmit, reset } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     defaultValues: {
       title: '',
     },
+    resolver: yupResolver(TitleSchema),
+    mode: 'onChange',
   });
 
   const onSubmit = async data => {
@@ -39,6 +48,7 @@ const AddColumnForm = ({ onClose }) => {
             placeholder="Title"
             {...register('title')}
           />
+          <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </label>
         <FormBtn
           textBtn={() => <ChildComponent textContent="Add" />}

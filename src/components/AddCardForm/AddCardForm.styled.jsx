@@ -17,6 +17,11 @@ const dynamicStylesForm = ({ theme }) => css`
     margin-bottom: 14px;
   }
 `;
+const errorMessageDynamicStyles = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  margin-bottom: 10px;
+  text-align: center;
+`;
 
 const dynamicStylesInput = ({ theme }) => css`
   width: 100%;
@@ -56,12 +61,12 @@ const dynamicStylesRadio = ({ theme, clr }) => css`
   position: absolute;
   z-index: -1;
   opacity: 0;
-  & + label {   
+  & + label {
     display: flex;
     align-items: center;
     user-select: none;
     &::before {
-      content: '';     
+      content: '';
       display: inline-block;
       width: 14px;
       height: 14px;
@@ -110,4 +115,7 @@ export const CustomRadio = styled.input`
 export const CustomRadioContainer = styled.div`
   display: flex;
   gap: 8px;
+`;
+export const ErrorMessage = styled.p`
+  ${errorMessageDynamicStyles};
 `;
