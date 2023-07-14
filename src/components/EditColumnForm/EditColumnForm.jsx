@@ -33,7 +33,7 @@ const EditColumnForm = ({ columnId, columnTitle, onClose }) => {
           <Input autoComplete="off" {...register('title')} />
         </label>
         <FormBtn
-          textBtn={() => <ChildComponent textContent="Add" />}
+          textBtn={() => <ChildComponent textContent="Edit" />}
           type="submit"
         />
       </Form>
