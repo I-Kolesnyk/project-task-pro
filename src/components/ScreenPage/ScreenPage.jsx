@@ -78,8 +78,8 @@ function ScreenPage() {
         );
       });
     } else {
-      const delTask = destinationTasks.splice(destinationIndex, 1, task);
-      destinationTasks.splice(sourceIndex, 1, delTask[0]);
+      const [delTask] = destinationTasks.splice(sourceIndex, 1);
+      destinationTasks.splice(destinationIndex, 0, delTask);
       destinationTasks.forEach((task, idx) => {
         destinationTasks[idx].index = idx;
         dispatch(

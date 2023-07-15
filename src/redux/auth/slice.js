@@ -74,13 +74,21 @@ const authSlice = createSlice({
       })
       .addCase(currentUser.rejected, state => {
         state.isLoading = false;
+        state.token = '';
         state.isFetchingCurrentUser = false;
+      })
+      .addCase(editProfile.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(editProfile.rejected, state => {
+        state.isLoading = false;
       })
       .addCase(editProfile.fulfilled, (state, action) => {
         state.user.name = action.payload.data.user.name;
         state.user.email = action.payload.data.user.email;
         state.user.avatar = action.payload.data.user.avatarUrl;
         state.user.id = action.payload.data.user._id;
+        state.isLoading = false;
       }),
 });
 

@@ -79,9 +79,10 @@ const EditProfileForm = ({ userAvatar, onClose }) => {
     formData.append('password', data.password);
 
     const userData = { userId, formData };
-    dispatch(editProfile(userData));
+    dispatch(editProfile(userData)).then(() => {
+      onClose();
+    });
     reset();
-    onClose();
   };
 
   return (
