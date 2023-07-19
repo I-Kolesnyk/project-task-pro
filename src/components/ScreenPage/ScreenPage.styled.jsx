@@ -10,7 +10,7 @@ const dynamicStylesWrapper = ({
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background: url(${mobile.link1x});
+  background-image: url(${mobile.link1x});
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {

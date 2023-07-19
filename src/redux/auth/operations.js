@@ -59,6 +59,9 @@ export const currentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await axiosPrivateJson.get(`/api/users/current`);
+      if (!data) {
+        throw new Error();
+      }
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.code);

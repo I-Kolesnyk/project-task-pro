@@ -18,10 +18,21 @@ import {
   BackgroundItem,
   BackgroundImage,
   Input,
+  ErrorMessage,
 } from './NewBoardForm.styled';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { TitleSchema } from 'schemas';
 
 const NewBoardForm = ({ onClose }) => {
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(TitleSchema),
+    mode: 'onChange',
+  });
   const [selectedIcon, setSelectedIcon] = useState('');
   const [selectedBackgroundId, setSelectedBackgroundId] = useState('');
   const dispatch = useDispatch();
@@ -96,6 +107,7 @@ const NewBoardForm = ({ onClose }) => {
           {...register('title')}
           onChange={handleTitleChange}
         />
+        <ErrorMessage>{errors.title?.message}</ErrorMessage>
 
         <IconTitle>Icons</IconTitle>
         <IconWrap>{renderIcons()}</IconWrap>

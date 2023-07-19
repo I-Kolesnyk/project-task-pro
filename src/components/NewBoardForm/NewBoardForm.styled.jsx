@@ -28,6 +28,16 @@ export const NewBoardTitle = styled.h2`
   ${NewBoardTitleDynamicStyles}
 `;
 
+const errorMessageDynamicStyles = ({ theme }) => css`
+  color: ${theme.textColors.main};
+  margin-bottom: 10px;
+  text-align: center;
+`;
+
+export const ErrorMessage = styled.p`
+  ${errorMessageDynamicStyles};
+`;
+
 const InputDynamicStyles = ({ theme }) => css`
   box-sizing: border-box;
   margin: 0 0 24px 0;
